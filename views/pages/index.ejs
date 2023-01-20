@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table><tr><th>Name</th><th>Colors</th><th>Serial Number</th><th>Amount Produced</th></tr>
+    <% for (const index in pog.pogs){ %>
+        
+        <tr><th><%= pog.pogs[index].name %></th><th> <%= pog.pogs[index].colors %> </th><th><%= pog.pogs[index]['Serial Number'] %></th> <th><%= pog.pogs[index]['Amount Produced'] %></th></tr>
+   <% } %>
+</table>
+</body>
+<script>
+var pog = <%- JSON.stringify(pog.pogs) %>
+console.log(pog[0].name);
+</script>
+</html>

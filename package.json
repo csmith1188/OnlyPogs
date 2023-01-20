@@ -1,15 +1,25 @@
 {
-  "name": "test",
+  "name": "onlypogs",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A catalogue of Pogs in the York Tech",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TFloto/OnlyPogs.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TFloto/OnlyPogs/issues"
+  },
+  "homepage": "https://github.com/TFloto/OnlyPogs#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
-    "init": "^0.1.2"
+    "express": "^4.18.1",
+    "path": "^0.12.7"
   }
 }
