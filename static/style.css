@@ -1,5 +1,7 @@
 table{
+    width: 50%;
     border-collapse: collapse;
     text-align: center;
+    margin: auto;
   }
 

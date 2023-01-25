@@ -21,7 +21,7 @@
         {
             "name": "Emo Boy",
             "colors": [["grey","iridescent"]],
-            "Serial Number": "223A19",
+            "Serial Number": "2223A19",
             "Amount Produced": 30
             },
         {
@@ -195,7 +195,7 @@
         {
             "name": "Blapeture",
             "colors": [["grey","grey"],["black","black"],["blue","blue"],["purple","purple"]],
-            "Serial Number": "udenfined",
+            "Serial Number": "N/A",
             "Amount Produced": "N/A"
             },
         {
@@ -249,7 +249,7 @@
         {
             "name": "Pikachu",
             "colors": [["yellow","yellow"]],
-            "Serial Number": "",
+            "Serial Number": "N/A",
             "Amount Produced": "N/A"
             },
         {
