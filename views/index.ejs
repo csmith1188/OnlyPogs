@@ -9,9 +9,11 @@
     <title>Document</title>
 </head>
 <body>
+
     <!-- each header have it own onclick function with the argruement to each collum to sort to  -->
     <table id="table"><tr><th onclick="reOrder('name')">Name</th><th onclick="reOrder('Serial')">Serial Number</th><th onclick="reOrder('Amount')">Amount Produced</th></tr>
 </table>
+
 </body>
 <script>
     // have the pog grab the data from the json file.
@@ -25,7 +27,7 @@ for (const index in pog) {
     // create rows for the table to append with the imported data.
     let row = document.createElement("tr")
     row.setAttribute("id",`${index}`)
-    row.innerHTML = `<th> ${pog[index].name}</th>  <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}'> ${pog[index].name} </a> </th>  <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
     document.getElementById('table').appendChild(row)
 }
 
