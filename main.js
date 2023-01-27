@@ -15,7 +15,7 @@ let poglist = JSON.parse(rawdata)
 console.log(poglist);
 
 app.get('/', function(req, res) {
-    res.render('pages/index', { pog: poglist} );
+    res.render('index', { pog: poglist} );
   });
 
 
