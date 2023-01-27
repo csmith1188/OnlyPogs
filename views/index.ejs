@@ -51,7 +51,7 @@ function reOrder(label){
     // recreate the whole  table using the new sorted array.
     for (const index in pog) {
     let row = document.getElementById(`${index}`)
-    row.innerHTML = `<th> ${pog[index].name}</th> <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}'> ${pog[index].name} </a></th> <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
     document.getElementById('table').appendChild(row)
 }
 }
