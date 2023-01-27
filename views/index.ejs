@@ -5,29 +5,178 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
-
+</head>
 <body>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Serial Number</th>
-            <th>Amount Produced</th>
-        </tr>
-        <% for (const index in pog.pogs){ %>
-
-            <tr>
-                <td><%= pog.pogs[index].name %></td>
-                <td><%= pog.pogs[index]['Serial Number'] %></td>
-                <td><%= pog.pogs[index]['Amount Produced'] %></td>
-            </tr>
-            <% } %>
-    </table>
+    <!-- each header have it own onclick function with the argruement to each collum to sort to  -->
+    <table id="table"><tr><th onclick="reOrder('name')">Name</th><th onclick="reOrder('Serial')">Serial Number</th><th onclick="reOrder('Amount')">Amount Produced</th></tr>
+</table>
 </body>
 <script>
-    var pog = <%= JSON.stringify(pog.pogs) %>
-        console.log(pog[0].name);
+    // have the pog grab the data from the json file.
+var pog = <%- JSON.stringify(pog.pogs) %>
+// these booleans check the array if it already sorted.
+var namesorted = false
+var amountsorted = false
+var Numbersorted = false
+ // first create the table using the pog data.
+for (const index in pog) {
+    // create rows for the table to append with the imported data.
+    let row = document.createElement("tr")
+    row.setAttribute("id",`${index}`)
+    row.innerHTML = `<th> ${pog[index].name}</th>  <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
+    document.getElementById('table').appendChild(row)
+}
+
+// when the header of the table is click except color header. it will sort the whole table.
+function reOrder(label){
+    // this check which header is click and which part of the array should be sorted.
+    switch (label) {
+        case "name":
+        sorted('name');
+        pog.sort(sortName);
+            break;
+        
+        case "Amount":
+            sorted('Amount Produced')
+            pog.sort(sortamount)
+            break;
+        case "Serial":
+            sorted('Serial Number')
+            pog.sort(sortnumber)
+    }
+    // recreate the whole  table using the new sorted array.
+    for (const index in pog) {
+    let row = document.getElementById(`${index}`)
+    row.innerHTML = `<th> ${pog[index].name}</th> <th> ${pog[index]['Serial Number']}</th>  <th> ${pog[index]['Amount Produced']}</th>`
+    document.getElementById('table').appendChild(row)
+}
+}
+// this function is going to check the whole array if it already sorted, if it is, than it true.
+function sorted(label){
+    namesorted = true
+    amountsorted = true
+    Numbersorted = true
+    // only happen when we sorting by Serial Number and Amount Produced.
+    if (label == 'Amount Produced') {
+        for (let i = 0; i < pog.length; i++) {
+            if (pog[i+1]){
+                // it need to be change from string to number to compare.
+                if (Number(pog[i]['Amount Produced']) > Number(pog[i+1]['Amount Produced'])) {
+            amountsorted = false
+            break;
+            }
+            }
+ 
+        }
+        //only if we are sorting the array by name
+    } else if(label == 'name') {
+        for (let i = 0; i < pog.length; i++) {
+            if (pog[i+1]){
+                if (pog[i].name.toLowerCase() > pog[i+1].name.toLowerCase()) {
+            namesorted = false
+            break;
+            }
+            }
+ 
+        }
+        //only sorting the table with serial number
+    } else if(label == 'Serial Number') {
+        for (let i = 0; i < pog.length; i++) {
+            if (pog[i+1]){
+                //it remove any character in the string than turn them to number to compare.
+                let firstSerial = pog[i]['Serial Number'].replace(/[a-zA-Z]/g,"")
+                let secondSerial = pog[i+1]['Serial Number'].replace(/[a-zA-Z]/g,"")
+                if (Number(firstSerial) > Number(secondSerial)) {
+            Numbersorted = false
+            break;
+            }
+            }
+ 
+        }
+    }
+    
+}
+// this will sort the whole array by using it name and compare to other name in the array.
+function sortName(a,b){
+    let fa = a.name.toLowerCase()
+    let fb = b.name.toLowerCase()
+    //it change the whole string to lowercase for more a accurate comparision. 
+    if (namesorted == false) {
+        if (fa < fb){
+        return -1
+    } else if (fa > fb){
+        return 1;
+    } else {
+        return 0;
+    }
+    } else {
+        if (fa < fb){
+        return 1
+    } else if (fa > fb){
+        return -1;
+    } else {
+        return 0;
+    } 
+    }
+}
+function sortamount(a,b) {
+    //it first check the string if it is a number. then it change the number to string for comparision
+    if (amountsorted == false) {
+        if(isNaN(a['Amount Produced'])){
+        return -1
+    } else {
+        if (isNaN(b['Amount Produced'])) {
+            return 1
+        } else {
+            return Number(a['Amount Produced']) - Number(b['Amount Produced'])
+        }
+    }
+    } else {
+        if(isNaN(a['Amount Produced'])){
+        return 1
+    } else {
+        if (isNaN(b['Amount Produced'])) {
+            return -1
+        } else {
+            return Number(b['Amount Produced']) - Number(a['Amount Produced'])
+            }
+        }   
+    }
+}
+
+function sortnumber(a,b) {
+    // it first remove any character in the string. then check if the string is a number then turn the string to number for comparison.
+    let na = a['Serial Number'].replace(/[a-zA-Z]/g,"")
+    let nb = b['Serial Number'].replace(/[a-zA-Z]/g,"")
+    if (Numbersorted == false) {
+        
+
+        if(isNaN(na)){
+        return -1
+    } else {
+        if (isNaN(nb)) {
+            return 1
+        } else {
+            return Number(na) - Number(nb)
+        }
+    }
+    } else {
+
+        if(isNaN(na)){
+        return 1
+    } else {
+        if (isNaN(nb)) {
+            return -1
+        } else {
+            return Number(nb) - Number(na)
+            }
+        }   
+    }
+}
+
+
+
 </script>
 
 </html>
