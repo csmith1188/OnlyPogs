@@ -1,7 +1,38 @@
+body{
+  background-color: #e3ff88;
+}
 table{
-    width: 50%;
+    width: 100%;
+    height: 100%;
     border-collapse: collapse;
     text-align: center;
     margin: auto;
+    background-color: 
+    #33B9FF;
   }
+tr:nth-child(odd){
+  background-color: #FFFFFF;
+  border: 2px solid;
+}
+tr:nth-child(even){
+  background-color: #1ABE00;
+  border: 2px solid;
+}
+tr:first-child{
+  background-color: #9932C6;
+  user-select: none;
+}
+tr:first-child:hover{
+  cursor: /*url("pogs/cursorAP.png"),*/ pointer;
+}
+th {
+  border: 2px solid;
+}
+a{
+  color: #000000;
+}
+a:hover{
+  font-size: 120%;
+  font-family: cursive;
+}
 
