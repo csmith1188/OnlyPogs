@@ -15,7 +15,7 @@ tr:nth-child(odd){
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #1ABE00;
+  background-color: #00cc00;
   border: 2px solid;
 }
 tr:first-child{
