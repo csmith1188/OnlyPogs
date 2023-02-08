@@ -23,7 +23,7 @@ tr:first-child{
   user-select: none;
 }
 tr:first-child:hover{
-  cursor: /*url("pogs/cursorAP.png"),*/ pointer;
+  cursor: pointer;
 }
 th {
   border: 2px solid;
