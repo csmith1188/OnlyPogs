@@ -11,10 +11,56 @@
     <h1><%= pog.name %></h1>
     <p>Serial Number: <%= pog["Serial Number"] %></p>
     <p>Amount Produced: <%= pog["Amount Produced"] %></p>
-    <p>Color's: <%= pog.colors %></p>
-    <a href="/"><img src="/pogs/<%=pog.name%>.png" width="200px" height="auto"></a>
 
+
+
+
+    <p><label>Colors:</label>
+    <select id="Pogs" onchange="pogChange()">
+      
+      <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
+        pog.colors[Colors];
+      <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
+      
+      <%} %>
+      
+    </select> </p>
+
+
+
+    <a href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"></a> 
+    
   </div>
-  
+
+  <script>
+    var pog = <%- JSON.stringify(pog.name) %>
+    console.log(pog);
+    var pogImage = document.getElementById("Pogs");
+    function pogChange() {
+      console.log(pogImage.value);
+      if (pogImage.value == 0) {
+        let pogpng = document.getElementById("pogPNG")
+          pogpng.src = `/pogs/${pog}.png`
+      } else {
+        let pogpng = document.getElementById("pogPNG")
+          pogpng.src = `/pogs/${pog}${pogImage.value}.png`
+      }
+    }
+
+    // if(selectedColor == 0){
+    //       pogImage.src = "/pogs/<%=pog.name%>.png";
+    //     }
+    //     else if(selectedColor == 1){
+    //       pogImage.src = "/pogs/<%=pog.name%>_blue.png";
+    //     }
+    //     else if(selectedColor == 2){
+    //       pogImage.src = "/pogs/<%=pog.name%>_red.png";
+    //     }
+    //     else if(selectedColor == 3){
+    //       pogImage.src = "/pogs/<%=pog.name%>_green.png";
+    //     }
+    
+      </script>
+
 </body>
 </html>
