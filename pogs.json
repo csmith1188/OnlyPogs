@@ -78,11 +78,11 @@
             "url": "/pog?name=Playstation"
             },
         {
-            "name": "XBOX",
+            "name": "Xbox",
             "colors": [["blue","blue"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=XBOX"
+            "url": "/pog?name=Xbox"
             },
         {
             "name": "Hunter",
