@@ -1,5 +1,5 @@
 body{
-  background-color: #e3ff88;
+  background-color: #e8e8e8;
 }
 table{
     width: 100%;
@@ -35,4 +35,19 @@ a:hover{
   font-size: 120%;
   font-family: cursive;
 }
+select{
+  background-color: #bebebe;
+}
 
+option:nth-child(odd){
+  background-color: #717171;
+}
+div{
+  display: inline;
+}
+p{
+  background-color: #a3a3a3 ; width: auto ;
+}
+h1{
+  text-align: center;
+}
