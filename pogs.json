@@ -2,7 +2,7 @@
     "pogs":[
         {
             "name": "CP", 
-            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Blue & White"], [" White & Blue"], [" Clear"], [" Gold & Silver"], [" Silver & Bronze"], [" Bronze & Teal"], [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"]],
+            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Black & Blue"], [" Blue & Black"], [" Blue & White"], [" White & Blue"], [" Clear"], [" Gold & Silver"], [" Silver & Bronze"], [" Bronze & Teal"], [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"], [" White"]],
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
             "url": "/pog?name=CP"

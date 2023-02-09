@@ -28,8 +28,8 @@
 
 
 
-    <a href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"></a> 
-    
+    <a href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a> 
+    <p id="error"></p>
   </div>
 
   <script>
@@ -39,27 +39,22 @@
     function pogChange() {
       console.log(pogImage.value);
       if (pogImage.value == 0) {
+        document.getElementById('error').innerText = ""
         let pogpng = document.getElementById("pogPNG")
           pogpng.src = `/pogs/${pog}.png`
       } else {
         let pogpng = document.getElementById("pogPNG")
+        document.getElementById('error').innerText = ""
           pogpng.src = `/pogs/${pog}${pogImage.value}.png`
+          pogpng.setAttribute('onerror',`this.src ='/pogs/${pog}.png'; unknown() ; this.onerror = ' '  `)
+        
       }
     }
+    function unknown() {
+      document.getElementById('error').innerText = "sorry this pog/color do not exist in the page"
 
-    // if(selectedColor == 0){
-    //       pogImage.src = "/pogs/<%=pog.name%>.png";
-    //     }
-    //     else if(selectedColor == 1){
-    //       pogImage.src = "/pogs/<%=pog.name%>_blue.png";
-    //     }
-    //     else if(selectedColor == 2){
-    //       pogImage.src = "/pogs/<%=pog.name%>_red.png";
-    //     }
-    //     else if(selectedColor == 3){
-    //       pogImage.src = "/pogs/<%=pog.name%>_green.png";
-    //     }
-    
+    }
+
       </script>
 
 </body>
