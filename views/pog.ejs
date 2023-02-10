@@ -18,13 +18,6 @@
 
       <div  class="infobox">    <p class="infoheader"><label>Colors</label></p>
        <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
-    
-
-
-
-
-
-      
       <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
         pog.colors[Colors];
       <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
@@ -32,12 +25,8 @@
       <%} %>
       
     </select> </p>
-   
   </div>
   <p id="error"></p>
-
-
-
 
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
