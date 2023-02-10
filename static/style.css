@@ -37,17 +37,95 @@ a:hover{
 }
 select{
   background-color: #bebebe;
+  font-size: 25px;
 }
 
 option:nth-child(odd){
   background-color: #717171;
 }
-div{
-  display: inline;
-}
+
 p{
-  background-color: #a3a3a3 ; width: auto ;
+  background-color: #a3a3a3 ;
+  width: 250px;
+  text-align: center;
 }
 h1{
   text-align: center;
+  width: 950px;
+}
+#img{
+  float: left;
+  display: inline-block;
+  background-color: #e8e8e8;
+}
+#pogs{
+  width: 250px;
+  text-align: center;
+}
+.infobox{
+  display: inline-block;
+   width: 250px;
+}
+.info{
+  margin-top: 0px;
+  background-color: #bebebe;
+  margin-bottom: 0px;
+  font-size: 25px;
+}
+.infoheader{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 30px;
+}
+#error{
+  width: 300px;
+  font-size: 25px;
+}
+#container{
+  margin-left: 200px;
+}
+@media (max-width:975px){
+  h1{
+    width: auto;
+  }
+}
+@media (max-width:460px){
+
+  #img{
+    float: none;
+    display: inline;
+  }
+  #container{
+    margin-left: 0px;
+  }
+  .infobox{
+    display: block;
+    width: 100%;
+  }
+  img{
+    width: 100%;
+    height: auto;
+  }
+  .infoheader{
+    width: auto;
+  }
+  .info{
+    width: auto;
+  }
+  #Pogs{
+    width: 100%;
+  }
+  .number{
+    display: none;
+  }
+  .amount{
+    display: none;
+  }
+  #serial{
+    display: none;
+  }
+  #amount{
+    display: none;
+  }
+
 }
