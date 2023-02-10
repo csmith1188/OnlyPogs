@@ -33,5 +33,5 @@ app.get('/pog', function (req, res) {
 });
 
 
-app.listen(621);
-console.log(`You're running on port 621. Monosodium Glutamate is good for your health.`)
+app.listen(1024);
+console.log(`You're running on port 1024.`)
