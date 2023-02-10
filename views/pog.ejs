@@ -7,17 +7,17 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
-    <h1><%= pog.name %></h1>
-    <p>Serial Number: <%= pog["Serial Number"] %></p>
-    <p>Amount Produced: <%= pog["Amount Produced"] %></p>
+  <h1><%= pog.name %></h1>
+  
+  <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a> 
 
+  <div id="container">
+      <div  class="infobox"><p class="infoheader">Serial Number </p> <p class="info"> <%= pog["Serial Number"] %> </p></div>
+    
+      <div class="infobox"><p class="infoheader">Amount Produced </p> <p class="info"><%= pog["Amount Produced"] %></p></div>
 
-
-
-    <p><label>Colors:</label>
-    <select id="Pogs" onchange="pogChange()">
-      
+      <div  class="infobox">    <p class="infoheader"><label>Colors</label></p>
+       <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
       <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
         pog.colors[Colors];
       <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
@@ -25,12 +25,8 @@
       <%} %>
       
     </select> </p>
-
-
-
-    <a href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a> 
-    <p id="error"></p>
   </div>
+  <p id="error"></p>
 
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
@@ -51,10 +47,8 @@
       }
     }
     function unknown() {
-      document.getElementById('error').innerText = "Sorry, this pog/color does not exist in the page"
-
+      document.getElementById('error').innerText = "sorry this pog/color do not exist in the page"
     }
-
       </script>
 
 </body>

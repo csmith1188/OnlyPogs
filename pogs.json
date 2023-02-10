@@ -78,11 +78,11 @@
             "url": "/pog?name=Playstation"
             },
         {
-            "name": "XBOX",
+            "name": "Xbox
             "colors": [["Blue"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=XBOX"
+            "url": "/pog?name=Xbox"
             },
         {
             "name": "Hunter",
@@ -321,6 +321,141 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fallout"
-            }
+            },
+        {
+                "name": "Benchy",
+                "colors": [["iridescent"]],
+                "Serial Number": "N/A",
+                "Amount Produced": "30",
+                "url": "/pog?name=Benchy"
+                },
+        {
+                "name": "Berry",
+                "colors": [["black & grey"]],
+                "Serial Number": "2223A37",
+                "Amount Produced": "30",
+                "url": "/pog?name=Berry"
+                },
+        {
+                "name": "Bike",
+                "colors": [["black & grey"]],
+                "Serial Number": "2223A42",
+                "Amount Produced": "30",
+                "url": "/pog?name=Bike"
+                },
+        {
+                "name": "Discord",
+                "colors": [["Multicolor, White & Green w/Black Trim"]],
+                "Serial Number": "2223C01, NFC",
+                "Amount Produced": "30",
+                "url": "/pog?name=Discord"
+                },
+        {
+                "name": "Fallout Vault",
+                "colors": [["iridescent"]],
+                "Serial Number": "N/A",
+                "Amount Produced": "30",
+                "url": "/pog?name=Fallout Vault"
+                },
+        {
+                "name": "Fishing Rod",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A44",
+                "Amount Produced": "30",
+                "url": "/pog?name=Fishing Rod"
+                },
+        {
+                "name": "Focus Sash",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A35",
+                "Amount Produced": "30",
+                "url": "/pog?name=Focus Sash"
+                },
+
+        {
+                "name": "Full Heal",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A45",
+                "Amount Produced": "30",
+                "url": "/pog?name=Full Heal"
+                },
+        {
+                "name": "HM01 Cut",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A38",
+                "Amount Produced": "30",
+                "url": "/pog?name=HM01 Cut"
+                },
+        {
+                "name": "HM02 Fly",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A39",
+                "Amount Produced": "30",
+                "url": "/pog?name=HM02 Fly"
+                },
+        {
+                "name": "HM03 Surf",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A40",
+                "Amount Produced": "30",
+                "url": "/pog?name=HM03 Surf"
+                },
+        {
+                "name": "HM04 Dig",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A41",
+                "Amount Produced": "30",
+                "url": "/pog?name=HM04 Dig"
+                },
+        {
+                "name": "Igglybuff",
+                "colors": [["White & Grey"]],
+                "Serial Number": "2223B25",
+                "Amount Produced": "30",
+                "url": "/pog?name=Igglybuff"
+                },
+        {
+                    "name": "Juice Games",
+                    "colors": [["Purple & Green"]],
+                    "Serial Number": "2223A46",
+                    "Amount Produced": "30",
+                    "url": "/pog?name=Juice Games"
+                    },
+        {
+                "name": "Magikarp",
+                "colors": [["White & Blue"]],
+                "Serial Number": "2223B26",
+                "Amount Produced": "30",
+                "url": "/pog?name=Magikarp"
+                },
+        {
+                "name": "Old Amber",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A47",
+                "Amount Produced": "30",
+                "url": "/pog?name=Old Amber"
+                },
+        {
+                "name": "Pichu",
+                "colors": [["White & Yellow"]],
+                "Serial Number": "2223B27",
+                "Amount Produced": "30",
+                "url": "/pog?name=Pichu"
+                },
+        {
+                    "name": "Silph Scope",
+                    "colors": [["Black & Grey"]],
+                    "Serial Number": "2223A36",
+                    "Amount Produced": "30",
+                    "url": "/pog?name=Silph Scope"
+                    },
+        {
+                "name": "SS Anne Ticket",
+                "colors": [["Black & Grey"]],
+                "Serial Number": "2223A43",
+                "Amount Produced": "30",
+                "url": "/pog?name=SS Anne Ticket"
+                }
+            
     ]   
 }
