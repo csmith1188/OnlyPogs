@@ -57,7 +57,7 @@ function reOrder(label){
     // recreate the whole  table using the new sorted array.
     for (const index in pog) {
     let row = document.getElementById(`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount">  ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
     document.getElementById('table').appendChild(row)
 }
 }
@@ -168,9 +168,9 @@ function sortamount(a,b) {
 
 function sortnumber(a,b) {
     // it first remove any character in the string. then check if the string is a number then turn the string to number for comparison.
-    let na = a['Serial Number'].replace(/[a-zA-Z]/g,"")
-    let nb = b['Serial Number'].replace(/[a-zA-Z]/g,"")
-    
+    let na = a['Serial Number'].replace(/[a-zA-Z, ]/g,"")
+    let nb = b['Serial Number'].replace(/[a-zA-Z, ]/g,"")
+
     if (Numbersorted == false) {
     Hserial.innerHTML = 'Serial Number ⬆'
     Hname.innerHTML = 'Name --'
