@@ -2,7 +2,7 @@
     "pogs":[
         {
             "name": "CP", 
-            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Black & Blue"], [" Blue & Black"], [" Blue & White"], [" White & Blue"], [" Clear"], [" Gold & Silver"], [" Silver & Bronze"], [" Bronze & Teal"], [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"], [" White"]],
+            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Black & Blue"], [" Blue & Black"], [" Blue & White"], [" White & Blue"], [" Clear"], [" Gold & Silver"], [" Silver & Bronze"], [" Bronze & Teal"], [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"]],
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
             "url": "/pog?name=CP"
@@ -268,21 +268,21 @@
             },
         {
             "name": "York Tech Cyber 22-23",
-            "colors": [["Grey"],[" Grey & Red"],[" Black & Red"],[" Red & Black"],[" Black & Grey"],[" Black"]],
+            "colors": [["Grey"],[" White"],[" Grey & Red"],[" Black & Red"],[" Red & Black"],[" Black & Grey"],[" Black"]],
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber 22-23"
             },
         {
             "name": "Cyber Security",
-            "colors": [["Grey"],[" White"]],
+            "colors": [["Grey"],[" Black"],[" Black & Grey"],[" Grey & Red"],[" Black & Red"],[" Red & Black"]],
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=Cyber Security"
             },
         {
             "name": "Bro",
-            "colors": [["White"],[" pruple"],[" Blue & Black"],[" Blue"]],
+            "colors": [["White"],[" pruple"],[" Blue & Black"],[" Blue"],[" Black"]],
             "Serial Number": "2223A07",
             "Amount Produced": "N/A",
             "url": "/pog?name=Bro"
