@@ -1,5 +1,5 @@
 body{
-  background-color: #e8e8e8;
+  background-color: #134611;
 }
 table{
     width: 100%;
@@ -11,15 +11,15 @@ table{
     #33B9FF;
   }
 tr:nth-child(odd){
-  background-color: #FFFFFF;
+  background-color: #3E8914;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #00cc00;
+  background-color: #3DA35D;
   border: 2px solid;
 }
 tr:first-child{
-  background-color: #9932C6;
+  background-color: #3E8914;
   user-select: none;
 }
 tr:first-child:hover{
@@ -30,10 +30,6 @@ th {
 }
 a{
   color: #000000;
-}
-a:hover{
-  font-size: 120%;
-  font-family: cursive;
 }
 select{
   background-color: #bebebe;
@@ -56,7 +52,6 @@ h1{
 #img{
   float: left;
   display: inline-block;
-  background-color: #e8e8e8;
 }
 #pogs{
   width: 250px;

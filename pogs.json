@@ -455,7 +455,14 @@
                 "Serial Number": "2223A43",
                 "Amount Produced": "30",
                 "url": "/pog?name=SS Anne Ticket"
-                }
+                },
+        {
+                "name": "Dragon Ball",
+                "colors": [["Yellow & Red 5 Star"]],
+                "Serial Number": "2223A50",
+                "Amount Produced": "7",
+                "url": "/pog?name=Dragon Ball"
+        }
             
     ]   
 }
