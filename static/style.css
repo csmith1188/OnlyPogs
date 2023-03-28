@@ -72,6 +72,23 @@ h1{
   margin-bottom: 0px;
   font-size: 30px;
 }
+.infobox2{
+  display: inline-block;
+   width: 30%;
+}
+.info2{
+  margin-top: 0px;
+  background-color: #bebebe;
+  margin-bottom: 0px;
+  font-size: 25px;
+  width: auto;
+}
+.infoheader2{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 30px;
+  width: auto;
+}
 #error{
   width: 300px;
   font-size: 25px;
@@ -86,6 +103,10 @@ h1{
 }
 @media (max-width:460px){
 
+  .infobox2{
+    display: inline-block;
+     width: 100%;
+  }
   #img{
     float: none;
     display: inline;
