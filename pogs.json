@@ -70,7 +70,7 @@
             "Serial Number": "2223A08",
             "Amount Produced": 30,
             "url": "/pog?name=AP",
-            "lore": ""
+            "lore": "This Pog was created for to represent Anchovie Pizza"
             },
         {
             "name": "Dingus",
@@ -86,7 +86,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Playstation",
-            "lore": ""
+            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Playstation'"
             },
         {
             "name": "Xbox",
@@ -94,7 +94,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Xbox",
-            "lore": ""
+            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Xbox'"
             },
         {
             "name": "Hunter",
@@ -142,7 +142,7 @@
             "Serial Number": "2223A10",
             "Amount Produced": 60,
             "url": "/pog?name=Fire Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fire Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Water Energy",
@@ -150,7 +150,7 @@
             "Serial Number": "2223A09",
             "Amount Produced": 60,
             "url": "/pog?name=Water Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Water Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Grass Energy",
@@ -158,7 +158,7 @@
             "Serial Number": "2223A12",
             "Amount Produced": 60,
             "url": "/pog?name=Grass Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Grass Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Normal Energy",
@@ -166,7 +166,7 @@
             "Serial Number": "2223A211",
             "Amount Produced": 60,
             "url": "/pog?name=Normal Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Normal Energy allowing certain PokePogs to user certain moves"
            },
         {
             "name": "Lightning Energy",
@@ -174,7 +174,7 @@
             "Serial Number": "2223A11",
             "Amount Produced": 60,
             "url": "/pog?name=Lightning Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Lighting Energy allowing certain PokePogs to user certain moves"
            },
         {
             "name": "PokePogs QR Code",
@@ -190,7 +190,7 @@
             "Serial Number": "2223A15",
             "Amount Produced": 60,
             "url": "/pog?name=Fighting Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fighting Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Psychic Energy",
@@ -198,7 +198,7 @@
             "Serial Number": "2223A13",
             "Amount Produced": 60,
             "url": "/pog?name=Psychic Energy",
-            "lore": ""
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Psychic Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Potion Item",
@@ -294,7 +294,7 @@
             "Serial Number":"2223A20",
             "Amount Produced": "N/A",
             "url": "/pog?name=SW",
-            "lore": ""
+            "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Software."
             },
         {
             "name": "York Tech Cyber",
@@ -318,7 +318,7 @@
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=Cyber Security",
-            "lore": ""
+            "lore": "This Pog was created to represent the York Tech 2022-2023 Cyber Security Class."
             },
         {
             "name": "Bro",
