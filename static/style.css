@@ -15,11 +15,11 @@ tr:nth-child(odd){
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #3DA35D;
+  background-color: #616060;
   border: 2px solid;
 }
 tr:first-child{
-  background-color: #3E8914;
+  background-color: #20771d;
   user-select: none;
 }
 tr:first-child:hover{
