@@ -530,11 +530,11 @@
                 "lore": ""
                 },
         {
-                "name": "*This is a joke.",
+                "name": "This is a joke.",
                 "colors": [["White & Black"]],
                 "Serial Number": "2223A52",
                 "Amount Produced": "30",
-                "url": "/pog?name=this is a joke",
+                "url": "/pog?name=This is a joke",
                 "lore": ""
                 },
         {
@@ -546,11 +546,11 @@
                 "lore": ""
                 },
         {
-                "name": "?",
+                "name": "Questioning",
                 "colors": [["Green, Blue, White & Black"]],
                 "Serial Number": "2223A48",
                 "Amount Produced": "30",
-                "url": "/pog?name=?",
+                "url": "/pog?name=Questioning",
                 "lore": ""
                 },
         {
