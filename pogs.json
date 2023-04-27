@@ -142,7 +142,7 @@
             "Serial Number": "2223A10",
             "Amount Produced": 60,
             "url": "/pog?name=Fire Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fire Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Fire Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Water Energy",
@@ -150,7 +150,7 @@
             "Serial Number": "2223A09",
             "Amount Produced": 60,
             "url": "/pog?name=Water Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Water Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Water Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Grass Energy",
@@ -158,7 +158,7 @@
             "Serial Number": "2223A12",
             "Amount Produced": 60,
             "url": "/pog?name=Grass Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Grass Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Grass Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Normal Energy",
@@ -166,7 +166,7 @@
             "Serial Number": "2223A211",
             "Amount Produced": 60,
             "url": "/pog?name=Normal Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Normal Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Normal Energy allowing certain PokePogs to user certain moves"
            },
         {
             "name": "Lightning Energy",
@@ -174,7 +174,7 @@
             "Serial Number": "2223A11",
             "Amount Produced": 60,
             "url": "/pog?name=Lightning Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Lighting Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Lighting Energy allowing certain PokePogs to user certain moves"
            },
         {
             "name": "PokePogs QR Code",
@@ -190,7 +190,7 @@
             "Serial Number": "2223A15",
             "Amount Produced": 60,
             "url": "/pog?name=Fighting Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fighting Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Fighting Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Psychic Energy",
@@ -198,7 +198,7 @@
             "Serial Number": "2223A13",
             "Amount Produced": 60,
             "url": "/pog?name=Psychic Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Psychic Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Psychic Energy allowing certain PokePogs to user certain moves"
             },
         {
             "name": "Potion Item",
@@ -206,7 +206,7 @@
             "Serial Number": "2223A22",
             "Amount Produced": "N/A",
             "url": "/pog?name=Potion Item",
-            "lore": "This Pog is to be used in Pokepogs. Before you top-off, you may move up 2 pucks from the Prize Stack onto your Health Stack without going over the max size, then discard this puck. "
+            "lore": "This Pog was made to represent the Potion Puck in PokePogs"
             },
         {
             "name": "Poke Flute Item",
@@ -214,7 +214,7 @@
             "Serial Number": "2223A28",
             "Amount Produced": "N/A",
             "url": "/pog?name=Poke Flute Item",
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attack to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck"
+            "lore": "This Pog was made to represent the Poke Flute Puck in PokePogs"
             },
         {
             "name": "Ms.Hicks Trainer",
@@ -222,7 +222,7 @@
             "Serial Number": "2223A27",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ms.Hicks Trainer",
-            "lore": "This Pog is to be used in Pokepogs. If this is the only Trainer Puck in your Power Stack when the previous player makes a throw you may pick up any pucks that landed outside of the Arena. The previous player must move as many pucks from their health stack to the Arena Stack as you picked up. If they cannot, move their slammer gains the Critical Status"
+            "lore": "This Pog was made to represent the Ms. Hicks Trainer Puck in PokePogs"
             },
         {
             "name": "Switch Item",
@@ -230,7 +230,7 @@
             "Serial Number": "2223A29",
             "Amount Produced": "N/A",
             "url": "/pog?name=Switch Item",
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attacks to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck. "
+            "lore": "This Pog was made to represent the Switch Item Puck in PokePogs"
             },
         {
             "name": "Moon Stone",
@@ -238,7 +238,7 @@
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
             "url": "/pog?name=Moon Stone",
-            "lore": "This Pog was created in refrence the Moon Stone from Pokemon. This is used in PokePogs to evolve Eevee"
+            "lore": "This Pog was made to represent the Moon Stone Puck in PokePogs"
             },
         {
             "name": "Fire Stone",
@@ -246,7 +246,7 @@
             "Serial Number": "2223A31",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fire Stone",
-            "lore": ""
+            "lore": "This Pog was made to represent the Fire Stone Puck in PokePogs"
             },
         {
             "name": "Thunder Stone",
@@ -254,7 +254,7 @@
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
             "url": "/pog?name=Thunder Stone",
-            "lore": ""
+            "lore": "This Pog was made to represent the Thunder Stone Puck in PokePogs"
             },
         {
             "name": "Water Stone",
@@ -262,15 +262,15 @@
             "Serial Number": "2223A32",
             "Amount Produced": "N/A",
             "url": "/pog?name=Water Stone",
-            "lore": ""
+            "lore": "This Pog was made to represent the Water Stone Puck in PokePogs"
             },
         {
-            "name": "Blapeture",
+            "name": "Blappeture",
             "colors": [["Grey"],[" Black"],[" Blue"],[" Purple"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Blapeture",
-            "lore": ""
+            "url": "/pog?name=Blappeture",
+            "lore": "Blapperture Mesa is the leading YTECH Appliance and Electronics developer. This pog was made by Trey Floto a senior in the 2022-2023 Computer Programming class"
             },
         {
             "name": "Worse Company",
@@ -278,7 +278,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Worse Company",
-            "lore": "A bunch of gifted students got together and made a company. This pog represents that company."
+            "lore": "A bunch of gifted students got together and made a company. This pog represents that company. This pog was created by Jenna and Dylan, Seniors of the 2021-2022 Computer Programming Class and Riley, a Senior from the 2022-2023 Computer Programming Class"
             },
         {
             "name": "Ghost",
@@ -286,7 +286,7 @@
             "Serial Number":"N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ghost",
-            "lore": ""
+            "lore": "This pog was made because we need a quick and easy design because we didnt have alot of pogs yet."
             },
         {
             "name": "SW",
@@ -302,7 +302,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber",
-            "lore": "Cyber Security Stupid"
+            "lore": "This Pog was created to represent the York Tech Cyber Class."
             },
         {
             "name": "York Tech Cyber 22-23",
@@ -310,7 +310,7 @@
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber 22-23",
-            "lore": "Cyber Security Stupid Make Duplicate Pog with only 1 change"
+            "lore": "This Pog was created to represent the York Tech 2022-2023 Cyber Security Class."
             },
         {
             "name": "Cyber Security",
@@ -326,7 +326,7 @@
             "Serial Number": "2223A07",
             "Amount Produced": "N/A",
             "url": "/pog?name=Bro",
-            "lore": ""
+            "lore": "This Pog was created by Mr Merkert, due to his kids saying 'Bro' to much"
             },
         {
             "name": "Dragon",
@@ -390,7 +390,7 @@
             "Serial Number": "2223A42",
             "Amount Produced": "30",
             "url": "/pog?name=Bike",
-            "lore": ""
+            "lore": "This Pog was made to represent the Berry Puck in PokePogs"
             },
         {
             "name": "Discord",
@@ -530,7 +530,7 @@
             "lore": ""
             },
         {
-            "name": "This is a joke.",
+            "name": "This is a joke",
             "colors": [["White & Black"]],
             "Serial Number": "2223A52",
             "Amount Produced": "30",
@@ -568,30 +568,6 @@
             "Amount Produced": "30",
             "url": "/pog?name=Butter Pog",
             "lore": ""
-            },
-        {
-            "name": "Bronze Pog",
-            "colors": [["Bronze & Green"]],
-            "Serial Number": "2223A48",
-            "Amount Produced": "30",
-            "url": "/pog?name=Bronze Pog",
-            "lore": ""
-            },
-        {
-            "name": "Silver Pog",
-            "colors": [["Silver & Bronze"]],
-            "Serial Number": "2223A48",
-            "Amount Produced": "30",
-            "url": "/pog?name=Silver Pog",
-            "lore": ""
-            },
-        {
-            "name": "Gold Pog",
-            "colors": [["Gold & Silver"]],
-            "Serial Number": "2223A48",
-            "Amount Produced": "30",
-            "url": "/pog?name=Gold Pog",
-            "lore": ""
-            }
+        }
     ]   
 }
