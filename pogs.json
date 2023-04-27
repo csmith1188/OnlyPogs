@@ -369,229 +369,229 @@
             "lore": ""
             },
         {
-                "name": "Benchy",
-                "colors": [["iridescent"]],
-                "Serial Number": "N/A",
-                "Amount Produced": "30",
-                "url": "/pog?name=Benchy",
-                "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer."
-                },
+            "name": "Benchy",
+            "colors": [["iridescent"]],
+            "Serial Number": "N/A",
+            "Amount Produced": "30",
+            "url": "/pog?name=Benchy",
+            "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer."
+            },
         {
-                "name": "Berry",
-                "colors": [["black & grey"]],
-                "Serial Number": "2223A37",
-                "Amount Produced": "30",
-                "url": "/pog?name=Berry",
-                "lore": ""
-                },
+            "name": "Berry",
+            "colors": [["black & grey"]],
+            "Serial Number": "2223A37",
+            "Amount Produced": "30",
+            "url": "/pog?name=Berry",
+            "lore": ""
+            },
         {
-                "name": "Bike",
-                "colors": [["black & grey"]],
-                "Serial Number": "2223A42",
-                "Amount Produced": "30",
-                "url": "/pog?name=Bike",
-                "lore": ""
-                },
+            "name": "Bike",
+            "colors": [["black & grey"]],
+            "Serial Number": "2223A42",
+            "Amount Produced": "30",
+            "url": "/pog?name=Bike",
+            "lore": ""
+            },
         {
-                "name": "Discord",
-                "colors": [["Multicolor, White & Green w/Black Trim"]],
-                "Serial Number": "2223C01, NFC",
-                "Amount Produced": "30",
-                "url": "/pog?name=Discord",
-                "lore": ""
-                },
+            "name": "Discord",
+            "colors": [["Multicolor, White & Green w/Black Trim"]],
+            "Serial Number": "2223C01, NFC",
+            "Amount Produced": "30",
+            "url": "/pog?name=Discord",
+            "lore": ""
+            },
         {
-                "name": "Fallout Vault",
-                "colors": [["iridescent"]],
-                "Serial Number": "N/A",
-                "Amount Produced": "30",
-                "url": "/pog?name=Fallout Vault",
-                "lore": ""
-                },
+            "name": "Fallout Vault",
+            "colors": [["iridescent"]],
+            "Serial Number": "N/A",
+            "Amount Produced": "30",
+            "url": "/pog?name=Fallout Vault",
+            "lore": ""
+            },
         {
-                "name": "Fishing Rod",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A44",
-                "Amount Produced": "30",
-                "url": "/pog?name=Fishing Rod",
-                "lore": ""
-                },
+            "name": "Fishing Rod",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A44",
+            "Amount Produced": "30",
+            "url": "/pog?name=Fishing Rod",
+            "lore": ""
+            },
         {
-                "name": "Focus Sash",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A35",
-                "Amount Produced": "30",
-                "url": "/pog?name=Focus Sash",
-                "lore": ""
-                },
+            "name": "Focus Sash",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A35",
+            "Amount Produced": "30",
+            "url": "/pog?name=Focus Sash",
+            "lore": ""
+            },
 
         {
-                "name": "Full Heal",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A45",
-                "Amount Produced": "30",
-                "url": "/pog?name=Full Heal",
-                "lore": ""
-                },
+            "name": "Full Heal",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A45",
+            "Amount Produced": "30",
+            "url": "/pog?name=Full Heal",
+            "lore": ""
+            },
         {
-                "name": "HM01 Cut",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A38",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM01 Cut",
-                "lore": ""
-                },
+            "name": "HM01 Cut",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A38",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM01 Cut",
+            "lore": ""
+            },
         {
-                "name": "HM02 Fly",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A39",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM02 Fly",
-                "lore": ""
-                },
+            "name": "HM02 Fly",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A39",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM02 Fly",
+            "lore": ""
+            },
         {
-                "name": "HM03 Surf",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A40",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM03 Surf",
-                "lore": ""
-                },
+            "name": "HM03 Surf",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A40",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM03 Surf",
+            "lore": ""
+            },
         {
-                "name": "HM04 Dig",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A41",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM04 Dig",
-                "lore": ""
-                },
+            "name": "HM04 Dig",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A41",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM04 Dig",
+            "lore": ""
+            },
         {
-                "name": "Igglybuff",
-                "colors": [["White & Grey"]],
-                "Serial Number": "2223B25",
-                "Amount Produced": "30",
-                "url": "/pog?name=Igglybuff",
-                "lore": ""
-                },
+            "name": "Igglybuff",
+            "colors": [["White & Grey"]],
+            "Serial Number": "2223B25",
+            "Amount Produced": "30",
+            "url": "/pog?name=Igglybuff",
+            "lore": ""
+            },
         {
-                "name": "Juice Games",
-                "colors": [["Purple & Green"]],
-                "Serial Number": "2223A46",
-                "Amount Produced": "30",
-                "url": "/pog?name=Juice Games",
-                "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer."
-                },
+            "name": "Juice Games",
+            "colors": [["Purple & Green"]],
+            "Serial Number": "2223A46",
+            "Amount Produced": "30",
+            "url": "/pog?name=Juice Games",
+            "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer."
+            },
         {
-                "name": "Magikarp",
-                "colors": [["White & Blue"]],
-                "Serial Number": "2223B26",
-                "Amount Produced": "30",
-                "url": "/pog?name=Magikarp",
-                "lore": ""
-                },
+            "name": "Magikarp",
+            "colors": [["White & Blue"]],
+            "Serial Number": "2223B26",
+            "Amount Produced": "30",
+            "url": "/pog?name=Magikarp",
+            "lore": ""
+            },
         {
-                "name": "Old Amber",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A47",
-                "Amount Produced": "30",
-                "url": "/pog?name=Old Amber",
-                "lore": ""
-                },
+            "name": "Old Amber",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A47",
+            "Amount Produced": "30",
+            "url": "/pog?name=Old Amber",
+            "lore": ""
+            },
         {
-                "name": "Pichu",
-                "colors": [["White & Yellow"]],
-                "Serial Number": "2223B27",
-                "Amount Produced": "30",
-                "url": "/pog?name=Pichu",
-                "lore": ""
-                },
+            "name": "Pichu",
+            "colors": [["White & Yellow"]],
+            "Serial Number": "2223B27",
+            "Amount Produced": "30",
+            "url": "/pog?name=Pichu",
+            "lore": ""
+            },
         {
-                "name": "Silph Scope",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A36",
-                "Amount Produced": "30",
-                "url": "/pog?name=Silph Scope",
-                "lore": ""
-                },
+            "name": "Silph Scope",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A36",
+            "Amount Produced": "30",
+            "url": "/pog?name=Silph Scope",
+            "lore": ""
+            },
         {
-                "name": "SS Anne Ticket",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A43",
-                "Amount Produced": "30",
-                "url": "/pog?name=SS Anne Ticket",
-                "lore": ""
-                },
+            "name": "SS Anne Ticket",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A43",
+            "Amount Produced": "30",
+            "url": "/pog?name=SS Anne Ticket",
+            "lore": ""
+            },
         {
-                "name": "Dragon Ball",
-                "colors": [["Yellow & Red 1 Star"], ["Yellow & Red 2 Star"], ["Yellow & Red 3 Star"], ["Yellow & Red 4 Star"], ["Yellow & Red 5 Star"], ["Yellow & Red 6 Star"], ["Yellow & Red 7 Star"]],
-                "Serial Number": "2223A50",
-                "Amount Produced": "7",
-                "url": "/pog?name=Dragon Ball",
-                "lore": ""
-                },
+            "name": "Dragon Ball",
+            "colors": [["Yellow & Red 1 Star"], ["Yellow & Red 2 Star"], ["Yellow & Red 3 Star"], ["Yellow & Red 4 Star"], ["Yellow & Red 5 Star"], ["Yellow & Red 6 Star"], ["Yellow & Red 7 Star"]],
+            "Serial Number": "2223A50",
+            "Amount Produced": "7",
+            "url": "/pog?name=Dragon Ball",
+            "lore": ""
+            },
         {
-                "name": "This is a joke.",
-                "colors": [["White & Black"]],
-                "Serial Number": "2223A52",
-                "Amount Produced": "30",
-                "url": "/pog?name=This is a joke",
-                "lore": ""
-                },
+            "name": "This is a joke.",
+            "colors": [["White & Black"]],
+            "Serial Number": "2223A52",
+            "Amount Produced": "30",
+            "url": "/pog?name=This is a joke",
+            "lore": ""
+            },
         {
-                "name": "Merkert Trainer",
-                "colors": [["Blue & Green"]],
-                "Serial Number": "2223A53",
-                "Amount Produced": "30",
-                "url": "/pog?name=Merkert Trainer",
-                "lore": ""
-                },
+            "name": "Merkert Trainer",
+            "colors": [["Blue & Green"]],
+            "Serial Number": "2223A53",
+            "Amount Produced": "30",
+            "url": "/pog?name=Merkert Trainer",
+            "lore": ""
+            },
         {
-                "name": "Questioning",
-                "colors": [["Green, Blue, White & Black"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Questioning",
-                "lore": ""
-                },
+            "name": "Questioning",
+            "colors": [["Green, Blue, White & Black"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Questioning",
+            "lore": ""
+            },
         {
-                "name": "Menacing",
-                "colors": [["Green, Purple & Gold"]],
-                "Serial Number": "2223A54",
-                "Amount Produced": "30",
-                "url": "/pog?name=Menacing",
-                "lore": ""
-                },
+            "name": "Menacing",
+            "colors": [["Green, Purple & Gold"]],
+            "Serial Number": "2223A54",
+            "Amount Produced": "30",
+            "url": "/pog?name=Menacing",
+            "lore": ""
+            },
         {
-                "name": "Butter Pog",
-                "colors": [["Yellow & Black"], ["Black & Yellow"]],
-                "Serial Number": "2223A51",
-                "Amount Produced": "30",
-                "url": "/pog?name=Butter Pog",
-                "lore": ""
-                },
+            "name": "Butter Pog",
+            "colors": [["Yellow & Black"], ["Black & Yellow"]],
+            "Serial Number": "2223A51",
+            "Amount Produced": "30",
+            "url": "/pog?name=Butter Pog",
+            "lore": ""
+            },
         {
-                "name": "Bronze Pog",
-                "colors": [["Bronze & Green"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Bronze Pog",
-                "lore": ""
-                },
+            "name": "Bronze Pog",
+            "colors": [["Bronze & Green"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Bronze Pog",
+            "lore": ""
+            },
         {
-                "name": "Silver Pog",
-                "colors": [["Silver & Bronze"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Silver Pog",
-                "lore": ""
-                },
+            "name": "Silver Pog",
+            "colors": [["Silver & Bronze"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Silver Pog",
+            "lore": ""
+            },
         {
-                "name": "Gold Pog",
-                "colors": [["Gold & Silver"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Gold Pog",
-                "lore": ""
-                }
+            "name": "Gold Pog",
+            "colors": [["Gold & Silver"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Gold Pog",
+            "lore": ""
+            }
     ]   
 }
