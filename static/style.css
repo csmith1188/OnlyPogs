@@ -11,15 +11,15 @@ table{
     #33B9FF;
   }
 tr:nth-child(odd){
-  background-color: #3E8914;
+  background-color: #025845;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #616060;
+  background-color: #AFB0B0;
   border: 2px solid;
 }
 tr:first-child{
-  background-color: #20771d;
+  background-color: #025845;
   user-select: none;
 }
 tr:first-child:hover{
