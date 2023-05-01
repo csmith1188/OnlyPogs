@@ -342,7 +342,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Pikachu",
-            "lore": ""
+            "lore": "This Pog was made to represent the Pikachu Puck in PokePogs"
             },
         {
             "name": "Raichu",
@@ -350,7 +350,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Raichu",
-            "lore": ""
+            "lore": "This Pog was made to represent the Raichu Puck in PokePogs"
             },
         {
             "name": "Ivory Hack",
@@ -398,7 +398,7 @@
             "Serial Number": "2223C01, NFC",
             "Amount Produced": "30",
             "url": "/pog?name=Discord",
-            "lore": ""
+            "lore": "This Pog represents the communication platform discord. "
             },
         {
             "name": "Fallout Vault",
@@ -414,7 +414,7 @@
             "Serial Number": "2223A44",
             "Amount Produced": "30",
             "url": "/pog?name=Fishing Rod",
-            "lore": ""
+            "lore": "This Pog was made to represent the Fishing Rod Item Puck in PokePogs"
             },
         {
             "name": "Focus Sash",
@@ -422,7 +422,7 @@
             "Serial Number": "2223A35",
             "Amount Produced": "30",
             "url": "/pog?name=Focus Sash",
-            "lore": ""
+            "lore": "This Pog was made to represent the Focus Sash Item Puck in PokePogs"
             },
 
         {
@@ -431,7 +431,7 @@
             "Serial Number": "2223A45",
             "Amount Produced": "30",
             "url": "/pog?name=Full Heal",
-            "lore": ""
+            "lore": "This Pog was made to represent the Full Heal Item Puck in PokePogs"
             },
         {
             "name": "HM01 Cut",
@@ -439,7 +439,7 @@
             "Serial Number": "2223A38",
             "Amount Produced": "30",
             "url": "/pog?name=HM01 Cut",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Cut Puck in PokePogs"
             },
         {
             "name": "HM02 Fly",
@@ -447,7 +447,7 @@
             "Serial Number": "2223A39",
             "Amount Produced": "30",
             "url": "/pog?name=HM02 Fly",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Fly Puck in PokePogs"
             },
         {
             "name": "HM03 Surf",
@@ -455,7 +455,7 @@
             "Serial Number": "2223A40",
             "Amount Produced": "30",
             "url": "/pog?name=HM03 Surf",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Surf Puck in PokePogs"
             },
         {
             "name": "HM04 Dig",
@@ -463,7 +463,7 @@
             "Serial Number": "2223A41",
             "Amount Produced": "30",
             "url": "/pog?name=HM04 Dig",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Dig Puck in PokePogs"
             },
         {
             "name": "Igglybuff",
@@ -471,7 +471,7 @@
             "Serial Number": "2223B25",
             "Amount Produced": "30",
             "url": "/pog?name=Igglybuff",
-            "lore": ""
+            "lore": "This Pog was made to represent the Igglybuff Puck in PokePogs"
             },
         {
             "name": "Juice Games",
@@ -487,7 +487,7 @@
             "Serial Number": "2223B26",
             "Amount Produced": "30",
             "url": "/pog?name=Magikarp",
-            "lore": ""
+            "lore": "This Pog was made to represent the Magikarp Puck in PokePogs"
             },
         {
             "name": "Old Amber",
@@ -495,7 +495,7 @@
             "Serial Number": "2223A47",
             "Amount Produced": "30",
             "url": "/pog?name=Old Amber",
-            "lore": ""
+            "lore": "This Pog was made to represent the Old Amber Item Puck in PokePogs"
             },
         {
             "name": "Pichu",
@@ -503,7 +503,7 @@
             "Serial Number": "2223B27",
             "Amount Produced": "30",
             "url": "/pog?name=Pichu",
-            "lore": ""
+            "lore": "This Pog was made to represent the Pichu Puck in PokePogs"
             },
         {
             "name": "Silph Scope",
@@ -511,7 +511,7 @@
             "Serial Number": "2223A36",
             "Amount Produced": "30",
             "url": "/pog?name=Silph Scope",
-            "lore": ""
+            "lore": "This Pog was made to represent the Silph Scope Item Puck in PokePogs"
             },
         {
             "name": "SS Anne Ticket",
@@ -519,7 +519,7 @@
             "Serial Number": "2223A43",
             "Amount Produced": "30",
             "url": "/pog?name=SS Anne Ticket",
-            "lore": ""
+            "lore": "This Pog was made to represent the SS Anne Ticket Item Puck in PokePogs"
             },
         {
             "name": "Dragon Ball",
@@ -527,7 +527,7 @@
             "Serial Number": "2223A50",
             "Amount Produced": "7",
             "url": "/pog?name=Dragon Ball",
-            "lore": ""
+            "lore": "These pogs represent the earth dragon balls. Sadly since they are fictional nothing happens if you collect all 7."
             },
         {
             "name": "This is a joke",
@@ -543,7 +543,7 @@
             "Serial Number": "2223A53",
             "Amount Produced": "30",
             "url": "/pog?name=Merkert Trainer",
-            "lore": ""
+            "lore": "This Pog was made to represent the Merkert Trainer Puck in PokePogs"
             },
         {
             "name": "Questioning",
@@ -559,7 +559,7 @@
             "Serial Number": "2223A54",
             "Amount Produced": "30",
             "url": "/pog?name=Menacing",
-            "lore": ""
+            "lore": "Was that a JoJo reference"
             },
         {
             "name": "Butter Pog",
