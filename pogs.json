@@ -6,11 +6,8 @@
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
             "url": "/pog?name=CP",
-<<<<<<< Updated upstream
-            "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Programming."
-=======
+            "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Programming.",
             "tags": "class pog"
->>>>>>> Stashed changes
             },
          {
             "name": "Floto",
@@ -26,12 +23,9 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=PogChamp",
-<<<<<<< Updated upstream
-            "lore": "This Pog was the first Pog ever created for the class. It was created under the meme 'Ugh Fine, I guess you are my lil PogChamp'"
-=======
+            "lore": "This Pog was the first Pog ever created for the class. It was created under the meme 'Ugh Fine, I guess you are my lil PogChamp",
             "tags": "Teacher Created"
 
->>>>>>> Stashed changes
             },
         {
             "name": "Emo Boy",
@@ -47,23 +41,16 @@
             "Serial Number": "2223A23",
             "Amount Produced": 30,
             "url": "/pog?name=Luke",
-<<<<<<< Updated upstream
-            "lore": "This was a student created pog. This Pog is just Luke's face. Luke was a Junior in the Computer Programming 2022-2023 Computer Programming Class"
-=======
+            "lore": "This was a student created pog. This Pog is just Luke's face. Luke was a Junior in the Computer Programming 2022-2023 Computer Programming Class",
             "tags": "Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Top Banana",
             "colors": [["Grey"]],
             "Serial Number": "2223A24",
             "Amount Produced": 30,
-<<<<<<< Updated upstream
             "url": "/pog?name=Top Banana" ,
             "lore": "This Pog was created with to represent a Banana Trophy found with the title 'Top Banana'. This pog was created by Beckham and Alex, Juniors in the 2022-2023 Computer Programming Class"
-=======
-            "url": "/pog?name=Top Banana"
->>>>>>> Stashed changes
             },
         {
             "name": "Anime Girl",
@@ -71,11 +58,8 @@
             "Serial Number": "2223A25",
             "Amount Produced": 30,
             "url": "/pog?name=Anime Girl",
-<<<<<<< Updated upstream
-            "lore": "This Pog was made in reference of a Shadoverse Character. This pog was made by Jacob Smith 2022-2023 Computer Programming Class"
-=======
+            "lore": "This Pog was made in reference of a Shadowverse Character. This pog was made by Jacob Smith 2022-2023 Computer Programming Class",
             "tags": "Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "PP",
@@ -83,7 +67,7 @@
             "Serial Number": "2223A05",
             "Amount Produced": 30,
             "url": "/pog?name=PP",
-            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Peperoni Pizza."
+            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Pepperoni Pizza."
             },
         {
             "name": "AP",
@@ -91,11 +75,8 @@
             "Serial Number": "2223A08",
             "Amount Produced": 30,
             "url": "/pog?name=AP",
-<<<<<<< Updated upstream
-            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Anchovie Pizza"
-=======
+            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Anchovie Pizza",
             "tags": "Teacher Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Dingus",
@@ -111,11 +92,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Playstation",
-<<<<<<< Updated upstream
-            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Playstation'. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class"
-=======
+            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Playstation'. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class",
             "tags":"Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Xbox",
@@ -131,11 +109,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Hunter",
-<<<<<<< Updated upstream
-            "lore": ". This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class"
-=======
+            "lore": ". This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class",
             "tags":"Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Arc Reactor",
@@ -151,11 +126,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=OG Arc Reactor",
-<<<<<<< Updated upstream
-            "lore": "This Pog was made to represent a Titan Core from Titanfall, But due to Public Opinion it was renamed. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class"
-=======
+            "lore": "This Pog was made to represent a Titan Core from Titanfall, But due to Public Opinion it was renamed. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class",
             "tags":"Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Radioactive",
@@ -171,12 +143,9 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Gaming Mode",
-<<<<<<< Updated upstream
-            "lore": "When you put on these glasses you will enter the world of the game"
-=======
+            "lore": "When you put on these glasses you will enter the world of the game",
             "tags": "Student Created"
 
->>>>>>> Stashed changes
             },
         {
             "name": "Fire Energy",
@@ -192,11 +161,8 @@
             "Serial Number": "2223A09",
             "Amount Produced": 60,
             "url": "/pog?name=Water Energy",
-<<<<<<< Updated upstream
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Water Energy allowing certain PokePogs to user certain moves"
-=======
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Water Energy allowing certain PokePogs to user certain moves",
             "tags": "pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Grass Energy",
@@ -212,11 +178,8 @@
             "Serial Number": "2223A211",
             "Amount Produced": 60,
             "url": "/pog?name=Normal Energy",
-<<<<<<< Updated upstream
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Normal Energy allowing certain PokePogs to user certain moves"
-=======
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Normal Energy allowing certain PokePogs to user certain moves",
             "tags": "pokepogs"
->>>>>>> Stashed changes
            },
         {
             "name": "Lightning Energy",
@@ -232,11 +195,8 @@
             "Serial Number": "2223A34",
             "Amount Produced": 30,
             "url": "/pog?name=PokePogs QR Code",
-<<<<<<< Updated upstream
-            "lore": "This Pog is the QR Code for the PokePogs Discord Server"
-=======
+            "lore": "This Pog is the QR Code for the PokePogs Discord Server",
             "tags": "pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Fighting Energy",
@@ -252,11 +212,8 @@
             "Serial Number": "2223A13",
             "Amount Produced": 60,
             "url": "/pog?name=Psychic Energy",
-<<<<<<< Updated upstream
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Psychic Energy allowing certain PokePogs to user certain moves"
-=======
+            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Psychic Energy allowing certain PokePogs to user certain moves",
             "tags": "pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Potion Item",
@@ -272,11 +229,8 @@
             "Serial Number": "2223A28",
             "Amount Produced": "N/A",
             "url": "/pog?name=Poke Flute Item",
-<<<<<<< Updated upstream
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attack to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck"
-=======
+            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attack to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck",
             "tags":"pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Ms.Hicks Trainer",
@@ -292,11 +246,8 @@
             "Serial Number": "2223A29",
             "Amount Produced": "N/A",
             "url": "/pog?name=Switch Item",
-<<<<<<< Updated upstream
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attacks to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck. "
-=======
+            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attacks to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck. ",
             "tags":"pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Moon Stone",
@@ -312,11 +263,8 @@
             "Serial Number": "2223A31",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fire Stone",
-<<<<<<< Updated upstream
-            "lore": ""
-=======
+            "lore": "",
             "tags": "pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Thunder Stone",
@@ -332,11 +280,8 @@
             "Serial Number": "2223A32",
             "Amount Produced": "N/A",
             "url": "/pog?name=Water Stone",
-<<<<<<< Updated upstream
-            "lore": ""
-=======
+            "lore": "",
             "tags":"pokepogs"
->>>>>>> Stashed changes
             },
         {
             "name": "Blapeture",
@@ -352,11 +297,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Worse Company",
-<<<<<<< Updated upstream
-            "lore": "A bunch of gifted students got together and made a company. This pog represents that company."
-=======
+            "lore": "A bunch of gifted students got together and made a company. This pog represents that company.",
             "tags":"Student Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Ghost",
@@ -372,11 +314,8 @@
             "Serial Number":"2223A20",
             "Amount Produced": "N/A",
             "url": "/pog?name=SW",
-<<<<<<< Updated upstream
-            "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Software."
-=======
+            "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Software.",
             "tags":"class pog"
->>>>>>> Stashed changes
             },
         {
             "name": "York Tech Cyber",
@@ -384,11 +323,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber",
-<<<<<<< Updated upstream
-            "lore": "Cyber Security Stupid"
-=======
+            "lore": "Cyber Security Stupid",
             "tags":"class pog"
->>>>>>> Stashed changes
             },
         {
             "name": "York Tech Cyber 22-23",
@@ -404,11 +340,8 @@
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=Cyber Security",
-<<<<<<< Updated upstream
-            "lore": "This Pog was created to represent the York Tech 2022-2023 Cyber Security Class."
-=======
+            "lore": "This Pog was created to represent the York Tech 2022-2023 Cyber Security Class.",
             "tags":"class pog"
->>>>>>> Stashed changes
             },
         {
             "name": "Bro",
@@ -424,11 +357,9 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Dragon",
-<<<<<<< Updated upstream
-            "lore": ""
-=======
+            "lore": "",
             "tags":"Teacher Created"
->>>>>>> Stashed changes
+
             },
         {
             "name": "Pikachu",
@@ -444,11 +375,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Raichu",
-<<<<<<< Updated upstream
-            "lore": ""
-=======
+            "lore": "",
             "tags":"Teacher Created"
->>>>>>> Stashed changes
             },
         {
             "name": "Ivory Hack",
@@ -464,290 +392,257 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fallout",
-<<<<<<< Updated upstream
-            "lore": ""
-=======
+            "lore": "",
             "tags":"Teacher Created"
->>>>>>> Stashed changes
             },
         {
-                "name": "Benchy",
-                "colors": [["iridescent"]],
-                "Serial Number": "N/A",
-                "Amount Produced": "30",
-                "url": "/pog?name=Benchy",
-                "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer."
-                },
+            "name": "Benchy",
+            "colors": [["iridescent"]],
+            "Serial Number": "N/A",
+            "Amount Produced": "30",
+            "url": "/pog?name=Benchy",
+            "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer."
+            },
         {
-                "name": "Berry",
-                "colors": [["black & grey"]],
-                "Serial Number": "2223A37",
-                "Amount Produced": "30",
-                "url": "/pog?name=Berry",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags": "pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "Berry",
+            "colors": [["black & grey"]],
+            "Serial Number": "2223A37",
+            "Amount Produced": "30",
+            "url": "/pog?name=Berry",
+            "lore": "",
+            "tags": "pokepogs"
+            },
         {
-                "name": "Bike",
-                "colors": [["black & grey"]],
-                "Serial Number": "2223A42",
-                "Amount Produced": "30",
-                "url": "/pog?name=Bike",
-                "lore": ""
-                },
+            "name": "Bike",
+            "colors": [["black & grey"]],
+            "Serial Number": "2223A42",
+            "Amount Produced": "30",
+            "url": "/pog?name=Bike",
+            "lore": ""
+            },
         {
-                "name": "Discord",
-                "colors": [["Multicolor, White & Green w/Black Trim"]],
-                "Serial Number": "2223C01, NFC",
-                "Amount Produced": "30",
-                "url": "/pog?name=Discord",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags": "Teacher Created"
->>>>>>> Stashed changes
-                },
+            "name": "Discord",
+            "colors": [["Multicolor, White & Green w/Black Trim"]],
+            "Serial Number": "2223C01, NFC",
+            "Amount Produced": "30",
+            "url": "/pog?name=Discord",
+            "lore": "",
+            "tags": "Teacher Created"
+            },
         {
-                "name": "Fallout Vault",
-                "colors": [["iridescent"]],
-                "Serial Number": "N/A",
-                "Amount Produced": "30",
-                "url": "/pog?name=Fallout Vault",
-                "lore": ""
-                },
+            "name": "Fallout Vault",
+            "colors": [["iridescent"]],
+            "Serial Number": "N/A",
+            "Amount Produced": "30",
+            "url": "/pog?name=Fallout Vault",
+            "lore": ""
+            },
         {
-                "name": "Fishing Rod",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A44",
-                "Amount Produced": "30",
-                "url": "/pog?name=Fishing Rod",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags":"pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "Fishing Rod",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A44",
+            "Amount Produced": "30",
+            "url": "/pog?name=Fishing Rod",
+            "lore": "",
+            "tags":"pokepogs"
+            },
         {
-                "name": "Focus Sash",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A35",
-                "Amount Produced": "30",
-                "url": "/pog?name=Focus Sash",
-                "lore": ""
-                },
+            "name": "Focus Sash",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A35",
+            "Amount Produced": "30",
+            "url": "/pog?name=Focus Sash",
+            "lore": ""
+            },
 
         {
-                "name": "Full Heal",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A45",
-                "Amount Produced": "30",
-                "url": "/pog?name=Full Heal",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags":"pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "Full Heal",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A45",
+            "Amount Produced": "30",
+            "url": "/pog?name=Full Heal",
+            "lore": "",
+            "tags":"pokepogs"
+            },
         {
-                "name": "HM01 Cut",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A38",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM01 Cut",
-                "lore": ""
-                },
+            "name": "HM01 Cut",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A38",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM01 Cut",
+            "lore": ""
+            },
         {
-                "name": "HM02 Fly",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A39",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM02 Fly",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags":"pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "HM02 Fly",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A39",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM02 Fly",
+            "lore": "",
+            "tags":"pokepogs"
+            },
         {
-                "name": "HM03 Surf",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A40",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM03 Surf",
-                "lore": ""
-                },
+            "name": "HM03 Surf",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A40",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM03 Surf",
+            "lore": ""
+            },
         {
-                "name": "HM04 Dig",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A41",
-                "Amount Produced": "30",
-                "url": "/pog?name=HM04 Dig",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags":"pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "HM04 Dig",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A41",
+            "Amount Produced": "30",
+            "url": "/pog?name=HM04 Dig",
+            "lore": "",
+            "tags":"pokepogs"
+            },
         {
-                "name": "Igglybuff",
-                "colors": [["White & Grey"]],
-                "Serial Number": "2223B25",
-                "Amount Produced": "30",
-                "url": "/pog?name=Igglybuff",
-                "lore": ""
-                },
+            "name": "Igglybuff",
+            "colors": [["White & Grey"]],
+            "Serial Number": "2223B25",
+            "Amount Produced": "30",
+            "url": "/pog?name=Igglybuff",
+            "lore": ""
+            },
         {
-<<<<<<< Updated upstream
-                "name": "Juice Games",
-                "colors": [["Purple & Green"]],
-                "Serial Number": "2223A46",
-                "Amount Produced": "30",
-                "url": "/pog?name=Juice Games",
-                "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer."
-                },
-=======
-                    "name": "Juice Games",
-                    "colors": [["Purple & Green"]],
-                    "Serial Number": "2223A46",
-                    "Amount Produced": "30",
-                    "url": "/pog?name=Juice Games",
-                    "tags":"Student Created"
-                    },
->>>>>>> Stashed changes
+            "name": "Juice Games",
+            "colors": [["Purple & Green"]],
+            "Serial Number": "2223A46",
+            "Amount Produced": "30",
+            "url": "/pog?name=Juice Games",
+            "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer."
+            },
         {
-                "name": "Magikarp",
-                "colors": [["White & Blue"]],
-                "Serial Number": "2223B26",
-                "Amount Produced": "30",
-                "url": "/pog?name=Magikarp",
-                "lore": ""
-                },
+            "name": "Juice Games",
+            "colors": [["Purple & Green"]],
+            "Serial Number": "2223A46",
+            "Amount Produced": "30",
+            "url": "/pog?name=Juice Games",
+            "tags":"Student Created"
+            },
         {
-                "name": "Old Amber",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A47",
-                "Amount Produced": "30",
-                "url": "/pog?name=Old Amber",
-<<<<<<< Updated upstream
-                "lore": ""
-=======
-                "tags":"pokepogs"
->>>>>>> Stashed changes
-                },
+            "name": "Magikarp",
+            "colors": [["White & Blue"]],
+            "Serial Number": "2223B26",
+            "Amount Produced": "30",
+            "url": "/pog?name=Magikarp",
+            "lore": ""
+            },
         {
-                "name": "Pichu",
-                "colors": [["White & Yellow"]],
-                "Serial Number": "2223B27",
-                "Amount Produced": "30",
-                "url": "/pog?name=Pichu",
-                "lore": ""
-                },
+            "name": "Old Amber",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A47",
+            "Amount Produced": "30",
+            "url": "/pog?name=Old Amber",
+            "lore": "",
+            "tags":"pokepogs"
+            },
         {
-<<<<<<< Updated upstream
-                "name": "Silph Scope",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A36",
-                "Amount Produced": "30",
-                "url": "/pog?name=Silph Scope",
-                "lore": ""
-                },
-=======
-                    "name": "Silph Scope",
-                    "colors": [["Black & Grey"]],
-                    "Serial Number": "2223A36",
-                    "Amount Produced": "30",
-                    "url": "/pog?name=Silph Scope",
-                    "tags":"pokepogs"
-                    },
->>>>>>> Stashed changes
+            "name": "Pichu",
+            "colors": [["White & Yellow"]],
+            "Serial Number": "2223B27",
+            "Amount Produced": "30",
+            "url": "/pog?name=Pichu",
+            "lore": ""
+            },
         {
-                "name": "SS Anne Ticket",
-                "colors": [["Black & Grey"]],
-                "Serial Number": "2223A43",
-                "Amount Produced": "30",
-                "url": "/pog?name=SS Anne Ticket",
-                "lore": ""
-                },
+            "name": "Silph Scope",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A36",
+            "Amount Produced": "30",
+            "url": "/pog?name=Silph Scope",
+            "lore": ""
+            },
         {
-                "name": "Dragon Ball",
-                "colors": [["Yellow & Red 1 Star"], ["Yellow & Red 2 Star"], ["Yellow & Red 3 Star"], ["Yellow & Red 4 Star"], ["Yellow & Red 5 Star"], ["Yellow & Red 6 Star"], ["Yellow & Red 7 Star"]],
-                "Serial Number": "2223A50",
-                "Amount Produced": "7",
-                "url": "/pog?name=Dragon Ball",
-<<<<<<< Updated upstream
-                "lore": ""
-                },
+            "name": "Silph Scope",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A36",
+            "Amount Produced": "30",
+            "url": "/pog?name=Silph Scope",
+            "tags":"pokepogs"
+            },
         {
-                "name": "This is a joke.",
-                "colors": [["White & Black"]],
-                "Serial Number": "2223A52",
-                "Amount Produced": "30",
-                "url": "/pog?name=This is a joke",
-                "lore": ""
-                },
+            "name": "SS Anne Ticket",
+            "colors": [["Black & Grey"]],
+            "Serial Number": "2223A43",
+            "Amount Produced": "30",
+            "url": "/pog?name=SS Anne Ticket",
+            "lore": ""
+            },
         {
-                "name": "Merkert Trainer",
-                "colors": [["Blue & Green"]],
-                "Serial Number": "2223A53",
-                "Amount Produced": "30",
-                "url": "/pog?name=Merkert Trainer",
-                "lore": ""
-                },
+            "name": "Dragon Ball",
+            "colors": [["Yellow & Red 1 Star"], ["Yellow & Red 2 Star"], ["Yellow & Red 3 Star"], ["Yellow & Red 4 Star"], ["Yellow & Red 5 Star"], ["Yellow & Red 6 Star"], ["Yellow & Red 7 Star"]],
+            "Serial Number": "2223A50",
+            "Amount Produced": "7",
+            "url": "/pog?name=Dragon Ball",
+            "lore": ""
+            },
         {
-                "name": "Questioning",
-                "colors": [["Green, Blue, White & Black"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Questioning",
-                "lore": ""
-                },
+            "name": "This is a joke.",
+            "colors": [["White & Black"]],
+            "Serial Number": "2223A52",
+            "Amount Produced": "30",
+            "url": "/pog?name=This is a joke",
+            "lore": ""
+            },
         {
-                "name": "Menacing",
-                "colors": [["Green, Purple & Gold"]],
-                "Serial Number": "2223A54",
-                "Amount Produced": "30",
-                "url": "/pog?name=Menacing",
-                "lore": ""
-                },
+            "name": "Merkert Trainer",
+            "colors": [["Blue & Green"]],
+            "Serial Number": "2223A53",
+            "Amount Produced": "30",
+            "url": "/pog?name=Merkert Trainer",
+            "lore": ""
+            },
         {
-                "name": "Butter Pog",
-                "colors": [["Yellow & Black"], ["Black & Yellow"]],
-                "Serial Number": "2223A51",
-                "Amount Produced": "30",
-                "url": "/pog?name=Butter Pog",
-                "lore": ""
-                },
+            "name": "Questioning",
+            "colors": [["Green, Blue, White & Black"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Questioning",
+            "lore": ""
+            },
         {
-                "name": "Bronze Pog",
-                "colors": [["Bronze & Green"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Bronze Pog",
-                "lore": ""
-                },
+            "name": "Menacing",
+            "colors": [["Green, Purple & Gold"]],
+            "Serial Number": "2223A54",
+            "Amount Produced": "30",
+            "url": "/pog?name=Menacing",
+            "lore": ""
+            },
         {
-                "name": "Silver Pog",
-                "colors": [["Silver & Bronze"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Silver Pog",
-                "lore": ""
-                },
+            "name": "Butter Pog",
+            "colors": [["Yellow & Black"], ["Black & Yellow"]],
+            "Serial Number": "2223A51",
+            "Amount Produced": "30",
+            "url": "/pog?name=Butter Pog",
+            "lore": ""
+            },
         {
-                "name": "Gold Pog",
-                "colors": [["Gold & Silver"]],
-                "Serial Number": "2223A48",
-                "Amount Produced": "30",
-                "url": "/pog?name=Gold Pog",
-                "lore": ""
-                }
-=======
-                "tags": "Teacher Created"
-        }
-            
->>>>>>> Stashed changes
+            "name": "Bronze Pog",
+            "colors": [["Bronze & Green"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Bronze Pog",
+            "lore": ""
+            },
+        {
+            "name": "Silver Pog",
+            "colors": [["Silver & Bronze"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Silver Pog",
+            "lore": ""
+            },
+        {
+            "name": "Gold Pog",
+            "colors": [["Gold & Silver"]],
+            "Serial Number": "2223A48",
+            "Amount Produced": "30",
+            "url": "/pog?name=Gold Pog",
+            "lore": "",
+            "tags": "Teacher Created"
+            }
     ]   
 }
