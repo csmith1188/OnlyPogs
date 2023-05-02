@@ -15,6 +15,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Floto",
+            "tags": "Student Created"
             "lore": "Go with the Floto. This Pog was made to have Trey's face on it. Trey is a Senior in the 2022-2023 Computer Programming Class"
             },
         {
@@ -32,8 +33,9 @@
             "colors": [["Grey & Iridescent"]],
             "Serial Number": "2223A19",
             "Amount Produced": 30,
-            "url": "/pog?name=Emo Boy",
-            "lore": "This Pog is in rememberance of Christopher Boldt. A student who had amazing potential but couldn't apply himself"
+            "url": "/pog?name=Emo Boy",\"lore": "This Pog is in rememberance of Christopher Boldt. A student who had amazing potential but couldn't apply himself"
+            "tags": "Student Created"
+            
             },
         {
             "name": "Luke",
@@ -49,8 +51,9 @@
             "colors": [["Grey"]],
             "Serial Number": "2223A24",
             "Amount Produced": 30,
-            "url": "/pog?name=Top Banana" ,
-            "lore": "This Pog was created with to represent a Banana Trophy found with the title 'Top Banana'. This pog was created by Beckham and Alex, Juniors in the 2022-2023 Computer Programming Class"
+            "url": "/pog?name=Top Banana",
+            "lore": "This Pog was created with to represent a Banana Trophy found with the title 'Top Banana'. This pog was created by Beckham and Alex, Juniors in the 2022-2023 Computer Programming Class",
+            "tags":"Student Created"
             },
         {
             "name": "Anime Girl",
@@ -67,7 +70,8 @@
             "Serial Number": "2223A05",
             "Amount Produced": 30,
             "url": "/pog?name=PP",
-            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Pepperoni Pizza."
+            "lore": "This Pog was created to spite Trey a 2022-2023 Computer Programming Senior. It represents a Pepperoni Pizza.",
+            "tags": "Teacher Created"
             },
         {
             "name": "AP",
@@ -84,7 +88,8 @@
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
             "url": "/pog?name=Dingus",
-            "lore": "amogus"
+            "lore": "amogus",
+            "tags": "Student Created"
             },
         {
             "name": "Playstation",
@@ -101,7 +106,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Xbox",
-            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Xbox'. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class"
+            "lore": "This Pog represents a console of an era long gone. This pog is representing the console rumored to be called 'Xbox'. This Pog was created by Jayson Ziegler a Senior in the 2022-2023 Computer Programming Class but was printed by Chris Mooney a Senior in the 2021-2022 Computer Programming Class",
+            "tags":"Student Created"
             },
         {
             "name": "Hunter",
@@ -118,7 +124,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Arc Reactor",
-            "lore": "This Pog was created by Chris Mooney a Senior in the 2021-2022 Computer Programming Class"
+            "lore": "This Pog was created by Chris Mooney a Senior in the 2021-2022 Computer Programming Class",
+            "tags":"Student Created"
             },
         {
             "name": "OG Arc Reactor",
@@ -135,7 +142,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Radioactive",
-            "lore": "Imagine Dragons. This Pog was created by Chris Mooney a Senior in the 2021-2022 Computer Programming Class."
+            "lore": "Imagine Dragons. This Pog was created by Chris Mooney a Senior in the 2021-2022 Computer Programming Class.",
+            "tags":"Student Created"
             },
         {
             "name": "Gaming Mode",
@@ -153,7 +161,8 @@
             "Serial Number": "2223A10",
             "Amount Produced": 60,
             "url": "/pog?name=Fire Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fire Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Fire Energy allowing certain PokePogs to user certain moves",
+            "tags": "Pokepogs"
             },
         {
             "name": "Water Energy",
@@ -170,7 +179,8 @@
             "Serial Number": "2223A12",
             "Amount Produced": 60,
             "url": "/pog?name=Grass Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Grass Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Grass Energy allowing certain PokePogs to user certain moves",
+            "tags":"Pokepogs"
             },
         {
             "name": "Normal Energy",
@@ -187,7 +197,8 @@
             "Serial Number": "2223A11",
             "Amount Produced": 60,
             "url": "/pog?name=Lightning Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Lighting Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Lighting Energy allowing certain PokePogs to user certain moves",
+            "tags":"Pokepogs"
            },
         {
             "name": "PokePogs QR Code",
@@ -204,7 +215,8 @@
             "Serial Number": "2223A15",
             "Amount Produced": 60,
             "url": "/pog?name=Fighting Energy",
-            "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Fighting Energy allowing certain PokePogs to user certain moves"
+            "lore": "This Pog is to be used in Pokepogs. This PokePogs represents the Fighting Energy allowing certain PokePogs to user certain moves",
+            "tags":"Pokepogs"
             },
         {
             "name": "Psychic Energy",
@@ -221,7 +233,8 @@
             "Serial Number": "2223A22",
             "Amount Produced": "N/A",
             "url": "/pog?name=Potion Item",
-            "lore": "This Pog is to be used in Pokepogs. Before you top-off, you may move up 2 pucks from the Prize Stack onto your Health Stack without going over the max size, then discard this puck. "
+            "lore": "This Pog was made to represent the Potion Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Poke Flute Item",
@@ -229,7 +242,7 @@
             "Serial Number": "2223A28",
             "Amount Produced": "N/A",
             "url": "/pog?name=Poke Flute Item",
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attack to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck",
+            "lore": "This Pog was made to represent the Poke Flute Puck in PokePogs"
             "tags":"pokepogs"
             },
         {
@@ -238,7 +251,8 @@
             "Serial Number": "2223A27",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ms.Hicks Trainer",
-            "lore": "This Pog is to be used in Pokepogs. If this is the only Trainer Puck in your Power Stack when the previous player makes a throw you may pick up any pucks that landed outside of the Arena. The previous player must move as many pucks from their health stack to the Arena Stack as you picked up. If they cannot, move their slammer gains the Critical Status"
+            "lore": "This Pog was made to represent the Ms. Hicks Trainer Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Switch Item",
@@ -246,7 +260,7 @@
             "Serial Number": "2223A29",
             "Amount Produced": "N/A",
             "url": "/pog?name=Switch Item",
-            "lore": "This Pog is to be used in Pokepogs. Before determining the number of attacks to make on your turn, you may replace your slammer with a legal slammer from your collection, then discard this puck. ",
+            "lore": "This Pog was made to represent the Switch Item Puck in PokePogs"
             "tags":"pokepogs"
             },
         {
@@ -255,7 +269,8 @@
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
             "url": "/pog?name=Moon Stone",
-            "lore": "This Pog was created in refrence the Moon Stone from Pokemon. This is used in PokePogs to evolve Eevee"
+            "lore": "This Pog was made to represent the Moon Stone Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Fire Stone",
@@ -263,7 +278,7 @@
             "Serial Number": "2223A31",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fire Stone",
-            "lore": "",
+            "lore": "This Pog was made to represent the Fire Stone Puck in PokePogs"
             "tags": "pokepogs"
             },
         {
@@ -272,7 +287,8 @@
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
             "url": "/pog?name=Thunder Stone",
-            "lore": ""
+            "lore": "This Pog was made to represent the Thunder Stone Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Water Stone",
@@ -280,16 +296,17 @@
             "Serial Number": "2223A32",
             "Amount Produced": "N/A",
             "url": "/pog?name=Water Stone",
-            "lore": "",
+            "lore": "This Pog was made to represent the Water Stone Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
-            "name": "Blapeture",
+            "name": "Blappeture",
             "colors": [["Grey"],[" Black"],[" Blue"],[" Purple"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Blapeture",
-            "lore": ""
+            "url": "/pog?name=Blappeture",
+            "lore": "Blapperture Mesa is the leading YTECH Appliance and Electronics developer. This pog was made by Trey Floto a senior in the 2022-2023 Computer Programming class",
+            "tags":"Student Created"
             },
         {
             "name": "Worse Company",
@@ -297,7 +314,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Worse Company",
-            "lore": "A bunch of gifted students got together and made a company. This pog represents that company.",
+            "lore": "A bunch of gifted students got together and made a company. This pog represents that company. This pog was created by Jenna and Dylan, Seniors of the 2021-2022 Computer Programming Class and Riley, a Senior from the 2022-2023 Computer Programming Class",
             "tags":"Student Created"
             },
         {
@@ -306,7 +323,8 @@
             "Serial Number":"N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ghost",
-            "lore": ""
+            "lore": "This pog was made because we need a quick and easy design because we didnt have alot of pogs yet.",
+            "tags": "Teacher Created"
             },
         {
             "name": "SW",
@@ -323,7 +341,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber",
-            "lore": "Cyber Security Stupid",
+            "lore": "This Pog was created to represent the York Tech Cyber Class."
             "tags":"class pog"
             },
         {
@@ -332,7 +350,7 @@
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber 22-23",
-            "lore": "Cyber Security Stupid Make Duplicate Pog with only 1 change"
+            "tags":"class pog"
             },
         {
             "name": "Cyber Security",
@@ -349,7 +367,8 @@
             "Serial Number": "2223A07",
             "Amount Produced": "N/A",
             "url": "/pog?name=Bro",
-            "lore": ""
+            "lore": "This Pog was created by Mr Merkert, due to his kids saying 'Bro' to much",
+            "tags":"Teacher Created"
             },
         {
             "name": "Dragon",
@@ -357,9 +376,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Dragon",
-            "lore": "",
+            "lore": "This pog was made based off the logo from the Ender 3D Printer. Saia didnt tell Smith where he found it so it gained the name Dragon",
             "tags":"Teacher Created"
-
             },
         {
             "name": "Pikachu",
@@ -367,7 +385,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Pikachu",
-            "lore": ""
+            "lore": "This Pog was made to represent the Pikachu Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Raichu",
@@ -375,7 +394,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Raichu",
-            "lore": "",
+            "lore": "This Pog was made to represent the Raichu Puck in PokePogs"
             "tags":"Teacher Created"
             },
         {
@@ -384,7 +403,8 @@
             "Serial Number": "2223A06",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ivory Hack",
-            "lore": ""
+            "lore": "This pog was made by Mr. Saia the 2020-2022 Computer Networking Class. It was made as a company coin.",
+            "tags":"Teacher Created"
             },
         {
             "name": "Fallout",
@@ -401,7 +421,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "30",
             "url": "/pog?name=Benchy",
-            "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer."
+            "lore": "This Pog represents the Test print that comes with most 3D-Printers to test that everything is running properly with the printer.",
+            "tags": "Teacher Created"
             },
         {
             "name": "Berry",
@@ -409,8 +430,7 @@
             "Serial Number": "2223A37",
             "Amount Produced": "30",
             "url": "/pog?name=Berry",
-            "lore": "",
-            "tags": "pokepogs"
+            "lore": "This Pog was made to represent the Berry Puck in PokePogs"
             },
         {
             "name": "Bike",
@@ -418,7 +438,8 @@
             "Serial Number": "2223A42",
             "Amount Produced": "30",
             "url": "/pog?name=Bike",
-            "lore": ""
+            "lore": "This Pog was made to represent the Bike Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Discord",
@@ -426,16 +447,16 @@
             "Serial Number": "2223C01, NFC",
             "Amount Produced": "30",
             "url": "/pog?name=Discord",
-            "lore": "",
-            "tags": "Teacher Created"
+            "lore": "This Pog represents the communication platform discord. "
             },
         {
             "name": "Fallout Vault",
             "colors": [["iridescent"]],
             "Serial Number": "N/A",
-            "Amount Produced": "30",
+            "Amount Produced": "1",
             "url": "/pog?name=Fallout Vault",
-            "lore": ""
+            "lore": "This pog was created as Mr Saia pirated it.",
+            "tags":"Teacher Created"
             },
         {
             "name": "Fishing Rod",
@@ -443,7 +464,7 @@
             "Serial Number": "2223A44",
             "Amount Produced": "30",
             "url": "/pog?name=Fishing Rod",
-            "lore": "",
+            "lore": "This Pog was made to represent the Fishing Rod Item Puck in PokePogs"
             "tags":"pokepogs"
             },
         {
@@ -452,17 +473,16 @@
             "Serial Number": "2223A35",
             "Amount Produced": "30",
             "url": "/pog?name=Focus Sash",
-            "lore": ""
+            "lore": "This Pog was made to represent the Focus Sash Item Puck in PokePogs",
+            "tags": "Pokepogs"
             },
-
         {
             "name": "Full Heal",
             "colors": [["Black & Grey"]],
             "Serial Number": "2223A45",
             "Amount Produced": "30",
             "url": "/pog?name=Full Heal",
-            "lore": "",
-            "tags":"pokepogs"
+            "lore": "This Pog was made to represent the Full Heal Item Puck in PokePogs"
             },
         {
             "name": "HM01 Cut",
@@ -470,7 +490,8 @@
             "Serial Number": "2223A38",
             "Amount Produced": "30",
             "url": "/pog?name=HM01 Cut",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Cut Puck in PokePogs",
+            "tags": "Pokepogs"
             },
         {
             "name": "HM02 Fly",
@@ -478,8 +499,8 @@
             "Serial Number": "2223A39",
             "Amount Produced": "30",
             "url": "/pog?name=HM02 Fly",
-            "lore": "",
-            "tags":"pokepogs"
+            "lore": "This Pog was made to represent the HM Fly Puck in PokePogs"
+            "tags": "pokepogs"
             },
         {
             "name": "HM03 Surf",
@@ -487,7 +508,8 @@
             "Serial Number": "2223A40",
             "Amount Produced": "30",
             "url": "/pog?name=HM03 Surf",
-            "lore": ""
+            "lore": "This Pog was made to represent the HM Surf Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "HM04 Dig",
@@ -495,8 +517,8 @@
             "Serial Number": "2223A41",
             "Amount Produced": "30",
             "url": "/pog?name=HM04 Dig",
-            "lore": "",
-            "tags":"pokepogs"
+            "lore": "This Pog was made to represent the HM Dig Puck in PokePogs"
+            "tags": "pokepogs"
             },
         {
             "name": "Igglybuff",
@@ -504,7 +526,8 @@
             "Serial Number": "2223B25",
             "Amount Produced": "30",
             "url": "/pog?name=Igglybuff",
-            "lore": ""
+            "lore": "This Pog was made to represent the Igglybuff Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Juice Games",
@@ -528,7 +551,8 @@
             "Serial Number": "2223B26",
             "Amount Produced": "30",
             "url": "/pog?name=Magikarp",
-            "lore": ""
+            "lore": "This Pog was made to represent the Magikarp Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Old Amber",
@@ -536,7 +560,7 @@
             "Serial Number": "2223A47",
             "Amount Produced": "30",
             "url": "/pog?name=Old Amber",
-            "lore": "",
+            "lore": "This Pog was made to represent the Old Amber Item Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
@@ -545,7 +569,8 @@
             "Serial Number": "2223B27",
             "Amount Produced": "30",
             "url": "/pog?name=Pichu",
-            "lore": ""
+            "lore": "This Pog was made to represent the Pichu Puck in PokePogs",
+            "tags": "Pokepogs"
             },
         {
             "name": "Silph Scope",
@@ -553,14 +578,7 @@
             "Serial Number": "2223A36",
             "Amount Produced": "30",
             "url": "/pog?name=Silph Scope",
-            "lore": ""
-            },
-        {
-            "name": "Silph Scope",
-            "colors": [["Black & Grey"]],
-            "Serial Number": "2223A36",
-            "Amount Produced": "30",
-            "url": "/pog?name=Silph Scope",
+            "lore": "This Pog was made to represent the Silph Scope Item Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
@@ -569,7 +587,8 @@
             "Serial Number": "2223A43",
             "Amount Produced": "30",
             "url": "/pog?name=SS Anne Ticket",
-            "lore": ""
+            "lore": "This Pog was made to represent the SS Anne Ticket Item Puck in PokePogs",
+            "tags":"Pokepogs"
             },
         {
             "name": "Dragon Ball",
@@ -577,15 +596,17 @@
             "Serial Number": "2223A50",
             "Amount Produced": "7",
             "url": "/pog?name=Dragon Ball",
-            "lore": ""
+            "lore": "These pogs represent the earth dragon balls. Sadly since they are fictional nothing happens if you collect all 7.",
+            "tags": "Teacher Created"
             },
         {
-            "name": "This is a joke.",
+            "name": "This is a joke",
             "colors": [["White & Black"]],
             "Serial Number": "2223A52",
             "Amount Produced": "30",
             "url": "/pog?name=This is a joke",
-            "lore": ""
+            "lore": "This pog was created because Mr. Smith got in trouble for using unprofessional language in the weekly review.",
+            "tags": "Teacher Created"
             },
         {
             "name": "Merkert Trainer",
@@ -593,7 +614,8 @@
             "Serial Number": "2223A53",
             "Amount Produced": "30",
             "url": "/pog?name=Merkert Trainer",
-            "lore": ""
+            "lore": "This Pog was made to represent the Merkert Trainer Puck in PokePogs",
+            "tags": "Teacher Created"
             },
         {
             "name": "Questioning",
@@ -601,7 +623,8 @@
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Questioning",
-            "lore": ""
+            "lore": "This pog was drawn by Jenna Mellen a senior in the 2021-2022 Computer Programming Class and was made to test the multi-color printing",
+            "tags": "Student Created"
             },
         {
             "name": "Menacing",
@@ -609,7 +632,8 @@
             "Serial Number": "2223A54",
             "Amount Produced": "30",
             "url": "/pog?name=Menacing",
-            "lore": ""
+            "lore": "Was that a JoJo reference",
+            "tags": "Student Created"
             },
         {
             "name": "Butter Pog",
@@ -617,7 +641,8 @@
             "Serial Number": "2223A51",
             "Amount Produced": "30",
             "url": "/pog?name=Butter Pog",
-            "lore": ""
+            "lore": "This pog was made for the RoboDog's Tag. The pog was made after the meme 'Butter Dog, the dog with the butter on it, butter dog",
+            "tags": "Teacher Created"
             },
         {
             "name": "Bronze Pog",
@@ -625,7 +650,8 @@
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Bronze Pog",
-            "lore": ""
+            "lore": "Having 5 of these Pog's allows for you to trade up for a single silver pog.",
+            "tags": "Teacher Created"
             },
         {
             "name": "Silver Pog",
@@ -633,7 +659,8 @@
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Silver Pog",
-            "lore": ""
+            "lore": "Having 5 Silver Pog's allow for you to trade up to a gold pog.",
+            "tags": "Teacher Created"
             },
         {
             "name": "Gold Pog",
@@ -641,8 +668,9 @@
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Gold Pog",
-            "lore": "",
+            "lore": "Having One of these pogs allow for you to request almost, as long as its ok with smith, anything but is mostly used for letters of recommendation.",
             "tags": "Teacher Created"
             }
+        }
     ]   
 }
