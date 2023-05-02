@@ -12,7 +12,8 @@
             "colors": [["Grey"],[" Green"],[" Clear"],[" Purple"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Floto"
+            "url": "/pog?name=Floto",
+            "tags": "Student Created"
             },
         {
             "name": "PogChamp",
@@ -26,7 +27,8 @@
             "colors": [["Grey & Iridescent"]],
             "Serial Number": "2223A19",
             "Amount Produced": 30,
-            "url": "/pog?name=Emo Boy"
+            "url": "/pog?name=Emo Boy",
+            "tags": "Student Created"
             },
         {
             "name": "Luke",
@@ -40,7 +42,8 @@
             "colors": [["Grey"]],
             "Serial Number": "2223A24",
             "Amount Produced": 30,
-            "url": "/pog?name=Top Banana" 
+            "url": "/pog?name=Top Banana",
+            "tags":"Student Created" 
             },
         {
             "name": "Anime Girl",
@@ -54,7 +57,8 @@
             "colors": [[" Yellow & Red"]],
             "Serial Number": "2223A05",
             "Amount Produced": 30,
-            "url": "/pog?name=PP"
+            "url": "/pog?name=PP",
+            "tags": "Teacher Created"
             },
         {
             "name": "AP",
@@ -68,7 +72,8 @@
             "colors": [["Black"]],
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Dingus"
+            "url": "/pog?name=Dingus",
+            "tags": "Student Created"
             },
         {
             "name": "Playstation",
@@ -82,7 +87,8 @@
             "colors": [["Blue"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Xbox"
+            "url": "/pog?name=Xbox",
+            "tags":"Student Created"
             },
         {
             "name": "Hunter",
@@ -96,7 +102,8 @@
             "colors": [["Blue"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Arc Reactor"
+            "url": "/pog?name=Arc Reactor",
+            "tags":"Student Created"
             },
         {
             "name": "OG Arc Reactor",
@@ -110,7 +117,8 @@
             "colors": [["Blue"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Radioactive"
+            "url": "/pog?name=Radioactive",
+            "tags":"Student Created"
             },
         {
             "name": "Gaming Mode",
@@ -124,7 +132,8 @@
             "colors": [["Red & Black"]],
             "Serial Number": "2223A10",
             "Amount Produced": 60,
-            "url": "/pog?name=Fire Energy"
+            "url": "/pog?name=Fire Energy",
+            "tags": "Pokepogs"
             },
         {
             "name": "Water Energy",
@@ -138,7 +147,8 @@
             "colors": [["Green & Black"]],
             "Serial Number": "2223A12",
             "Amount Produced": 60,
-            "url": "/pog?name=Grass Energy"
+            "url": "/pog?name=Grass Energy",
+            "tags":"Pokepogs"
             },
         {
             "name": "Normal Energy",
@@ -152,7 +162,8 @@
             "colors": [["Yellow & Black"]],
             "Serial Number": "2223A11",
             "Amount Produced": 60,
-            "url": "/pog?name=Lightning Energy"
+            "url": "/pog?name=Lightning Energy",
+            "tags":"Pokepogs"
            },
         {
             "name": "PokePogs QR Code",
@@ -166,7 +177,8 @@
             "colors": [["Orange & Black"]],
             "Serial Number": "2223A15",
             "Amount Produced": 60,
-            "url": "/pog?name=Fighting Energy"
+            "url": "/pog?name=Fighting Energy",
+            "tags":"Pokepogs"
             },
         {
             "name": "Psychic Energy",
@@ -180,7 +192,8 @@
             "colors": [["Grey"],[" Grey & Black"]],
             "Serial Number": "2223A22",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Potion Item"
+            "url": "/pog?name=Potion Item",
+            "tags":"Pokepogs"
             },
         {
             "name": "Poke Flute Item",
@@ -194,7 +207,8 @@
             "colors": [["Grey"],[" Grey & Black"]],
             "Serial Number": "2223A27",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Ms.Hicks Trainer"
+            "url": "/pog?name=Ms.Hicks Trainer",
+            "tags":"Pokepogs"
             },
         {
             "name": "Switch Item",
@@ -208,7 +222,8 @@
             "colors": [["Grey & Black"]],
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Moon Stone"
+            "url": "/pog?name=Moon Stone",
+            "tags":"Pokepogs"
             },
         {
             "name": "Fire Stone",
@@ -222,7 +237,8 @@
             "colors": [["Grey & Black"]],
             "Serial Number": "2223A30",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Thunder Stone"
+            "url": "/pog?name=Thunder Stone",
+            "tags":"Pokepogs"
             },
         {
             "name": "Water Stone",
@@ -236,7 +252,8 @@
             "colors": [["Grey"],[" Black"],[" Blue"],[" Purple"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Blapeture"
+            "url": "/pog?name=Blapeture",
+            "tags":"Student Created"
             },
         {
             "name": "Worse Company",
@@ -250,14 +267,16 @@
             "colors": [["Grey"],[" Red"],[" Purple"]],
             "Serial Number":"N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Ghost"
+            "url": "/pog?name=Ghost",
+            "tags": "Teacher Created"
             },
         {
             "name": "SW",
             "colors": [["Grey & Black"],[" Black"],[" White & Grey"],[" White"],[" Red"],[" Green"],[" Grey"]],
             "Serial Number":"2223A20",
             "Amount Produced": "N/A",
-            "url": "/pog?name=SW"
+            "url": "/pog?name=SW",
+            "tags":"class pog"
             },
         {
             "name": "York Tech Cyber",
@@ -271,7 +290,8 @@
             "colors": [["Grey"],[" White"],[" Grey & Red"],[" Black & Red"],[" Red & Black"],[" Black & Grey"],[" Black"]],
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
-            "url": "/pog?name=York Tech Cyber 22-23"
+            "url": "/pog?name=York Tech Cyber 22-23",
+            "tags":"class pog"
             },
         {
             "name": "Cyber Security",
@@ -285,7 +305,8 @@
             "colors": [["White"],[" pruple"],[" Blue & Black"],[" Blue"],[" Black"]],
             "Serial Number": "2223A07",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Bro"
+            "url": "/pog?name=Bro",
+            "tags":"Teacher Created"
             },
         {
             "name": "Dragon",
@@ -299,7 +320,8 @@
             "colors": [["Yellow"]],
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Pikachu"
+            "url": "/pog?name=Pikachu",
+            "tags":"Pokepogs"
             },
         {
             "name": "Raichu",
@@ -313,7 +335,8 @@
             "colors": [["White & Iridescent"],[" Black"],[" White & Black"],[" Black & White"]],
             "Serial Number": "2223A06",
             "Amount Produced": "N/A",
-            "url": "/pog?name=Ivory Hack"
+            "url": "/pog?name=Ivory Hack",
+            "tags":"Teacher Created"
             },
         {
             "name": "Fallout",
@@ -327,7 +350,8 @@
                 "colors": [["iridescent"]],
                 "Serial Number": "N/A",
                 "Amount Produced": "30",
-                "url": "/pog?name=Benchy"
+                "url": "/pog?name=Benchy",
+                "tags": "Teacher Created"
                 },
         {
                 "name": "Berry",
@@ -341,7 +365,8 @@
                 "colors": [["black & grey"]],
                 "Serial Number": "2223A42",
                 "Amount Produced": "30",
-                "url": "/pog?name=Bike"
+                "url": "/pog?name=Bike",
+                "tags":"Pokepogs"
                 },
         {
                 "name": "Discord",
@@ -355,7 +380,8 @@
                 "colors": [["iridescent"]],
                 "Serial Number": "N/A",
                 "Amount Produced": "30",
-                "url": "/pog?name=Fallout Vault"
+                "url": "/pog?name=Fallout Vault",
+                "tags":"Teacher Created"
                 },
         {
                 "name": "Fishing Rod",
@@ -369,7 +395,8 @@
                 "colors": [["Black & Grey"]],
                 "Serial Number": "2223A35",
                 "Amount Produced": "30",
-                "url": "/pog?name=Focus Sash"
+                "url": "/pog?name=Focus Sash",
+                "tags": "Pokepogs"
                 },
 
         {
@@ -384,7 +411,8 @@
                 "colors": [["Black & Grey"]],
                 "Serial Number": "2223A38",
                 "Amount Produced": "30",
-                "url": "/pog?name=HM01 Cut"
+                "url": "/pog?name=HM01 Cut",
+                "tags": "Pokepogs"
                 },
         {
                 "name": "HM02 Fly",
@@ -398,7 +426,8 @@
                 "colors": [["Black & Grey"]],
                 "Serial Number": "2223A40",
                 "Amount Produced": "30",
-                "url": "/pog?name=HM03 Surf"
+                "url": "/pog?name=HM03 Surf",
+                "tags":"Pokepogs"
                 },
         {
                 "name": "HM04 Dig",
@@ -412,7 +441,8 @@
                 "colors": [["White & Grey"]],
                 "Serial Number": "2223B25",
                 "Amount Produced": "30",
-                "url": "/pog?name=Igglybuff"
+                "url": "/pog?name=Igglybuff",
+                "tags":"Pokepogs"
                 },
         {
                     "name": "Juice Games",
@@ -426,7 +456,8 @@
                 "colors": [["White & Blue"]],
                 "Serial Number": "2223B26",
                 "Amount Produced": "30",
-                "url": "/pog?name=Magikarp"
+                "url": "/pog?name=Magikarp",
+                "tags":"Pokepogs"
                 },
         {
                 "name": "Old Amber",
@@ -440,7 +471,8 @@
                 "colors": [["White & Yellow"]],
                 "Serial Number": "2223B27",
                 "Amount Produced": "30",
-                "url": "/pog?name=Pichu"
+                "url": "/pog?name=Pichu",
+                "tags":"Pokepogs"
                 },
         {
                     "name": "Silph Scope",
@@ -454,7 +486,8 @@
                 "colors": [["Black & Grey"]],
                 "Serial Number": "2223A43",
                 "Amount Produced": "30",
-                "url": "/pog?name=SS Anne Ticket"
+                "url": "/pog?name=SS Anne Ticket",
+                "tags":"Pokepogs"
                 },
         {
                 "name": "Dragon Ball",
