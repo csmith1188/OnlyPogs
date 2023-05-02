@@ -61,7 +61,7 @@ function reOrder(label){
     document.getElementById('table').appendChild(row)
 }
 }
-// this function is going to check the whole array if it already sorted, if it is, than it true.
+// this function is going to check the whole array if it already sorted, if it is, than it is true.
 function sorted(label){
     namesorted = true
     amountsorted = true
@@ -136,7 +136,7 @@ function sortName(a,b){
     }
 }
 function sortamount(a,b) {
-    //it first check the string if it is a number. then it change the number to string for comparision
+    //first check the string to see if it is a number, then change the number to string for comparison
     if (amountsorted == false) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
@@ -167,7 +167,7 @@ function sortamount(a,b) {
 }
 
 function sortnumber(a,b) {
-    // it first remove any character in the string. then check if the string is a number then turn the string to number for comparison.
+    //first remove any character in the string' then check if the string is a number then turn the string to number for comparison.
     let na = a['Serial Number'].replace(/[a-zA-Z, ]/g,"")
     let nb = b['Serial Number'].replace(/[a-zA-Z, ]/g,"")
 
