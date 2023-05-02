@@ -358,7 +358,7 @@
             "Serial Number": "2223A06",
             "Amount Produced": "N/A",
             "url": "/pog?name=Ivory Hack",
-            "lore": ""
+            "lore": "This pog was made by Mr. Saia the 2020-2022 Computer Networking Class. It was made as a company coin."
             },
         {
             "name": "Fallout",
@@ -404,9 +404,9 @@
             "name": "Fallout Vault",
             "colors": [["iridescent"]],
             "Serial Number": "N/A",
-            "Amount Produced": "30",
+            "Amount Produced": "1",
             "url": "/pog?name=Fallout Vault",
-            "lore": ""
+            "lore": "This pog was created as Mr Saia pirated it."
             },
         {
             "name": "Fishing Rod",
@@ -535,7 +535,7 @@
             "Serial Number": "2223A52",
             "Amount Produced": "30",
             "url": "/pog?name=This is a joke",
-            "lore": ""
+            "lore": "This pog was created because Mr. Smith got in trouble for using unprofessional language in the weekly review."
             },
         {
             "name": "Merkert Trainer",
@@ -551,7 +551,7 @@
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Questioning",
-            "lore": ""
+            "lore": "This pog was drawn by Jenna Mellen a senior in the 2021-2022 Computer Programming Class and was made to test the multi-color printing"
             },
         {
             "name": "Menacing",
@@ -567,7 +567,7 @@
             "Serial Number": "2223A51",
             "Amount Produced": "30",
             "url": "/pog?name=Butter Pog",
-            "lore": ""
+            "lore": "This pog was made for the RoboDog's Tag. The pog was made after the meme 'Butter Dog, the dog with the butter on it, butter dog"
         }
     ]   
 }
