@@ -15,8 +15,8 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Floto",
+            "lore": "Go with the Floto. This Pog was made to have Trey's face on it. Trey is a Senior in the 2022-2023 Computer Programming Class",
             "tags": "Student Created"
-            "lore": "Go with the Floto. This Pog was made to have Trey's face on it. Trey is a Senior in the 2022-2023 Computer Programming Class"
             },
         {
             "name": "PogChamp",
@@ -33,7 +33,8 @@
             "colors": [["Grey & Iridescent"]],
             "Serial Number": "2223A19",
             "Amount Produced": 30,
-            "url": "/pog?name=Emo Boy",\"lore": "This Pog is in rememberance of Christopher Boldt. A student who had amazing potential but couldn't apply himself"
+            "url": "/pog?name=Emo Boy",
+            "lore": "This Pog is in rememberance of Christopher Boldt. A student who had amazing potential but couldn't apply himself",
             "tags": "Student Created"
             
             },
@@ -242,7 +243,7 @@
             "Serial Number": "2223A28",
             "Amount Produced": "N/A",
             "url": "/pog?name=Poke Flute Item",
-            "lore": "This Pog was made to represent the Poke Flute Puck in PokePogs"
+            "lore": "This Pog was made to represent the Poke Flute Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
@@ -260,7 +261,7 @@
             "Serial Number": "2223A29",
             "Amount Produced": "N/A",
             "url": "/pog?name=Switch Item",
-            "lore": "This Pog was made to represent the Switch Item Puck in PokePogs"
+            "lore": "This Pog was made to represent the Switch Item Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
@@ -278,7 +279,7 @@
             "Serial Number": "2223A31",
             "Amount Produced": "N/A",
             "url": "/pog?name=Fire Stone",
-            "lore": "This Pog was made to represent the Fire Stone Puck in PokePogs"
+            "lore": "This Pog was made to represent the Fire Stone Puck in PokePogs",
             "tags": "pokepogs"
             },
         {
@@ -341,7 +342,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber",
-            "lore": "This Pog was created to represent the York Tech Cyber Class."
+            "lore": "This Pog was created to represent the York Tech Cyber Class.",
             "tags":"class pog"
             },
         {
@@ -394,7 +395,7 @@
             "Serial Number": "N/A",
             "Amount Produced": "N/A",
             "url": "/pog?name=Raichu",
-            "lore": "This Pog was made to represent the Raichu Puck in PokePogs"
+            "lore": "This Pog was made to represent the Raichu Puck in PokePogs",
             "tags":"Teacher Created"
             },
         {
@@ -464,7 +465,7 @@
             "Serial Number": "2223A44",
             "Amount Produced": "30",
             "url": "/pog?name=Fishing Rod",
-            "lore": "This Pog was made to represent the Fishing Rod Item Puck in PokePogs"
+            "lore": "This Pog was made to represent the Fishing Rod Item Puck in PokePogs",
             "tags":"pokepogs"
             },
         {
@@ -499,7 +500,7 @@
             "Serial Number": "2223A39",
             "Amount Produced": "30",
             "url": "/pog?name=HM02 Fly",
-            "lore": "This Pog was made to represent the HM Fly Puck in PokePogs"
+            "lore": "This Pog was made to represent the HM Fly Puck in PokePogs",
             "tags": "pokepogs"
             },
         {
@@ -517,7 +518,7 @@
             "Serial Number": "2223A41",
             "Amount Produced": "30",
             "url": "/pog?name=HM04 Dig",
-            "lore": "This Pog was made to represent the HM Dig Puck in PokePogs"
+            "lore": "This Pog was made to represent the HM Dig Puck in PokePogs",
             "tags": "pokepogs"
             },
         {
@@ -671,6 +672,5 @@
             "lore": "Having One of these pogs allow for you to request almost, as long as its ok with smith, anything but is mostly used for letters of recommendation.",
             "tags": "Teacher Created"
             }
-        }
-    ]   
-}
+    ]
+}   
