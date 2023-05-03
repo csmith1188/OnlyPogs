@@ -2,7 +2,7 @@
     "pogs":[
         {
             "name": "CP", 
-            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Black & Blue"], [" Blue & Black"], [" Blue & White"], [" White & Blue"], [" Clear"], [" Gold & Silver"], [" Silver & Bronze"], [" Bronze & Teal"], [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"]],
+            "colors": [["Black & Yellow"], [" Yellow & Black"], [" Red & Black"], [" Black & Red"], [" Black & White"], [" Teal & Orange"], [" Orange & Teal"], [" Teal & Red"], [" Red & Teal"], [" Blue & Red"], [" Red & Blue"], [" Grey & Blue"], [" Blue & Grey"], [" Black & Blue"], [" Blue & Black"], [" Blue & White"], [" White & Blue"], [" Clear"] , [" Yellow"], [" Purple"], [" Red"], [" Orange"], [" Teal"]],
             "Serial Number": "2223A02",
             "Amount Produced": "N/A",
             "url": "/pog?name=CP",
@@ -648,7 +648,7 @@
             },
         {
             "name": "Bronze Pog",
-            "colors": [["Bronze & Green"]],
+            "colors": [[" Bronze & Teal"]],
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Bronze Pog",
@@ -657,7 +657,7 @@
             },
         {
             "name": "Silver Pog",
-            "colors": [["Silver & Bronze"]],
+            "colors": [[" Silver & Bronze"]],
             "Serial Number": "2223A48",
             "Amount Produced": "30",
             "url": "/pog?name=Silver Pog",
