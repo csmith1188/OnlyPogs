@@ -13,21 +13,24 @@
 
   <div id="container">
       <div  class="infobox"><p class="infoheader">Serial Number </p> <p class="info"> <%= pog["Serial Number"] %> </p></div>
-    
+      
       <div class="infobox"><p class="infoheader">Amount Produced </p> <p class="info"><%= pog["Amount Produced"] %></p></div>
-
+      
       <div  class="infobox">    <p class="infoheader"><label>Colors</label></p>
-       <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
-      <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
-        pog.colors[Colors];
-      <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
-      
-      <%} %>
-      
-    </select> </p>
+        <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
+          <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
+            pog.colors[Colors];
+            <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
+            
+            <%} %>
+            
+          </select>
+          <p id="error"></p>
+        </p>
+      </div>
   </div>
-  <p id="error"></p>
-
+  <div class="infobox2"><p class='infoheader2'>Pog Lore </p> <p class='info2'> <%= pog.lore %></p></div>
+        
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
     console.log(pog);
