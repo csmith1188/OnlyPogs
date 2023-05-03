@@ -11,7 +11,7 @@
 <body>
 
     <!-- each header have it own onclick function with the argruement to each collum to sort to  -->
-    <table id="table"><tr><th onclick="reOrder('name')" id="name">Name --</th><th onclick="reOrder('Serial')" id="serial">Serial Number --</th><th onclick="reOrder('Amount')" id="amount">Amount Produced --</th></tr>
+    <table id="table"><tr><th onclick="reOrder('name')" id="name">Name --</th><th onclick="reOrder('Serial')" id="serial">Serial Number --</th><th onclick="reOrder('Amount')" id="amount">Amount Produced --</th><th onclick="reOrder('Tags')" id="tags">Tags --</th></tr>
 </table>
 
 </body>
@@ -20,6 +20,7 @@
 var Hname = document.getElementById('name');
 var Hserial = document.getElementById('serial');
 var Hamount = document.getElementById('amount');
+var Htags = document.getElementById('tags')
 console.log(Hname.innerHTML);
     // have the pog grab the data from the json file.
 var pog = <%- JSON.stringify(pog.pogs) %>
@@ -27,13 +28,14 @@ var pog = <%- JSON.stringify(pog.pogs) %>
 var namesorted = false
 var amountsorted = false
 var Numbersorted = false
+var tagsSorted = false
 
  // first create the table using the pog data.
 for (const index in pog) {
     // create rows for the table to append with the imported data.
     let row = document.createElement("tr")
     row.setAttribute("id",`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a> </th>  <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a> </th>  <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th> <th class="tags"> ${pog[index].tags}</th>`
     document.getElementById('table').appendChild(row)
 }
 
@@ -57,7 +59,7 @@ function reOrder(label){
     // recreate the whole  table using the new sorted array.
     for (const index in pog) {
     let row = document.getElementById(`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th> <th class="tags"> ${pog[index].tags}</th>`
     document.getElementById('table').appendChild(row)
 }
 }
