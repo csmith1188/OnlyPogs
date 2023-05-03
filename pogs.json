@@ -7,7 +7,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=CP",
             "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Programming.",
-            "tags": "class pog"
+            "tags": "Class Pog"
             },
          {
             "name": "Floto",
@@ -172,7 +172,7 @@
             "Amount Produced": 60,
             "url": "/pog?name=Water Energy",
             "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Water Energy allowing certain PokePogs to user certain moves",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "Grass Energy",
@@ -190,7 +190,7 @@
             "Amount Produced": 60,
             "url": "/pog?name=Normal Energy",
             "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Normal Energy allowing certain PokePogs to user certain moves",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
            },
         {
             "name": "Lightning Energy",
@@ -208,7 +208,7 @@
             "Amount Produced": 30,
             "url": "/pog?name=PokePogs QR Code",
             "lore": "This Pog is the QR Code for the PokePogs Discord Server",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "Fighting Energy",
@@ -226,7 +226,7 @@
             "Amount Produced": 60,
             "url": "/pog?name=Psychic Energy",
             "lore": "This Pog is to be used in Pokepogs. This PokePog represents the Psychic Energy allowing certain PokePogs to user certain moves",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "Potion Item",
@@ -244,7 +244,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=Poke Flute Item",
             "lore": "This Pog was made to represent the Poke Flute Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "Ms.Hicks Trainer",
@@ -262,7 +262,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=Switch Item",
             "lore": "This Pog was made to represent the Switch Item Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "Moon Stone",
@@ -280,7 +280,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=Fire Stone",
             "lore": "This Pog was made to represent the Fire Stone Puck in PokePogs",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "Thunder Stone",
@@ -298,7 +298,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=Water Stone",
             "lore": "This Pog was made to represent the Water Stone Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "Blappeture",
@@ -334,7 +334,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=SW",
             "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Software.",
-            "tags":"class pog"
+            "tags":"Class Pog"
             },
         {
             "name": "York Tech Cyber",
@@ -343,7 +343,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber",
             "lore": "This Pog was created to represent the York Tech Cyber Class.",
-            "tags":"class pog"
+            "tags":"Class Pog"
             },
         {
             "name": "York Tech Cyber 22-23",
@@ -351,7 +351,8 @@
             "Serial Number": "2223A04",
             "Amount Produced": "N/A",
             "url": "/pog?name=York Tech Cyber 22-23",
-            "tags":"class pog"
+            "lore": "This Pog was created to represent the York Tech Cyber 2022-2023 Class.",
+            "tags":"Class Pog"
             },
         {
             "name": "Cyber Security",
@@ -360,7 +361,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=Cyber Security",
             "lore": "This Pog was created to represent the York Tech 2022-2023 Cyber Security Class.",
-            "tags":"class pog"
+            "tags":"Class Pog"
             },
         {
             "name": "Bro",
@@ -466,7 +467,7 @@
             "Amount Produced": "30",
             "url": "/pog?name=Fishing Rod",
             "lore": "This Pog was made to represent the Fishing Rod Item Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "Focus Sash",
@@ -501,7 +502,7 @@
             "Amount Produced": "30",
             "url": "/pog?name=HM02 Fly",
             "lore": "This Pog was made to represent the HM Fly Puck in PokePogs",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "HM03 Surf",
@@ -519,7 +520,7 @@
             "Amount Produced": "30",
             "url": "/pog?name=HM04 Dig",
             "lore": "This Pog was made to represent the HM Dig Puck in PokePogs",
-            "tags": "pokepogs"
+            "tags": "PokePogs"
             },
         {
             "name": "Igglybuff",
@@ -562,7 +563,7 @@
             "Amount Produced": "30",
             "url": "/pog?name=Old Amber",
             "lore": "This Pog was made to represent the Old Amber Item Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "Pichu",
@@ -580,7 +581,7 @@
             "Amount Produced": "30",
             "url": "/pog?name=Silph Scope",
             "lore": "This Pog was made to represent the Silph Scope Item Puck in PokePogs",
-            "tags":"pokepogs"
+            "tags":"PokePogs"
             },
         {
             "name": "SS Anne Ticket",

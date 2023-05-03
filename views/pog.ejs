@@ -16,6 +16,8 @@
       
       <div class="infobox"><p class="infoheader">Amount Produced </p> <p class="info"><%= pog["Amount Produced"] %></p></div>
       
+      <div class="infobox"><p class="infoheader">Tags</p> <p class="info"><%= pog.tags %></p></div>
+      
       <div  class="infobox">    <p class="infoheader"><label>Colors</label></p>
         <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
           <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
@@ -28,8 +30,8 @@
           <p id="error"></p>
         </p>
       </div>
-  </div>
-  <div class="infobox2"><p class='infoheader2'>Pog Lore </p> <p class='info2'> <%= pog.lore %></p></div>
+    </div>
+    <div class="infobox2"><p class='infoheader2'>Pog Lore </p> <p class='info2'> <%= pog.lore %></p></div>
         
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
