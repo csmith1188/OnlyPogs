@@ -47,7 +47,6 @@ function reOrder(label){
             sorted('name');
             pog.sort(sortName);
             break;
-        
         case "Amount":
             sorted('Amount Produced')
             pog.sort(sortamount)
@@ -55,9 +54,11 @@ function reOrder(label){
         case "Serial":
             sorted('Serial Number')
             pog.sort(sortnumber)
+            break;
         case "Tags":
-            sorted('Tags')
+            sorted('tags')
             pog.sort(sortTags)
+            break;
     }
     // recreate the whole  table using the new sorted array.
     for (const index in pog) {
@@ -109,7 +110,8 @@ function sorted(label){
             }
  
         }
-    } else if(label == 'tags') { //This is used to sort the Tags
+        //This is used to sort the Tags
+    } else if(label == 'tags') { 
         for (let i = 0; i < pog.length; i++) {
             if (pog[i+1]){
                 if (pog[i].tags.toLowerCase() > pog[i+1].tags.toLowerCase()) {
@@ -131,7 +133,7 @@ function sortName(a,b){
         Hname.innerHTML = 'Name ⬇'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
-        Hamount.innerHTML = 'Tags --'
+        Htags.innerHTML = 'Tags --'
         if (fa < fb){
         return -1
     } else if (fa > fb){
@@ -143,7 +145,7 @@ function sortName(a,b){
         Hname.innerHTML = 'Name ⬆'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
-        Hamount.innerHTML = 'Tags --'
+        Htags.innerHTML = 'Tags --'
         if (fa < fb){
         return 1
     } else if (fa > fb){
@@ -159,8 +161,8 @@ function sortamount(a,b) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced ⬆'
-    Hamount.innerHTML = 'Tags --'
-        if(isNaN(a['Amount Produced'])){
+    Htags.innerHTML = 'Tags --'
+    if(isNaN(a['Amount Produced'])){
         return -1
     } else {
         if (isNaN(b['Amount Produced'])) {
@@ -173,7 +175,7 @@ function sortamount(a,b) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced ⬇'
-    Hamount.innerHTML = 'Tags --'
+    Htags.innerHTML = 'Tags --'
         if(isNaN(a['Amount Produced'])){
         return 1
     } else {
@@ -195,7 +197,7 @@ function sortnumber(a,b) {
     Hserial.innerHTML = 'Serial Number ⬆'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced --'
-    Hamount.innerHTML = 'Tags --'
+    Htags.innerHTML = 'Tags --'
 
         if(isNaN(na)){
         return -1
@@ -210,7 +212,7 @@ function sortnumber(a,b) {
     Hserial.innerHTML = 'Serial Number ⬇'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced --'
-    Hamount.innerHTML = 'Tags --'
+    Htags.innerHTML = 'Tags --'
         if(isNaN(na)){
         return 1
     } else {
@@ -231,7 +233,7 @@ function sortTags(a,b){
         Hname.innerHTML = 'Name --'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
-        Hamount.innerHTML = 'Tags ⬇'
+        Htags.innerHTML = 'Tags ⬆'
         if (fa < fb){
         return -1
     } else if (fa > fb){
@@ -243,7 +245,7 @@ function sortTags(a,b){
         Hname.innerHTML = 'Name --'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
-        Hamount.innerHTML = 'Tags ⬆'
+        Htags.innerHTML = 'Tags ⬇'
         if (fa < fb){
         return 1
     } else if (fa > fb){
