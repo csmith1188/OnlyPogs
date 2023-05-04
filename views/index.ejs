@@ -44,8 +44,8 @@ function reOrder(label){
     // this check which header is click and which part of the array should be sorted.
     switch (label) {
         case "name":
-        sorted('name');
-        pog.sort(sortName);
+            sorted('name');
+            pog.sort(sortName);
             break;
         
         case "Amount":
@@ -55,6 +55,9 @@ function reOrder(label){
         case "Serial":
             sorted('Serial Number')
             pog.sort(sortnumber)
+        case "Tags":
+            sorted('Tags')
+            pog.sort(sortTags)
     }
     // recreate the whole  table using the new sorted array.
     for (const index in pog) {
@@ -68,6 +71,7 @@ function sorted(label){
     namesorted = true
     amountsorted = true
     Numbersorted = true
+    tagsSorted = true
     // only happen when we sorting by Serial Number and Amount Produced.
     if (label == 'Amount Produced') {
         for (let i = 0; i < pog.length; i++) {
@@ -105,6 +109,16 @@ function sorted(label){
             }
  
         }
+    } else if(label == 'tags') { //This is used to sort the Tags
+        for (let i = 0; i < pog.length; i++) {
+            if (pog[i+1]){
+                if (pog[i].tags.toLowerCase() > pog[i+1].tags.toLowerCase()) {
+            tagsSorted = false
+            break;
+            }
+            }
+ 
+        }
     }
     
 }
@@ -117,6 +131,7 @@ function sortName(a,b){
         Hname.innerHTML = 'Name ⬇'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
+        Hamount.innerHTML = 'Tags --'
         if (fa < fb){
         return -1
     } else if (fa > fb){
@@ -128,6 +143,7 @@ function sortName(a,b){
         Hname.innerHTML = 'Name ⬆'
         Hserial.innerHTML = 'Serial Number --'
         Hamount.innerHTML = 'Amount Produced --'
+        Hamount.innerHTML = 'Tags --'
         if (fa < fb){
         return 1
     } else if (fa > fb){
@@ -143,6 +159,7 @@ function sortamount(a,b) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced ⬆'
+    Hamount.innerHTML = 'Tags --'
         if(isNaN(a['Amount Produced'])){
         return -1
     } else {
@@ -156,6 +173,7 @@ function sortamount(a,b) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced ⬇'
+    Hamount.innerHTML = 'Tags --'
         if(isNaN(a['Amount Produced'])){
         return 1
     } else {
@@ -177,6 +195,7 @@ function sortnumber(a,b) {
     Hserial.innerHTML = 'Serial Number ⬆'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced --'
+    Hamount.innerHTML = 'Tags --'
 
         if(isNaN(na)){
         return -1
@@ -191,6 +210,7 @@ function sortnumber(a,b) {
     Hserial.innerHTML = 'Serial Number ⬇'
     Hname.innerHTML = 'Name --'
     Hamount.innerHTML = 'Amount Produced --'
+    Hamount.innerHTML = 'Tags --'
         if(isNaN(na)){
         return 1
     } else {
@@ -203,6 +223,36 @@ function sortnumber(a,b) {
     }
 }
 
+function sortTags(a,b){
+    let fa = a.tags.toLowerCase()
+    let fb = b.tags.toLowerCase()
+    //it change the whole string to lowercase for more a accurate comparision. 
+    if (tagsSorted == false) {
+        Hname.innerHTML = 'Name --'
+        Hserial.innerHTML = 'Serial Number --'
+        Hamount.innerHTML = 'Amount Produced --'
+        Hamount.innerHTML = 'Tags ⬇'
+        if (fa < fb){
+        return -1
+    } else if (fa > fb){
+        return 1;
+    } else {
+        return 0;
+    }
+    } else {
+        Hname.innerHTML = 'Name --'
+        Hserial.innerHTML = 'Serial Number --'
+        Hamount.innerHTML = 'Amount Produced --'
+        Hamount.innerHTML = 'Tags ⬆'
+        if (fa < fb){
+        return 1
+    } else if (fa > fb){
+        return -1;
+    } else {
+        return 0;
+    } 
+    }
+}
 
 
 </script>
