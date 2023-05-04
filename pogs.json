@@ -432,7 +432,8 @@
             "Serial Number": "2223A37",
             "Amount Produced": "30",
             "url": "/pog?name=Berry",
-            "lore": "This Pog was made to represent the Berry Puck in PokePogs"
+            "lore": "This Pog was made to represent the Berry Puck in PokePogs",
+            "tags": "PokePogs"
             },
         {
             "name": "Bike",
@@ -449,7 +450,8 @@
             "Serial Number": "2223C01, NFC",
             "Amount Produced": "30",
             "url": "/pog?name=Discord",
-            "lore": "This Pog represents the communication platform discord. "
+            "lore": "This Pog represents the communication platform discord. ",
+            "tags": "Teacher Created"
             },
         {
             "name": "Fallout Vault",
@@ -484,7 +486,8 @@
             "Serial Number": "2223A45",
             "Amount Produced": "30",
             "url": "/pog?name=Full Heal",
-            "lore": "This Pog was made to represent the Full Heal Item Puck in PokePogs"
+            "lore": "This Pog was made to represent the Full Heal Item Puck in PokePogs",
+            "tags": "PokePogs"
             },
         {
             "name": "HM01 Cut",
@@ -537,14 +540,7 @@
             "Serial Number": "2223A46",
             "Amount Produced": "30",
             "url": "/pog?name=Juice Games",
-            "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer."
-            },
-        {
-            "name": "Juice Games",
-            "colors": [["Purple & Green"]],
-            "Serial Number": "2223A46",
-            "Amount Produced": "30",
-            "url": "/pog?name=Juice Games",
+            "lore": "This Pog was crowd funded by the company Juice Games. The founders of the Company were Tyler Siegmund, John Eckert, and Will Shealer.",
             "tags":"Student Created"
             },
         {
