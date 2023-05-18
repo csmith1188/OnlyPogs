@@ -10,36 +10,39 @@
 </head>
 <body>
 
-    <!-- each header have it own onclick function with the argruement to each collum to sort to  -->
-    <table id="table"><tr><th onclick="reOrder('name')" id="name">Name --</th><th onclick="reOrder('Serial')" id="serial">Serial Number --</th><th onclick="reOrder('Amount')" id="amount">Amount Produced --</th></tr>
+    <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+    <table id="table"><tr><th onclick="reOrder('name')" id="name">Name --</th><th onclick="reOrder('Serial')" id="serial">Serial Number --</th><th onclick="reOrder('Amount')" id="amount">Amount Produced --</th><th onclick="reOrder('Tags')" id="tags">Tags --</th></tr>
 </table>
 
 </body>
 <script>
-// grabing the headers by their Id 
+// grabbing the headers by their Id 
 var Hname = document.getElementById('name');
 var Hserial = document.getElementById('serial');
 var Hamount = document.getElementById('amount');
+var Htags = document.getElementById('tags');
+
 console.log(Hname.innerHTML);
-    // have the pog grab the data from the json file.
+// have the pog grab the data from the json file.
 var pog = <%- JSON.stringify(pog.pogs) %>
-// these booleans check the array if it already sorted.
+// these booleans check the array to see if it is already sorted.
 var namesorted = false
 var amountsorted = false
 var Numbersorted = false
+var tagsorted = false
 
  // first create the table using the pog data.
 for (const index in pog) {
-    // create rows for the table to append with the imported data.
+    // create rows for the table to append the imported data.
     let row = document.createElement("tr")
     row.setAttribute("id",`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a> </th>  <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
+    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a> </th>  <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th> <th class="tags"> ${pog[index].tags}</th>`
     document.getElementById('table').appendChild(row)
 }
 
-// when the header of the table is click except color header. it will sort the whole table.
+// when the header of the table is clicked except the color header, it will sort the whole table.
 function reOrder(label){
-    // this check which header is click and which part of the array should be sorted.
+    // this checks which header is clicked and which part of the array should be sorted.
     switch (label) {
         case "name":
         sorted('name');
@@ -53,24 +56,25 @@ function reOrder(label){
         case "Serial":
             sorted('Serial Number')
             pog.sort(sortnumber)
+      
     }
-    // recreate the whole  table using the new sorted array.
+    // recreates the whole table using the new sorted array.
     for (const index in pog) {
     let row = document.getElementById(`${index}`)
     row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
     document.getElementById('table').appendChild(row)
 }
 }
-// this function is going to check the whole array if it already sorted, if it is, than it true.
+// this function is going to check the whole array to see if it is already sorted, if it is, than it is true.
 function sorted(label){
     namesorted = true
     amountsorted = true
     Numbersorted = true
-    // only happen when we sorting by Serial Number and Amount Produced.
+    // only happens when we are sorting by Serial Number and Amount Produced.
     if (label == 'Amount Produced') {
         for (let i = 0; i < pog.length; i++) {
             if (pog[i+1]){
-                // it need to be change from string to number to compare.
+                // it needs to be changed from a string to a number to compare.
                 if (Number(pog[i]['Amount Produced']) > Number(pog[i+1]['Amount Produced'])) {
             amountsorted = false
             break;
@@ -93,7 +97,7 @@ function sorted(label){
     } else if(label == 'Serial Number') {
         for (let i = 0; i < pog.length; i++) {
             if (pog[i+1]){
-                //it remove any character in the string than turn them to number to compare.
+                //it removes any characters in the string than turns them into a number to compare.
                 let firstSerial = pog[i]['Serial Number'].replace(/[a-zA-Z]/g,"")
                 let secondSerial = pog[i+1]['Serial Number'].replace(/[a-zA-Z]/g,"")
                 if (Number(firstSerial) > Number(secondSerial)) {
@@ -110,7 +114,7 @@ function sorted(label){
 function sortName(a,b){
     let fa = a.name.toLowerCase()
     let fb = b.name.toLowerCase()
-    //it change the whole string to lowercase for more a accurate comparision. 
+    //it changes the whole string to lowercase for more a accurate comparision. 
     if (namesorted == false) {
         Hname.innerHTML = 'Name ⬇'
         Hserial.innerHTML = 'Serial Number --'
@@ -136,7 +140,7 @@ function sortName(a,b){
     }
 }
 function sortamount(a,b) {
-    //it first check the string if it is a number. then it change the number to string for comparision
+    //first check the string to see if it is a number, then change the number to string for comparison
     if (amountsorted == false) {
     Hserial.innerHTML = 'Serial Number --'
     Hname.innerHTML = 'Name --'
@@ -167,7 +171,7 @@ function sortamount(a,b) {
 }
 
 function sortnumber(a,b) {
-    // it first remove any character in the string. then check if the string is a number then turn the string to number for comparison.
+    //first remove any character in the string, then check if the string is a number then turn the string to number for comparison.
     let na = a['Serial Number'].replace(/[a-zA-Z, ]/g,"")
     let nb = b['Serial Number'].replace(/[a-zA-Z, ]/g,"")
 
@@ -200,6 +204,8 @@ function sortnumber(a,b) {
         }   
     }
 }
+
+
 
 
 
