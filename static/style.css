@@ -137,11 +137,16 @@ h1{
   .amount{
     display: none;
   }
+  .tags{
+    display: none;
+  }
   #serial{
     display: none;
   }
   #amount{
     display: none;
   }
-
+  #tags{
+    display: none;
+  }
 }
