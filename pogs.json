@@ -7,7 +7,7 @@
             "Amount Produced": "N/A",
             "url": "/pog?name=CP",
             "lore": "This Pog was created to represent the York Tech 2022-2023 class of Computer Programming.",
-            "tags": "Class Pog"
+            "tags": [["Class Pog"], ["Teacher Created"]]
             },
          {
             "name": "Floto",
