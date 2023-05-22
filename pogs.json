@@ -668,6 +668,42 @@
             "url": "/pog?name=Gold Pog",
             "lore": "Having One of these pogs allow for you to request almost, as long as its ok with smith, anything but is mostly used for letters of recommendation.",
             "tags": "Teacher Created"
-            }
+        },
+        {
+            "name": "Rupee",
+            "colors": [["Green"],["Blue"],["Red"]],
+            "Serial Number": "2223A56",
+            "Amount Produced": "30",
+            "url": "/pog?name=Rupee",
+            "lore": "Rupee from Zelda.",
+            "tags": "Teacher Created"
+        },
+        {
+            "name": "HeHeHePogauhg",
+            "colors": [["Blue, Red, & Green"]],
+            "Serial Number": "2223A57",
+            "Amount Produced": "30",
+            "url": "/pog?name=HeHeHePogauhg",
+            "lore": "Clash Royale King Laugh with student name.",
+            "tags": "Student Created"
+        },
+        {
+            "name": "Sharingpog",
+            "colors": [["Red & Black"]],
+            "Serial Number": "2223A58",
+            "Amount Produced": "30",
+            "url": "/pog?name=Sharingpog",
+            "lore": "Naruto.",
+            "tags": "Student Created"
+        },
+        {
+            "name": "Show Me The Pog",
+            "colors": [["Grey and Black"],["Black & White"]],
+            "Serial Number": "2223A55",
+            "Amount Produced": "30",
+            "url": "/pog?name=Show Me The Pog",
+            "lore": "Japanese lettering for show me the pog.",
+            "tags": "Teacher Created"
+        }
     ]
 }   
