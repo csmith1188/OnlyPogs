@@ -704,6 +704,15 @@
             "url": "/pog?name=Show Me The Pog",
             "lore": "Mr Smith is a weeb.",
             "tags": "Teacher Created"
+        },
+        {
+            "name": "Supreme",
+            "colors": [["White & Red"]],
+            "Serial Number": "2223A59",
+            "Amount Produced": "30",
+            "url": "/pog?name=Supreme",
+            "lore": "'Are you really standing in line for a crowbar that says supreme on it?'- Random Sigma Reporter. 'Oh it says supreme on it? I just wanted a crowbar' Random Chad that just wanted a crowbar",
+            "tags": "Teacher Created"
         }
     ]
 }   
