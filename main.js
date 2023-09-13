@@ -17,19 +17,33 @@ const dbPath = path.join('./static', 'pog.db');
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
   if (err) {
     console.error(err.message);
-  } else{
+  } else {
     console.log('Connected to the database.');
   }
 });
 
 app.get('/', function (req, res) {
-  db.all('SELECT * FROM pogs', [], (err, rows) => {
+  db.all('SELECT * FROM pogs', [], (err, rows,) => {
     if (err) {
       console.error(err.message);
     }
-    res.render('index', { rows: rows });
+    res.render('index', { rows: rows})
   });
 });
+
+// app.get('/sortedData', (req, res) => {
+//   db.all('SELECT * FROM pogs', (err, rows) => {
+//     if (err) {
+//       console.error(err.message);
+//       return;
+//     }
+
+//     // Sort the data (for example, by 'name' property)
+//     rows.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+//     res.render('index', { rows: rows });
+//   });
+// });
 
 app.get('/pog', function (req, res) {
   let pogName = req.query.name;
@@ -37,7 +51,7 @@ app.get('/pog', function (req, res) {
     if (err) {
       console.error(err.message);
     }
-    console.log(row);
+    row.colors = JSON.parse(row.color).colors;
     res.render('pog', { pog: row });
   });
 });
