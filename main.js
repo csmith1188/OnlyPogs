@@ -31,22 +31,9 @@ app.get('/', function (req, res) {
   });
 });
 
-// app.get('/sortedData', (req, res) => {
-//   db.all('SELECT * FROM pogs', (err, rows) => {
-//     if (err) {
-//       console.error(err.message);
-//       return;
-//     }
-
-//     // Sort the data (for example, by 'name' property)
-//     rows.sort((a, b) => (a.name > b.name ? 1 : -1));
-
-//     res.render('index', { rows: rows });
-//   });
-// });
 
 app.get('/pog', function (req, res) {
-  let pogName = req.query.name;
+  const pogName = req.query.name;
   db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
     if (err) {
       console.error(err.message);

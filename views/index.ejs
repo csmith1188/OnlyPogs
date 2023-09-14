@@ -19,7 +19,14 @@
 
     // Define a function to toggle the sort order
     function toggleSortOrder() {
-        currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+        // currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+        // Check if the current sort order is 'asc' and reset it if necessary
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc';
+        } else {
+            currentSortOrder = 'asc';
+        }
+
     }
 
     // Define a function to sort the table by the "Name" column
@@ -34,50 +41,71 @@
         // Call a function to update the table rows
         updateTable();
     }
+    function sortBySerial() {
+        toggleSortOrder();
+
+        data.sort((a, b) => {
+            const comparison = a.serial.localeCompare(b.serial);
+            return currentSortOrder === 'asc' ? comparison : -comparison;
+        });
+
+        // Call a function to update the table rows
+        updateTable();
+    }
+    function sortByAmount() {
+        toggleSortOrder();
+
+        data.sort((a, b) => {
+            const amountA = String(a.amount); // Convert to string for string-based comparison
+            const amountB = String(b.amount);
+
+            const comparison = amountA.localeCompare(amountB);
+            return currentSortOrder === 'asc' ? comparison : -comparison;
+        });
+
+        // Call a function to update the table rows
+        updateTable();
+    }
+
+    function sortByTags() {
+        toggleSortOrder();
+
+        data.sort((a, b) => {
+            const comparison = a.tags.localeCompare(b.tags);
+            return currentSortOrder === 'asc' ? comparison : -comparison;
+        });
+
+        // Call a function to update the table rows
+        updateTable();
+    }
 
     // Define a function to update the table rows based on the sorted data
     function updateTable() {
-        const tableBody = document.getElementById('table');
+        const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
-        tableHead.innerHTML = '';
         data.forEach((row) => {
-            
-            const tHead = table.createTHead()
-            const th = document.createElement('th')
-            const thName = document.createElement('th')
-            const thSerial = document.createElement('th')
-            const thAmount = document.createElement('th')
-            const thTags = document.createElement('th')
 
             const tr = document.createElement('tr');
-            const tdName = document.createElement('td');
+            const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
             const tdAmount = document.createElement('td');
             const tdTags = document.createElement('td');
 
-            thName.textContent = "Name"
-            thSerial.textContent = "Serial"
-            thAmount.textContent = "Amount"
-            thTags.textContent = "Tags"
+            tdName.href = row.url; // Set the href attribute to the URL
+
 
             tdName.textContent = row.name;
+            tdName.innerHTML = row.name;
             tdSerial.textContent = row.serial;
             tdAmount.textContent = row.amount;
             tdTags.textContent = row.tags;
 
-            tHead.appendChild(thName)
-            tHead.appendChild(thSerial)
-            tHead.appendChild(thAmount)
-            tHead.appendChild(thTags)
             tr.appendChild(tdName);
             tr.appendChild(tdSerial);
             tr.appendChild(tdAmount);
             tr.appendChild(tdTags);
 
-            tableHead.appendChild(tHead)
-            tableBody.appendChild(tableHead)
-            
             tableBody.appendChild(tr);
         });
     }
@@ -87,31 +115,32 @@
 
     <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
     <table id="table">
-        <thead id="tableHead">
-            <th id="name" onclick="sortByName()">Name --</th>
-            <th onclick="reOrder('Serial')" id="serial">Serial Number --</th>
-            <th onclick="reOrder('Amount')" id="amount">Amount Produced --</th>
-            <th onclick="reOrder('Tags')" id="tags">Tags --</th>
-        </thead>
-
-        <% for(let i=0; i < rows.length; i++) {%>
+        <thead>
             <tr>
-                <td>
-                    <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
-                    <!-- <%- rows[i].name %> -->
-                </td>
-
-                <td>
-                    <%- rows[i].serial %>
-                </td>
-                <td>
-                    <%- rows[i].amount %>
-                </td>
-                <td>
-                    <%- rows[i].tags %>
-                </td>
+                <th id="name" onclick="sortByName()">Name --</th>
+                <th id="serial" onclick="sortBySerial()">Serial Number --</th>
+                <th id="amount" onclick="sortByAmount()">Amount Produced --</th>
+                <th id="tags" onclick="sortByTags()">Tags --</th>
             </tr>
-            <% } %>
+        </thead>
+        <tbody id="table-body">
+            <% for(let i=0; i < rows.length; i++) {%>
+                <tr>
+                    <td>
+                        <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
+                    </td>
+                    <td>
+                        <%- rows[i].serial %>
+                    </td>
+                    <td>
+                        <%- rows[i].amount %>
+                    </td>
+                    <td>
+                        <%- rows[i].tags %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
     </table>
 
 </body>
