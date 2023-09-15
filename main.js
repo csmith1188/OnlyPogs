@@ -27,34 +27,77 @@ app.get('/', function (req, res) {
     if (err) {
       console.error(err.message);
     }
-    res.render('index', { rows: rows})
+    res.render('index', { rows: rows })
   });
 });
-
-// app.get('/sortedData', (req, res) => {
-//   db.all('SELECT * FROM pogs', (err, rows) => {
-//     if (err) {
-//       console.error(err.message);
-//       return;
-//     }
-
-//     // Sort the data (for example, by 'name' property)
-//     rows.sort((a, b) => (a.name > b.name ? 1 : -1));
-
-//     res.render('index', { rows: rows });
-//   });
-// });
 
 app.get('/pog', function (req, res) {
-  let pogName = req.query.name;
-  db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
-    if (err) {
-      console.error(err.message);
-    }
-    row.colors = JSON.parse(row.color).colors;
-    res.render('pog', { pog: row });
-  });
+  const pogName = req.query.name;
+  const parentID = req.query.parentID;
+
+  // Use Promises for better error handling and parallel execution
+  Promise.all([
+    new Promise((resolve, reject) => {
+      db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+          return;
+        }
+        if (!row) {
+          // Handle the case where no data was found for the given name
+          res.status(404).send('Pog not found');
+          return;
+        }
+        row.colors = JSON.parse(row.color).colors;
+        resolve(row);
+      });
+    }),
+    new Promise((resolve, reject) => {
+      db.get('SELECT * FROM pogColors WHERE parentID = ?', [parentID], (err, row) => {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+          return;
+        }
+        console.log(parentID);
+        resolve(row);
+      });
+    }),
+  ])
+    .then(([pogData, colorData]) => {
+      // Both queries have completed successfully
+      res.render('pog', { pog: pogData, color: colorData });
+    })
+    .catch((err) => {
+      // Handle any errors that occurred during query execution
+      res.status(500).send('An error occurred ' + err);
+    });
 });
+
+  /*app.get('/pog', function (req, res) {
+    const pogName = req.query.name
+    const uid = req.query.uid;
+    const parentID = req.query.parentID;
+  
+    // ... (The rest of your code)
+  
+    // Implement the INNER JOIN query here to retrieve combined data
+    //This is important for cross referncing the uids and parentIDs from pogs and pogColors (Note that this doesn't fully work yet)
+    const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
+  
+    db.get(joinQuery, [uid, parentID], (err, joinedData) => {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send('An error occurred');
+        return;
+      }
+  
+      // Render the EJS template with the joined data
+      res.render('pog', { pog: uid, color: parentID});
+    });
+  });*/
+
 
 app.listen(1024, () => {
   console.log(`You're running on port 1024.`);
