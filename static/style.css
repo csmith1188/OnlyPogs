@@ -2,24 +2,25 @@ body{
   background-color: #134611;
 }
 table{
-    width: 100%;
+    width: 75%;
     height: 100%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    border-spacing: 25px 0;
     text-align: center;
     margin: auto;
     background-color: 
-    #33B9FF;
+    #2a804e;
   }
 tr:nth-child(odd){
-  background-color: #025845;
+  background-color: #6bb85e;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #AFB0B0;
+  background-color: #8fb955;
   border: 2px solid;
 }
 tr:first-child{
-  background-color: #025845;
+  background-color: #6bb85e;
   user-select: none;
 }
 tr:first-child:hover{
