@@ -149,4 +149,4 @@ app.get('/', (req, res) => {
   res.json({
     message: 'Available columns: "name" "colors" "serial" "amount" "url" "lore" "tags" || "all" "random"'
   });
-});
+});  
