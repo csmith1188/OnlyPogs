@@ -144,5 +144,8 @@ h1{
   #amount{
     display: none;
   }
-
+  #tagFilter{
+    width: 5%;
+    height: 5%;
+  }
 }
