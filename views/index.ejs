@@ -86,12 +86,14 @@
 <body>
 
     <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+    <button><a href="/acc">Account</a></button>
     <table id="table">
         <thead id="tableHead">
             <th id="name" onclick="sortByName()">Name --</th>
             <th onclick="reOrder('Serial')" id="serial">Serial Number --</th>
             <th onclick="reOrder('Amount')" id="amount">Amount Produced --</th>
             <th onclick="reOrder('Tags')" id="tags">Tags --</th>
+            
         </thead>
 
         <% for(let i=0; i < rows.length; i++) {%>

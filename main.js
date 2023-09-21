@@ -22,10 +22,19 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
   }
 });
 
+app.get('/acc', (req, res) => {
+  db.all('SELECT * FROM Digipogs', [], (err, rows) => {
+    if(err) {
+      console.log(err);
+    };
+    res.render('account', { rows: rows })
+  })
+})
+
 app.get('/', function (req, res) {
   db.all('SELECT * FROM pogs', [], (err, rows,) => {
     if (err) {
-      console.error(err.message);
+      console.error(err);
     }
     res.render('index', { rows: rows })
   });
@@ -54,7 +63,7 @@ app.get('/pog', function (req, res) {
       });
     }),
     new Promise((resolve, reject) => {
-      db.get('SELECT * FROM pogColors WHERE parentID = ?', [parentID], (err, row) => {
+      db.all('SELECT * FROM pogColors WHERE parentID = ?', [parentID], (err, row) => {
         if (err) {
           console.error(err.message);
           reject(err);
@@ -73,7 +82,7 @@ app.get('/pog', function (req, res) {
       // Handle any errors that occurred during query execution
       res.status(500).send('An error occurred ' + err);
     });
-});
+}); 
 
   /*app.get('/pog', function (req, res) {
     const pogName = req.query.name
@@ -86,7 +95,7 @@ app.get('/pog', function (req, res) {
     //This is important for cross referncing the uids and parentIDs from pogs and pogColors (Note that this doesn't fully work yet)
     const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
   
-    db.get(joinQuery, [uid, parentID], (err, joinedData) => {
+    db.all(joinQuery, [uid, parentID], (err, joinedData) => {
       if (err) {
         console.error(err.message);
         res.status(500).send('An error occurred');
@@ -96,7 +105,7 @@ app.get('/pog', function (req, res) {
       // Render the EJS template with the joined data
       res.render('pog', { pog: uid, color: parentID});
     });
-  });*/
+  }); */
 
 
 app.listen(1024, () => {
