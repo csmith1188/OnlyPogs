@@ -63,12 +63,15 @@ app.get('/pog', function (req, res) {
       });
     }),
     new Promise((resolve, reject) => {
-      db.all('SELECT * FROM pogColors WHERE parentID = ?', [parentID], (err, row) => {
-        if (err) {
-          console.error(err.message);
-          reject(err);
-          return;
-        }
+      const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
+  
+      db.all(joinQuery, [], (err, row) => {
+      if (err) {
+        console.error(err.message);
+        reject(err)
+        res.status(500).send('An error occurred');
+        return;
+      }
         console.log(parentID);
         resolve(row);
       });
@@ -83,30 +86,6 @@ app.get('/pog', function (req, res) {
       res.status(500).send('An error occurred ' + err);
     });
 }); 
-
-  /*app.get('/pog', function (req, res) {
-    const pogName = req.query.name
-    const uid = req.query.uid;
-    const parentID = req.query.parentID;
-  
-    // ... (The rest of your code)
-  
-    // Implement the INNER JOIN query here to retrieve combined data
-    //This is important for cross referncing the uids and parentIDs from pogs and pogColors (Note that this doesn't fully work yet)
-    const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
-  
-    db.all(joinQuery, [uid, parentID], (err, joinedData) => {
-      if (err) {
-        console.error(err.message);
-        res.status(500).send('An error occurred');
-        return;
-      }
-  
-      // Render the EJS template with the joined data
-      res.render('pog', { pog: uid, color: parentID});
-    });
-  }); */
-
 
 app.listen(1024, () => {
   console.log(`You're running on port 1024.`);
