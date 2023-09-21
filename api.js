@@ -200,7 +200,7 @@ app.listen(port, () => {
 // Add other routes and error handling as needed
 app.get('/', (req, res) => {
   res.json({
-    // message: 'Specify a table: Digipogs, pogColors, pogs Available columns: "name" "colors" "serial" "amount" "url" "lore" "tags" || "all" "random"'
+    // message: 'Specify a table: Digipogs, pogColors, pogs Available columns: "name" "color" "serial" "amount" "url" "lore" "tags" || "all" "random"'
     message: "Please specify a table to receive available columns: 'Digipogs', 'pogColors', 'pogs'"
   });
 });
