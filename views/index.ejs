@@ -10,74 +10,155 @@
 </head>
 <script>
 
-    // Takes the rows passed from main.js and stringify's it in order for it to work
+    // Takes the rows passed from main.js and stringify's and sets it to a variable
     var data = <%- JSON.stringify(rows) %>;
 
-    // console.log(data)
+    var filteredData = []
+
     // Define a variable to store the current sort order
     var currentSortOrder = 'asc';
 
     // Define a function to toggle the sort order
     function toggleSortOrder() {
-        currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+        // Check if the current sort order is 'asc' and reset it if necessary
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc';
+        } else {
+            currentSortOrder = 'asc';
+        }
+
     }
 
     // Define a function to sort the table by the "Name" column
     function sortByName() {
         toggleSortOrder();
 
-        data.sort((a, b) => {
-            const comparison = a.name.localeCompare(b.name);
-            return currentSortOrder === 'asc' ? comparison : -comparison;
-        });
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.name.localeCompare(b.name);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.name.localeCompare(b.name);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+    function sortBySerial() {
+        toggleSortOrder();
 
-        // Call a function to update the table rows
-        updateTable();
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.serial.localeCompare(b.serial);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.serial.localeCompare(b.serial);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+    function sortByAmount() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const amountA = String(a.amount); // Convert to string for string-based comparison
+                const amountB = String(b.amount);
+                const comparison = amountA.localeCompare(amountB);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const amountA = String(a.amount);
+                const amountB = String(b.amount);
+                const comparison = amountA.localeCompare(amountB);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
     }
 
+    function sortByTags() {
+        toggleSortOrder();
+        if (filteredData.length > 0) {
+            // If there's filtered data, don't sort the original data
+            filteredData.sort((a, b) => {
+                const comparison = a.tags.localeCompare(b.tags);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.tags.localeCompare(b.tags);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    function resetFilterAndSort() {
+        filteredData = []; // Reset the filtered data
+        updateTable(data); // Update the table with the original data
+    }
+
+    //filters the tags and updates the table with the filtered tags
+    function filterTags() {
+        const selectedTagElement = document.getElementById('tagFilter');
+
+    if (!selectedTagElement) {
+        console.error("Element with ID 'tagFilter' not found.");
+        return;
+    }
+
+    const selectedTag = selectedTagElement.value;
+
+    if (selectedTag === '') {
+        resetFilterAndSort();
+    } else {
+        filteredData = data.filter((item) => item.tags === selectedTag);
+        updateTable(filteredData);
+    }
+}
+
     // Define a function to update the table rows based on the sorted data
-    function updateTable() {
-        const tableBody = document.getElementById('table');
+    function updateTable(updateData) {
+        const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
-        tableHead.innerHTML = '';
-        data.forEach((row) => {
+        updateData.forEach((row) => {
             
-            const tHead = table.createTHead()
-            const th = document.createElement('th')
-            const thName = document.createElement('th')
-            const thSerial = document.createElement('th')
-            const thAmount = document.createElement('th')
-            const thTags = document.createElement('th')
-
             const tr = document.createElement('tr');
-            const tdName = document.createElement('td');
+            const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
             const tdAmount = document.createElement('td');
             const tdTags = document.createElement('td');
 
-            thName.textContent = "Name"
-            thSerial.textContent = "Serial"
-            thAmount.textContent = "Amount"
-            thTags.textContent = "Tags"
+            tdName.href = row.url; // Set the href attribute to the URL
+
 
             tdName.textContent = row.name;
+            tdName.innerHTML = row.name;
             tdSerial.textContent = row.serial;
             tdAmount.textContent = row.amount;
             tdTags.textContent = row.tags;
 
-            tHead.appendChild(thName)
-            tHead.appendChild(thSerial)
-            tHead.appendChild(thAmount)
-            tHead.appendChild(thTags)
             tr.appendChild(tdName);
             tr.appendChild(tdSerial);
             tr.appendChild(tdAmount);
             tr.appendChild(tdTags);
 
-            tableHead.appendChild(tHead)
-            tableBody.appendChild(tableHead)
-            
             tableBody.appendChild(tr);
         });
     }
@@ -85,35 +166,46 @@
 
 <body>
 
-    <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
-    <button><a href="/acc">Account</a></button>
+    <div id="tagDropDown">
+        <select name="tagFilter" id="tagFilter" onchange="filterTags()">
+            <option value="">All Tags</option>
+            <% const uniqueTags=Array.from(new Set(rows.map(row=> row.tags))); %>
+                <% for (let i=0; i < uniqueTags.length; i++) { %>
+                    <option value="<%= uniqueTags[i] %>">
+                        <%= uniqueTags[i] %>
+                    </option>
+                    <% } %>
+        </select>
+    </div>
+
     <table id="table">
-        <thead id="tableHead">
-            <th id="name" onclick="sortByName()">Name --</th>
-            <th onclick="reOrder('Serial')" id="serial">Serial Number --</th>
-            <th onclick="reOrder('Amount')" id="amount">Amount Produced --</th>
-            <th onclick="reOrder('Tags')" id="tags">Tags --</th>
-            
-        </thead>
-
-        <% for(let i=0; i < rows.length; i++) {%>
+        <thead>
             <tr>
-                <td>
-                    <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
-                    <!-- <%- rows[i].name %> -->
-                </td>
-
-                <td>
-                    <%- rows[i].serial %>
-                </td>
-                <td>
-                    <%- rows[i].amount %>
-                </td>
-                <td>
-                    <%- rows[i].tags %>
-                </td>
+                <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+                <th id="name" onclick="sortByName()">Name --</th>
+                <th id="serial" onclick="sortBySerial()">Serial Number --</th>
+                <th id="amount" onclick="sortByAmount()">Amount Produced --</th>
+                <th id="tags" onclick="sortByTags()">Tags --</th>
             </tr>
-            <% } %>
+        </thead>
+        <tbody id="table-body">
+            <% for(let i=0; i < rows.length; i++) {%>
+                <tr>
+                    <td>
+                        <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
+                    </td>
+                    <td>
+                        <%- rows[i].serial %>
+                    </td>
+                    <td>
+                        <%- rows[i].amount %>
+                    </td>
+                    <td>
+                        <%- rows[i].tags %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
     </table>
 
 </body>
