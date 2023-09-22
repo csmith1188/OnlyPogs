@@ -4,8 +4,8 @@ body{
 table{
     width: 75%;
     height: 100%;
-    /* border-collapse: collapse; */
-    border-spacing: 25px 0;
+    border: solid #000000;
+    border-collapse: collapse;
     text-align: center;
     margin: auto;
     background-color: 

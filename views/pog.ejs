@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,55 +7,82 @@
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
+
 <body>
-  <h1><%= pog.name %></h1>
-  
-  <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a> 
+  <h1>
+    <%= pog.name %>
+  </h1>
+
+  <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
+      id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a>
 
   <div id="container">
-      <div  class="infobox"><p class="infoheader">Serial Number </p> <p class="info"> <%= pog["Serial Number"] %> </p></div>
-      
-      <div class="infobox"><p class="infoheader">Amount Produced </p> <p class="info"><%= pog["Amount Produced"] %></p></div>
-      
-      <div class="infobox"><p class="infoheader">Tags</p> <p class="info"><%= pog.tags %></p></div>
-      
-      <div  class="infobox">    <p class="infoheader"><label>Colors</label></p>
-        <p class="info"> <select id="Pogs" onchange="pogChange()"> </div>
-          <%for (let Colors = 0; Colors < pog.colors.length; Colors++) { %>
-            pog.colors[Colors];
-            <option value = <%= Colors %>> <%=   pog.colors[Colors] %> </option> 
-            
-            <%} %>
-            
-          </select>
-          <p id="error"></p>
-        </p>
-      </div>
+    <div class="infobox">
+      <p class="infoheader">Serial Number </p>
+      <p class="info">
+        <%= pog.serial %>
+      </p>
     </div>
-    <div class="infobox2"><p class='infoheader2'>Pog Lore </p> <p class='info2'> <%= pog.lore %></p></div>
-        
+
+    <div class="infobox">
+      <p class="infoheader">Amount Produced </p>
+      <p class="info">
+        <%= pog.amount %>
+      </p>
+    </div>
+
+    <div class="infobox">
+      <p class="infoheader">Tags</p>
+      <p class="info">
+        <%= pog.tags %>
+      </p>
+    </div>
+
+    <div class="infobox">
+      <p class="infoheader"><label>Colors</label></p>
+      <p class="info"> <select id="Pogs" onchange="pogChange()">
+    </div>
+    <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
+      <option value=<%=Colors %>> <%= pog.colors[Colors] %>
+      </option>
+
+      <%} %>
+
+        </select>
+        <p id="error"></p>
+        </p>
+  </div>
+  </div>
+  <div class="infobox2">
+    <p class='infoheader2'>Pog Lore </p>
+    <p class='info2'>
+      <%= pog.lore %>
+    </p>
+  </div>
+
   <script>
-    var pog = <%- JSON.stringify(pog.name) %>
-    console.log(pog);
+    var pog = <%- JSON.stringify(pog.name) %>;
+      // console.log(pog);
     var pogImage = document.getElementById("Pogs");
     function pogChange() {
       console.log(pogImage.value);
       if (pogImage.value == 0) {
         document.getElementById('error').innerText = ""
         let pogpng = document.getElementById("pogPNG")
-          pogpng.src = `/pogs/${pog}.png`
+        pogpng.src = `/pogs/${pog}.png`
       } else {
         let pogpng = document.getElementById("pogPNG")
         document.getElementById('error').innerText = ""
-          pogpng.src = `/pogs/${pog}${pogImage.value}.png`
-          pogpng.setAttribute('onerror',`this.src ='/pogs/${pog}.png'; unknown() ; this.onerror = ' '  `)
-        
+        pogpng.src = `/pogs/${pog}${pogImage.value}.png`
+        pogpng.setAttribute('onerror', `this.src ='/pogs/${pog}.png'; unknown() ; this.onerror = ' '  `)
+
       }
     }
     function unknown() {
-      document.getElementById('error').innerText = "sorry this pog/color do not exist in the page"
+      document.getElementById('error').innerText = "sorry this pog/color does not exist."
     }
-      </script>
+  </script>
 
 </body>
+
 </html>
