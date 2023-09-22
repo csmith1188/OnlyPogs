@@ -365,7 +365,7 @@
             },
         {
             "name": "Bro",
-            "colors": [["White"],[" pruple"],[" Blue & Black"],[" Blue"],[" Black"]],
+            "colors": [["White"],[" Purple"],[" Blue & Black"],[" Blue"],[" Black"]],
             "Serial Number": "2223A07",
             "Amount Produced": "N/A",
             "url": "/pog?name=Bro",
@@ -668,6 +668,51 @@
             "url": "/pog?name=Gold Pog",
             "lore": "Having One of these pogs allow for you to request almost, as long as its ok with smith, anything but is mostly used for letters of recommendation.",
             "tags": "Teacher Created"
-            }
+        },
+        {
+            "name": "Rupee",
+            "colors": [["Green"],["Blue"],["Red"]],
+            "Serial Number": "2223A56",
+            "Amount Produced": "30",
+            "url": "/pog?name=Rupee",
+            "lore": "Lamp oil, rope, [Redacted].",
+            "tags": "Teacher Created"
+        },
+        {
+            "name": "HeHeHePogaguha",
+            "colors": [["Blue, Red, & Green"]],
+            "Serial Number": "2223A57",
+            "Amount Produced": "30",
+            "url": "/pog?name=HeHeHePogaguha",
+            "lore": "Mr. Hehehehaugha looks like cartman so OnlyPogs had a pog created.",
+            "tags": "Student Created"
+        },
+        {
+            "name": "Sharingpog",
+            "colors": [["Red & Black"]],
+            "Serial Number": "2223A58",
+            "Amount Produced": "30",
+            "url": "/pog?name=Sharingpog",
+            "lore": "Its an eye from naruto called the sharigan.",
+            "tags": "Student Created"
+        },
+        {
+            "name": "Show Me The Pog",
+            "colors": [["Grey and Black"],["Black & White"]],
+            "Serial Number": "2223A55",
+            "Amount Produced": "30",
+            "url": "/pog?name=Show Me The Pog",
+            "lore": "Mr Smith is a weeb.",
+            "tags": "Teacher Created"
+        },
+        {
+            "name": "Supreme",
+            "colors": [["White & Red"]],
+            "Serial Number": "2223A59",
+            "Amount Produced": "30",
+            "url": "/pog?name=Supreme",
+            "lore": "'Are you really standing in line for a crowbar that says supreme on it?'- Random Sigma Reporter. 'Oh it says supreme on it? I just wanted a crowbar' Random Chad that just wanted a crowbar",
+            "tags": "Teacher Created"
+        }
     ]
 }   
