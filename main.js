@@ -22,26 +22,70 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
   }
 });
 
+app.get('/acc', (req, res) => {
+  db.all('SELECT * FROM Digipogs', [], (err, rows) => {
+    if(err) {
+      console.log(err);
+    };
+    res.render('account', { rows: rows })
+  })
+})
+
 app.get('/', function (req, res) {
   db.all('SELECT * FROM pogs', [], (err, rows,) => {
     if (err) {
-      console.error(err.message);
+      console.error(err);
     }
-    res.render('index', { rows: rows})
+    res.render('index', { rows: rows })
   });
 });
-
 
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
-  db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
-    if (err) {
-      console.error(err.message);
-    }
-    row.colors = JSON.parse(row.color).colors;
-    res.render('pog', { pog: row });
-  });
-});
+  const parentID = req.query.parentID;
+
+  // Use Promises for better error handling and parallel execution
+  Promise.all([
+    new Promise((resolve, reject) => {
+      db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+          return;
+        }
+        if (!row) {
+          // Handle the case where no data was found for the given name
+          res.status(404).send('Pog not found');
+          return;
+        }
+        row.colors = JSON.parse(row.color).colors;
+        resolve(row);
+      });
+    }),
+    new Promise((resolve, reject) => {
+      const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
+  
+      db.all(joinQuery, [], (err, row) => {
+      if (err) {
+        console.error(err.message);
+        reject(err)
+        res.status(500).send('An error occurred');
+        return;
+      }
+        console.log(parentID);
+        resolve(row);
+      });
+    }),
+  ])
+    .then(([pogData, colorData]) => {
+      // Both queries have completed successfully
+      res.render('pog', { pog: pogData, color: colorData });
+    })
+    .catch((err) => {
+      // Handle any errors that occurred during query execution
+      res.status(500).send('An error occurred ' + err);
+    });
+}); 
 
 app.listen(1024, () => {
   console.log(`You're running on port 1024.`);
