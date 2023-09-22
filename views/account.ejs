@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Digipogs</title>
+    </head>
+    <body>
+        <button><a href="/">Pogs</a></button>
+        <table id="acc">
+            <thead id="tableHead">
+                <th id="fbUsername">Formbar Username</th>
+                <th id="username">Username</th>
+                <th id="amount">Amount of pogs</th>
+            </thead>
+            <tbody>
+                <% for(let i=0; i < rows.length; i++) {%>
+                    <tr>
+                        <td><%- rows[i].fbusername %></td>
+                        <td><%- rows[i].username %></td>
+                        <td><%- rows[i].amountOfPogs %></td>
+                    </tr>
+                    <%= console.log(rows) %>
+                <% } %>
+            </tbody>
+            
+        </table>    
+    </body>
+</html>
