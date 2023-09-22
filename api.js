@@ -167,7 +167,7 @@ app.get('/:table/:column/:entry?', (req, res) => {
   db.all(query, queryParams, (err, rows) => {
     if (err) {
       // Handle database error
-      console.error('Database error:', err.message);
+      console.error('Database error:', err.message);  
       return res.status(500).json({
         error: 'Database error'
       });
