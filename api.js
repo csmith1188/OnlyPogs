@@ -19,29 +19,6 @@ const db = new sqlite3.Database('static/pog.db', (err) => {
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Error handling middleware
-function errorHandler(err, req, res) {
-  console.error('Error:', err.message);
-
-  // Handle specific types of errors
-  if (err instanceof SyntaxError) {
-    return res.status(400).json({
-      error: 'Invalid JSON'
-    });
-  }
-
-  // Handle database errors
-  if (err instanceof sqlite3.DatabaseError) {
-    return res.status(500).json({
-      error: 'Database error'
-    });
-  }
-
-  // Handle other errors
-  res.status(500).json({
-    error: 'Server error'
-  });
-}
 // Route to list all available columns of a specified table
 app.get('/:table', (req, res) => {
   const {
