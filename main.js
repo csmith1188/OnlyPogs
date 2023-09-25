@@ -3,11 +3,31 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
+const jwt = require('jsonwebtoken')
+const session = require('express-session')
+const app = express();
+
+const PORT = 1024
+//formbar.js url
+const  AUTH_URL = 'http://172.16.3.106:420/oauth'
+
+//OnlyPogs url
+const THIS_URL = 'http://172.16.3.107:1024/login'
 
 
-var app = express();
+function isAuthenticated(req, res, next) {
+  if (req.session.user) next()
+  else res.redirect('/login')
+};
+
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+  secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
+  resave: false,
+  saveUninitialized: false
+}))
 
 app.use(express.static('./static'));
 
@@ -31,15 +51,30 @@ app.get('/acc', (req, res) => {
   })
 })
 
-app.get('/', function (req, res) {
-  db.all('SELECT * FROM pogs', [], (err, rows,) => {
-    if (err) {
-      console.error(err);
-    }
-    res.render('index', { rows: rows })
-  });
+app.get('/', isAuthenticated, (req, res) => {
+  try {
+    db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      if (err) {
+        console.error(err);
+      }
+      res.render('index', { rows: rows, user: req.session.user})
+    });
+  }
+  catch (error) {
+    res.send(error.message);
+  }
 });
 
+app.get('/login', (req, res) => {
+  if (req.query.token) {
+       let tokenData = jwt.decode(req.query.token);
+       req.session.token = tokenData;
+       req.session.user = tokenData.username;
+       res.redirect('/');
+  } else {
+       res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+  };
+});
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
@@ -87,8 +122,8 @@ app.get('/pog', function (req, res) {
     });
 }); 
 
-app.listen(1024, () => {
-  console.log(`You're running on port 1024.`);
+app.listen(PORT, () => {
+  console.log(`You're running on port ${PORT}.`);
 });
 
 process.on('SIGINT', () => {
