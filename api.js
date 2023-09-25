@@ -201,6 +201,6 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
   res.json({
     // message: 'Specify a table: Digipogs, pogColors, pogs Available columns: "name" "color" "serial" "amount" "url" "lore" "tags" || "all" "random"'
-    message: "Please specify a table to receive available columns: 'Digipogs', 'pogColors', 'pogs'"
+    message: 'The route is designed to handle up to three parameters in the URL, structured as "table/column/entry." Table: The "table" parameter represents any table within the "pog.db" database. You can select from various tables available in the database, such as "pogs", "Digipogs", or "pogColors"; "pogs" of course having the most usability. Column: The "column" parameter allows you to specify which column you want to retrieve data from. You can choose any column from the selected table. Additionally, there are two special options: "all": Selecting "all" as the column will fetch all data from the chosen table, providing a comprehensive view of its contents. "random": Choosing "random" as the column will return a random from the table. If you specify a number as an extra parameter, it will fetch that many random entries (up to the maximum number of entries available in the table). Entry: The "entry" parameter allows you to pinpoint a specific entry within the selected column. If you provide a valid entry value, the route will retrieve all the data associated with that entry.'
   });
 });
