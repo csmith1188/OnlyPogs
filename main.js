@@ -9,14 +9,14 @@ const app = express();
 
 const PORT = 1024
 //formbar.js url
-const  AUTH_URL = 'http://172.16.3.106:420/oauth'
+const AUTH_URL = 'http://172.16.3.106:420/oauth'
 
 //OnlyPogs url
 const THIS_URL = 'http://172.16.3.107:1024/login'
 
 
 function isAuthenticated(req, res, next) {
-  if (req.session.user) next()
+  if (req.session.token) next()
   else res.redirect('/login')
 };
 
@@ -44,20 +44,21 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
 
 app.get('/acc', (req, res) => {
   db.all('SELECT * FROM Digipogs', [], (err, rows) => {
-    if(err) {
+    if (err) {
       console.log(err);
     };
     res.render('account', { rows: rows })
   })
 })
+ 
 
-app.get('/', isAuthenticated, (req, res) => {
+app.get('/',isAuthenticated, (req, res) => {
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       if (err) {
         console.error(err);
       }
-      res.render('index', { rows: rows, user: req.session.user})
+      res.render('index', { rows: rows, user: req.session.user })
     });
   }
   catch (error) {
@@ -69,12 +70,13 @@ app.get('/login', (req, res) => {
   if (req.query.token) {
        let tokenData = jwt.decode(req.query.token);
        req.session.token = tokenData;
-       req.session.user = tokenData.username;
+
        res.redirect('/');
   } else {
        res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
   };
 });
+
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
@@ -99,28 +101,31 @@ app.get('/pog', function (req, res) {
     }),
     new Promise((resolve, reject) => {
       const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
-  
       db.all(joinQuery, [], (err, row) => {
-      if (err) {
-        console.error(err.message);
-        reject(err)
-        res.status(500).send('An error occurred');
-        return;
-      }
-        console.log(parentID);
+        if (err) {
+          console.error(err.message);
+          reject(err)
+          res.status(500).send('An error occurred');
+          return;
+        }
+
         resolve(row);
       });
     }),
   ])
-    .then(([pogData, colorData]) => {
+    .then(([pogData, colorData,]) => {
       // Both queries have completed successfully
       res.render('pog', { pog: pogData, color: colorData });
+      console.log(colorData)
+      console.log(pogData);
     })
     .catch((err) => {
       // Handle any errors that occurred during query execution
       res.status(500).send('An error occurred ' + err);
     });
-}); 
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`You're running on port ${PORT}.`);
