@@ -2,10 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
+const { log } = require('console');
 const sqlite3 = require('sqlite3').verbose();
 const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 1024
 //formbar.js url
@@ -29,12 +32,15 @@ app.use(session({
   saveUninitialized: false
 }))
 
+
 app.use(express.static('./static'));
 
 app.set('view engine', 'ejs');
 
 const dbPath = path.join('./static', 'pog.db');
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
+
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+
   if (err) {
     console.error(err.message);
   } else {
@@ -50,9 +56,47 @@ app.get('/acc', (req, res) => {
     res.render('account', { rows: rows })
   })
 })
- 
 
-app.get('/',isAuthenticated, (req, res) => {
+
+app.get('/', function (req, res) {
+  db.all('SELECT * FROM pogs', [], (err, rows,) => {
+    if (err) {
+      console.error(err);
+    }
+    res.render('index', { rows: rows })
+  });
+});
+
+app.get('/rewards', (req, res) => {
+  db.all('Select * FROM rewards', [], (err, rows) => {
+    if (err) {
+      console.log(err)
+      //TODO: send error template here
+    } else {
+      res.render('rewards', { rows: rows })
+    }
+  })
+})
+
+app.post('/rewards', (req, res) => {
+  const uid = req.body.uid
+  const item = req.body.item
+  const cost = req.body.cost
+  const type = req.body.type
+  db.run('INSERT INTO rewards (uid, item, cost, type) VALUES (?, ?, ?, ?)', [uid, item, cost, type], (err) => {
+    if (err) {
+      console.log(err);
+      //TODO: send error template here
+    } else {
+      res.redirect('/rewards')
+      console.log(`A row has been inserted inserted into rewards as ${item}, ${cost}, ${type}`);
+    }
+  });
+})
+
+
+
+app.get('/', isAuthenticated, (req, res) => {
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       if (err) {
@@ -68,14 +112,15 @@ app.get('/',isAuthenticated, (req, res) => {
 
 app.get('/login', (req, res) => {
   if (req.query.token) {
-       let tokenData = jwt.decode(req.query.token);
-       req.session.token = tokenData;
+    let tokenData = jwt.decode(req.query.token);
+    req.session.token = tokenData;
 
-       res.redirect('/');
+    res.redirect('/');
   } else {
-       res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
   };
 });
+
 
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
@@ -101,6 +146,8 @@ app.get('/pog', function (req, res) {
     }),
     new Promise((resolve, reject) => {
       const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
+
+
       db.all(joinQuery, [], (err, row) => {
         if (err) {
           console.error(err.message);
@@ -108,11 +155,13 @@ app.get('/pog', function (req, res) {
           res.status(500).send('An error occurred');
           return;
         }
+        console.log(parentID);
 
         resolve(row);
       });
     }),
   ])
+
     .then(([pogData, colorData,]) => {
       // Both queries have completed successfully
       res.render('pog', { pog: pogData, color: colorData });
@@ -122,21 +171,21 @@ app.get('/pog', function (req, res) {
     .catch((err) => {
       // Handle any errors that occurred during query execution
       res.status(500).send('An error occurred ' + err);
-    });
-});
+    })
+  })
 
 
 
-app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`);
-});
+  app.listen(PORT, () => {
+    console.log(`You're running on port ${PORT}.`);
 
-process.on('SIGINT', () => {
-  db.close((err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log('Closed the database connection.');
-    process.exit(0);
   });
-});
+
+  process.on('SIGINT', () => {
+    db.close((err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      console.log('Closed the database connection.');
+      process.exit(0);
+    })})

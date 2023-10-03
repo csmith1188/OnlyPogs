@@ -13,7 +13,6 @@
     <%= pog.name %>
   </h1>
 
-
   <div class="center">
 
     <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
@@ -47,28 +46,37 @@
         <%= pog.serial %>
       </p>
     </div>
+
     <div class="infobox">
       <p class="infoheader">Tags</p>
       <p class="info">
         <%= pog.tags %>
       </p>
     </div>
+
+
+    
+        </select>
+        <p id="error"></p>
+        </p>
+  </div>
+  
+ 
     
     <div class="infobox">
       <p class="infoheader">Pog Rarity</p>
       <p class="info" id="rarityBox"></p>
     </div>
-    
-    
-  </div>
+  
   <div class="infobox">
     <p class='infoheader'>Pog Lore </p>
     <p class='info'>
+
       <%= pog.lore %>
     </p>
   </div>
-
 </div>
+
 
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
@@ -91,6 +99,7 @@
     function unknown() {
       document.getElementById('error').innerText = "sorry this pog/color does not exist."
     }
+
 
     // Stringifying the pog data and setting it to a variable called pogData
     var pogData =  <%- JSON.stringify(pog) %>
@@ -118,6 +127,7 @@
     }else {
       document.getElementById('rarityBox').innerText = 'N/A'
     }
+
   </script>
 
 </body>
