@@ -148,16 +148,19 @@
             tdName.href = row.url; // Set the href attribute to the URL
 
 
+
             tdName.textContent = row.name;
             tdName.innerHTML = row.name;
             tdSerial.textContent = row.serial;
             tdAmount.textContent = row.amount;
             tdTags.textContent = row.tags;
 
+
             tr.appendChild(tdName);
             tr.appendChild(tdSerial);
             tr.appendChild(tdAmount);
             tr.appendChild(tdTags);
+
 
             tableBody.appendChild(tr);
         });
@@ -165,6 +168,7 @@
 </script>
 
 <body>
+
     <div id="tagDropDown">
         <select name="tagFilter" id="tagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
@@ -174,9 +178,11 @@
                         <%= uniqueTags[i] %>
                     </option>
                     <% } %>
+
         </select> <br>
         <button class="button" id="accButton"><a href="/acc">Account</a></button>
         <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
+
     </div>
 
     <table id="table">
