@@ -2,19 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-
 const { log } = require('console');
-const sqlite3 = require('sqlite3').verbose();
-
-
-var app = express();
-
-app.use(express.urlencoded({ extended: true }));
-
 const sqlite3 = require('sqlite3').verbose();
 const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 1024
 //formbar.js url
@@ -100,9 +94,9 @@ app.post('/rewards', (req, res) => {
   });
 })
 
- 
 
-app.get('/',isAuthenticated, (req, res) => {
+
+app.get('/', isAuthenticated, (req, res) => {
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       if (err) {
@@ -118,12 +112,12 @@ app.get('/',isAuthenticated, (req, res) => {
 
 app.get('/login', (req, res) => {
   if (req.query.token) {
-       let tokenData = jwt.decode(req.query.token);
-       req.session.token = tokenData;
+    let tokenData = jwt.decode(req.query.token);
+    req.session.token = tokenData;
 
-       res.redirect('/');
+    res.redirect('/');
   } else {
-       res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
   };
 });
 
@@ -153,14 +147,14 @@ app.get('/pog', function (req, res) {
     new Promise((resolve, reject) => {
       const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
 
-  
+
       db.all(joinQuery, [], (err, row) => {
-      if (err) {
-        console.error(err.message);
-        reject(err)
-        res.status(500).send('An error occurred');
-        return;
-      }
+        if (err) {
+          console.error(err.message);
+          reject(err)
+          res.status(500).send('An error occurred');
+          return;
+        }
         console.log(parentID);
 
         resolve(row);
@@ -177,22 +171,21 @@ app.get('/pog', function (req, res) {
     .catch((err) => {
       // Handle any errors that occurred during query execution
       res.status(500).send('An error occurred ' + err);
-    });
+    })
+  })
 
 
 
+  app.listen(PORT, () => {
+    console.log(`You're running on port ${PORT}.`);
 
-app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`);
-
-});
-
-process.on('SIGINT', () => {
-  db.close((err) => {
-    if (err) {
-      console.error(err.message);
-    }
-    console.log('Closed the database connection.');
-    process.exit(0);
   });
-});
+
+  process.on('SIGINT', () => {
+    db.close((err) => {
+      if (err) {
+        console.error(err.message);
+      }
+      console.log('Closed the database connection.');
+      process.exit(0);
+    })})
