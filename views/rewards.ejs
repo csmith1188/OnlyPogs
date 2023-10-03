@@ -121,6 +121,13 @@
         <div id="tagDropDown">
             <button><a href="/acc">Account</a></button>
             <button><a href="/">Pogs</a></button>
+            <form method="post" action="/rewards" id="insert">
+                <input type="text" name="uid" placeholder="uid">
+                <input type="text" name="item" placeholder="Item Name">
+                <input type="text" name="cost" placeholder="Cost in Pogs">
+                <input type="text" name="type" placeholder="Type of Item">
+                <input type="submit" value="submit">
+            </form>
         </div>
         <table id="table">
             <thead id="tableHead">
@@ -138,12 +145,6 @@
                 <% } %>
             </tbody>
         </table>
-        <form method="post" action="/rewards" id="insert">
-            <input type="text" name="uid">
-            <input type="text" name="item">
-            <input type="text" name="cost">
-            <input type="text" name="type">
-            <input type="submit" value="submit">
-        </form>
+        
     </body>
 </html>
