@@ -8,7 +8,12 @@
         <title>Digipogs</title>
     </head>
     <body>
-        <button><a href="/">Pogs</a></button>
+
+        <div id="tagDropDown">
+            <button><a href="/rewards">Rewards</a></button>
+            <button><a href="/">Pogs</a></button>
+        </div>
+
         <table id="acc">
             <thead id="tableHead">
                 <th id="fbUsername">Formbar Username</th>
@@ -22,10 +27,8 @@
                         <td><%- rows[i].userName %></td>
                         <td><%- rows[i].amountOfPogs %></td>
                     </tr>
-                    <%= console.log(rows) %>
                 <% } %>
             </tbody>
-            
         </table>    
     </body>
 </html>
