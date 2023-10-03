@@ -13,21 +13,37 @@
     <%= pog.name %>
   </h1>
 
-  <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
-      id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a>
+  <div class="center">
 
-  <div id="container">
+    <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
+        id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a>
+        <div id="infoBoxes">
+
+        <div class="infobox">
+          <p class="infoheader"><label>Colors</label></p>
+          <p class="info"> <select id="Pogs" onchange="pogChange()">
+              <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
+                <option value=<%=Colors %>> <%= pog.colors[Colors] %>
+                </option>
+    
+                <%} %>
+    
+            </select>
+          <p id="error"></p>
+          </p>
+        </div>
+        
+        <div class="infobox">
+          <p class="infoheader">Amount Produced </p>
+      <p class="info">
+        <%= pog.amount %>
+      </p>
+    </div>
+    
     <div class="infobox">
       <p class="infoheader">Serial Number </p>
       <p class="info">
         <%= pog.serial %>
-      </p>
-    </div>
-
-    <div class="infobox">
-      <p class="infoheader">Amount Produced </p>
-      <p class="info">
-        <%= pog.amount %>
       </p>
     </div>
 
@@ -38,27 +54,29 @@
       </p>
     </div>
 
-    <div class="infobox">
-      <p class="infoheader"><label>Colors</label></p>
-      <p class="info"> <select id="Pogs" onchange="pogChange()">
-    </div>
-    <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
-      <option value=<%=Colors %>> <%= pog.colors[Colors] %>
-      </option>
 
-      <%} %>
-
+    
         </select>
         <p id="error"></p>
         </p>
   </div>
-  </div>
-  <div class="infobox2">
-    <p class='infoheader2'>Pog Lore </p>
-    <p class='info2'>
+  
+ 
+    
+    <div class="infobox">
+      <p class="infoheader">Pog Rarity</p>
+      <p class="info" id="rarityBox"></p>
+    </div>
+  
+  <div class="infobox">
+    <p class='infoheader'>Pog Lore </p>
+    <p class='info'>
+
       <%= pog.lore %>
     </p>
   </div>
+</div>
+
 
   <script>
     var pog = <%- JSON.stringify(pog.name) %>
@@ -81,6 +99,35 @@
     function unknown() {
       document.getElementById('error').innerText = "sorry this pog/color does not exist."
     }
+
+
+    // Stringifying the pog data and setting it to a variable called pogData
+    var pogData =  <%- JSON.stringify(pog) %>
+
+      console.log(pogData.amount)
+
+    // total pog amount
+    var totalPog = 1856.5
+
+    var pogPercent = pogData.amount / totalPog * 100
+    pogPercent = pogPercent.toFixed(2)
+    console.log(pogPercent)
+
+    //setting rarities
+    if (pogPercent >= 10) {
+      document.getElementById('rarityBox').innerText = 'Common'
+    } else if (pogPercent < 10 && pogPercent >= 3) {
+      document.getElementById('rarityBox').innerText = 'Uncommon'
+    } else if (pogPercent < 3 && pogPercent >= 1) {
+      document.getElementById('rarityBox').innerText = 'Rare'
+    } else if (pogPercent < 1 && pogPercent > 0.05) {
+      document.getElementById('rarityBox').innerText = 'Epic'
+    } else if (pogPercent <= 0.05) {
+      document.getElementById('rarityBox').innerText = 'Legendary'
+    }else {
+      document.getElementById('rarityBox').innerText = 'N/A'
+    }
+
   </script>
 
 </body>
