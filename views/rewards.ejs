@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <src href="main.js"></src>
+    <title>Rewards</title>
+</head>
+
+<body>
+    <div id="tagDropDown">
+        <button><a href="/acc">Account</a></button>
+        <button><a href="/">Pogs</a></button>
+    </div>
+    <table id="table">
+        <thead id="tableHead">
+            <th onclick='sortByItem()' id="item">Item</th>
+            <th onclick='sortByCost()' id="cost">Cost</th>
+            <th onclick='sortByType()' id="type">Type</th>
+        </thead>
+        <tbody id="table-body">
+            <% for(let i=0; i < rows.length; i++) { %>
+                <tr>
+                    <td name="item"><%- rows[i].item %></td>
+                    <td name="cost"><%- rows[i].cost %></td>
+                    <td name="type"><%- rows[i].type %></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <form method="post" action="/rewards" id="insert">
+        <input type="text" name="uid" placeholder="uid" id="input" class="rewardInput">
+        <input type="text" name="item" placeholder="Item Name" id="input" class="rewardInput">
+        <input type="text" name="cost" placeholder="Cost in Pogs" id="input" class="rewardInput">
+        <input type="text" name="type" placeholder="Type of Item" id="input" class="rewardInput">
+        <input type="submit" value="submit" id="input" class="rewardInput">
+    </form>
+
+</body>
+<script defer>
+
+    const appendItem = ''
+
+    var userPerms = <%- JSON.stringify(digiPerm) %>;
+    console.log(userPerms);
+
+    var data = <%- JSON.stringify(rows) %>;
+
+    var filteredData = [];
+
+    var currentSortOrder = 'asc'
+
+
+
+    if (userPerms = 2) {
+        console.log(userPerms)
+        var rewardInput = document.getElementsByClassName('rewardInput');
+        for (let i = 0; i < rewardInput.length; i++) {
+            rewardInput[i].disabled = true
+        }
+    } else if (userPerms = 1) {
+        var rewardInput = document.getElementsByClassName('rewardInput');
+        for (let i = 0; i < rewardInput.length; i++) {
+            rewardInput[i].disabled = false
+        }
+    }
+
+
+
+
+    function toggleSortOrder() {
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc'
+        } else {
+            currentSortOrder = 'asc'
+        }
+    }
+
+    function sortByItem() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.item.localeComnpare(b.item);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        } else {
+            data.sort((a, b) => {
+                const comparison = a.item.localeCompare(b.item);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    function sortByCost() {
+        toggleSortOrder()
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const costA = String(a.cost);
+                const costB = String(b.cost);
+                const comparison = costA.localeCompare(costB)
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(filteredData)
+        } else {
+            data.sort((a, b) => {
+                const costA = String(a.cost);
+                const costB = String(b.cost);
+                const comparison = costA.localeCompare(costB)
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        }
+    }
+
+    function sortByType() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.type.localeComnpare(b.type);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        } else {
+            data.sort((a, b) => {
+                const comparison = a.type.localeCompare(b.type);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    function resetOrder() {
+        filteredData = [];
+        updateTable(data);
+    }
+
+    function updateTable(updateData) {
+        const tableBody = document.getElementById('table-body');
+        const tableHead = document.getElementById('tableHead');
+        tableBody.innerHTML = '';
+        updateData.forEach((row) => {
+
+            const tr = document.createElement('tr');
+            const tdItem = document.createElement('td');
+            const tdCost = document.createElement('td');
+            const tdType = document.createElement('td');
+
+            tdItem.href = row.url;
+
+
+            tdItem.textContent = row.item;
+            tdItem.innerHTML = row.item;
+            tdCost.textContent = row.cost;
+            tdType.textContent = row.type;
+
+            tr.appendChild(tdItem);
+            tr.appendChild(tdCost);
+            tr.appendChild(tdType);
+
+            tableBody.appendChild(tr);
+        });
+    }
+
+</script>
+
+</html>
