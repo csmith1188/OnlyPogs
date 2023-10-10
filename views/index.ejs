@@ -170,6 +170,8 @@
 <body>
 
     <div id="tagDropDown">
+        <button class="button" id="accButton"><a href="/acc">Account</a></button>
+        <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
         <select name="tagFilter" id="tagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
             <% const uniqueTags=Array.from(new Set(rows.map(row=> row.tags))); %>
@@ -180,9 +182,6 @@
                     <% } %>
 
         </select> <br>
-        <button class="button" id="accButton"><a href="/acc">Account</a></button>
-        <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
-
     </div>
 
     <table id="table">

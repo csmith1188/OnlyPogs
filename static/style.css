@@ -4,6 +4,20 @@ body{
 #insert{
   float: right;
 }
+#Details{
+  font-size: larger;
+}
+#dArea{
+  width: 100%;
+  height: 25%;
+  font-size: large;
+}
+#tagFilter{
+  float: right;
+}
+#dArea {
+  background-color: #AFB0B0;
+}
 table{
     width: 100%;
     height: 100%;
@@ -13,7 +27,7 @@ table{
     margin: auto;
     background-color: 
     #33B9FF;
-  }
+}
 tr:nth-child(odd){
   background-color: #025845;
   border: 2px solid;

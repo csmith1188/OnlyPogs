@@ -78,6 +78,7 @@ app.get('/rewards', (req, res) => {
   })
 })
 
+//Takes input from the rewards page, inserts it into the DB, and shows the addition on the webpage
 app.post('/rewards', (req, res) => {
   const uid = req.body.uid
   const item = req.body.item
@@ -94,7 +95,9 @@ app.post('/rewards', (req, res) => {
   });
 })
 
-
+app.get('/pcd', (req, res) => {
+  res.render('creationDetails.ejs')
+})
 
 app.get('/', isAuthenticated, (req, res) => {
   try {

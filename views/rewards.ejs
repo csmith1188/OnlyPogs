@@ -18,6 +18,7 @@
 
         var currentSortOrder = 'asc'
 
+        //Used to toggle the sort order by changing it from alphabetically ascending to decending
         function toggleSortOrder() {
             if(currentSortOrder === 'asc') {
                 currentSortOrder = 'desc'
@@ -26,6 +27,7 @@
             }
         }
 
+        //Sorts the table alphabetically by the item column
         function sortByItem() {
             toggleSortOrder();
 
@@ -44,6 +46,7 @@
             }
         }
 
+        //Sorts the table numerically by the Cost column
         function sortByCost() {
             toggleSortOrder()
 
@@ -66,6 +69,7 @@
             }
         }
 
+        //Sorts the table alphabetically by the type column
         function sortByType() {
             toggleSortOrder();
 
@@ -89,6 +93,31 @@
             updateTable(data);
         }
         
+        //The fuction used for the types drop down
+        function filterTags() {
+            const selectedTagElement = document.getElementById('rTagFilter');
+
+            if (!selectedTagElement) {
+                console.error("Element with ID 'rTagFilter' not found.");
+                return;
+            }
+
+            const selectedTag = selectedTagElement.value;
+
+            if (selectedTag === '') {
+                resetFilterAndSort();
+            } else {
+                filteredData = data.filter((item) => item.type === selectedTag);
+                updateTable(filteredData);
+            }
+        }
+
+        function resetFilterAndSort() {
+            filteredData = []; // Reset the filtered data
+            updateTable(data); // Update the table with the original data
+        }
+
+        //Updates the table after sorting
         function updateTable(updateData) {
             const tableBody = document.getElementById('table-body');
             const tableHead = document.getElementById('tableHead');
@@ -118,9 +147,22 @@
 
     </script>
     <body>
-        <div id="tagDropDown">
+        <!--A div containing the buttons and any other forms that do various things-->
+        <div id="rTagDropDown">
+            <!--Filters the types using a drop down-->
+            <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
+                <option value="">All Tags</option>
+                <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
+                    <% for (let i=0; i < uniqueTags.length; i++) { %>
+                        <option value="<%= uniqueTags[i] %>">
+                            <%= uniqueTags[i] %>
+                        </option>
+                    <% } %>
+            </select>
             <button><a href="/acc">Account</a></button>
             <button><a href="/">Pogs</a></button>
+            <button><a href="/pcd">Pog Creation Details</a></button>
+            <!--This form is used to insert a new row into the DB-->
             <form method="post" action="/rewards" id="insert">
                 <input type="text" name="uid" placeholder="uid">
                 <input type="text" name="item" placeholder="Item Name">
@@ -131,6 +173,7 @@
         </div>
         <table id="table">
             <thead id="tableHead">
+                <!--Table heads that can sort by clicking them-->
                 <th onclick='sortByItem()' id="item">Item</th>
                 <th onclick='sortByCost()' id="cost">Cost</th>
                 <th onclick='sortByType()' id="type">Type</th>
@@ -138,7 +181,9 @@
             <tbody id="table-body">
                 <% for(let i = 0; i < rows.length; i++) { %>
                     <tr>
-                        <td name="item"><%- rows[i].item %></td>
+                        <!--The item column has links set up for when formbar implementation is fully complete-->
+                        <!--The idea is to use the links to allow students to buy rewards-->
+                        <td name="item"><a href="/rewards"><%- rows[i].item %></a></td>
                         <td name="cost"><%- rows[i].cost %></td>
                         <td name="type"><%- rows[i].type %></td>
                     </tr>
