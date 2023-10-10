@@ -125,7 +125,7 @@
             updateData.forEach((row) => {
             
                 const tr = document.createElement('tr');
-                const tdItem = document.createElement('td');
+                const tdItem = document.createElement('a');
                 const tdCost = document.createElement('td');
                 const tdType = document.createElement('td');
 
@@ -183,7 +183,7 @@
                     <tr>
                         <!--The item column has links set up for when formbar implementation is fully complete-->
                         <!--The idea is to use the links to allow students to buy rewards-->
-                        <td name="item"><a href="/rewards"><%- rows[i].item %></a></td>
+                        <td name="item"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                         <td name="cost"><%- rows[i].cost %></td>
                         <td name="type"><%- rows[i].type %></td>
                     </tr>
