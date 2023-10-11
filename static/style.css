@@ -7,16 +7,21 @@ body{
 #Details{
   font-size: larger;
 }
-#dArea{
+#Details{
+  font-size: large;
+}
+#dArea2{
+  font-size: medium;
+  background-color: #AFB0B0
+}
+#dArea1{
   width: 100%;
   height: 25%;
   font-size: large;
+  background-color: #AFB0B0
 }
 #tagFilter{
   float: right;
-}
-#dArea {
-  background-color: #AFB0B0;
 }
 table{
     width: 100%;

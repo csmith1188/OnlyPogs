@@ -95,8 +95,8 @@ app.post('/rewards', (req, res) => {
   });
 })
 
-app.get('/pcd', (req, res) => {
-  res.render('creationDetails.ejs')
+app.get('/rDetails', (req, res) => {
+  res.render('rewardsDetails.ejs')
 })
 
 app.get('/', isAuthenticated, (req, res) => {
