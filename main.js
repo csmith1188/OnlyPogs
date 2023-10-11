@@ -58,23 +58,26 @@ app.get('/acc', (req, res) => {
 })
 
 
-app.get('/', function (req, res) {
-  db.all('SELECT * FROM pogs', [], (err, rows,) => {
-    if (err) {
-      console.error(err);
-    }
-    res.render('index', { rows: rows })
-  });
-});
 
 app.get('/rewards', (req, res) => {
+  const digiPerm = req.query.permissions
   db.all('Select * FROM rewards', [], (err, rows) => {
     if (err) {
       console.log(err)
       //TODO: send error template here
-    } else {
-      res.render('rewards', { rows: rows })
-    }
+    } 
+      db.get('SELECT * FROM Digipogs',[], (err, digiPerm) => {
+        if (err){
+          console.log(err)
+        }else {
+
+          res.render('rewards', { rows: rows, digiPerm: digiPerm})
+          console.log(rows)
+        }
+
+      })
+      
+    
   })
 })
 
@@ -97,12 +100,28 @@ app.post('/rewards', (req, res) => {
 
 
 app.get('/', isAuthenticated, (req, res) => {
+  const userPerm = req.session.token.permissions
+  const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       if (err) {
         console.error(err);
       }
-      res.render('index', { rows: rows, user: req.session.user })
+      console.log(userPerm);
+      db.get('SELECT * FROM Digipogs WHERE fbUserName = ?', userName, (err, data) => {
+        if (!data) {
+          db.run('INSERT OR REPLACE INTO Digipogs (fbUserName, permissions) VALUES (?, ?)', [userName, userPerm], (err) => {
+            if (err) {
+              console.log(err);
+              //TODO: send error template here
+            }else {
+              console.log(`A row has been inserted inserted into digipogs as username:${userName}, permissions:${userPerm}`);
+            }
+          })
+        } else {
+          res.render('index', { rows: rows, user: userName, userPerm: userPerm })
+        }
+      })
     });
   }
   catch (error) {
@@ -172,20 +191,21 @@ app.get('/pog', function (req, res) {
       // Handle any errors that occurred during query execution
       res.status(500).send('An error occurred ' + err);
     })
+})
+
+
+
+app.listen(PORT, () => {
+  console.log(`You're running on port ${PORT}.`);
+
+});
+
+process.on('SIGINT', () => {
+  db.close((err) => {
+    if (err) {
+      console.error(err.message);
+    }
+    console.log('Closed the database connection.');
+    process.exit(0);
   })
-
-
-
-  app.listen(PORT, () => {
-    console.log(`You're running on port ${PORT}.`);
-
-  });
-
-  process.on('SIGINT', () => {
-    db.close((err) => {
-      if (err) {
-        console.error(err.message);
-      }
-      console.log('Closed the database connection.');
-      process.exit(0);
-    })})
+})

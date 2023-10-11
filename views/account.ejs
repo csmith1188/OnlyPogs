@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="style.css">
         <title>Digipogs</title>
     </head>
+    <script>
+        var userData = <%- JSON.stringify(rows) %>
+        console.log(userData[0].permissions);
+    </script>
     <body>
 
         <div id="tagDropDown">
@@ -17,14 +21,13 @@
         <table id="acc">
             <thead id="tableHead">
                 <th id="fbUsername">Formbar Username</th>
-                <th id="username">Username</th>
                 <th id="amount">Amount of pogs</th>
             </thead>
             <tbody>
+               
                 <% for(let i=0; i < rows.length; i++) {%>
                     <tr>
                         <td><%- rows[i].fbUserName %></td>
-                        <td><%- rows[i].userName %></td>
                         <td><%- rows[i].amountOfPogs %></td>
                     </tr>
                 <% } %>
