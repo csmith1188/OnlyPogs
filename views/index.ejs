@@ -118,28 +118,32 @@
     function filterTags() {
         const selectedTagElement = document.getElementById('tagFilter');
 
-    if (!selectedTagElement) {
-        console.error("Element with ID 'tagFilter' not found.");
-        return;
+        if (!selectedTagElement) {
+            console.error("Element with ID 'tagFilter' not found.");
+            return;
+        }
+
+        const selectedTag = selectedTagElement.value;
+
+        if (selectedTag === '') {
+            resetFilterAndSort();
+        } else {
+            filteredData = data.filter((item) => item.tags === selectedTag);
+            updateTable(filteredData);
+        }
     }
 
-    const selectedTag = selectedTagElement.value;
 
-    if (selectedTag === '') {
-        resetFilterAndSort();
-    } else {
-        filteredData = data.filter((item) => item.tags === selectedTag);
-        updateTable(filteredData);
-    }
-}
-
-    // Define a function to update the table rows based on the sorted data
+    /**
+     * This function updates the table based on the updated table data
+     * @param {updateData} 
+    */
     function updateTable(updateData) {
         const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
-            
+
             const tr = document.createElement('tr');
             const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
@@ -169,7 +173,7 @@
 </script>
 
 <body>
-
+    <!-- This is a dropdown that will sort the table with only the selected tag-->
     <div id="tagDropDown">
         <select name="tagFilter" id="tagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
@@ -181,6 +185,7 @@
                     <% } %>
 
         </select> <br>
+        <!--Buttons to take you to the account page and the rewards page-->
         <button class="button" id="accButton"><a href="/acc">Account</a></button>
         <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
 
@@ -189,7 +194,7 @@
     <table id="table">
         <thead>
             <tr>
-                <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+                <!-- Each column header has its own onclick function that sorts the by the column  -->
                 <th id="name" onclick="sortByName()">Name --</th>
                 <th id="serial" onclick="sortBySerial()">Serial Number --</th>
                 <th id="amount" onclick="sortByAmount()">Amount Produced --</th>
@@ -197,6 +202,7 @@
             </tr>
         </thead>
         <tbody id="table-body">
+            <!-- A for loop that loops through the length of the row and displays it as a table -->
             <% for(let i=0; i < rows.length; i++) {%>
                 <tr>
                     <td>

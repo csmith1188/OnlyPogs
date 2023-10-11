@@ -75,15 +75,16 @@ app.get('/acc', (req, res) => {
 app.get('/rewards', (req, res) => {
   const digiPerm = req.query.permissions
   db.all('Select * FROM rewards', [], (err, rows) => {
+    //error validation
     if (err) {
       console.log(err)
       //TODO: send error template here
     } 
       db.get('SELECT * FROM Digipogs',[], (err, digiPerm) => {
+        //error validation
         if (err){
           console.log(err)
         }else {
-
           res.render('rewards', { rows: rows, digiPerm: digiPerm})
           console.log(rows)
         }
@@ -109,7 +110,9 @@ app.post('/rewards', (req, res) => {
 })
 
 
-
+/**
+ * This is an get endpoing that calls the isAuthenticated function when it runs
+ */
 app.get('/', isAuthenticated, (req, res) => {
   const userPerm = req.session.token.permissions
   const userName = req.session.token.username
