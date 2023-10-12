@@ -97,7 +97,9 @@ app.post('/rewards', (req, res) => {
   });
 })
 
-
+app.get('/rDetails', (req, res) => {
+  res.render('rewardsDetails.ejs')
+})
 
 app.get('/', isAuthenticated, (req, res) => {
   const userPerm = req.session.token.permissions
