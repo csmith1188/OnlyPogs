@@ -21,18 +21,23 @@
 -->
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>DBPanel</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 
 <body>
-  <h1>Data from pogs.db</h1>
+  <h1 style="display: flex; justify-content: space-between;">
+    Data from pogs.db
+    <!-- <button id="add-entry-button" class="add-entry-button" onclick="addEntry()"
+      style="background: none; padding: 0; font-size: 16px; font-weight: bold; cursor: pointer;">Add Entry</button> -->
+  </h1>
+
   <div id="data-container">
     <table>
       <thead>
         <tr>
+          <!-- Labels for each column that is visible -->
           <th>Name</th>
           <th>Color</th>
           <th>Serial</th>
@@ -44,6 +49,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- The create the cells for every entry in the database -->
         <% data.forEach((row, index) => { %>
         <tr class="data-row" style="background-color: <%= index % 2 === 0 ? '#a4ea9c' : '#add5a8' %>"
           data-uid="<%= row.uid %>">
@@ -55,6 +61,7 @@
           <td data-field="lore"><%= row.lore %></td>
           <td data-field="tags"><%= row.tags %></td>
           <td>
+            <!-- The buttons generated for every entry, half are not visible at all times -->
             <button id="edit-<%= row.uid %>" class="edit-button" onclick="editRow('<%= row.uid %>')">Edit</button>
             <button id="delete-<%= row.uid %>" class="delete-button"
               onclick="confirmDelete('<%= row.uid %>')">Delete</button>
@@ -69,9 +76,61 @@
 
   <script>
     /**
+     * Function to add a new entry.
+     */
+    /*
+     function addEntry() {
+    // Prompt the user to enter new entry details
+    const newEntry = {
+        name: prompt('Enter the name:'),
+        color: prompt('Enter the color:'),
+        serial: prompt('Enter the serial:'),
+        amount: prompt('Enter the amount:'),
+        lore: prompt('Enter the lore:'),
+        tags: prompt('Enter the tags:'),
+    };
+
+    // Check for required fields
+    if (!newEntry.name || !newEntry.color || !newEntry.lore || !newEntry.tags) {
+        alert('Error: Required fields are missing. Entry not added.');
+        return;
+    }
+
+    // Set serial and amount to 'N/A' if not provided
+    if (!newEntry.serial) {
+        newEntry.serial = 'N/A';
+    }
+
+    if (!newEntry.amount || newEntry.amount === '0') {
+        newEntry.amount = 'N/A';
+    }
+
+    // Send a POST request to add the new entry
+    fetch('/add-entry', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEntry),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Entry added successfully
+            alert('New entry saved successfully.');
+            location.reload(); // Reload the page
+        } else {
+            // Error handling if the entry save request fails
+            alert('Error adding the entry. Please try again.');
+            console.error('Error adding the entry:', response.statusText);
+        }
+    });
+}
+      */
+
+    /**
       Function to edit a row.
       @param {string} uid - The unique identifier of the row to edit.
-     */
+    */
     function editRow(uid) {
       /*
         When clicked, ask if you are sure you want to edit this entry. If confirmed,
@@ -206,11 +265,8 @@
         // Send a POST request to delete the row
         fetch(`/delete/${uid}`, {
           method: 'POST',
-        }).then(() => {
-          // Reload the page after deleting
-          location.reload();
-        });
-      }
+        })
+      };
     }
   </script>
 

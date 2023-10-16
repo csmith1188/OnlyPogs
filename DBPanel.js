@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Set the port number
-var port = 3000; // Change to your desired port number
+var port = 3000;
 
 // Connect to the SQLite database
 var db = new sqlite3.Database('./static/pog.db');
@@ -30,7 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve the DBPanel.ejs template from the root URL
 app.get('/', (req, res) => {
     // Query the 'pogs' table and retrieve all columns for all rows
-    db.all('SELECT * FROM pogs', [], (err, rows) => { // Use '*' to select all columns
+    db.all('SELECT * FROM pogs', [], (err, rows) => {
+
+        //report an error if there is one
         if (err) {
             console.error(err.message);
             res.status(500).json({
@@ -39,6 +41,7 @@ app.get('/', (req, res) => {
             return;
         }
 
+        // report missing data if there are no rows in the database or if there is nothing in a row
         if (!rows || rows.length === 0) {
             console.log("No data found in the 'pogs' table.");
             res.status(500).json({
@@ -79,18 +82,16 @@ app.post('/edit/:uid', (req, res) => {
         updatedData.tags,
         uid
     ], (err) => {
+        //whether the data was saved successful or not
         if (err) {
             console.error('Error updating database:', err.message);
             res.status(500).json({
                 error: 'Internal Server Error'
             });
             return;
-        }
-
-        console.log('Data saved successfully');
-        res.status(200).json({
-            message: 'Data saved successfully'
-        });
+        } else {
+            console.log('Data saved successfully');
+        };
     });
 });
 
@@ -101,7 +102,7 @@ app.post('/delete/:uid', (req, res) => {
     // Construct the SQL DELETE statement
     var sql = 'DELETE FROM pogs WHERE uid = ?';
 
-    // Execute the delete query
+    // Execute the delete query, and report whether the data was saved successful or not
     db.run(sql, [uid], (err) => {
         if (err) {
             console.error('Error deleting from database:', err.message);
@@ -109,26 +110,42 @@ app.post('/delete/:uid', (req, res) => {
                 error: 'Internal Server Error'
             });
             return;
-        }
+        } else {
+            console.log('Data deleted successfully');
+        };
+    });
+});
 
-        console.log('Data deleted successfully');
-        res.status(200).json({
-            message: 'Data deleted successfully'
-        });
+// Route to add a new entry
+app.post('/add-entry', (req, res) => {
+    // Handle adding a new entry to the database
+    const newEntry = req.body;
+
+    // Insert the new entry into the 'pogs' table
+    const sql = `INSERT INTO pogs (name, color, serial, amount, url, lore, tags) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    const params = [
+        newEntry.name,
+        newEntry.color,
+        newEntry.serial,
+        newEntry.amount,
+        newEntry.url,
+        newEntry.lore,
+        newEntry.tags,
+    ];
+    //report whether the data was saved successful or not
+    db.run(sql, params, (err) => {
+        if (err) {
+            console.error('Error adding the entry:', err.message);
+            res.status(500).json({
+                error: 'Internal Server Error'
+            });
+        } else {
+            console.log('Entry added successfully');
+        }
     });
 });
 
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});
-
-// Close the database connection when the server is closed
-app.on('close', () => {
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log('Database connection closed');
-    });
 });
