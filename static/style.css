@@ -6,19 +6,25 @@ body{
 }
 #Details{
   font-size: larger;
+  text-align: center;
+  color: azure;
+  background-color: black;
 }
 #Details2{
   font-size: large;
+  text-align: center;
 }
 #dArea2{
   font-size: medium;
-  background-color: #AFB0B0
+  background-color: #AFB0B0;
+  text-align: center;
 }
 #dArea1{
   width: 100%;
   height: 25%;
   font-size: large;
-  background-color: #AFB0B0
+  background-color: #AFB0B0;
+  text-align: center;
 }
 #tagFilter{
   float: right;

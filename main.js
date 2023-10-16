@@ -23,7 +23,6 @@ function isAuthenticated(req, res, next) {
   else res.redirect('/login')
 };
 
-
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
