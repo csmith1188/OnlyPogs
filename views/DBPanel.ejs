@@ -10,6 +10,7 @@
   - 'saveChanges' Saves changes to the database.
   - 'confirmDelete' Deletes a row from the database.
 
+  To Do:
   An add entry function should do these things:
   - Allow you to fill in name, colors, lore, tags and image
     - These are required and cannot be left blank
@@ -18,9 +19,12 @@
   - After all data is gathered, a url and uid must be made for it. 
     - url should be formatted as '/pog?name={$name}'
     - uid should be be made from the highest current uid +1
+
+  Change color so it is a table instead (hide JSON)
 -->
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>DBPanel</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
@@ -42,7 +46,6 @@
           <th>Color</th>
           <th>Serial</th>
           <th>Amount</th>
-          <th>URL</th>
           <th>Lore</th>
           <th>Tags</th>
           <th>Actions</th>
@@ -57,7 +60,6 @@
           <td data-field="color"><%= row.color %></td>
           <td data-field="serial"><%= row.serial %></td>
           <td data-field="amount"><%= row.amount %></td>
-          <td data-field="url"><%= row.url %></td>
           <td data-field="lore"><%= row.lore %></td>
           <td data-field="tags"><%= row.tags %></td>
           <td>
@@ -75,57 +77,6 @@
   </div>
 
   <script>
-    /**
-     * Function to add a new entry.
-     */
-    /*
-     function addEntry() {
-    // Prompt the user to enter new entry details
-    const newEntry = {
-        name: prompt('Enter the name:'),
-        color: prompt('Enter the color:'),
-        serial: prompt('Enter the serial:'),
-        amount: prompt('Enter the amount:'),
-        lore: prompt('Enter the lore:'),
-        tags: prompt('Enter the tags:'),
-    };
-
-    // Check for required fields
-    if (!newEntry.name || !newEntry.color || !newEntry.lore || !newEntry.tags) {
-        alert('Error: Required fields are missing. Entry not added.');
-        return;
-    }
-
-    // Set serial and amount to 'N/A' if not provided
-    if (!newEntry.serial) {
-        newEntry.serial = 'N/A';
-    }
-
-    if (!newEntry.amount || newEntry.amount === '0') {
-        newEntry.amount = 'N/A';
-    }
-
-    // Send a POST request to add the new entry
-    fetch('/add-entry', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newEntry),
-    })
-    .then(response => {
-        if (response.ok) {
-            // Entry added successfully
-            alert('New entry saved successfully.');
-            location.reload(); // Reload the page
-        } else {
-            // Error handling if the entry save request fails
-            alert('Error adding the entry. Please try again.');
-            console.error('Error adding the entry:', response.statusText);
-        }
-    });
-}
-      */
 
     /**
       Function to edit a row.
@@ -266,6 +217,7 @@
         fetch(`/delete/${uid}`, {
           method: 'POST',
         })
+        location.reload();
       };
     }
   </script>

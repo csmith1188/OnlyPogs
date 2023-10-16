@@ -116,35 +116,6 @@ app.post('/delete/:uid', (req, res) => {
     });
 });
 
-// Route to add a new entry
-app.post('/add-entry', (req, res) => {
-    // Handle adding a new entry to the database
-    const newEntry = req.body;
-
-    // Insert the new entry into the 'pogs' table
-    const sql = `INSERT INTO pogs (name, color, serial, amount, url, lore, tags) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    const params = [
-        newEntry.name,
-        newEntry.color,
-        newEntry.serial,
-        newEntry.amount,
-        newEntry.url,
-        newEntry.lore,
-        newEntry.tags,
-    ];
-    //report whether the data was saved successful or not
-    db.run(sql, params, (err) => {
-        if (err) {
-            console.error('Error adding the entry:', err.message);
-            res.status(500).json({
-                error: 'Internal Server Error'
-            });
-        } else {
-            console.log('Entry added successfully');
-        }
-    });
-});
-
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
