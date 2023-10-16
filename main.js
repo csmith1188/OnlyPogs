@@ -72,12 +72,8 @@ app.get('/rewards', (req, res) => {
         }else {
 
           res.render('rewards', { rows: rows, digiPerm: digiPerm})
-          console.log(rows)
         }
-
       })
-      
-    
   })
 })
 
@@ -92,7 +88,6 @@ app.post('/rewards', (req, res) => {
       //TODO: send error template here
     } else {
       res.redirect('/rewards')
-      console.log(`A row has been inserted inserted into rewards as ${item}, ${cost}, ${type}`);
     }
   });
 })
