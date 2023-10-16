@@ -118,6 +118,7 @@ app.get('/', isAuthenticated, (req, res) => {
   const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      //error handling
       if (err) {
         console.error(err);
       }
@@ -163,7 +164,6 @@ app.get('/login', (req, res) => {
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
-
   // Use Promises for better error handling and parallel execution
   Promise.all([
     new Promise((resolve, reject) => {
