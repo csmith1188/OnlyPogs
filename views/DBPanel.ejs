@@ -25,6 +25,34 @@
 -->
 <!DOCTYPE html>
 <html>
+<style>
+  .add-entry-button {
+    background: none;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer
+  }
+
+  .data-row {
+    background-color: #a4ea9c;
+
+  }
+
+  .data-row:nth-child(even) {
+    background-color: #add5a8;
+  }
+
+  input {
+    background-color: inherit;
+    font-size: 16px;
+  }
+
+  form {
+    justify-content: space-around;
+    display: flex;
+  }
+</style>
 
 <head>
   <title>DBPanel</title>
@@ -34,8 +62,7 @@
 <body>
   <h1 style="display: flex; justify-content: space-between;">
     Data from pogs.db
-    <button id="add-entry-button" class="add-entry-button" onclick="createTemporaryEntry()"
-      style="background: none; padding: 0; font-size: 16px; font-weight: bold; cursor: pointer;">Add Entry</button>
+    <button id="add-entry-button" class="add-entry-button" onclick="createTemporaryEntry()">Add Entry</button>
   </h1>
   <!-- Add an image input -->
 
@@ -75,8 +102,7 @@
       <tbody>
         <!-- The create the cells for every entry in the database -->
         <% data.forEach((row, index) => { %>
-        <tr class="data-row" style="background-color: <%= index % 2 === 0 ? '#a4ea9c' : '#add5a8' %>"
-          data-uid="<%= row.uid %>">
+        <tr class="data-row" data-uid="<%= row.uid %>">
           <td data-field="name"><%= row.name %></td>
           <td data-field="color"><%= row.color %></td>
           <td data-field="serial"><%= row.serial %></td>
@@ -113,7 +139,7 @@
     function createTemporaryEntry() {
       // Create a new form
       var form = document.createElement('form');
-
+      form.className = "data-row"
       // Create input fields for the form
       var inputFields = [{
           id: 'new-name',
@@ -155,14 +181,18 @@
 
       inputFields.forEach(function (field) {
         var input = document.createElement('input');
-        input.className = field.id;
+        input.placeholder = field.name;
+        input.className = field.id
         input.name = field.name;
         input.type = field.type;
         input.value = field.value;
+        input.required = true
         form.appendChild(input);
       });
 
       // Create a submit button for the form
+      var buttons = document.createElement("div")
+      buttons.className = "buttons"
       var submitButton = document.createElement('button');
       submitButton.textContent = 'Submit';
       submitButton.id = numberOfTemEntries
@@ -171,7 +201,7 @@
         event.preventDefault();
         submitForm(event.target.id);
       };
-      form.appendChild(submitButton);
+      buttons.appendChild(submitButton);
 
       // Create a delete button for the form
       var deleteButton = document.createElement('button');
@@ -180,7 +210,8 @@
         event.preventDefault();
         deleteTemporaryEntry(event);
       });
-      form.appendChild(deleteButton);
+      buttons.appendChild(deleteButton);
+      form.appendChild(buttons)
 
       // Add the form to the body of the document below the "Data from pogs.db" text
       var dataFromPogsDbText = document.querySelector('h1');
@@ -195,7 +226,7 @@
       // Remove the form from the body of the document
       document.body.removeChild(form);
     }
-    
+
     function submitForm(id) {
 
       // Send a POST request to the '/add-entry' endpoint with the form data
@@ -214,7 +245,7 @@
             name: document.getElementsByClassName('new-name')[id].value,
             color: document.getElementsByClassName('new-color')[id].value,
             serial: document.getElementsByClassName('new-serial')[id].value,
-            amount: document.getElementsByClassName('new-lore')[id].value,
+            amount: document.getElementsByClassName('new-amount')[id].value,
             lore: document.getElementsByClassName('new-lore')[id].value,
             tags: document.getElementsByClassName('new-tags')[id].value
           };
