@@ -151,7 +151,7 @@ Then redirects you do the root endpoint.
 */
 app.get('/login', (req, res) => {
   if (req.query.token) {
-    let tokenData = jwt.decode(req.query.token);
+    var tokenData = jwt.decode(req.query.token);
     req.session.token = tokenData;
 
     res.redirect('/');

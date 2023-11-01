@@ -1,3 +1,9 @@
+/*
+  This file, "api.js," is the backend for API functionality, providing access to data from the SQLite database.
+  The code contains routes to list available columns, retrieve all entries from a specified table, retrieve random entries, and list data in a specified column.
+  It connects to the SQLite database and handles JSON requests, dynamically constructing SQL queries based on provided parameters.
+*/
+
 // Import required modules
 const express = require('express');
 const app = express();
@@ -7,42 +13,26 @@ const port = process.env.PORT || 3000;
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
 
-// Connect to the SQLite database
-const db = new sqlite3.Database('static/pog.db', (err) => {
-  if (err) {
-    console.error('Error connecting to SQLite database:', err.message);
-  } else {
-    console.log('Connected to SQLite database');
-  }
-});
+/**
+  Connect to the SQLite database.
+  @type {sqlite3.Database}
+*/
+  const db = new sqlite3.Database('static/pog.db', (err) => {
+    if (err) {
+      console.error('Error connecting to SQLite database:', err.message);
+    } else {
+      console.log('Connected to SQLite database');
+    }
+  });
 
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Error handling middleware
-function errorHandler(err, req, res) {
-  console.error('Error:', err.message);
-
-  // Handle specific types of errors
-  if (err instanceof SyntaxError) {
-    return res.status(400).json({
-      error: 'Invalid JSON'
-    });
-  }
-
-  // Handle database errors
-  if (err instanceof sqlite3.DatabaseError) {
-    return res.status(500).json({
-      error: 'Database error'
-    });
-  }
-
-  // Handle other errors
-  res.status(500).json({
-    error: 'Server error'
-  });
-}
-// Route to list all available columns of a specified table
+/**
+  Route to list all available columns of a specified table.
+  @param {string} req.params.table - The name of the table to retrieve columns from.
+  @returns {JSON} - JSON response containing the list of columns.
+*/
 app.get('/:table', (req, res) => {
   const {
     table
@@ -74,7 +64,12 @@ app.get('/:table', (req, res) => {
     });
   });
 });
-// Route to retrieve all entries from a specified table
+
+/**
+  Route to retrieve all entries from a specified table.
+  @param {string} req.params.table - The name of the table to retrieve entries from.
+  @returns {JSON} - JSON response containing all rows from the specified table.
+*/
 app.get('/:table/all', (req, res) => {
   const {
     table
@@ -105,7 +100,12 @@ app.get('/:table/all', (req, res) => {
   });
 });
 
-// Route to retrieve random entries from a specified table
+/**
+  Route to retrieve random entries from a specified table.
+  @param {string} req.params.table - The name of the table to retrieve random entries from.
+  @param {string} req.params.count - The number of random entries to retrieve.
+  @returns {JSON} - JSON response containing the specified number of random rows.
+*/
 app.get('/:table/random/:count?', (req, res) => {
   let {
     table,
@@ -143,6 +143,13 @@ app.get('/:table/random/:count?', (req, res) => {
   });
 });
 
+/**
+Route to list all data in a specified column.
+  @param {string} req.params.table - The name of the table containing the desired column.
+  @param {string} req.params.column - The name of the column to retrieve data from.
+  @param {string} req.params.entry - (Optional) The specific entry within the column to retrieve.
+  @returns {JSON} - JSON response containing the requested data.
+*/
 // Lists all data in a specified column
 app.get('/:table/:column/:entry?', (req, res) => {
   const {
@@ -192,10 +199,12 @@ app.get('/:table/:column/:entry?', (req, res) => {
   });
 });
 
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
 
 // Add other routes and error handling as needed
 app.get('/', (req, res) => {
