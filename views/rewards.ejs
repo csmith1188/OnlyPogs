@@ -1,175 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <src href="main.js"></src>
+        <title>Rewards</title>
+    </head>
+    <script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <src href="main.js"></src>
-    <title>Rewards</title>
-</head>
+        const appendItem = ''
 
-<body>
-    <div id="tagDropDown">
-        <button><a href="/acc">Account</a></button>
-        <button><a href="/">Pogs</a></button>
-    </div>
-    <table id="table">
-        <thead id="tableHead">
-            <th onclick='sortByItem()' id="item">Item</th>
-            <th onclick='sortByCost()' id="cost">Cost</th>
-            <th onclick='sortByType()' id="type">Type</th>
-        </thead>
-        <tbody id="table-body">
-            <% for(let i=0; i < rows.length; i++) { %>
-                <tr>
-                    <td name="item"><%- rows[i].item %></td>
-                    <td name="cost"><%- rows[i].cost %></td>
-                    <td name="type"><%- rows[i].type %></td>
-                </tr>
-                <% } %>
-        </tbody>
-    </table>
+        var data = <%- JSON.stringify(rows) %>;
 
-    <form method="post" action="/rewards" id="insert">
-        <input type="text" name="uid" placeholder="uid" id="input" class="rewardInput">
-        <input type="text" name="item" placeholder="Item Name" id="input" class="rewardInput">
-        <input type="text" name="cost" placeholder="Cost in Pogs" id="input" class="rewardInput">
-        <input type="text" name="type" placeholder="Type of Item" id="input" class="rewardInput">
-        <input type="submit" value="submit" id="input" class="rewardInput">
-    </form>
+        var filteredData = [];
 
-</body>
-<script defer>
+        var currentSortOrder = 'asc'
 
-    const appendItem = ''
-
-    var userPerms = <%- JSON.stringify(digiPerm) %>;
-    console.log(userPerms);
-
-    var data = <%- JSON.stringify(rows) %>;
-
-    var filteredData = [];
-
-    var currentSortOrder = 'asc'
-
-
-
-    if (userPerms = 2) {
-        console.log(userPerms)
-        var rewardInput = document.getElementsByClassName('rewardInput');
-        for (let i = 0; i < rewardInput.length; i++) {
-            rewardInput[i].disabled = true
+        //Used to toggle the sort order by changing it from alphabetically ascending to decending
+        function toggleSortOrder() {
+            if(currentSortOrder === 'asc') {
+                currentSortOrder = 'desc'
+            } else {
+                currentSortOrder = 'asc'
+            }
         }
-    } else if (userPerms = 1) {
-        var rewardInput = document.getElementsByClassName('rewardInput');
-        for (let i = 0; i < rewardInput.length; i++) {
-            rewardInput[i].disabled = false
-        }
-    }
 
+        //Sorts the table alphabetically by the item column
+        function sortByItem() {
+            toggleSortOrder();
 
-
-
-    function toggleSortOrder() {
-        if (currentSortOrder === 'asc') {
-            currentSortOrder = 'desc'
-        } else {
-            currentSortOrder = 'asc'
-        }
-    }
-
-    function sortByItem() {
-        toggleSortOrder();
-
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const comparison = a.item.localeComnpare(b.item);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        } else {
+            if(filteredData.length > 0) {
+                filteredData.sort((a, b) => {
+                    const comparison = a.item.localeComnpare(b.item);
+                    return currentSortOrder === 'asc' ? comparison : -comparison;
+                })
+                updateTable(data)
+            } else {
             data.sort((a, b) => {
                 const comparison = a.item.localeCompare(b.item);
                 return currentSortOrder === 'asc' ? comparison : -comparison;
             });
             updateTable(data);
+            }
         }
-    }
 
-    function sortByCost() {
-        toggleSortOrder()
+        //Sorts the table numerically by the Cost column
+        function sortByCost() {
+            toggleSortOrder()
 
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const costA = String(a.cost);
-                const costB = String(b.cost);
-                const comparison = costA.localeCompare(costB)
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(filteredData)
-        } else {
-            data.sort((a, b) => {
-                const costA = String(a.cost);
-                const costB = String(b.cost);
-                const comparison = costA.localeCompare(costB)
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
+            if(filteredData.length > 0) {
+                filteredData.sort((a, b) => {
+                    const costA = String(a.cost);
+                    const costB = String(b.cost);
+                    const comparison = costA.localeCompare(costB)
+                    return currentSortOrder === 'asc' ? comparison : -comparison;
+                })
+                updateTable(filteredData)
+            } else {
+                data.sort((a, b) => {
+                    const costA = String(a.cost);
+                    const costB = String(b.cost);
+                    const comparison = costA.localeCompare(costB)
+                    return currentSortOrder === 'asc' ? comparison : -comparison;
+                })
+                updateTable(data)
+            }
         }
-    }
 
-    function sortByType() {
-        toggleSortOrder();
+        //Sorts the table alphabetically by the type column
+        function sortByType() {
+            toggleSortOrder();
 
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const comparison = a.type.localeComnpare(b.type);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        } else {
+            if(filteredData.length > 0) {
+                filteredData.sort((a, b) => {
+                    const comparison = a.type.localeComnpare(b.type);
+                    return currentSortOrder === 'asc' ? comparison : -comparison;
+                })
+                updateTable(data)
+            } else {
             data.sort((a, b) => {
                 const comparison = a.type.localeCompare(b.type);
                 return currentSortOrder === 'asc' ? comparison : -comparison;
             });
             updateTable(data);
+            }
         }
-    }
 
-    function resetOrder() {
-        filteredData = [];
-        updateTable(data);
-    }
+        function resetOrder() {
+            filteredData = [];
+            updateTable(data);
+        }
+        
+        //The fuction used for the types drop down
+        function filterTags() {
+            const selectedTagElement = document.getElementById('rTagFilter');
 
-    function updateTable(updateData) {
-        const tableBody = document.getElementById('table-body');
-        const tableHead = document.getElementById('tableHead');
-        tableBody.innerHTML = '';
-        updateData.forEach((row) => {
+            if (!selectedTagElement) {
+                console.error("Element with ID 'rTagFilter' not found.");
+                return;
+            }
 
-            const tr = document.createElement('tr');
-            const tdItem = document.createElement('td');
-            const tdCost = document.createElement('td');
-            const tdType = document.createElement('td');
+            const selectedTag = selectedTagElement.value;
 
-            tdItem.href = row.url;
+            if (selectedTag === '') {
+                resetFilterAndSort();
+            } else {
+                filteredData = data.filter((item) => item.type === selectedTag);
+                updateTable(filteredData);
+            }
+        }
+
+        function resetFilterAndSort() {
+            filteredData = []; // Reset the filtered data
+            updateTable(data); // Update the table with the original data
+        }
+
+        //Updates the table after sorting
+        function updateTable(updateData) {
+            const tableBody = document.getElementById('table-body');
+            const tableHead = document.getElementById('tableHead');
+            tableBody.innerHTML = '';
+            updateData.forEach((row) => {
+            
+                const tr = document.createElement('tr');
+                const tdItem = document.createElement('a');
+                const tdCost = document.createElement('td');
+                const tdType = document.createElement('td');
+
+                tdItem.href = row.url; 
 
 
-            tdItem.textContent = row.item;
-            tdItem.innerHTML = row.item;
-            tdCost.textContent = row.cost;
-            tdType.textContent = row.type;
+                tdItem.textContent = row.item;
+                tdItem.innerHTML = row.item;
+                tdCost.textContent = row.cost;
+                tdType.textContent = row.type;
 
-            tr.appendChild(tdItem);
-            tr.appendChild(tdCost);
-            tr.appendChild(tdType);
+                tr.appendChild(tdItem);
+                tr.appendChild(tdCost);
+                tr.appendChild(tdType);
 
-            tableBody.appendChild(tr);
-        });
-    }
+                tableBody.appendChild(tr);
+            });
+        }
 
-</script>
-
+    </script>
+    <body>
+        <!--A div containing the buttons and any other forms that do various things-->
+        <div id="rTagDropDown">
+            <!--Filters the types using a drop down-->
+            <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
+                <option value="">All Tags</option>
+                <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
+                    <% for (let i=0; i < uniqueTags.length; i++) { %>
+                        <option value="<%= uniqueTags[i] %>">
+                            <%= uniqueTags[i] %>
+                        </option>
+                    <% } %>
+            </select>
+            <button><a href="/acc">Account</a></button>
+            <button><a href="/">Pogs</a></button>
+            <button><a href="/rDetails">Reward Details</a></button>
+            <!--This form is used to insert a new row into the DB-->
+            <form method="post" action="/rewards" id="insert">
+                <input type="text" name="uid" placeholder="uid">
+                <input type="text" name="item" placeholder="Item Name">
+                <input type="text" name="cost" placeholder="Cost in Pogs">
+                <input type="text" name="type" placeholder="Type of Item">
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        <table id="table">
+            <thead id="tableHead">
+                <!--Table heads that can sort by clicking them-->
+                <th onclick='sortByItem()' id="item">Item</th>
+                <th onclick='sortByCost()' id="cost">Cost</th>
+                <th onclick='sortByType()' id="type">Type</th>
+            </thead>
+            <tbody id="table-body">
+                <% for(let i = 0; i < rows.length; i++) { %>
+                    <tr>
+                        <!--The item column has links set up for when formbar implementation is fully complete-->
+                        <!--The idea is to use the links to allow students to buy rewards-->
+                        <td name="item"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
+                        <td name="cost"><%- rows[i].cost %></td>
+                        <td name="type"><%- rows[i].type %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        
+    </body>
 </html>

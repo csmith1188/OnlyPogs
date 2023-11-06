@@ -40,7 +40,6 @@ function isAuthenticated(req, res, next) {
   else res.redirect('/login')
 };
 
-
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('./static'));
@@ -86,9 +85,7 @@ app.get('/rewards', (req, res) => {
           console.log(err)
         }else {
           res.render('rewards', { rows: rows, digiPerm: digiPerm})
-          console.log(rows)
         }
-
       })
   })
 })
@@ -104,11 +101,13 @@ app.post('/rewards', (req, res) => {
       //TODO: send error template here
     } else {
       res.redirect('/rewards')
-      console.log(`A row has been inserted inserted into rewards as ${item}, ${cost}, ${type}`);
     }
   });
 })
 
+app.get('/rDetails', (req, res) => {
+  res.render('rewardsDetails.ejs')
+})
 
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
