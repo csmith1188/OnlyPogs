@@ -179,10 +179,12 @@
                         <%= uniqueTags[i] %>
                     </option>
                     <% } %>
-
         </select> <br>
-        <button class="button" id="accButton"><a href="/acc">Account</a></button>
-        <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
+
+        <div class="buttons">
+            <button class="button" id="accButton"><a href="/acc">Account</a></button>
+            <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
+        </div>
 
     </div>
 
@@ -190,10 +192,10 @@
         <thead>
             <tr>
                 <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
-                <th id="name" onclick="sortByName()">Name --</th>
-                <th id="serial" onclick="sortBySerial()">Serial Number --</th>
-                <th id="amount" onclick="sortByAmount()">Amount Produced --</th>
-                <th id="tags" onclick="sortByTags()">Tags --</th>
+                <th id="name" onclick="sortByName()"><a>Name --</a></th>
+                <th id="serial" onclick="sortBySerial()"><a>Serial Number --</a></th>
+                <th id="amount" onclick="sortByAmount()"><a>Amount Produced --</a></th>
+                <th id="tags" onclick="sortByTags()"><a>Tags --</a></th>
             </tr>
         </thead>
         <tbody id="table-body">
@@ -203,13 +205,13 @@
                         <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
                     </td>
                     <td>
-                        <%- rows[i].serial %>
+                        <a><%- rows[i].serial %></a>
                     </td>
                     <td>
-                        <%- rows[i].amount %>
+                        <a><%- rows[i].amount %></a>
                     </td>
                     <td>
-                        <%- rows[i].tags %>
+                        <a><%- rows[i].tags %></a>
                     </td>
                 </tr>
                 <% } %>

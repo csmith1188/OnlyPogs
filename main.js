@@ -1,3 +1,6 @@
+//This is the OnlyPogs main.js file
+
+//requiring indepencies
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -10,36 +13,19 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
+//OnlyPogs Port
 const PORT = 1024
+
 //formbar.js url
-const AUTH_URL = 'http://172.16.3.106:420/oauth'
+// const AUTH_URL = 'http://172.16.3.106:420/oauth'
 
-//OnlyPogs url
-const THIS_URL = 'http://172.16.3.107:1024/login'
-
-
-function isAuthenticated(req, res, next) {
-  if (req.session.token) next()
-  else res.redirect('/login')
-};
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use(session({
-  secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
-  resave: false,
-  saveUninitialized: false
-}))
-
-
-app.use(express.static('./static'));
-
-app.set('view engine', 'ejs');
+// //OnlyPogs url
+// const THIS_URL = 'http://172.16.3.107:1024/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
+//creating a variable that is set to connect to the database
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
-
   if (err) {
     console.error(err.message);
   } else {
@@ -47,6 +33,28 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   }
 });
 
+
+/** A function that checks to see if there is a session token and if there is it redirects to the login endpoint*/
+// function isAuthenticated(req, res, next) {
+//   if (req.session.token) next()
+//   else res.redirect('/login')
+// };
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('./static'));
+
+// app.use(session({
+//   secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
+//   resave: false,
+//   saveUninitialized: false
+// }))
+
+
+//Setting the view engine to look for ejs
+app.set('view engine', 'ejs');
+
+/**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
   db.all('SELECT * FROM Digipogs', [], (err, rows) => {
     if (err) {
@@ -57,24 +65,32 @@ app.get('/acc', (req, res) => {
 })
 
 
-
+/**
+ * The following function is a get endpoint that takes you to the rewards.ejs page, it then creates a variable and sets it to the permissions
+ * There is a db.all to select all from the rewards table in the pogs database
+ * There is a db.get to select all from the Digipogs table of the pog database
+ * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
+ */
 app.get('/rewards', (req, res) => {
   const digiPerm = req.query.permissions
   db.all('Select * FROM rewards', [], (err, rows) => {
+    //error validation
     if (err) {
       console.log(err)
       //TODO: send error template here
-    } 
-      db.get('SELECT * FROM Digipogs',[], (err, digiPerm) => {
-        if (err){
-          console.log(err)
-        }else {
 
-          res.render('rewards', { rows: rows, digiPerm: digiPerm})
-        }
-      })
+    }
+    db.get('SELECT * FROM Digipogs', [], (err,) => {
+      //error validation
+      if (err) {
+        console.log(err)
+      } else {
+        res.render('rewards', { rows: rows })
+      }
+    })
   })
 })
+
 
 app.post('/rewards', (req, res) => {
   const uid = req.body.uid
@@ -95,29 +111,20 @@ app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
 })
 
-app.get('/', isAuthenticated, (req, res) => {
-  const userPerm = req.session.token.permissions
-  const userName = req.session.token.username
+/**
+ * This is an get endpoing that calls the isAuthenticated function when it runs
+ */
+// isAuthenticated
+app.get('/', (req, res) => {
+  // const userPerm = req.session.token.permissions
+  // const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      //error handling
       if (err) {
         console.error(err);
       }
-      console.log(userPerm);
-      db.get('SELECT * FROM Digipogs WHERE fbUserName = ?', userName, (err, data) => {
-        if (!data) {
-          db.run('INSERT OR REPLACE INTO Digipogs (fbUserName, permissions) VALUES (?, ?)', [userName, userPerm], (err) => {
-            if (err) {
-              console.log(err);
-              //TODO: send error template here
-            }else {
-              console.log(`A row has been inserted inserted into digipogs as username:${userName}, permissions:${userPerm}`);
-            }
-          })
-        } else {
-          res.render('index', { rows: rows, user: userName, userPerm: userPerm })
-        }
-      })
+      res.render('index', { rows: rows })
     });
   }
   catch (error) {
@@ -125,22 +132,26 @@ app.get('/', isAuthenticated, (req, res) => {
   }
 });
 
-app.get('/login', (req, res) => {
-  if (req.query.token) {
-    let tokenData = jwt.decode(req.query.token);
-    req.session.token = tokenData;
+/**
+Sends you to the /login endpoint
+Sets tokenData to the sessions token data
+Then redirects you do the root endpoint.
+*/
+// app.get('/login', (req, res) => {
+//   if (req.query.token) {
+//     var tokenData = jwt.decode(req.query.token);
+//     req.session.token = tokenData;
 
-    res.redirect('/');
-  } else {
-    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
-  };
-});
+//     res.redirect('/');
+//   } else {
+//     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+//   };
+// });
 
 
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
-
   // Use Promises for better error handling and parallel execution
   Promise.all([
     new Promise((resolve, reject) => {
@@ -160,9 +171,7 @@ app.get('/pog', function (req, res) {
       });
     }),
     new Promise((resolve, reject) => {
-      const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`;
-
-
+      const joinQuery = `SELECT * FROM pogs INNER JOIN pogColors ON pogs.uid = pogColors.parentID WHERE pogs.uid = ? AND pogColors.parentID = ?`
       db.all(joinQuery, [], (err, row) => {
         if (err) {
           console.error(err.message);
@@ -189,13 +198,7 @@ app.get('/pog', function (req, res) {
     })
 })
 
-
-
-app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`);
-
-});
-
+//Closes the database connection
 process.on('SIGINT', () => {
   db.close((err) => {
     if (err) {
@@ -204,4 +207,9 @@ process.on('SIGINT', () => {
     console.log('Closed the database connection.');
     process.exit(0);
   })
+});
+
+//Listens for connections on the specified port
+app.listen(PORT, () => {
+  console.log(`You're running on port ${PORT}.`)
 })

@@ -7,12 +7,9 @@ body{
 #Details{
   font-size: larger;
   text-align: center;
-  color: azure;
+  color: #FFFFFF;
+  border: black;
   background-color: black;
-}
-#Details2{
-  font-size: large;
-  text-align: center;
 }
 #dArea2{
   font-size: medium;
@@ -29,6 +26,8 @@ body{
 #tagFilter{
   float: right;
 }
+
+/*TABLE*/
 table{
     width: 100%;
     height: 100%;
@@ -36,29 +35,27 @@ table{
     border-collapse: collapse;
     text-align: center;
     margin: auto;
-    background-color: 
-    #33B9FF;
+    background-color: #33B9FF;
 }
 tr:nth-child(odd){
-  background-color: #025845;
+  background-color: #000000;
+  color: #717171;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #AFB0B0;
+  background-color: #242525;
   border: 2px solid;
 }
-tr:first-child{
-  background-color: #025845;
-  user-select: none;
-}
-tr:first-child:hover{
+
+/*TEXT*/
+a{
+  color: #10A919;
   cursor: pointer;
 }
-th {
-  border: 2px solid;
-}
-a{
-  color: #000000;
+
+/*FORMS*/
+button{
+  background-color: #3B443C;
 }
 select{
   background-color: #bebebe;
