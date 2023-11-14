@@ -125,7 +125,7 @@
 
   <script>
     var newEntry = {
-      uid: null, // Initialize uid to null or a default value
+      uid: null,
       name: null,
       color: null,
       serial: null,
@@ -218,13 +218,14 @@
       dataFromPogsDbText.insertAdjacentElement('afterend', form);
     }
 
+
     // Function to delete a temporary entry
     function deleteTemporaryEntry(event) {
       // Find the parent form of the delete button
-      var form = event.target.parentNode;
+      var form = event.target.parentNode.parentNode;
 
-      // Remove the form from the body of the document
-      document.body.removeChild(form);
+      // Remove the form from the document
+      form.parentNode.removeChild(form);
     }
 
     function submitForm(id) {
