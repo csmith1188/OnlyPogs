@@ -148,9 +148,9 @@
     </script>
     <body>
         <!--A div containing the buttons and any other forms that do various things-->
-        <div id="rTagDropDown">
+        <div id="tagDropDown">
             <!--Filters the types using a drop down-->
-            <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
+            <select name="tagFilter" id="tagFilter" onchange="filterTags()">
                 <option value="">All Tags</option>
                 <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
                     <% for (let i=0; i < uniqueTags.length; i++) { %>
@@ -174,9 +174,9 @@
         <table id="table">
             <thead id="tableHead">
                 <!--Table heads that can sort by clicking them-->
-                <th onclick='sortByItem()' id="item">Item</th>
-                <th onclick='sortByCost()' id="cost">Cost</th>
-                <th onclick='sortByType()' id="type">Type</th>
+                <th onclick='sortByItem()' id="item"><a>Item</a></th>
+                <th onclick='sortByCost()' id="cost"><a>Cost</a></th>
+                <th onclick='sortByType()' id="type"><a>Type</a></th>
             </thead>
             <tbody id="table-body">
                 <% for(let i = 0; i < rows.length; i++) { %>
@@ -184,8 +184,8 @@
                         <!--The item column has links set up for when formbar implementation is fully complete-->
                         <!--The idea is to use the links to allow students to buy rewards-->
                         <td name="item"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
-                        <td name="cost"><%- rows[i].cost %></td>
-                        <td name="type"><%- rows[i].type %></td>
+                        <td name="cost"><a><%- rows[i].cost %></a></td>
+                        <td name="type"><a><%- rows[i].type %></a></td>
                     </tr>
                 <% } %>
             </tbody>
