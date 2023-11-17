@@ -1,25 +1,6 @@
 body{
   background-color: #134611;
 }
-#Details{
-  font-size: larger;
-  text-align: center;
-  color: #FFFFFF;
-  border: black;
-  background-color: black;
-}
-#dArea2{
-  font-size: medium;
-  background-color: #AFB0B0;
-  text-align: center;
-}
-#dArea1{
-  width: 100%;
-  height: 25%;
-  font-size: large;
-  background-color: #AFB0B0;
-  text-align: center;
-}
 
 /*TABLE*/
 table{
@@ -29,6 +10,7 @@ table{
   border-collapse: collapse;
   text-align: center;
   margin: auto;
+  margin-bottom: 20px;
 }
 tr:nth-child(odd){
   background-color: #000000;
@@ -43,30 +25,26 @@ th{
   font-size: x-large;
 }
 
-/*TEXT*/
+/*FONT*/
 a{
   color: #10A919;
   cursor: pointer;
 }
 
 /*FORMS*/
-/*tags*/
 select{
-  background-color: #bebebe;
+  background-color: #696969;
   font-size: 25px;
   float: right;
 }
 option:nth-child(odd){
-  background-color: #717171;
+  background-color: #242525;
 }
-
 button{
   background-color: #3B443C;
 }
 
-
-
-
+/*pog.ejs*/
 p{
   background-color: #a3a3a3 ;
   width: auto;
@@ -81,22 +59,26 @@ h1{
 #img{
   float: right;
   display: inline-block;
-  
 }
+.center {
+  /* background-color: #025845; */
+  margin: auto;
+  padding: 10px;
+  width: 600px;
+  height: auto;
+  overflow:auto
+}
+
+
 #pogs{
   width: 250px;
   text-align: center;
 }
-
-#infoBoxes {
-  /* display: flex; */
-}
-
 .infobox{
   display: block;
   width: 250;
-  /* float: right; */
-  margin-bottom: 10px;;
+   /*float: right;*/
+  margin-bottom: 10px;
 }
 .info{
   margin-top: 0px;
@@ -112,45 +94,14 @@ h1{
   width: auto;
 }
 
-.infobox2{
-  display: inline-block;
-  width: 30%;
-  float: right;
-}
-.info2{
-  margin-top: 0px;
-  background-color: #bebebe;
-  margin-bottom: 0px;
-  font-size: 25px;
-  width: auto;
-}
-.infoheader2{
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 30px;
-  width: auto;
-}
+
+
 #error{
   width: 300px;
   font-size: 25px;
 }
-#container{
-  margin-left: 200px;
 
-}
-.center {
-  /* background-color: #025845; */
-  margin: auto;
-  padding: 10px;
-  width: 600px;
-  height: auto;
-  overflow:auto
-}
-.infobox3{
-  display: inline-block;
-  width: 250;
-  float: left;
-}
+
 @media (max-width:975px){
   h1{
     width: auto;
