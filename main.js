@@ -1,6 +1,6 @@
 //This is the OnlyPogs main.js file
 
-//requiring indepencies
+//Dependencies
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -100,6 +100,8 @@ app.post('/addItem', (req, res) => {
     }
   });
 })
+
+app.post()
 
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')

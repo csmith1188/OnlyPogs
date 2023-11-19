@@ -9,6 +9,48 @@
     <src href="main.js"></src>
     <title>Rewards</title>
 </head>
+
+<body>
+    <!--A div containing the buttons and any other forms that do various things-->
+    <div id="rTagDropDown">
+        <!--Filters the types using a drop down-->
+        <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
+            <option value="">All Tags</option>
+            <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
+                <% for (let i=0; i < uniqueTags.length; i++) { %>
+                    <option value="<%= uniqueTags[i] %>">
+                        <%= uniqueTags[i] %>
+                    </option>
+                    <% } %>
+        </select>
+        <button><a href="/acc">Account</a></button>
+        <button><a href="/">Pogs</a></button>
+        <button><a href="/rDetails">Reward Details</a></button>
+        <button onclick='addItem()' id="add">Add Row</button>
+
+    </div>
+    <table id="table">
+        <thead id="tableHead">
+            <!--Table heads that can sort by clicking them-->
+            <th onclick='sortByItem()' id="item">Item</th>
+            <th onclick='sortByCost()' id="cost">Cost</th>
+            <th onclick='sortByType()' id="type">Type</th>
+        </thead>
+        <tbody id="table-body">
+            <% for(let i=0; i < rows.length; i++) { %>
+                <tr>
+                    <!--The item column has links set up for when formbar implementation is fully complete-->
+                    <!--The idea is to use the links to allow students to buy rewards-->
+                    <td name="item" id="<%- rows[i].uid %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
+                    <td name="cost" id="<%- rows[i].uid %>"><%- rows[i].cost %></td>
+                    <td name="type" id="<%- rows[i].uid %>"><%- rows[i].type %></td>
+                    <td><button onclick="editItem()">Edit</button><button>Delete</button></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+</body>
 <script>
 
     const appendItem = ''
@@ -120,13 +162,13 @@
         updateTable(data); // Update the table with the original data
     }
 
-    for (let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         var newUID = i + 1
     }
 
-    
+
     function addItem() {
-        var br = document.createElement("br"); 
+        var br = document.createElement("br");
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "addItem");
@@ -151,26 +193,66 @@
         type.setAttribute("type", "text");
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
-        
+
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
-      
+
         form.appendChild(item);
         form.appendChild(br.cloneNode());
 
         form.appendChild(cost);
         form.appendChild(br.cloneNode());
 
-     
+
         form.appendChild(type);
         form.appendChild(uid)
         form.appendChild(br.cloneNode());
-        form.appendChild(s); 
+        form.appendChild(s);
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
+    function editItem() {
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].uid)
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "editItem");
+
+            var item = document.createElement("input");
+            item.setAttribute("type", "text");
+            item.setAttribute("name", "item");
+            item.setAttribute("placeholder", "item");
+
+
+            var cost = document.createElement("input");
+            cost.setAttribute("type", "text");
+            cost.setAttribute("name", "cost");
+            cost.setAttribute("placeholder", "cost");
+
+
+            var type = document.createElement("input");
+            type.setAttribute("type", "text");
+            type.setAttribute("name", "type");
+            type.setAttribute("placeholder", "type");
+
+            var s = document.createElement("input");
+            s.setAttribute("type", "submit");
+            s.setAttribute("value", "Submit");
+
+
+            form.appendChild(item);
+            form.appendChild(cost);
+            form.appendChild(type);
+            form.appendChild(s);
+            document.getElementById(data[i].uid).appendChild(item);
+            document.getElementById(data[i].uid).appendChild(cost);
+            document.getElementById(data[i].uid).appendChild(type);
+
+        }
+
+    }
     //Updates the table after sorting
     function updateTable(updateData) {
         const tableBody = document.getElementById('table-body');
@@ -200,47 +282,5 @@
     }
 
 </script>
-
-<body>
-    <!--A div containing the buttons and any other forms that do various things-->
-    <div id="rTagDropDown">
-        <!--Filters the types using a drop down-->
-        <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
-            <option value="">All Tags</option>
-            <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
-                <% for (let i=0; i < uniqueTags.length; i++) { %>
-                    <option value="<%= uniqueTags[i] %>">
-                        <%= uniqueTags[i] %>
-                    </option>
-                    <% } %>
-        </select>
-        <button><a href="/acc">Account</a></button>
-        <button><a href="/">Pogs</a></button>
-        <button><a href="/rDetails">Reward Details</a></button>
-        <button onclick='addItem()' id="add">Add Row</button>
-
-    </div>
-    <table id="table">
-        <thead id="tableHead">
-            <!--Table heads that can sort by clicking them-->
-            <th onclick='sortByItem()' id="item">Item</th>
-            <th onclick='sortByCost()' id="cost">Cost</th>
-            <th onclick='sortByType()' id="type">Type</th>
-        </thead>
-        <tbody id="table-body">
-            <% for(let i=0; i < rows.length; i++) { %>
-                <tr>
-                    <!--The item column has links set up for when formbar implementation is fully complete-->
-                    <!--The idea is to use the links to allow students to buy rewards-->
-                    <td name="item"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
-                    <td name="cost"><%- rows[i].cost %></td>
-                    <td name="type"><%- rows[i].type %></td>
-                    <td><button>Edit</button><button>Delete</button></td>
-                </tr>
-                <% } %>
-        </tbody>
-    </table>
-
-</body>
 
 </html>
