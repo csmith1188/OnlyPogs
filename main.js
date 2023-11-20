@@ -1,5 +1,6 @@
 //This is the OnlyPogs main.js file
 
+
 //requiring indepencies
 const express = require('express')
 const bodyParser = require('body-parser');
@@ -73,12 +74,12 @@ app.get('/acc', (req, res) => {
  */
 app.get('/rewards', (req, res) => {
   const digiPerm = req.query.permissions
+  var latestUid = req.query.uid
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
       console.log(err)
       //TODO: send error template here
-
     }
     db.get('SELECT * FROM Digipogs', [], (err,) => {
       //error validation
@@ -93,6 +94,14 @@ app.get('/rewards', (req, res) => {
 
 
 app.post('/rewards', (req, res) => {
+    } else {
+      res.render('rewards', { rows: rows, latestUid: latestUid })
+    }
+  })
+})
+
+
+app.post('/addItem', (req, res) => {
   const uid = req.body.uid
   const item = req.body.item
   const cost = req.body.cost
@@ -106,6 +115,28 @@ app.post('/rewards', (req, res) => {
     }
   });
 })
+
+app.post('/editItem', (req, res) => {
+  const uid = req.body.uid
+  const item = req.body.item
+  const cost = req.body.cost
+  const type = req.body.type
+  console.log(`Uid: ${uid}`)
+  console.log(item)
+  console.log(cost)
+  console.log(type)
+
+  db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
+    if (err) {
+      console.log(err);
+      // TODO: send error template here
+    } else {
+      res.redirect('/rewards');
+    }
+  });;
+})
+
+
 
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')

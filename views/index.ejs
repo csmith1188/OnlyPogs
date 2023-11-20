@@ -19,7 +19,9 @@
     // Define a variable to store the current sort order
     var currentSortOrder = 'asc';
 
-    // Define a function to toggle the sort order
+    /**
+     * A function that changes the sort order
+    */
     function toggleSortOrder() {
         // Check if the current sort order is 'asc' and reset it if necessary
         if (currentSortOrder === 'asc') {
@@ -30,7 +32,9 @@
 
     }
 
-    // Define a function to sort the table by the "Name" column
+    /**
+     * A function that sorts the table by name
+    */
     function sortByName() {
         toggleSortOrder();
 
@@ -49,6 +53,9 @@
             updateTable(data);
         }
     }
+    /**
+     * A function that sorts the table by serial number
+    */
     function sortBySerial() {
         toggleSortOrder();
 
@@ -67,9 +74,11 @@
             updateTable(data);
         }
     }
+    /**
+     * A function that sorts the table by amount
+    */
     function sortByAmount() {
         toggleSortOrder();
-
         if (filteredData.length > 0) {
             filteredData.sort((a, b) => {
                 const amountA = String(a.amount); // Convert to string for string-based comparison
@@ -90,6 +99,9 @@
         }
     }
 
+    /**
+     * A function that sorts the  table by tags
+    */
     function sortByTags() {
         toggleSortOrder();
         if (filteredData.length > 0) {
@@ -109,37 +121,45 @@
         }
     }
 
+    /** 
+     * A function that resets the filteredData array
+    */
     function resetFilterAndSort() {
         filteredData = []; // Reset the filtered data
         updateTable(data); // Update the table with the original data
     }
 
-    //filters the tags and updates the table with the filtered tags
+    /** 
+     * A function that filters the tags  
+    */
     function filterTags() {
         const selectedTagElement = document.getElementById('tagFilter');
+        const selectedTag = selectedTagElement.value;
 
-    if (!selectedTagElement) {
-        console.error("Element with ID 'tagFilter' not found.");
-        return;
+        if (!selectedTagElement) {
+            console.error("Element with ID 'tagFilter' not found.");
+            return;
+        }
+
+        if (selectedTag === '') {
+            resetFilterAndSort();
+        } else {
+            filteredData = data.filter((item) => item.tags === selectedTag);
+            updateTable(filteredData);
+        }
     }
 
-    const selectedTag = selectedTagElement.value;
 
-    if (selectedTag === '') {
-        resetFilterAndSort();
-    } else {
-        filteredData = data.filter((item) => item.tags === selectedTag);
-        updateTable(filteredData);
-    }
-}
-
-    // Define a function to update the table rows based on the sorted data
+    /**
+     * This function updates the table based on the updated table data
+     * Creates constants and sets them equal to the corresponding html element
+    */
     function updateTable(updateData) {
         const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
-            
+
             const tr = document.createElement('tr');
             const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
@@ -147,8 +167,6 @@
             const tdTags = document.createElement('td');
 
             tdName.href = row.url; // Set the href attribute to the URL
-
-
 
             tdName.textContent = row.name;
             tdName.innerHTML = row.name;
@@ -169,7 +187,7 @@
 </script>
 
 <body>
-
+    <!-- This is a dropdown that will sort the table with only the selected tag-->
     <div id="tagDropDown">
         <select name="tagFilter" id="tagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
@@ -185,7 +203,6 @@
             <button class="button" id="accButton"><a href="/acc">Account</a></button>
             <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
         </div>
-
     </div>
 
     <table id="table">
@@ -199,6 +216,7 @@
             </tr>
         </thead>
         <tbody id="table-body">
+            <!-- A for loop that loops through the length of the row and displays it as a table -->
             <% for(let i=0; i < rows.length; i++) {%>
                 <tr>
                     <td>
