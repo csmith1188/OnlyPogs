@@ -101,7 +101,6 @@ app.post('/addItem', (req, res) => {
   });
 })
 
-app.post()
 
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')

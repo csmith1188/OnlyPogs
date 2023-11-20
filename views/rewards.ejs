@@ -38,12 +38,12 @@
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
-                <tr>
+                <tr id="<%- rows[i].uid %>">
                     <!--The item column has links set up for when formbar implementation is fully complete-->
                     <!--The idea is to use the links to allow students to buy rewards-->
-                    <td name="item" id="<%- rows[i].uid %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
-                    <td name="cost" id="<%- rows[i].uid %>"><%- rows[i].cost %></td>
-                    <td name="type" id="<%- rows[i].uid %>"><%- rows[i].type %></td>
+                    <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
+                    <td name="cost" id="<%- rows[i].cost %>"><%- rows[i].cost %></td>
+                    <td name="type" id="<%- rows[i].type %>"><%- rows[i].type %></td>
                     <td><button onclick="editItem()">Edit</button><button>Delete</button></td>
                 </tr>
                 <% } %>
@@ -213,9 +213,10 @@
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
+    
+
     function editItem() {
         for (let i = 0; i < data.length; i++) {
-            console.log(data[i].uid)
             var form = document.createElement("form");
             form.setAttribute("method", "post");
             form.setAttribute("action", "editItem");
@@ -246,13 +247,25 @@
             form.appendChild(cost);
             form.appendChild(type);
             form.appendChild(s);
-            document.getElementById(data[i].uid).appendChild(item);
-            document.getElementById(data[i].uid).appendChild(cost);
-            document.getElementById(data[i].uid).appendChild(type);
 
+            var formRow = document.createElement("tr")
+            formRow.appendChild(form)
+            var rowId = document.getElementById('table-body').children[i].id;
+            var itemId = document.getElementsByName("item")[i].id
+            console.log(`Item Name: ${itemId}`)
+            console.log(`Tr Id: ${rowId}`)
+            console.log(`Data Uid: ${data[i].uid}`)
+            
+            if (data[i].uid == rowId){
+                console.log("worked")
+                // console.log(document.getElementById(rowId).children[i].id)
+            }
         }
 
     }
+
+    
+
     //Updates the table after sorting
     function updateTable(updateData) {
         const tableBody = document.getElementById('table-body');
