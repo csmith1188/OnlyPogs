@@ -79,7 +79,7 @@ app.get('/rewards', (req, res) => {
     if (err) {
       console.log(err)
       //TODO: send error template here
-    }else{
+    } else {
       res.render('rewards', { rows: rows, latestUid: latestUid })
     }
   })
@@ -100,6 +100,27 @@ app.post('/addItem', (req, res) => {
     }
   });
 })
+
+app.post('/editItem', (req, res) => {
+  const uid = req.body.uid
+  const item = req.body.item
+  const cost = req.body.cost
+  const type = req.body.type
+  console.log(`Uid: ${uid}`)
+  console.log(item)
+  console.log(cost)
+  console.log(type)
+
+  db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
+    if (err) {
+      console.log(err);
+      // TODO: send error template here
+    } else {
+      res.redirect('/rewards');
+    }
+  });;
+})
+
 
 
 app.get('/rDetails', (req, res) => {

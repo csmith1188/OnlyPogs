@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <src href="main.js"></src>
     <title>Rewards</title>
 </head>
 
@@ -55,7 +54,6 @@
 
     const appendItem = ''
 
-    // var uid = <%- JSON.stringify(latestUid) %>;
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
@@ -78,7 +76,7 @@
 
         if (filteredData.length > 0) {
             filteredData.sort((a, b) => {
-                const comparison = a.item.localeComnpare(b.item);
+                const comparison = a.item.localeCompare(b.item);
                 return currentSortOrder === 'asc' ? comparison : -comparison;
             })
             updateTable(data)
@@ -120,7 +118,7 @@
 
         if (filteredData.length > 0) {
             filteredData.sort((a, b) => {
-                const comparison = a.type.localeComnpare(b.type);
+                const comparison = a.type.localeCompare(b.type);
                 return currentSortOrder === 'asc' ? comparison : -comparison;
             })
             updateTable(data)
@@ -162,12 +160,12 @@
         updateTable(data); // Update the table with the original data
     }
 
-    for (let i = 0; i < data.length; i++) {
-        var newUID = i + 1
-    }
-
-
+    
+    
     function addItem() {
+        for (let i = 0; i < data.length; i++) {
+            var newUID = i + 1
+        }
         var br = document.createElement("br");
         var form = document.createElement("form");
         form.setAttribute("method", "post");
@@ -187,7 +185,7 @@
         var uid = document.createElement("input");
         uid.setAttribute("type", "hidden")
         uid.setAttribute("name", "uid")
-        uid.setAttribute("value", `${newUID}`)
+        uid.setAttribute("value", newUID)
 
         var type = document.createElement("input");
         type.setAttribute("type", "text");
@@ -213,58 +211,75 @@
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
-    
 
+    
     function editItem() {
         for (let i = 0; i < data.length; i++) {
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "editItem");
+            
+            const rowId = document.getElementById('table-body').children[i].id;
+            const itemId = document.getElementsByName("item")[i].id
 
-            var item = document.createElement("input");
-            item.setAttribute("type", "text");
-            item.setAttribute("name", "item");
-            item.setAttribute("placeholder", "item");
-
-
-            var cost = document.createElement("input");
-            cost.setAttribute("type", "text");
-            cost.setAttribute("name", "cost");
-            cost.setAttribute("placeholder", "cost");
-
-
-            var type = document.createElement("input");
-            type.setAttribute("type", "text");
-            type.setAttribute("name", "type");
-            type.setAttribute("placeholder", "type");
-
-            var s = document.createElement("input");
-            s.setAttribute("type", "submit");
-            s.setAttribute("value", "Submit");
-
-
-            form.appendChild(item);
-            form.appendChild(cost);
-            form.appendChild(type);
-            form.appendChild(s);
-
-            var formRow = document.createElement("tr")
-            formRow.appendChild(form)
-            var rowId = document.getElementById('table-body').children[i].id;
-            var itemId = document.getElementsByName("item")[i].id
+            
             console.log(`Item Name: ${itemId}`)
             console.log(`Tr Id: ${rowId}`)
             console.log(`Data Uid: ${data[i].uid}`)
             
-            if (data[i].uid == rowId){
-                console.log("worked")
-                // console.log(document.getElementById(rowId).children[i].id)
+            //checking to see if id matches
+            if (data[i].uid == rowId) {
+                console.log("Match Found")
+                
+                //form elememnt
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "editItem");
+                
+                //uid input element
+                var uid = document.createElement("input");
+                uid.setAttribute("type", "text")
+                uid.setAttribute("name", "uid")
+                uid.setAttribute("placeholder", "uid")
+                
+                //item input element
+                var item = document.createElement("input");
+                item.setAttribute("type", "text");
+                item.setAttribute("name", "item");
+                item.setAttribute("placeholder", "item");
+    
+                //cost input element
+                var cost = document.createElement("input");
+                cost.setAttribute("type", "text");
+                cost.setAttribute("name", "cost");
+                cost.setAttribute("placeholder", "cost");
+    
+                //type input element
+                var type = document.createElement("input");
+                type.setAttribute("type", "text");
+                type.setAttribute("name", "type");
+                type.setAttribute("placeholder", "type");
+    
+                
+                //submit input element
+                var s = document.createElement("input");
+                s.setAttribute("type", "submit");
+                s.setAttribute("value", "Submit");
+    
+                //appending input elements to form
+                form.appendChild(uid);
+                form.appendChild(item);
+                form.appendChild(cost);
+                form.appendChild(type);
+                form.appendChild(s);
+
+
+                document.getElementsByTagName("body")[0].appendChild(form);
+                // Break out of the loop after the first match
+                break;
             }
         }
 
     }
 
-    
+
 
     //Updates the table after sorting
     function updateTable(updateData) {
