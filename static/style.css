@@ -33,9 +33,12 @@ a{
 
 /*FORMS*/
 select{
-  background-color: #696969;
+  background-color: #000000;
   font-size: 25px;
   float: right;
+  text-align: center;
+  width: 250px;
+  color: #10A919;
 }
 option:nth-child(odd){
   background-color: #242525;
@@ -46,15 +49,17 @@ button{
 
 /*pog.ejs*/
 p{
-  background-color: #a3a3a3 ;
+  background-color: #242525 ;
   width: auto;
   text-align: center;
+  color: #10A919;
 }
 h1{
   text-align: center;
   width: auto;
   font-size: 100px;
-  background-color: #717171;
+  background-color: #242525;
+  color: #10A919;
 }
 #img{
   float: right;
@@ -66,53 +71,32 @@ h1{
   padding: 10px;
   width: 600px;
   height: auto;
-  overflow:auto
-}
-
-
-#pogs{
-  width: 250px;
-  text-align: center;
+  overflow:auto;
 }
 .infobox{
-  display: block;
   width: 250;
    /*float: right;*/
   margin-bottom: 10px;
+  font-size: 25px;
 }
 .info{
-  margin-top: 0px;
-  background-color: #bebebe;
-  margin-bottom: 0px;
-  font-size: 25px;
   width: auto;
+  background-color: #242525;
+  margin-top: 0px;
 }
 .infoheader{
-  margin-top: 0px;
   margin-bottom: 0px;
   font-size: 30px;
-  width: auto;
+  background-color: #000000;
 }
-
-
-
 #error{
-  width: 300px;
+  width: 250px;
   font-size: 25px;
 }
 
 
-@media (max-width:975px){
-  h1{
-    width: auto;
-  }
-}
-@media (max-width:460px){
 
-  .infobox2{
-    display: inline-block;
-     width: 100%;
-  }
+@media (max-width:460px){
   #img{
     float: none;
     display: inline;
