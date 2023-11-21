@@ -101,6 +101,7 @@ app.post('/addItem', (req, res) => {
   });
 })
 
+
 app.post('/editItem', (req, res) => {
   const uid = req.body.uid
   const item = req.body.item
@@ -110,7 +111,7 @@ app.post('/editItem', (req, res) => {
   console.log(item)
   console.log(cost)
   console.log(type)
-
+  
   db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
     if (err) {
       console.log(err);
@@ -121,6 +122,18 @@ app.post('/editItem', (req, res) => {
   });;
 })
 
+app.post('/deleteItem', (req, res) => {
+  const uid = req.body.uid
+  console.log(uid)
+  db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
+    if (err) {
+      console.log(err);
+      // TODO: send error template here
+    } else {
+      res.redirect('/rewards');
+    }
+  });
+})
 
 
 app.get('/rDetails', (req, res) => {

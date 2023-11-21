@@ -43,7 +43,8 @@
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><%- rows[i].cost %></td>
                     <td name="type" id="<%- rows[i].type %>"><%- rows[i].type %></td>
-                    <td><button onclick="editItem()">Edit</button><button>Delete</button></td>
+                    <td><button onclick="editItem()">Edit</button>
+                    <button id="deleteButton" onclick="deleteItem()">Delete</button></td>
                 </tr>
                 <% } %>
         </tbody>
@@ -272,6 +273,7 @@
 
 
                 document.getElementsByTagName("body")[0].appendChild(form);
+                
                 // Break out of the loop after the first match
                 break;
             }
@@ -279,6 +281,32 @@
 
     }
 
+    function deleteItem(){
+        for (let i = 0; i < data.length; i++) {
+
+        var deleteButton = document.getElementById("deleteButton").parentNode.parentNode
+        
+
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "deleteItem");
+
+        var uid = document.createElement("input");
+        uid.setAttribute("type", "text")
+        uid.setAttribute("name", "uid")
+        uid.setAttribute("placeholder", "uid")
+
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+        form.appendChild(uid);
+        form.appendChild(s);
+        form.submit()
+        document.getElementsByTagName("body")[0].appendChild(form)
+        break;
+        }
+        
+    }
 
 
     //Updates the table after sorting
