@@ -73,25 +73,23 @@ app.get('/acc', (req, res) => {
  */
 app.get('/rewards', (req, res) => {
   const digiPerm = req.query.permissions
-  var latestUid = req.query.uid
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
       console.log(err)
       //TODO: send error template here
     } else {
-      res.render('rewards', { rows: rows, latestUid: latestUid })
+      res.render('rewards', { rows: rows })
     }
   })
 })
 
 
 app.post('/addItem', (req, res) => {
-  const uid = req.body.uid
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
-  db.run('INSERT INTO rewards (uid, item, cost, type) VALUES (?, ?, ?, ?)', [uid, item, cost, type], (err) => {
+  db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
     if (err) {
       console.log(err);
       //TODO: send error template here
