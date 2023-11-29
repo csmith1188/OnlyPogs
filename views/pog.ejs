@@ -14,59 +14,52 @@
   </h1>
 
   <div class="center">
+    <a id="img" href="/">
+      <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' ">
+    </a>
 
-    <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
-        id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a>
-        <div id="infoBoxes">
-
+    <div class="left">
+      <div id="infoBoxes">
         <div class="infobox">
           <p class="infoheader"><label>Colors</label></p>
           <p class="info"> <select id="Pogs" onchange="pogChange()"> 
-              <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
-                <option value=<%=Colors %>><%= pog.colors[Colors] %>
-                </option>
-    
-                <%} %>
-    
-            </select>
-          <p id="error"></p>
+            <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
+              <option value=<%=Colors %>><%= pog.colors[Colors] %> </option>
+            <%} %>
+            </select> <p id="error"></p>
           </p>
-        </div>
+        </div> <br>
         
         <div class="infobox">
           <p class="infoheader">Amount Produced </p>
-      <p class="info">
-        <%= pog.amount %>
-      </p>
-    </div>
+          <p class="info">
+            <%= pog.amount %>
+          </p>
+        </div>
     
-    <div class="infobox">
-      <p class="infoheader">Serial Number </p>
-      <p class="info">
-        <%= pog.serial %>
-      </p>
-    </div>
-
-    <div class="infobox">
-      <p class="infoheader">Tags</p>
-      <p class="info">
-        <%= pog.tags %>
-      </p>
-    </div>
-
-
-    
-        </select>
-        <p id="error"></p>
+      <div class="infobox">
+        <p class="infoheader">Serial Number </p>
+        <p class="info">
+          <%= pog.serial %>
         </p>
+      </div>
+
+      <div class="infobox">
+        <p class="infoheader">Tags</p>
+        <p class="info">
+          <%= pog.tags %>
+        </p>
+      </div>
+
+      <p id="error"></p>
   </div>
-  
+  </div>
  
-    
+    <div class="right">
     <div class="infobox">
       <p class="infoheader">Pog Rarity</p>
       <p class="info" id="rarityBox"></p>
-    </div>
+    </div> 
   
   <div class="infobox">
     <p class='infoheader'>Pog Lore </p>
@@ -74,6 +67,7 @@
 
       <%= pog.lore %>
     </p>
+  </div>
   </div>
 </div>
 

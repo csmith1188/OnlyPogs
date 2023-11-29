@@ -1,5 +1,6 @@
 body{
-  background-color: #134611;
+  background-color: #000000;
+  margin: 20px;
 }
 
 /*TABLE*/
@@ -13,13 +14,13 @@ table{
   margin-bottom: 20px;
 }
 tr:nth-child(odd){
-  background-color: #000000;
+  background-color: #242525;
   color: #242525;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #242525;
-  border: 2px solid;
+  background-color: #1D4822;
+  border: 10px solid;
 }
 th{
   font-size: x-large;
@@ -27,7 +28,7 @@ th{
 
 /*FONT*/
 a{
-  color: #10A919;
+  color: #ffffff;
   cursor: pointer;
 }
 
@@ -38,7 +39,7 @@ select{
   float: right;
   text-align: center;
   width: 250px;
-  color: #10A919;
+  color: #ffffff;
 }
 option:nth-child(odd){
   background-color: #242525;
@@ -52,21 +53,21 @@ p{
   background-color: #242525 ;
   width: auto;
   text-align: center;
-  color: #10A919;
+  color: #ffffff;
 }
 h1{
   text-align: center;
   width: auto;
+  height: 100;
   font-size: 100px;
   background-color: #242525;
-  color: #10A919;
-}
-#img{
+  color: #ffffff;
+} 
+img{
   float: right;
-  display: inline-block;
+  background-color: #134611;
 }
 .center {
-  /* background-color: #025845; */
   margin: auto;
   padding: 10px;
   width: 600px;
@@ -75,7 +76,6 @@ h1{
 }
 .infobox{
   width: 250;
-   /*float: right;*/
   margin-bottom: 10px;
   font-size: 25px;
 }
@@ -93,45 +93,48 @@ h1{
   width: 250px;
   font-size: 25px;
 }
+#infoBoxes{
+  width: 250px;
+}
 
-
-
+/*MOBILE*/
 @media (max-width:460px){
+  body{
+    margin: 15px;
+  }
+  a{
+    font-size: medium;
+  }
   #img{
     float: none;
-    display: inline;
+    padding-left: 100px;
   }
-  #container{
-    margin-left: 0px;
+  .center{
+    width: 420px;
+    
+  }
+  #infoBoxes{
+    width: 200px;
   }
   .infobox{
-    display: block;
-    width: 100%;
+    width: 200px;
   }
-  img{
-    width: 100%;
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+    width: 200px;
+  }
+  select{
+    width: 200px;
+  }
+  h1{
+    font-size: 75px;
     height: auto;
   }
-  .infoheader{
-    width: auto;
+  button {
+    flex-wrap: wrap;
+    margin: 1px;
   }
-  .info{
-    width: auto;
-  }
-  #Pogs{
-    width: 100%;
-  }
-  .number{
-    display: none;
-  }
-  .amount{
-    display: none;
-  }
-  #serial{
-    display: none;
-  }
-  #amount{
-    display: none;
-  }
-
 }
