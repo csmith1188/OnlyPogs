@@ -287,21 +287,21 @@
 
             const aCost = document.createElement('a')
             const aType = document.createElement('a')
-            const aButton = document.createElement('a')
-            const bButton = document.createElement('a')
+            const ebText = document.createElement('a')
+            const dbText = document.createElement('a')
             
             aCost.textContent = row.cost
             aType.textContent = row.type
-            aButton.textContent = 'Edit'
-            bButton.textContent = 'Delete'
+            ebText.textContent = 'Edit'
+            dbText.textContent = 'Delete'
             
             const eButton = document.createElement('button')
             const dButton = document.createElement('button')
             
             eButton.onclick = editItem
             //dButton.onclick = deleteItem
-            eButton.appendChild(aButton)
-            dButton.appendChild(bButton)
+            eButton.appendChild(ebText)
+            dButton.appendChild(dbText)
 
             const tr = document.createElement('tr');
             const tdItem = document.createElement('a');
