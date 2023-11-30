@@ -12,10 +12,10 @@ table{
   text-align: center;
   margin: auto;
   margin-bottom: 20px;
+  
 }
 tr:nth-child(odd){
   background-color: #242525;
-  color: #242525;
   border: 2px solid;
 }
 tr:nth-child(even){
@@ -35,7 +35,7 @@ a{
 
 /*FORMS*/
 select{
-  background-color: #000000;
+  background-color: #242525;
   font-size: 25px;
   float: right;
   text-align: center;
@@ -43,7 +43,7 @@ select{
   color: #ffffff;
 }
 option:nth-child(odd){
-  background-color: #242525;
+  background-color: #1D4822;
 }
 button{
   background-color: #3B443C;
@@ -66,7 +66,9 @@ h1{
 } 
 img{
   float: right;
-  background-color: #134611;
+  background-color: #242525;
+  width: 300px;
+  height: 295px;
 }
 .center {
   margin: auto;
@@ -88,7 +90,7 @@ img{
 .infoheader{
   margin-bottom: 0px;
   font-size: 30px;
-  background-color: #000000;
+  background-color: #1D4822;
 }
 #error{
   width: 250px;
@@ -106,9 +108,9 @@ img{
   a{
     font-size: medium;
   }
-  #img{
-    float: none;
-    padding-left: 100px;
+  img{
+    width: 200px;
+    height: 195px;
   }
   .center{
     width: 420px;

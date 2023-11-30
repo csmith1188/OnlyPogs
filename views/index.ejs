@@ -159,21 +159,29 @@
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
+            
+            const aSerial = document.createElement('a')
+            const aAmount = document.createElement('a')
+            const aTags = document.createElement('a')
+            
+            aSerial.textContent = row.serial
+            aAmount.textContent = row.amount
+            aTags.textContent = row.tags
 
             const tr = document.createElement('tr');
             const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
             const tdAmount = document.createElement('td');
             const tdTags = document.createElement('td');
+            
+            tdSerial.appendChild(aSerial)
+            tdAmount.appendChild(aAmount)
+            tdTags.appendChild(aTags)
 
             tdName.href = row.url; // Set the href attribute to the URL
 
             tdName.textContent = row.name;
             tdName.innerHTML = row.name;
-            tdSerial.textContent = row.serial;
-            tdAmount.textContent = row.amount;
-            tdTags.textContent = row.tags;
-
 
             tr.appendChild(tdName);
             tr.appendChild(tdSerial);
