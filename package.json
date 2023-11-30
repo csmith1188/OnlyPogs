@@ -4,6 +4,7 @@
   "description": "A catalogue of Pogs in the York Tech",
   "main": "main.js",
   "scripts": {
+    "nodemon":"nodemon DBPanel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +23,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.0.1",
     "path": "^0.12.7",
     "sqlite3": "^5.1.6"
   }

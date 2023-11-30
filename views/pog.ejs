@@ -14,12 +14,14 @@
   </h1>
 
   <div class="center">
+    <!--Created the image of the pog on the pog page-->
     <a id="img" href="/">
       <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' ">
     </a>
 
     <div class="left">
       <div id="infoBoxes">
+        <!--Dropdown menu that displays the available colors of the currently selected pog-->
         <div class="infobox">
           <p class="infoheader"><label>Colors</label></p>
           <p class="info"> <select id="Pogs" onchange="pogChange()"> 
@@ -29,21 +31,21 @@
             </select> <p id="error"></p>
           </p>
         </div> <br>
-        
+        <!--Displays the amount produce of the current pog-->
         <div class="infobox">
           <p class="infoheader">Amount Produced </p>
           <p class="info">
             <%= pog.amount %>
           </p>
         </div>
-    
+      <!--Displays the serial number of the current pog-->
       <div class="infobox">
         <p class="infoheader">Serial Number </p>
         <p class="info">
           <%= pog.serial %>
         </p>
       </div>
-
+      <!--Displays the tags of the current pog-->
       <div class="infobox">
         <p class="infoheader">Tags</p>
         <p class="info">
@@ -54,17 +56,16 @@
       <p id="error"></p>
   </div>
   </div>
- 
+    <!--Displays the Rarity of the current pog-->
     <div class="right">
     <div class="infobox">
       <p class="infoheader">Pog Rarity</p>
       <p class="info" id="rarityBox"></p>
     </div> 
-  
+  <!--Displays the lore of the current pog-->
   <div class="infobox">
-    <p class='infoheader'>Pog Lore </p>
+    <p class='infoheader'>Pog Lore /p>
     <p class='info'>
-
       <%= pog.lore %>
     </p>
   </div>
@@ -73,9 +74,11 @@
 
 
   <script>
+    //Creating a variable called pog and setting it to the stringified pog.name
     var pog = <%- JSON.stringify(pog.name) %>
-      // console.log(pog);
+    
     var pogImage = document.getElementById("Pogs");
+    //A function that changes the pog image based on the currently selected pog
     function pogChange() {
       console.log(pogImage.value);
       if (pogImage.value == 0) {
@@ -103,6 +106,7 @@
     // total pog amount
     var totalPog = 1856.5
 
+    //getting the pog percentage out of the total amount of pogs
     var pogPercent = pogData.amount / totalPog * 100
     pogPercent = pogPercent.toFixed(2)
     console.log(pogPercent)
@@ -121,7 +125,6 @@
     }else {
       document.getElementById('rarityBox').innerText = 'N/A'
     }
-
   </script>
 
 </body>
