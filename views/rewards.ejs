@@ -43,7 +43,7 @@
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
-                    <td><button onclick="editItem()"><a>Edit</a></button><button><a>Delete</a></button></td>
+                    <td id="buttons"><button id="edit" onclick="editItem()"><a>Edit</a></button><button id="delete"><a>Delete</a></button></td>
                 </tr>
                 <% } %>
         </tbody>
@@ -217,7 +217,7 @@
         for (let i = 0; i < data.length; i++) {
             
             const rowId = document.getElementById('table-body').children[i].id;
-            const itemId = document.getElementsByName("item")[i].id
+            const itemId = document.getElementsByName("item")[i].id;
 
             
             console.log(`Item Name: ${itemId}`)
@@ -285,23 +285,42 @@
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
 
+            const aCost = document.createElement('a')
+            const aType = document.createElement('a')
+            const eButton = document.createElement('button')
+            const dButton = document.createElement('button')
+
+            aCost.textContent = row.cost
+            aType.textContent = row.type
+            eButton.onclick = editItem
+            //dButton.onclick = deleteItem
+            eButton.textContent = 'Edit'
+            dButton.textContent ='Delete'
+
             const tr = document.createElement('tr');
             const tdItem = document.createElement('a');
             const tdCost = document.createElement('td');
             const tdType = document.createElement('td');
+            const tdButtons = document.createElement('td')
+
+            tdCost.appendChild(aCost)
+            tdType.appendChild(aType)
+            tdButtons.appendChild(eButton)
+            tdButtons.append(dButton)
 
             tdItem.href = row.url;
-
-
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
-            tdCost.textContent = row.cost;
-            tdType.textContent = row.type;
+
+            for (let i = 0; i > data.length; i++){
+                eButton.setAttribute('id', 'data[i].uid')
+            }
+            
 
             tr.appendChild(tdItem);
             tr.appendChild(tdCost);
             tr.appendChild(tdType);
-
+            tr.appendChild(tdButtons)
             tableBody.appendChild(tr);
         });
     }
