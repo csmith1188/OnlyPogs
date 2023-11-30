@@ -29,7 +29,7 @@ th{
 /*FONT*/
 a{
   color: #ffffff;
-  
+  font-family: 'Courier New', monospace;
   cursor: pointer;
 }
 
@@ -40,6 +40,7 @@ select{
   float: right;
   text-align: center;
   width: 250px;
+  font-family: 'Courier New', monospace;
   color: #ffffff;
 }
 option:nth-child(odd){
@@ -54,14 +55,17 @@ p{
   background-color: #242525 ;
   width: auto;
   text-align: center;
+  font-family: 'Courier New', monospace;
   color: #ffffff;
 }
 h1{
   text-align: center;
   width: auto;
-  height: 100;
+  height: auto;
   font-size: 100px;
   background-color: #242525;
+  font-family: 'Courier New', monospace;
+  font-style: italic;
   color: #ffffff;
 } 
 img{
@@ -69,6 +73,7 @@ img{
   background-color: #242525;
   width: 300px;
   height: 295px;
+  padding: 5px;
 }
 .center {
   margin: auto;
@@ -80,6 +85,7 @@ img{
 .infobox{
   width: 250;
   margin-bottom: 10px;
+  padding-bottom: 15px;
   font-size: 25px;
 }
 .info{
@@ -99,15 +105,26 @@ img{
 #infoBoxes{
   width: 250px;
 }
-
+.right{
+  float: right;
+  width: 200px;
+  padding-right: 80px;
+}
+.left{
+  padding-top: 100px;
+  float: left;
+}
 /*MOBILE*/
 @media (max-width:460px){
   body{
     margin: 15px;
   }
+  /*FONT*/
   a{
     font-size: medium;
   }
+
+  /*pog.ejs*/
   img{
     width: 200px;
     height: 195px;
@@ -121,20 +138,26 @@ img{
   }
   .infobox{
     width: 200px;
+    padding-bottom: 0px;
   }
   .left{
     float: left;
+    padding-top: 30px;
   }
   .right{
     float: right;
     width: 200px;
-  }
-  select{
-    width: 200px;
+    padding-right: 0px;
   }
   h1{
-    font-size: 75px;
+    font-size: 65px;
     height: auto;
+  }
+  
+  /*FORMS*/
+  select{
+    width: 200px;
+    text-overflow: ellipsis;
   }
   button {
     flex-wrap: wrap;
