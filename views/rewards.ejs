@@ -25,7 +25,7 @@
         <button><a href="/acc">Account</a></button>
         <button><a href="/">Pogs</a></button>
         <button><a href="/rDetails">Reward Details</a></button>
-        <button onclick='addItem()' id="add">Add Row</button>
+        <button onclick='addItem()' id="addButton">Add Row</button>
 
     </div>
     <table id="table">
@@ -34,6 +34,7 @@
             <th onclick='sortByItem()' id="item">Item</th>
             <th onclick='sortByCost()' id="cost">Cost</th>
             <th onclick='sortByType()' id="type">Type</th>
+            <th id="table-buttons"></th>
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
@@ -43,7 +44,10 @@
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><%- rows[i].cost %></td>
                     <td name="type" id="<%- rows[i].type %>"><%- rows[i].type %></td>
-                    <td><button onclick="editItem()">Edit</button><button>Delete</button></td>
+                    <td>
+                        <button onclick="editItem()" class="editButton">Edit</button>
+                        <button id="deleteButton<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem()">Delete</button>
+                    </td>
                 </tr>
                 <% } %>
         </tbody>
@@ -54,10 +58,22 @@
 
     const appendItem = ''
 
+   
+    var userPerm = <%- JSON.stringify(userPerm) %>;
+
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
+
+    if (userPerm != 5){
+        document.getElementById("addButton").style.display = "none"
+        for (let i = 0; i < data.length; i++){
+            document.getElementsByClassName("deleteButton")[i].style.display = "none"
+            document.getElementsByClassName("editButton")[i].style.display = "none"
+            // document.getElementById("table").style.emptyCells = "show";
+        }
+    }
 
     var currentSortOrder = 'asc'
 
@@ -160,12 +176,9 @@
         updateTable(data); // Update the table with the original data
     }
 
-    
-    
+
+
     function addItem() {
-        for (let i = 0; i < data.length; i++) {
-            var newUID = i + 1
-        }
         var br = document.createElement("br");
         var form = document.createElement("form");
         form.setAttribute("method", "post");
@@ -176,16 +189,10 @@
         item.setAttribute("name", "item");
         item.setAttribute("placeholder", "item");
 
-
         var cost = document.createElement("input");
         cost.setAttribute("type", "text");
         cost.setAttribute("name", "cost");
         cost.setAttribute("placeholder", "cost");
-
-        var uid = document.createElement("input");
-        uid.setAttribute("type", "hidden")
-        uid.setAttribute("name", "uid")
-        uid.setAttribute("value", newUID)
 
         var type = document.createElement("input");
         type.setAttribute("type", "text");
@@ -196,80 +203,75 @@
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
-
         form.appendChild(item);
         form.appendChild(br.cloneNode());
 
         form.appendChild(cost);
         form.appendChild(br.cloneNode());
 
-
         form.appendChild(type);
-        form.appendChild(uid)
         form.appendChild(br.cloneNode());
         form.appendChild(s);
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
 
-    
+
     function editItem() {
         for (let i = 0; i < data.length; i++) {
-            
+
             const rowId = document.getElementById('table-body').children[i].id;
             const itemId = document.getElementsByName("item")[i].id
 
-            
             console.log(`Item Name: ${itemId}`)
             console.log(`Tr Id: ${rowId}`)
             console.log(`Data Uid: ${data[i].uid}`)
-            
+
             //checking to see if id matches
             if (data[i].uid == rowId) {
                 console.log("Match Found")
-                
+
                 //form elememnt
                 var form = document.createElement("form");
                 form.setAttribute("method", "post");
                 form.setAttribute("action", "editItem");
-                
+
                 //uid input element
                 var uid = document.createElement("input");
                 uid.setAttribute("type", "text")
                 uid.setAttribute("name", "uid")
                 uid.setAttribute("placeholder", "uid")
-                
+
                 //item input element
                 var item = document.createElement("input");
                 item.setAttribute("type", "text");
                 item.setAttribute("name", "item");
                 item.setAttribute("placeholder", "item");
-    
+
                 //cost input element
                 var cost = document.createElement("input");
                 cost.setAttribute("type", "text");
                 cost.setAttribute("name", "cost");
                 cost.setAttribute("placeholder", "cost");
-    
+
                 //type input element
                 var type = document.createElement("input");
                 type.setAttribute("type", "text");
                 type.setAttribute("name", "type");
                 type.setAttribute("placeholder", "type");
-    
-                
+
+
                 //submit input element
                 var s = document.createElement("input");
                 s.setAttribute("type", "submit");
                 s.setAttribute("value", "Submit");
-    
+
                 //appending input elements to form
                 form.appendChild(uid);
                 form.appendChild(item);
                 form.appendChild(cost);
                 form.appendChild(type);
                 form.appendChild(s);
-
 
                 document.getElementsByTagName("body")[0].appendChild(form);
                 // Break out of the loop after the first match
@@ -279,6 +281,32 @@
 
     }
 
+    function deleteItem() {
+        for (let i = 0; i < data.length; i++) {
+
+            var deleteButton = document.getElementById("deleteButton")
+            console.log(deleteButton)
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "deleteItem");
+
+            var uid = document.createElement("input");
+            uid.setAttribute("type", "text")
+            uid.setAttribute("name", "uid")
+            uid.setAttribute("placeholder", "uid")
+
+            var s = document.createElement("input");
+            s.setAttribute("type", "submit");
+            s.setAttribute("value", "Submit");
+            form.appendChild(uid);
+            form.appendChild(s);
+            form.submit()
+            document.getElementsByTagName("body")[0].appendChild(form)
+            break;
+        }
+
+    }
 
 
     //Updates the table after sorting

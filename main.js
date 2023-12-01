@@ -17,10 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 const PORT = 1024
 
 //formbar.js url
-// const AUTH_URL = 'http://172.16.3.106:420/oauth'
+const AUTH_URL = 'http://172.16.3.118:1128/oauth'
 
-// //OnlyPogs url
-// const THIS_URL = 'http://172.16.3.107:1024/login'
+//OnlyPogs url
+const THIS_URL = 'http://172.16.3.107:1024/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
@@ -35,20 +35,20 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
 
 
 /** A function that checks to see if there is a session token and if there is it redirects to the login endpoint*/
-// function isAuthenticated(req, res, next) {
-//   if (req.session.token) next()
-//   else res.redirect('/login')
-// };
+function isAuthenticated(req, res, next) {
+  if (req.session.token) next()
+  else res.redirect('/login')
+};
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('./static'));
 
-// app.use(session({
-//   secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
-//   resave: false,
-//   saveUninitialized: false
-// }))
+app.use(session({
+  secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
+  resave: false,
+  saveUninitialized: false
+}))
 
 
 //Setting the view engine to look for ejs
@@ -72,26 +72,24 @@ app.get('/acc', (req, res) => {
  * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
  */
 app.get('/rewards', (req, res) => {
-  const digiPerm = req.query.permissions
-  var latestUid = req.query.uid
+  const userPerm = req.session.token.permissions
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
       console.log(err)
       //TODO: send error template here
     } else {
-      res.render('rewards', { rows: rows, latestUid: latestUid })
+      res.render('rewards', { rows: rows, userPerm : userPerm })
     }
   })
 })
 
 
 app.post('/addItem', (req, res) => {
-  const uid = req.body.uid
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
-  db.run('INSERT INTO rewards (uid, item, cost, type) VALUES (?, ?, ?, ?)', [uid, item, cost, type], (err) => {
+  db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
     if (err) {
       console.log(err);
       //TODO: send error template here
@@ -100,6 +98,7 @@ app.post('/addItem', (req, res) => {
     }
   });
 })
+
 
 app.post('/editItem', (req, res) => {
   const uid = req.body.uid
@@ -110,7 +109,7 @@ app.post('/editItem', (req, res) => {
   console.log(item)
   console.log(cost)
   console.log(type)
-
+  
   db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
     if (err) {
       console.log(err);
@@ -121,6 +120,18 @@ app.post('/editItem', (req, res) => {
   });;
 })
 
+app.post('/deleteItem', (req, res) => {
+  const uid = req.body.uid
+  console.log(uid)
+  db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
+    if (err) {
+      console.log(err);
+      // TODO: send error template here
+    } else {
+      res.redirect('/rewards');
+    }
+  });
+})
 
 
 app.get('/rDetails', (req, res) => {
@@ -130,17 +141,17 @@ app.get('/rDetails', (req, res) => {
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
  */
-// isAuthenticated
-app.get('/', (req, res) => {
-  // const userPerm = req.session.token.permissions
-  // const userName = req.session.token.username
+
+app.get('/', isAuthenticated, (req, res) => {
+  const userPerm = req.session.token.permissions
+  const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       //error handling
       if (err) {
         console.error(err);
       }
-      res.render('index', { rows: rows })
+      res.render('index', { rows: rows, userPerm : userPerm, userName : userName })
     });
   }
   catch (error) {
@@ -153,16 +164,16 @@ Sends you to the /login endpoint
 Sets tokenData to the sessions token data
 Then redirects you do the root endpoint.
 */
-// app.get('/login', (req, res) => {
-//   if (req.query.token) {
-//     var tokenData = jwt.decode(req.query.token);
-//     req.session.token = tokenData;
+app.get('/login', (req, res) => {
+  if (req.query.token) {
+    var tokenData = jwt.decode(req.query.token);
+    req.session.token = tokenData;
 
-//     res.redirect('/');
-//   } else {
-//     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
-//   };
-// });
+    res.redirect('/');
+  } else {
+    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+  };
+});
 
 
 app.get('/pog', function (req, res) {
