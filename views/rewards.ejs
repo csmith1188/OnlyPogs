@@ -25,7 +25,7 @@
         <button><a href="/acc">Account</a></button>
         <button><a href="/">Pogs</a></button>
         <button><a href="/rDetails">Reward Details</a></button>
-        <!-- <button onclick='addItem()' id="addButton">Add Row</button> -->
+        <button onclick='addItem()' id="addButton">Add Row</button>
 
     </div>
     <table id="table">
@@ -34,6 +34,7 @@
             <th onclick='sortByItem()' id="item">Item</th>
             <th onclick='sortByCost()' id="cost">Cost</th>
             <th onclick='sortByType()' id="type">Type</th>
+            <th id="table-buttons"></th>
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
@@ -43,10 +44,10 @@
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><%- rows[i].cost %></td>
                     <td name="type" id="<%- rows[i].type %>"><%- rows[i].type %></td>
-                    <!-- <td>
+                    <td>
                         <button onclick="editItem()" class="editButton">Edit</button>
                         <button id="deleteButton<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem()">Delete</button>
-                    </td> -->
+                    </td>
                 </tr>
                 <% } %>
         </tbody>
@@ -57,14 +58,22 @@
 
     const appendItem = ''
 
-
+   
+    var userPerm = <%- JSON.stringify(userPerm) %>;
 
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
 
-    
+    if (userPerm != 5){
+        document.getElementById("addButton").style.display = "none"
+        for (let i = 0; i < data.length; i++){
+            document.getElementsByClassName("deleteButton")[i].style.display = "none"
+            document.getElementsByClassName("editButton")[i].style.display = "none"
+            // document.getElementById("table").style.emptyCells = "show";
+        }
+    }
 
     var currentSortOrder = 'asc'
 

@@ -78,9 +78,7 @@ app.get('/rewards', (req, res) => {
     if (err) {
       console.log(err)
       //TODO: send error template here
-    }else if (userPerm == 5) {
-      res.render('rewardAdmin', { rows: rows, userPerm : userPerm })
-    }else {
+    } else {
       res.render('rewards', { rows: rows, userPerm : userPerm })
     }
   })
