@@ -25,16 +25,16 @@
         <button><a href="/acc">Account</a></button>
         <button><a href="/">Pogs</a></button>
         <button><a href="/rDetails">Reward Details</a></button>
-        <button onclick='addItem()' id="addButton">Add Row</button>
-
-    </div>
+        <button onclick='addItem()' id="add"><a>Add Row</a></button>
+    </div> <br>
     <table id="table">
         <thead id="tableHead">
             <!--Table heads that can sort by clicking them-->
-            <th onclick='sortByItem()' id="item">Item</th>
-            <th onclick='sortByCost()' id="cost">Cost</th>
-            <th onclick='sortByType()' id="type">Type</th>
-            <th id="table-buttons"></th>
+            <th onclick='sortByItem()' id="item"><a>Item</a></th>
+            <th onclick='sortByCost()' id="cost"><a>Cost</a></th>
+            <th onclick='sortByType()' id="type"><a>Type</a></th>
+            <th></th>
+
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
@@ -42,12 +42,9 @@
                     <!--The item column has links set up for when formbar implementation is fully complete-->
                     <!--The idea is to use the links to allow students to buy rewards-->
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
-                    <td name="cost" id="<%- rows[i].cost %>"><%- rows[i].cost %></td>
-                    <td name="type" id="<%- rows[i].type %>"><%- rows[i].type %></td>
-                    <td>
-                        <button onclick="editItem()" class="editButton">Edit</button>
-                        <button id="deleteButton<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem()">Delete</button>
-                    </td>
+                    <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
+                    <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
+                    <td id="buttons"><button id="edit" onclick="editItem()"><a>Edit</a></button><button id="delete"><a>Delete</a></button></td>
                 </tr>
                 <% } %>
         </tbody>
@@ -221,7 +218,7 @@
         for (let i = 0; i < data.length; i++) {
 
             const rowId = document.getElementById('table-body').children[i].id;
-            const itemId = document.getElementsByName("item")[i].id
+            const itemId = document.getElementsByName("item")[i].id;
 
             console.log(`Item Name: ${itemId}`)
             console.log(`Tr Id: ${rowId}`)
@@ -278,7 +275,6 @@
                 break;
             }
         }
-
     }
 
     function deleteItem() {
@@ -308,7 +304,6 @@
 
     }
 
-
     //Updates the table after sorting
     function updateTable(updateData) {
         const tableBody = document.getElementById('table-body');
@@ -316,27 +311,51 @@
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
 
+            const aCost = document.createElement('a')
+            const aType = document.createElement('a')
+            const ebText = document.createElement('a')
+            const dbText = document.createElement('a')
+            
+            aCost.textContent = row.cost
+            aType.textContent = row.type
+            ebText.textContent = 'Edit'
+            dbText.textContent = 'Delete'
+            
+            const eButton = document.createElement('button')
+            const dButton = document.createElement('button')
+            
+            eButton.onclick = editItem
+            //dButton.onclick = deleteItem
+            eButton.appendChild(ebText)
+            dButton.appendChild(dbText)
+
             const tr = document.createElement('tr');
             const tdItem = document.createElement('a');
             const tdCost = document.createElement('td');
             const tdType = document.createElement('td');
+            const tdButtons = document.createElement('td')
+
+            tdCost.appendChild(aCost)
+            tdType.appendChild(aType)
+            tdButtons.appendChild(eButton)
+            tdButtons.append(dButton)
 
             tdItem.href = row.url;
-
-
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
-            tdCost.textContent = row.cost;
-            tdType.textContent = row.type;
+
+            for (let i = 0; i > data.length; i++){
+                eButton.setAttribute('id', 'data[i].uid')
+            }
+            
 
             tr.appendChild(tdItem);
             tr.appendChild(tdCost);
             tr.appendChild(tdType);
-
+            tr.appendChild(tdButtons)
             tableBody.appendChild(tr);
         });
     }
 
 </script>
-
 </html>

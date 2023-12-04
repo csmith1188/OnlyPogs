@@ -1,6 +1,6 @@
 //This is the OnlyPogs main.js file
 
-//Dependencies
+//requiring indepencies
 const express = require('express')
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -78,11 +78,18 @@ app.get('/rewards', (req, res) => {
     if (err) {
       console.log(err)
       //TODO: send error template here
-    } else {
-      res.render('rewards', { rows: rows, userPerm : userPerm })
     }
+    db.get('SELECT * FROM Digipogs', [], (err,) => {
+      //error validation
+      if (err) {
+        console.log(err)
+      } else {
+        res.render('rewards', { rows: rows })
+      }
+    })
   })
 })
+
 
 
 app.post('/addItem', (req, res) => {
@@ -98,7 +105,6 @@ app.post('/addItem', (req, res) => {
     }
   });
 })
-
 
 app.post('/editItem', (req, res) => {
   const uid = req.body.uid
@@ -132,7 +138,6 @@ app.post('/deleteItem', (req, res) => {
     }
   });
 })
-
 
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
@@ -236,7 +241,7 @@ process.on('SIGINT', () => {
   })
 });
 
-//Listens for connections on the specified port                                                                                                                                                                                                           
+//Listens for connections on the specified port
 app.listen(PORT, () => {
   console.log(`You're running on port ${PORT}.`)
 })
