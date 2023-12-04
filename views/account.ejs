@@ -16,19 +16,19 @@
         <div id="tagDropDown">
             <button><a href="/rewards">Rewards</a></button>
             <button><a href="/">Pogs</a></button>
-        </div>
+        </div><br>
 
         <table id="acc">
             <thead id="tableHead">
-                <th id="fbUsername">Formbar Username</th>
-                <th id="amount">Amount of pogs</th>
+                <th id="fbUsername"><a>Formbar Username</a></th>
+                <th id="amount"><a>Amount of pogs</a></th>
             </thead>
             <tbody>
                
                 <% for(let i=0; i < rows.length; i++) {%>
                     <tr>
-                        <td><%- rows[i].fbUserName %></td>
-                        <td><%- rows[i].amountOfPogs %></td>
+                        <td><a><%- rows[i].fbUserName %></a></td>
+                        <td><a><%- rows[i].amountOfPogs %></a></td>
                     </tr>
                 <% } %>
             </tbody>
