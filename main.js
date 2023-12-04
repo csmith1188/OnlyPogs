@@ -50,10 +50,49 @@ app.use(session({
   saveUninitialized: false
 }))
 
+const apiR = require('./api/api.js')
+
+app.use('/api', apiR)
 
 //Setting the view engine to look for ejs
 app.set('view engine', 'ejs');
 
+/**
+ * This is an get endpoing that calls the isAuthenticated function when it runs
+ */
+
+app.get('/', isAuthenticated, (req, res) => {
+  const userPerm = req.session.token.permissions
+  const userName = req.session.token.username
+  try {
+    db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      //error handling
+      if (err) {
+        console.error(err);
+      }
+      res.render('index', { rows: rows, userPerm : userPerm, userName : userName })
+    });
+  }
+  catch (error) {
+    res.send(error.message);
+  }
+});
+
+/**
+Sends you to the /login endpoint
+Sets tokenData to the sessions token data
+Then redirects you do the root endpoint.
+*/
+app.get('/login', (req, res) => {
+  if (req.query.token) {
+    var tokenData = jwt.decode(req.query.token);
+    req.session.token = tokenData;
+
+    res.redirect('/');
+  } else {
+    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+  };
+});
 /**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
   db.all('SELECT * FROM Digipogs', [], (err, rows) => {
@@ -138,42 +177,6 @@ app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
 })
 
-/**
- * This is an get endpoing that calls the isAuthenticated function when it runs
- */
-
-app.get('/', isAuthenticated, (req, res) => {
-  const userPerm = req.session.token.permissions
-  const userName = req.session.token.username
-  try {
-    db.all('SELECT * FROM pogs', [], (err, rows,) => {
-      //error handling
-      if (err) {
-        console.error(err);
-      }
-      res.render('index', { rows: rows, userPerm : userPerm, userName : userName })
-    });
-  }
-  catch (error) {
-    res.send(error.message);
-  }
-});
-
-/**
-Sends you to the /login endpoint
-Sets tokenData to the sessions token data
-Then redirects you do the root endpoint.
-*/
-app.get('/login', (req, res) => {
-  if (req.query.token) {
-    var tokenData = jwt.decode(req.query.token);
-    req.session.token = tokenData;
-
-    res.redirect('/');
-  } else {
-    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
-  };
-});
 
 
 app.get('/pog', function (req, res) {
