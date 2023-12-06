@@ -50,7 +50,7 @@ app.use(session({
   saveUninitialized: false
 }))
 
-const apiR = require('./api/api.js')
+const apiR = require('./api.js')
 
 app.use('/api', apiR)
 

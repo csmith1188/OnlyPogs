@@ -23,18 +23,17 @@ app.set('view engine', 'ejs');
 
 // Middleware to parse JSON requests
 app.use(express.json());
-const api = () => {
 
+const api = () => {
   /**
     Route to list all available columns of a specified table.
     @param {string} req.params.table - The name of the table to retrieve columns from.
     @returns {JSON} - JSON response containing the list of columns.
-  */
-  router.get('/:table', (req, res) => {
-    const {
-      table
-    } = req.params; // Retrieve the 'table' variable from the URL
-  
+    */
+   router.get('/:table', (req, res) => {
+     const {table} = req.params; // Retrieve the 'table' variable from the URL
+      console.log(table)
+      
     // Query to get the table's schema and column names
     const query = `PRAGMA table_info(${table})`;
   
@@ -68,10 +67,8 @@ const api = () => {
     @returns {JSON} - JSON response containing all rows from the specified table.
   */
   router.get('/:table/all', (req, res) => {
-    const {
-      table
-    } = req.params; // Retrieve the 'table' variable from the URL
-  
+    const {table} = req.params; // Retrieve the 'table' variable from the URL
+    
     // Construct an SQL query to select all rows from the specified table
     const query = `SELECT * FROM ${table}`;
   
