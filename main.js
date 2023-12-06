@@ -95,11 +95,13 @@ app.get('/login', (req, res) => {
 });
 /**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
+  const userPerm = req.session.token.permissions
+  const userName = req.session.token.username
   db.all('SELECT * FROM Digipogs', [], (err, rows) => {
     if (err) {
       console.log(err);
     };
-    res.render('account', { rows: rows })
+    res.render('account', { rows: rows, userName: userName, userPerm: userPerm })
   })
 })
 
@@ -123,7 +125,7 @@ app.get('/rewards', (req, res) => {
       if (err) {
         console.log(err)
       } else {
-        res.render('rewards', { rows: rows })
+        res.render('rewards', { rows: rows, userPerm: userPerm })
       }
     })
   })
