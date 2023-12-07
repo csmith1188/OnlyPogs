@@ -52,7 +52,7 @@ app.use(session({
 
 const apiR = require('./api.js')
 
-app.use('/api', apiR)
+app.use('/api', apiR(db))
 
 //Setting the view engine to look for ejs
 app.set('view engine', 'ejs');
