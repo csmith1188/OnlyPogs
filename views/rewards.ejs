@@ -44,7 +44,10 @@
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
-                    <td id="buttons"><button id="edit" onclick="editItem()"><a>Edit</a></button><button id="delete"><a>Delete</a></button></td>
+                    <td id="buttons">
+                        <button id="edit" onclick="editItem()"><a>Edit</a>
+                        </button><button id="delete" class="deleteButton"><a>Delete</a></button>
+                    </td>
                 </tr>
                 <% } %>
         </tbody>
@@ -55,7 +58,7 @@
 
     const appendItem = ''
 
-   
+
     var userPerm = <%- userPerm %>;
 
     var data = <%- JSON.stringify(rows) %>;
@@ -63,15 +66,17 @@
     // console.log(uid)
     var filteredData = [];
 
-    if (userPerm != 5){
+    if (userPerm != 5) {
         document.getElementById("addButton").style.display = "none"
-        for (let i = 0; i < data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
             document.getElementsByClassName("editButton")[i].style.display = "none"
             // document.getElementById("table").style.emptyCells = "show";
-            
+
         }
     }
+
+
 
     var currentSortOrder = 'asc'
 
@@ -197,6 +202,12 @@
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
 
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
+
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
@@ -252,6 +263,12 @@
                 cost.setAttribute("name", "cost");
                 cost.setAttribute("placeholder", "cost");
 
+                var userPermInput = document.createElement("input");
+                userPermInput.setAttribute("type", "hidden");
+                userPermInput.setAttribute("name", "userPerm");
+                userPermInput.setAttribute("value", userPerm);
+                form.appendChild(userPermInput);
+
                 //type input element
                 var type = document.createElement("input");
                 type.setAttribute("type", "text");
@@ -281,7 +298,7 @@
     function deleteItem() {
         for (let i = 0; i < data.length; i++) {
 
-            var deleteButton = document.getElementById("deleteButton")
+            var deleteButton = document.getElementsByClassName("deleteButton")
             console.log(deleteButton)
 
             var form = document.createElement("form");
@@ -293,9 +310,16 @@
             uid.setAttribute("name", "uid")
             uid.setAttribute("placeholder", "uid")
 
+            var userPermInput = document.createElement("input");
+            userPermInput.setAttribute("type", "hidden");
+            userPermInput.setAttribute("name", "userPerm");
+            userPermInput.setAttribute("value", userPerm);
+            form.appendChild(userPermInput);
+
             var s = document.createElement("input");
             s.setAttribute("type", "submit");
             s.setAttribute("value", "Submit");
+            
             form.appendChild(uid);
             form.appendChild(s);
             form.submit()
@@ -316,17 +340,17 @@
             const aType = document.createElement('a')
             const ebText = document.createElement('a')
             const dbText = document.createElement('a')
-            
+
             aCost.textContent = row.cost
             aType.textContent = row.type
             ebText.textContent = 'Edit'
             dbText.textContent = 'Delete'
-            
+
             const eButton = document.createElement('button')
             const dButton = document.createElement('button')
-            
+
             eButton.onclick = editItem
-            //dButton.onclick = deleteItem
+            dButton.onclick = deleteItem
             eButton.appendChild(ebText)
             dButton.appendChild(dbText)
 
@@ -345,10 +369,10 @@
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
 
-            for (let i = 0; i > data.length; i++){
+            for (let i = 0; i > data.length; i++) {
                 eButton.setAttribute('id', 'data[i].uid')
             }
-            
+
 
             tr.appendChild(tdItem);
             tr.appendChild(tdCost);
@@ -359,4 +383,5 @@
     }
 
 </script>
+
 </html>

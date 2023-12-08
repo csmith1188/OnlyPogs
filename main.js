@@ -2,6 +2,7 @@
 
 //requiring indepencies
 const express = require('express')
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
@@ -12,6 +13,8 @@ const session = require('express-session')
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 //OnlyPogs Port
 const PORT = 1024
@@ -70,7 +73,7 @@ app.get('/', isAuthenticated, (req, res) => {
       if (err) {
         console.error(err);
       }
-      res.render('index', { rows: rows, userPerm : userPerm, userName : userName })
+      res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
     });
   }
   catch (error) {
@@ -114,6 +117,7 @@ app.get('/acc', (req, res) => {
  */
 app.get('/rewards', (req, res) => {
   const userPerm = req.session.token.permissions
+  // console.log(userPerm)
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
@@ -137,14 +141,19 @@ app.post('/addItem', (req, res) => {
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
-  db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
-    if (err) {
-      console.log(err);
-      //TODO: send error template here
-    } else {
-      res.redirect('/rewards')
-    }
-  });
+  const checkPerms = req.body.userPerm
+  if (checkPerms == 5){
+    db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
+      if (err) {
+        console.log(err);
+        //TODO: send error template here
+      } else {
+        res.redirect('/rewards')
+      }
+    });
+  }else {
+    // res.send("Insufficient Permissions")
+  }
 })
 
 app.post('/editItem', (req, res) => {
@@ -152,32 +161,41 @@ app.post('/editItem', (req, res) => {
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
+  const checkPerms = req.body.userPerm
   console.log(`Uid: ${uid}`)
   console.log(item)
   console.log(cost)
   console.log(type)
-  
-  db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
-    if (err) {
-      console.log(err);
-      // TODO: send error template here
-    } else {
-      res.redirect('/rewards');
-    }
-  });;
+  if (checkPerms == 5){
+    db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
+      if (err) {
+        console.log(err);
+        // TODO: send error template here
+      } else {
+        res.redirect('/rewards');
+      }
+    });
+  }else{
+    // res.send("Insufficient Permissions")
+  }
 })
 
 app.post('/deleteItem', (req, res) => {
   const uid = req.body.uid
+  const checkPerms = req.body.userPerm
   console.log(uid)
-  db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
-    if (err) {
-      console.log(err);
-      // TODO: send error template here
-    } else {
-      res.redirect('/rewards');
-    }
-  });
+  if (checkPerms == 5){
+    db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
+      if (err) {
+        console.log(err);
+        // TODO: send error template here
+      } else {
+        res.redirect('/rewards');
+      }
+    });
+  }else {
+    // res.send("Insufficient Permissions")
+  }
 })
 
 app.get('/rDetails', (req, res) => {
