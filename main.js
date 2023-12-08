@@ -142,7 +142,7 @@ app.post('/addItem', (req, res) => {
   const cost = req.body.cost
   const type = req.body.type
   const checkPerms = req.body.userPerm
-  if (checkPerms == 5){
+  if (checkPerms == req.session.token.permissions){
     db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
       if (err) {
         console.log(err);
@@ -166,7 +166,7 @@ app.post('/editItem', (req, res) => {
   console.log(item)
   console.log(cost)
   console.log(type)
-  if (checkPerms == 5){
+  if (checkPerms == req.session.token.permissions){
     db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
       if (err) {
         console.log(err);
@@ -184,7 +184,7 @@ app.post('/deleteItem', (req, res) => {
   const uid = req.body.uid
   const checkPerms = req.body.userPerm
   console.log(uid)
-  if (checkPerms == 5){
+  if (checkPerms == req.session.token.permissions){
     db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
       if (err) {
         console.log(err);
