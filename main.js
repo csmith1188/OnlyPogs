@@ -20,7 +20,7 @@ app.use(cookieParser());
 const PORT = 1024
 
 //formbar.js url
-const AUTH_URL = 'http://172.16.3.118:1128/oauth'
+const AUTH_URL = 'http://172.16.3.106:420/oauth'
 
 //OnlyPogs url
 const THIS_URL = 'http://172.16.3.107:1024/login'
@@ -35,13 +35,6 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     console.log('Connected to the database.');
   }
 });
-
-
-/** A function that checks to see if there is a session token and if there is it redirects to the login endpoint*/
-function isAuthenticated(req, res, next) {
-  if (req.session.token) next()
-  else res.redirect('/login')
-};
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -63,7 +56,6 @@ app.set('view engine', 'ejs');
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
  */
-
 app.get('/', isAuthenticated, (req, res) => {
   const userPerm = req.session.token.permissions
   const userName = req.session.token.username
@@ -135,8 +127,6 @@ app.get('/rewards', (req, res) => {
   })
 })
 
-
-
 app.post('/addItem', (req, res) => {
   const item = req.body.item
   const cost = req.body.cost
@@ -202,7 +192,25 @@ app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
 })
 
-
+/**
+ * This is an get endpoing that calls the isAuthenticated function when it runs
+ */
+app.get('/', isAuthenticated, (req, res) => {
+  const userPerm = req.session.token.permissions
+  const userName = req.session.token.username
+  try {
+    db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      //error handling
+      if (err) {
+        console.error(err);
+      }
+      res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
+    });
+  }
+  catch (error) {
+    res.send(error.message);
+  }
+});
 
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
@@ -262,9 +270,10 @@ process.on('SIGINT', () => {
     console.log('Closed the database connection.');
     process.exit(0);
   })
-});
+})
 
 //Listens for connections on the specified port
 app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`)
-})
+  console.log(`You're running on port ${PORT}.`);
+
+});

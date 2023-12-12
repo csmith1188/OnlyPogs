@@ -1,166 +1,204 @@
 body{
-  background-color: #000000;
-  margin: 20px;
+  background-color: #134611;
 }
-
-/*TABLE*/
-table{
-  width: 100%;
-  height: 100%;
-  border: 10px solid #000000;
-  border-collapse: collapse;
+#insert{
+  float: right;
+}
+#Details{
+  font-size: larger;
   text-align: center;
-  margin: auto;
-  margin-bottom: 20px;
-  
+  color: azure;
+  background-color: black;
+}
+#Details2{
+  font-size: large;
+  text-align: center;
+}
+#dArea2{
+  font-size: medium;
+  background-color: #AFB0B0;
+  text-align: center;
+}
+#dArea1{
+  width: 100%;
+  height: 25%;
+  font-size: large;
+  background-color: #AFB0B0;
+  text-align: center;
+}
+#tagFilter{
+  float: right;
+}
+table{
+    width: 100%;
+    height: 100%;
+    border: solid #000000;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+    background-color: 
+    #33B9FF;
 }
 tr:nth-child(odd){
-  background-color: #242525;
+  background-color: #025845;
   border: 2px solid;
 }
 tr:nth-child(even){
-  background-color: #1D4822;
-  border: 10px solid;
+  background-color: #AFB0B0;
+  border: 2px solid;
 }
-th{
-  font-size: x-large;
+tr:first-child{
+  background-color: #025845;
+  user-select: none;
 }
-
-/*FONT*/
-a{
-  color: #ffffff;
-  font-family: 'Courier New', monospace;
+tr:first-child:hover{
   cursor: pointer;
 }
-
-/*FORMS*/
+th {
+  border: 2px solid;
+}
+a{
+  color: #000000;
+}
 select{
-  background-color: #242525;
+  background-color: #bebebe;
   font-size: 25px;
-  float: right;
-  text-align: center;
-  width: 250px;
-  font-family: 'Courier New', monospace;
-  color: #ffffff;
-}
-option:nth-child(odd){
-  background-color: #1D4822;
-}
-button{
-  background-color: #3B443C;
 }
 
-/*pog.ejs*/
+option:nth-child(odd){
+  background-color: #717171;
+}
+
 p{
-  background-color: #242525 ;
+  background-color: #a3a3a3 ;
   width: auto;
   text-align: center;
-  font-family: 'Courier New', monospace;
-  color: #ffffff;
 }
 h1{
   text-align: center;
   width: auto;
-  height: auto;
   font-size: 100px;
-  background-color: #242525;
-  font-family: 'Courier New', monospace;
-  font-style: italic;
-  color: #ffffff;
-} 
-img{
+  background-color: #717171;
+}
+#img{
   float: right;
-  background-color: #242525;
+  display: inline-block;
+  
+}
+#pogs{
+  width: 250px;
+  text-align: center;
+}
+
+#infoBoxes {
+  /* display: flex; */
+}
+
+.infobox{
+  display: block;
+  width: 250;
+  /* float: right; */
+  margin-bottom: 10px;;
+}
+.info{
+  margin-top: 0px;
+  background-color: #bebebe;
+  margin-bottom: 0px;
+  font-size: 25px;
+  width: auto;
+}
+.infoheader{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 30px;
+  width: auto;
+}
+
+.infobox2{
+  display: inline-block;
+  width: 30%;
+  float: right;
+}
+.info2{
+  margin-top: 0px;
+  background-color: #bebebe;
+  margin-bottom: 0px;
+  font-size: 25px;
+  width: auto;
+}
+.infoheader2{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 30px;
+  width: auto;
+}
+#error{
   width: 300px;
-  height: 295px;
-  padding: 5px;
+  font-size: 25px;
+}
+#container{
+  margin-left: 200px;
+
 }
 .center {
+  /* background-color: #025845; */
   margin: auto;
   padding: 10px;
   width: 600px;
   height: auto;
-  overflow:auto;
+  overflow:auto
 }
-.infobox{
+.infobox3{
+  display: inline-block;
   width: 250;
-  margin-bottom: 10px;
-  padding-bottom: 15px;
-  font-size: 25px;
-}
-.info{
-  width: auto;
-  background-color: #242525;
-  margin-top: 0px;
-}
-.infoheader{
-  margin-bottom: 0px;
-  font-size: 30px;
-  background-color: #1D4822;
-}
-#error{
-  width: 250px;
-  font-size: 25px;
-}
-#infoBoxes{
-  width: 250px;
-}
-.right{
-  float: right;
-  width: 200px;
-  padding-right: 80px;
-}
-.left{
-  padding-top: 100px;
   float: left;
 }
-/*MOBILE*/
+@media (max-width:975px){
+  h1{
+    width: auto;
+  }
+}
 @media (max-width:460px){
-  body{
-    margin: 15px;
-  }
-  /*FONT*/
-  a{
-    font-size: medium;
-  }
 
-  /*pog.ejs*/
-  img{
-    width: 200px;
-    height: 195px;
+  .infobox2{
+    display: inline-block;
+     width: 100%;
   }
-  .center{
-    width: 420px;
-    
+  #img{
+    float: none;
+    display: inline;
   }
-  #infoBoxes{
-    width: 200px;
+  #container{
+    margin-left: 0px;
   }
   .infobox{
-    width: 200px;
-    padding-bottom: 0px;
+    display: block;
+    width: 100%;
   }
-  .left{
-    float: left;
-    padding-top: 30px;
-  }
-  .right{
-    float: right;
-    width: 200px;
-    padding-right: 0px;
-  }
-  h1{
-    font-size: 65px;
+  img{
+    width: 100%;
     height: auto;
   }
-  
-  /*FORMS*/
-  select{
-    width: 200px;
-    text-overflow: ellipsis;
+  .infoheader{
+    width: auto;
   }
-  button {
-    flex-wrap: wrap;
-    margin: 1px;
+  .info{
+    width: auto;
   }
+  #Pogs{
+    width: 100%;
+  }
+  .number{
+    display: none;
+  }
+  .amount{
+    display: none;
+  }
+  #serial{
+    display: none;
+  }
+  #amount{
+    display: none;
+  }
+
 }
