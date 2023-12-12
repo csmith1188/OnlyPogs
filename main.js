@@ -20,7 +20,7 @@ app.use(cookieParser());
 const PORT = 1024
 
 //formbar.js url
-const AUTH_URL = 'http://172.16.3.118:1128/oauth'
+const AUTH_URL = 'http://172.16.3.106:420/oauth'
 
 //OnlyPogs url
 const THIS_URL = 'http://172.16.3.107:1024/login'
@@ -60,10 +60,66 @@ app.use('/api', apiR(db))
 //Setting the view engine to look for ejs
 app.set('view engine', 'ejs');
 
+
+/**get endpoint that takes you to the account.ejs page */
+app.get('/acc', (req, res) => {
+  db.all('SELECT * FROM Digipogs', [], (err, rows) => {
+    if (err) {
+      console.log(err);
+    };
+    res.render('account', { rows: rows })
+  })
+})
+
+
+/**
+ * The following function is a get endpoint that takes you to the rewards.ejs page, it then creates a variable and sets it to the permissions
+ * There is a db.all to select all from the rewards table in the pogs database
+ * There is a db.get to select all from the Digipogs table of the pog database
+ * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
+ */
+app.get('/rewards', (req, res) => {
+  const digiPerm = req.query.permissions
+  db.all('Select * FROM rewards', [], (err, rows) => {
+    //error validation
+    if (err) {
+      console.log(err)
+      //TODO: send error template here
+    } 
+      db.get('SELECT * FROM Digipogs',[], (err, digiPerm) => {
+        //error validation
+        if (err){
+          console.log(err)
+        }else {
+          res.render('rewards', { rows: rows, digiPerm: digiPerm})
+        }
+      })
+  })
+})
+
+app.post('/rewards', (req, res) => {
+  const uid = req.body.uid
+  const item = req.body.item
+  const cost = req.body.cost
+  const type = req.body.type
+  db.run('INSERT INTO rewards (uid, item, cost, type) VALUES (?, ?, ?, ?)', [uid, item, cost, type], (err) => {
+    if (err) {
+      console.log(err);
+      //TODO: send error template here
+    } else {
+      res.redirect('/rewards')
+    }
+  });
+})
+
+app.get('/rDetails', (req, res) => {
+  res.render('rewardsDetails.ejs')
+})
+
+
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
  */
-
 app.get('/', isAuthenticated, (req, res) => {
   const userPerm = req.session.token.permissions
   const userName = req.session.token.username
@@ -72,8 +128,9 @@ app.get('/', isAuthenticated, (req, res) => {
       //error handling
       if (err) {
         console.error(err);
+      }else{
+        res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
       }
-      res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
     });
   }
   catch (error) {
@@ -88,7 +145,7 @@ Then redirects you do the root endpoint.
 */
 app.get('/login', (req, res) => {
   if (req.query.token) {
-    var tokenData = jwt.decode(req.query.token);
+    let tokenData = jwt.decode(req.query.token);
     req.session.token = tokenData;
 
     res.redirect('/');
@@ -262,9 +319,10 @@ process.on('SIGINT', () => {
     console.log('Closed the database connection.');
     process.exit(0);
   })
-});
+})
 
 //Listens for connections on the specified port
 app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`)
-})
+  console.log(`You're running on port ${PORT}.`);
+
+});
