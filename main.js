@@ -40,16 +40,16 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('./static'));
 
-app.use(session({
-  secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
-  resave: false,
-  saveUninitialized: false
-}))
+// app.use(session({
+//   secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
+//   resave: false,
+//   saveUninitialized: false
+// }))
 
-function isAuthenticated(req, res, next) {
-  if (req.session.user) next()
-  else res.redirect('/login')
-};
+// function isAuthenticated(req, res, next) {
+//   if (req.session.user) next()
+//   else res.redirect('/login')
+// };
 
 const apiR = require('./api.js')
 
@@ -60,17 +60,18 @@ app.set('view engine', 'ejs');
 
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
- */
-app.get('/', isAuthenticated, (req, res) => {
-  const userPerm = req.session.token.permissions
-  const userName = req.session.token.username
+*/
+// isAuthenticated
+app.get('/', (req, res) => {
+  // const userPerm = req.session.token.permissions
+  // const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       //error handling
       if (err) {
         console.error(err);
       } else {
-        res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
+        res.render('index', { rows: rows })
       }
     });
   }
@@ -84,16 +85,15 @@ Sends you to the /login endpoint
 Sets tokenData to the sessions token data
 Then redirects you do the root endpoint.
 */
-app.get('/login', (req, res) => {
-  if (req.query.token) {
-    var tokenData = jwt.decode(req.query.token);
-    req.session.token = tokenData;
-
-    res.redirect('/');
-  } else {
-    res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
-  };
-})
+// app.get('/login', (req, res) => {
+//   if (req.query.token) {
+//     var tokenData = jwt.decode(req.query.token);
+//     req.session.token = tokenData;
+//     res.redirect('/');
+//   } else {
+//     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+//   };
+// })
 
 /**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
@@ -112,7 +112,7 @@ app.get('/acc', (req, res) => {
  * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
  */
 app.get('/rewards', (req, res) => {
-  const userPerm = req.session.token.permissions
+  // const userPerm = req.session.token.permissions
   // console.log(userPerm)
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
@@ -125,7 +125,7 @@ app.get('/rewards', (req, res) => {
       if (err) {
         console.log(err)
       } else {
-        res.render('rewards', { rows: rows, userPerm: userPerm })
+        res.render('rewards', { rows: rows})
       }
     })
   })
@@ -135,8 +135,8 @@ app.post('/addItem', (req, res) => {
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
-  const checkPerms = req.body.userPerm
-  if (checkPerms == req.session.token.permissions) {
+  // const checkPerms = req.body.userPerm
+  // if (checkPerms == req.session.token.permissions) {
     db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
       if (err) {
         console.log(err);
@@ -145,9 +145,9 @@ app.post('/addItem', (req, res) => {
         res.redirect('/rewards')
       }
     });
-  } else {
-    // res.send("Insufficient Permissions")
-  }
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
 })
 
 app.post('/editItem', (req, res) => {
@@ -155,12 +155,12 @@ app.post('/editItem', (req, res) => {
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
-  const checkPerms = req.body.userPerm
+  // const checkPerms = req.body.userPerm
   console.log(`Uid: ${uid}`)
   console.log(item)
   console.log(cost)
   console.log(type)
-  if (checkPerms == req.session.token.permissions) {
+  // if (checkPerms == req.session.token.permissions) {
     db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
       if (err) {
         console.log(err);
@@ -169,16 +169,16 @@ app.post('/editItem', (req, res) => {
         res.redirect('/rewards');
       }
     });
-  } else {
-    // res.send("Insufficient Permissions")
-  }
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
 })
 
 app.post('/deleteItem', (req, res) => {
   const uid = req.body.uid
-  const checkPerms = req.body.userPerm
+  // const checkPerms = req.body.userPerm
   console.log(uid)
-  if (checkPerms == req.session.token.permissions) {
+  // if (checkPerms == req.session.token.permissions) {
     db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
       if (err) {
         console.log(err);
@@ -187,9 +187,9 @@ app.post('/deleteItem', (req, res) => {
         res.redirect('/rewards');
       }
     });
-  } else {
-    // res.send("Insufficient Permissions")
-  }
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
 })
 
 app.get('/rDetails', (req, res) => {
