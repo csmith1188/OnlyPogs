@@ -58,20 +58,6 @@ app.use('/api', apiR(db))
 //Setting the view engine to look for ejs
 app.set('view engine', 'ejs');
 
-/**get endpoint that takes you to the account.ejs page */
-app.get('/acc', (req, res) => {
-  db.all('SELECT * FROM Digipogs', [], (err, rows) => {
-    if (err) {
-      console.log(err);
-    };
-    res.render('account', { rows: rows })
-  })
-})
-
-app.get('/rDetails', (req, res) => {
-  res.render('rewardsDetails.ejs')
-})
-
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
  */
@@ -108,9 +94,20 @@ app.get('/login', (req, res) => {
     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
   };
 })
+
+/**get endpoint that takes you to the account.ejs page */
+app.get('/acc', (req, res) => {
+  db.all('SELECT * FROM Digipogs', [], (err, rows) => {
+    if (err) {
+      console.log(err);
+    };
+    res.render('account', { rows: rows })
+  })
+})
+
   /**
- * The following function is a get endpoint that takes you to the rewards.ejs page, it then creates a variable and sets it to the permissions
- * There is a db.all to select all from the rewards table in the pogs database
+   * The following function is a get endpoint that takes you to the rewards.ejs page, it then creates a variable and sets it to the permissions
+   * There is a db.all to select all from the rewards table in the pogs database
  * There is a db.get to select all from the Digipogs table of the pog database
  * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
  */
@@ -193,6 +190,10 @@ app.post('/deleteItem', (req, res) => {
   } else {
     // res.send("Insufficient Permissions")
   }
+})
+
+app.get('/rDetails', (req, res) => {
+  res.render('rewardsDetails.ejs')
 })
 
 app.get('/pog', function (req, res) {
