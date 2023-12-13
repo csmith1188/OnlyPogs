@@ -45,8 +45,8 @@
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
                     <td id="buttons">
-                        <button id="edit" class="editButton"  onclick="editItem()"><a>Edit</a>
-                        </button><button id="delete" class="deleteButton" onclick="deleteItem()"><a>Delete</a></button>
+                        <button id="<%- data[i].uid %>" class="editButton"  onclick="editItem()"><a>Edit</a>
+                        </button><button id="<%- data[i].uid %>" class="deleteButton" onclick="deleteItem()"><a>Delete</a></button>
                     </td>
                 </tr>
                 <% } %>
@@ -369,8 +369,9 @@
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
 
-            for (let i = 0; i > data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 eButton.setAttribute('id', 'data[i].uid')
+                dButton.setAttribute('id', 'data[i].uid')
             }
 
 
