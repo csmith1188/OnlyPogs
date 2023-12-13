@@ -106,7 +106,6 @@ app.get('/acc', (req, res) => {
   })
 })
 
-
 /**
  * The following function is a get endpoint that takes you to the rewards.ejs page, it then creates a variable and sets it to the permissions
  * There is a db.all to select all from the rewards table in the pogs database
