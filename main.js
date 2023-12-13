@@ -46,6 +46,11 @@ app.use(session({
   saveUninitialized: false
 }))
 
+function isAuthenticated(req, res, next) {
+  if (req.session.user) next()
+  else res.redirect('/login')
+};
+
 const apiR = require('./api.js')
 
 app.use('/api', apiR(db))
@@ -88,6 +93,7 @@ app.get('/login', (req, res) => {
     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
   };
 });
+
 /**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
   const userPerm = req.session.token.permissions
@@ -191,26 +197,6 @@ app.post('/deleteItem', (req, res) => {
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
 })
-
-/**
- * This is an get endpoing that calls the isAuthenticated function when it runs
- */
-app.get('/', isAuthenticated, (req, res) => {
-  const userPerm = req.session.token.permissions
-  const userName = req.session.token.username
-  try {
-    db.all('SELECT * FROM pogs', [], (err, rows,) => {
-      //error handling
-      if (err) {
-        console.error(err);
-      }
-      res.render('index', { rows: rows, userPerm: userPerm, userName: userName })
-    });
-  }
-  catch (error) {
-    res.send(error.message);
-  }
-});
 
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
