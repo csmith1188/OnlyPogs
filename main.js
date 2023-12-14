@@ -17,13 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //OnlyPogs Port
-const PORT = 1024
+const PORT = 6969
 
 //formbar.js url
 const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 //OnlyPogs url
-const THIS_URL = 'http://172.16.3.140:1024/login'
+const THIS_URL = 'http://172.16.3.140:6969/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
@@ -47,7 +47,7 @@ app.use(session({
 }))
 
 function isAuthenticated(req, res, next) {
-  if (req.session.user) next()
+  if (req.session.token) next()
   else res.redirect('/login')
 };
 
@@ -85,6 +85,7 @@ Sets tokenData to the sessions token data
 Then redirects you do the root endpoint.
 */
 app.get('/login', (req, res) => {
+  console.log(req.query)
   if (req.query.token) {
     var tokenData = jwt.decode(req.query.token);
     req.session.token = tokenData;
@@ -112,6 +113,7 @@ app.get('/acc', (req, res) => {
 */
 app.get('/rewards', (req, res) => {
   const userPerm = req.session.token.permissions
+  console.log(userPerm)
   // console.log(userPerm)
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation

@@ -58,20 +58,22 @@
 
     const appendItem = ''
 
+    var userPerm = <%- userPerm %>;
+
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
 
-    // if (userPerm != 2) {
-    //     document.getElementById("add").style.display = "none"
-    //     for (let i = 0; i < data.length; i++) {
-    //         document.getElementsByClassName("deleteButton")[i].style.display = "none"
-    //         document.getElementsByClassName("editButton")[i].style.display = "none"
-    //         // document.getElementById("table").style.emptyCells = "show";
+    if (userPerm != 5) {
+        document.getElementById("add").style.display = "none"
+        for (let i = 0; i < data.length; i++) {
+            document.getElementsByClassName("deleteButton")[i].style.display = "none"
+            document.getElementsByClassName("editButton")[i].style.display = "none"
+            // document.getElementById("table").style.emptyCells = "show";
 
-    //     }
-    // }
+        }
+    }
 
 
 
@@ -197,11 +199,11 @@
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
 
-        // var userPermInput = document.createElement("input");
-        // userPermInput.setAttribute("type", "hidden");
-        // userPermInput.setAttribute("name", "userPerm");
-        // userPermInput.setAttribute("value", userPerm);
-        // form.appendChild(userPermInput);
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
 
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
@@ -248,11 +250,11 @@
                 cost.setAttribute("name", "cost");
                 cost.setAttribute("placeholder", "cost");
                 
-                // var userPermInput = document.createElement("input");
-                // userPermInput.setAttribute("type", "hidden");
-                // userPermInput.setAttribute("name", "userPerm");
-                // userPermInput.setAttribute("value", userPerm);
-                // form.appendChild(userPermInput);
+                var userPermInput = document.createElement("input");
+                userPermInput.setAttribute("type", "hidden");
+                userPermInput.setAttribute("name", "userPerm");
+                userPermInput.setAttribute("value", userPerm);
+                form.appendChild(userPermInput);
 
                 //type input element
                 var type = document.createElement("input");
@@ -290,11 +292,11 @@
             uid.setAttribute("placeholder", "uid")
             uid.setAttribute("value", buttonUid);
 
-            // var userPermInput = document.createElement("input");
-            // userPermInput.setAttribute("type", "hidden");
-            // userPermInput.setAttribute("name", "userPerm");
-            // userPermInput.setAttribute("value", userPerm);
-            // form.appendChild(userPermInput);
+            var userPermInput = document.createElement("input");
+            userPermInput.setAttribute("type", "hidden");
+            userPermInput.setAttribute("name", "userPerm");
+            userPermInput.setAttribute("value", userPerm);
+            form.appendChild(userPermInput);
 
             var s = document.createElement("input");
             s.setAttribute("type", "submit");
