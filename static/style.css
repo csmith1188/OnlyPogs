@@ -1,0 +1,167 @@
+body{
+  background-color: #000000;
+  margin: 20px;
+}
+
+/*TABLE*/
+table{
+  width: 100%;
+  height: 100%;
+  border: 10px solid #000000;
+  border-collapse: collapse;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
+  
+}
+tr:nth-child(odd){
+  background-color: #242525;
+  border: 2px solid;
+}
+tr:nth-child(even){
+  background-color: #1D4822;
+  border: 10px solid;
+}
+th{
+  font-size: x-large;
+}
+
+/*FONT*/
+a{
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+}
+
+/*FORMS*/
+select{
+  background-color: #242525;
+  font-size: 25px;
+  float: right;
+  text-align: center;
+  width: 250px;
+  font-family: 'Courier New', monospace;
+  color: #ffffff;
+}
+option:nth-child(odd){
+  background-color: #1D4822;
+}
+button{
+  background-color: #3B443C;
+}
+
+/*pog.ejs*/
+p{
+  background-color: #242525 ;
+  width: auto;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  color: #ffffff;
+}
+h1{
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-size: 100px;
+  background-color: #242525;
+  font-family: 'Courier New', monospace;
+  font-style: italic;
+  color: #ffffff;
+} 
+img{
+  float: right;
+  background-color: #242525;
+  width: 300px;
+  height: 295px;
+  padding: 5px;
+}
+.center {
+  margin: auto;
+  padding: 10px;
+  width: 600px;
+  height: auto;
+  overflow:auto;
+}
+.infobox{
+  width: 250;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  font-size: 25px;
+}
+.info{
+  width: auto;
+  background-color: #242525;
+  margin-top: 0px;
+}
+.infoheader{
+  margin-bottom: 0px;
+  font-size: 30px;
+  background-color: #1D4822;
+}
+#error{
+  width: 250px;
+  font-size: 25px;
+}
+#infoBoxes{
+  width: 250px;
+}
+.right{
+  float: right;
+  width: 200px;
+  padding-right: 80px;
+}
+.left{
+  padding-top: 100px;
+  float: left;
+}
+
+/*MOBILE*/
+@media (max-width:460px){
+  body{
+    margin: 15px;
+  }
+  /*FONT*/
+  a{
+    font-size: medium;
+  }
+
+  /*pog.ejs*/
+  img{
+    width: 200px;
+    height: 195px;
+  }
+  .center{
+    width: 420px;
+    
+  }
+  #infoBoxes{
+    width: 200px;
+  }
+  .infobox{
+    width: 200px;
+    padding-bottom: 0px;
+  }
+  .left{
+    float: left;
+    padding-top: 30px;
+  }
+  .right{
+    float: right;
+    width: 200px;
+    padding-right: 0px;
+  }
+  h1{
+    font-size: 65px;
+    height: auto;
+  }
+  
+  /*FORMS*/
+  select{
+    width: 200px;
+    text-overflow: ellipsis;
+  }
+  button {
+    flex-wrap: wrap;
+    margin: 1px;
+  }
+}
