@@ -72,7 +72,7 @@ app.get('/acc', (req, res) => {
  * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
  */
 app.get('/rewards', (req, res) => {
-  const userPerm = req.session.token.permissions
+  //const userPerm = req.session.token.permissions
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
@@ -147,16 +147,16 @@ app.get('/rDetails', (req, res) => {
  * This is an get endpoing that calls the isAuthenticated function when it runs
  */
 
-app.get('/', isAuthenticated, (req, res) => {
-  const userPerm = req.session.token.permissions
-  const userName = req.session.token.username
+app.get('/', /*isAuthenticated,*/ (req, res) => {
+  //const userPerm = req.session.token.permissions
+  //const userName = req.session.token.username
   try {
     db.all('SELECT * FROM pogs', [], (err, rows,) => {
       //error handling
       if (err) {
         console.error(err);
       }
-      res.render('index', { rows: rows, userPerm : userPerm, userName : userName })
+      res.render('index', { rows: rows/*, userPerm : userPerm, userName : userName*/ })
     });
   }
   catch (error) {

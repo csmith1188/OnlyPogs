@@ -56,21 +56,21 @@
     const appendItem = ''
 
    
-    var userPerm = <%- JSON.stringify(userPerm) %>;
+
 
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
 
-    if (userPerm != 5){
+    /*if (userPerm != 5){
         document.getElementById("addButton").style.display = "none"
         for (let i = 0; i < data.length; i++){
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
             document.getElementsByClassName("editButton")[i].style.display = "none"
             // document.getElementById("table").style.emptyCells = "show";
         }
-    }
+    }*/
 
     var currentSortOrder = 'asc'
 
