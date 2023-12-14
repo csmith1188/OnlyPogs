@@ -23,7 +23,7 @@ const PORT = 1024
 const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 //OnlyPogs url
-const THIS_URL = 'http://172.16.3.107:1024/login'
+const THIS_URL = 'http://172.16.3.140:1024/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
