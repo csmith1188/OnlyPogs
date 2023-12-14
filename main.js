@@ -60,8 +60,8 @@ app.set('view engine', 'ejs');
 
 /**
  * This is an get endpoing that calls the isAuthenticated function when it runs
-*/
-// isAuthenticated
+ */
+// isAuthenticated,
 app.get('/', (req, res) => {
   // const userPerm = req.session.token.permissions
   // const userName = req.session.token.username
@@ -72,6 +72,7 @@ app.get('/', (req, res) => {
         console.error(err);
       } else {
         res.render('index', { rows: rows })
+        // , userPerm: userPerm, userName: userName
       }
     });
   }
@@ -89,6 +90,7 @@ Then redirects you do the root endpoint.
 //   if (req.query.token) {
 //     var tokenData = jwt.decode(req.query.token);
 //     req.session.token = tokenData;
+
 //     res.redirect('/');
 //   } else {
 //     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
@@ -125,7 +127,8 @@ app.get('/rewards', (req, res) => {
       if (err) {
         console.log(err)
       } else {
-        res.render('rewards', { rows: rows})
+        res.render('rewards', { rows: rows })
+        // , userPerm: userPerm
       }
     })
   })
@@ -156,10 +159,12 @@ app.post('/editItem', (req, res) => {
   const cost = req.body.cost
   const type = req.body.type
   // const checkPerms = req.body.userPerm
+
   console.log(`Uid: ${uid}`)
   console.log(item)
   console.log(cost)
   console.log(type)
+
   // if (checkPerms == req.session.token.permissions) {
     db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
       if (err) {
