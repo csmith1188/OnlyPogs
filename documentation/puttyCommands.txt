@@ -1,0 +1,9 @@
+screen 
+control + a, d
+screen -ls
+screen -r #
+ls to see where you are at
+cd to move
+ps aux
+grep
+sudo
