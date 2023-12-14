@@ -20,7 +20,7 @@ app.use(cookieParser());
 const PORT = 1024
 
 //formbar.js url
-const AUTH_URL = 'http://172.16.3.106:420/oauth'
+const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 //OnlyPogs url
 const THIS_URL = 'http://172.16.3.107:1024/login'
