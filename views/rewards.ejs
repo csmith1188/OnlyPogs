@@ -45,8 +45,8 @@
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
                     <td id="buttons">
-                        <button  data-eButton="<%- rows[i].uid %>" class="editButton"  onclick="editItem(this.getAttribute('data-eButton'))"><a>Edit</a></button>
-                        <button  data-dButton="<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button>
+                        <button data-eButton="<%- rows[i].uid %>" class="editButton" onclick="editItem(this.getAttribute('data-eButton'))"><a>Edit</a></button>
+                        <button data-dButton="<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button>
                     </td>
                 </tr>
                 <% } %>
@@ -225,91 +225,91 @@
 
     function editItem(buttonUid) {
 
-            console.log(`Button Uid: ${buttonUid}`)
+        console.log(`Button Uid: ${buttonUid}`)
 
-                //form element
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "editItem");
+        //form element
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "editItem");
 
-                //uid input element
-                var uid = document.createElement("input");
-                uid.setAttribute("type", "hidden")
-                uid.setAttribute("name", "uid")
-                uid.setAttribute("value", buttonUid)
+        //uid input element
+        var uid = document.createElement("input");
+        uid.setAttribute("type", "hidden")
+        uid.setAttribute("name", "uid")
+        uid.setAttribute("value", buttonUid)
 
-                //item input element
-                var item = document.createElement("input");
-                item.setAttribute("type", "text");
-                item.setAttribute("name", "item");
-                item.setAttribute("placeholder", "item");
+        //item input element
+        var item = document.createElement("input");
+        item.setAttribute("type", "text");
+        item.setAttribute("name", "item");
+        item.setAttribute("placeholder", "item");
 
-                //cost input element
-                var cost = document.createElement("input");
-                cost.setAttribute("type", "text");
-                cost.setAttribute("name", "cost");
-                cost.setAttribute("placeholder", "cost");
-                
-                var userPermInput = document.createElement("input");
-                userPermInput.setAttribute("type", "hidden");
-                userPermInput.setAttribute("name", "userPerm");
-                userPermInput.setAttribute("value", userPerm);
-                form.appendChild(userPermInput);
+        //cost input element
+        var cost = document.createElement("input");
+        cost.setAttribute("type", "text");
+        cost.setAttribute("name", "cost");
+        cost.setAttribute("placeholder", "cost");
 
-                //type input element
-                var type = document.createElement("input");
-                type.setAttribute("type", "text");
-                type.setAttribute("name", "type");
-                type.setAttribute("placeholder", "type");
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
+
+        //type input element
+        var type = document.createElement("input");
+        type.setAttribute("type", "text");
+        type.setAttribute("name", "type");
+        type.setAttribute("placeholder", "type");
 
 
-                //submit input element
-                var s = document.createElement("input");
-                s.setAttribute("type", "submit");
-                s.setAttribute("value", "Submit");
+        //submit input element
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
 
-                //appending input elements to form
-                form.appendChild(uid);
-                form.appendChild(item);
-                form.appendChild(cost);
-                form.appendChild(type);
-                form.appendChild(s);
+        //appending input elements to form
+        form.appendChild(uid);
+        form.appendChild(item);
+        form.appendChild(cost);
+        form.appendChild(type);
+        form.appendChild(s);
 
-                document.getElementsByTagName("body")[0].appendChild(form);
+        document.getElementsByTagName("body")[0].appendChild(form);
     }
 
     function deleteItem(buttonUid) {
-     
-            console.log(buttonUid)
 
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "deleteItem");
+        console.log(buttonUid)
 
-            var uid = document.createElement("input");
-            uid.setAttribute("type", "hidden")
-            uid.setAttribute("name", "uid")
-            uid.setAttribute("placeholder", "uid")
-            uid.setAttribute("value", buttonUid);
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "deleteItem");
 
-            var userPermInput = document.createElement("input");
-            userPermInput.setAttribute("type", "hidden");
-            userPermInput.setAttribute("name", "userPerm");
-            userPermInput.setAttribute("value", userPerm);
-            form.appendChild(userPermInput);
+        var uid = document.createElement("input");
+        uid.setAttribute("type", "hidden")
+        uid.setAttribute("name", "uid")
+        uid.setAttribute("placeholder", "uid")
+        uid.setAttribute("value", buttonUid);
 
-            var s = document.createElement("input");
-            s.setAttribute("type", "submit");
-            s.setAttribute("value", "Submit");
-            
-            form.appendChild(uid);
-            form.appendChild(s);
-            form.submit()
-            document.getElementsByTagName("body")[0].appendChild(form)
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
+
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+
+        form.appendChild(uid);
+        form.appendChild(s);
+        form.submit()
+        document.getElementsByTagName("body")[0].appendChild(form)
     }
 
     //Updates the table after sorting
-    function updateTable(updateData) {
+    function updateTable(updateData, buttonUid) {
         const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
@@ -348,11 +348,8 @@
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
 
-            for (let i = 0; i < data.length; i++) {
-                eButton.setAttribute('id', 'data[i].uid')
-                dButton.setAttribute('id', 'data[i].uid')
-            }
-
+            eButton.setAttribute('data-eButton', buttonUid)
+            dButton.setAttribute('data-dButton', buttonUid)
 
             tr.appendChild(tdItem);
             tr.appendChild(tdCost);
@@ -363,4 +360,5 @@
     }
 
 </script>
+
 </html>
