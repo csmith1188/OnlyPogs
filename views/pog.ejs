@@ -13,33 +13,35 @@
     <%= pog.name %>
   </h1>
 
-  <div class="center">
-    <!--Created the image of the pog on the pog page-->
-    <a id="img" href="/"><img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto"
-        id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' "></a>
-        <div id="infoBoxes">
 
-        <!--Dropdown menu that displays the available colors of the currently selected pog-->
-        <div class="infobox">
-          <p class="infoheader"><label>Colors</label></p>
-          <p class="info"> <select id="Pogs" onchange="pogChange()"> 
-            <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
-              <option value=<%=Colors %>><%= pog.colors[Colors] %> </option>
-            <%} %>
-            </select> <p id="error"></p>
-
-          </p>
-        </div>
-        <!--Displays the amount produce of the current pog-->
-        <div class="infobox">
-          <p class="infoheader">Amount Produced </p>
-      <p class="info">
-        <%= pog.amount %>
-      </p>
-    </div>
+<div class="center">
+  <!--Created the image of the pog on the pog page-->
+  <a id="img" href="/">
+    <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' ">
+  </a>
+  
+  <div class="left">
+    <div id="infoBoxes">
+      <!--Dropdown menu that displays the available colors of the currently selected pog-->
+      <div class="infobox">
+        <p class="infoheader"><label>Colors</label></p>
+        <p class="info"> <select id="Pogs" onchange="pogChange()"> 
+          <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
+            <option value=<%=Colors %>><%= pog.colors[Colors] %> </option>
+          <%} %>
+          </select> <p id="error"></p>
+        </p>
+      </div> <br>
+      <!--Displays the amount produce of the current pog-->
+      <div class="infobox">
+        <p class="infoheader">Amount Produced</p>
+        <p class="info">
+          <%= pog.amount %>
+        </p>
+      </div>
     <!--Displays the serial number of the current pog-->
     <div class="infobox">
-      <p class="infoheader">Serial Number </p>
+      <p class="infoheader">Serial Number</p>
       <p class="info">
         <%= pog.serial %>
       </p>
@@ -51,22 +53,24 @@
         <%= pog.tags %>
       </p>
     </div>
-    
-        </select>
-        <p id="error"></p>
-        </p>
-    <!--Displays the Rarity of the current pog-->
-    <div class="infobox">
-      <p class="infoheader">Pog Rarity</p>
-      <p class="info" id="rarityBox"></p>
-    </div>
-  <!--Displays the lore of the current pog-->
+
+    <p id="error"></p>
+</div>
+</div>
+  <!--Displays the Rarity of the current pog-->
+<div class="right">
   <div class="infobox">
-    <p class='infoheader'>Pog Lore /p>
-    <p class='info'>
-      <%= pog.lore %>
-    </p>
-  </div>
+    <p class="infoheader">Pog Rarity</p>
+    <p class="info" id="rarityBox"></p>
+  </div> 
+<!--Displays the lore of the current pog-->
+<div class="infobox">
+  <p class='infoheader'>Pog Lore </p>
+  <p class='info'>
+    <%= pog.lore %>
+  </p>
+</div>
+</div>
 </div>
 
 
