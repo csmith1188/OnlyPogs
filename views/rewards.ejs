@@ -38,15 +38,15 @@
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
-                <tr id="<%- rows[i].uid %>">
+                <tr id="<%- rows[i].uid %>" class="table-rows">
                     <!--The item column has links set up for when formbar implementation is fully complete-->
                     <!--The idea is to use the links to allow students to buy rewards-->
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
                     <td id="buttons">
-                        <button id="edit" class="editButton"  onclick="editItem()"><a>Edit</a>
-                        </button><button id="delete" class="deleteButton" onclick="deleteItem()"><a>Delete</a></button>
+                        <button  data-eButton="<%- rows[i].uid %>" class="editButton"  onclick="editItem(this.getAttribute('data-eButton'))"><a>Edit</a></button>
+                        <button  data-dButton="<%- rows[i].uid %>" class="deleteButton" onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button>
                     </td>
                 </tr>
                 <% } %>
@@ -58,15 +58,14 @@
 
     const appendItem = ''
 
-
-    var userPerm =  <%- userPerm %>;
+    var userPerm = <%- userPerm %>;
 
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
 
-    if (userPerm != 2) {
+    if (userPerm != 5) {
         document.getElementById("add").style.display = "none"
         for (let i = 0; i < data.length; i++) {
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
@@ -179,8 +178,6 @@
         updateTable(data); // Update the table with the original data
     }
 
-
-
     function addItem() {
         var br = document.createElement("br");
         var form = document.createElement("form");
@@ -226,30 +223,20 @@
 
 
 
-    function editItem() {
-        for (let i = 0; i < data.length; i++) {
+    function editItem(buttonUid) {
 
-            const rowId = document.getElementById('table-body').children[i].id;
-            const itemId = document.getElementsByName("item")[i].id;
+            console.log(`Button Uid: ${buttonUid}`)
 
-            console.log(`Item Name: ${itemId}`)
-            console.log(`Tr Id: ${rowId}`)
-            console.log(`Data Uid: ${data[i].uid}`)
-
-            //checking to see if id matches
-            if (data[i].uid == rowId) {
-                console.log("Match Found")
-
-                //form elememnt
+                //form element
                 var form = document.createElement("form");
                 form.setAttribute("method", "post");
                 form.setAttribute("action", "editItem");
 
                 //uid input element
                 var uid = document.createElement("input");
-                uid.setAttribute("type", "text")
+                uid.setAttribute("type", "hidden")
                 uid.setAttribute("name", "uid")
-                uid.setAttribute("placeholder", "uid")
+                uid.setAttribute("value", buttonUid)
 
                 //item input element
                 var item = document.createElement("input");
@@ -262,7 +249,7 @@
                 cost.setAttribute("type", "text");
                 cost.setAttribute("name", "cost");
                 cost.setAttribute("placeholder", "cost");
-
+                
                 var userPermInput = document.createElement("input");
                 userPermInput.setAttribute("type", "hidden");
                 userPermInput.setAttribute("name", "userPerm");
@@ -289,26 +276,21 @@
                 form.appendChild(s);
 
                 document.getElementsByTagName("body")[0].appendChild(form);
-                // Break out of the loop after the first match
-                break;
-            }
-        }
     }
 
-    function deleteItem() {
-        for (let i = 0; i < data.length; i++) {
-
-            var deleteButton = document.getElementsByClassName("deleteButton")
-            console.log(deleteButton)
+    function deleteItem(buttonUid) {
+     
+            console.log(buttonUid)
 
             var form = document.createElement("form");
             form.setAttribute("method", "post");
             form.setAttribute("action", "deleteItem");
 
             var uid = document.createElement("input");
-            uid.setAttribute("type", "text")
+            uid.setAttribute("type", "hidden")
             uid.setAttribute("name", "uid")
             uid.setAttribute("placeholder", "uid")
+            uid.setAttribute("value", buttonUid);
 
             var userPermInput = document.createElement("input");
             userPermInput.setAttribute("type", "hidden");
@@ -324,9 +306,6 @@
             form.appendChild(s);
             form.submit()
             document.getElementsByTagName("body")[0].appendChild(form)
-            break;
-        }
-
     }
 
     //Updates the table after sorting
@@ -369,8 +348,9 @@
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
 
-            for (let i = 0; i > data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 eButton.setAttribute('id', 'data[i].uid')
+                dButton.setAttribute('id', 'data[i].uid')
             }
 
 
@@ -383,5 +363,4 @@
     }
 
 </script>
-
 </html>
