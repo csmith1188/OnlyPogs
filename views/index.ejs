@@ -160,20 +160,28 @@
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
 
+            const aSerial = document.createElement('a')
+            const aAmount = document.createElement('a')
+            const aTags = document.createElement('a')
+            
+            aSerial.textContent = row.serial
+            aAmount.textContent = row.amount
+            aTags.textContent = row.tags
+
             const tr = document.createElement('tr');
             const tdName = document.createElement('a');
             const tdSerial = document.createElement('td');
             const tdAmount = document.createElement('td');
             const tdTags = document.createElement('td');
+            
+            tdSerial.appendChild(aSerial)
+            tdAmount.appendChild(aAmount)
+            tdTags.appendChild(aTags)
 
             tdName.href = row.url; // Set the href attribute to the URL
 
             tdName.textContent = row.name;
             tdName.innerHTML = row.name;
-            tdSerial.textContent = row.serial;
-            tdAmount.textContent = row.amount;
-            tdTags.textContent = row.tags;
-
 
             tr.appendChild(tdName);
             tr.appendChild(tdSerial);
@@ -197,22 +205,22 @@
                         <%= uniqueTags[i] %>
                     </option>
                     <% } %>
-
         </select> <br>
-        <!--Buttons to take you to the account page and the rewards page-->
-        <button class="button" id="accButton"><a href="/acc">Account</a></button>
-        <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
 
-    </div>
-
+        <div class="buttons">
+            <button class="button" id="accButton"><a href="/acc">Account</a></button>
+            <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
+        </div>
+    </div><br>
     <table id="table">
         <thead>
             <tr>
+
                 <!-- Each column header has its own onclick function that sorts the by the column  -->
-                <th id="name" onclick="sortByName()">Name --</th>
-                <th id="serial" onclick="sortBySerial()">Serial Number --</th>
-                <th id="amount" onclick="sortByAmount()">Amount Produced --</th>
-                <th id="tags" onclick="sortByTags()">Tags --</th>
+                <th id="name" onclick="sortByName()"><a>Name --</a></th>
+                <th id="serial" onclick="sortBySerial()"><a>Serial Number --</a></th>
+                <th id="amount" onclick="sortByAmount()"><a>Amount Produced --</a></th>
+                <th id="tags" onclick="sortByTags()"><a>Tags --</a></th>
             </tr>
         </thead>
         <tbody id="table-body">
@@ -223,13 +231,13 @@
                         <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
                     </td>
                     <td>
-                        <%- rows[i].serial %>
+                        <a><%- rows[i].serial %></a>
                     </td>
                     <td>
-                        <%- rows[i].amount %>
+                        <a><%- rows[i].amount %></a>
                     </td>
                     <td>
-                        <%- rows[i].tags %>
+                        <a><%- rows[i].tags %></a>
                     </td>
                 </tr>
                 <% } %>

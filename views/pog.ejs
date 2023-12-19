@@ -13,6 +13,7 @@
     <%= pog.name %>
   </h1>
 
+
   <div class="center">
     <button id="editButton" onclick="Edit()">Edit </button>
     <button id="cancelButton" onclick="Cancel()" style="display: none;">Cancel</button>
@@ -44,10 +45,12 @@
       <div class="infobox">
         <p class="infoheader">Serial Number </p>
         <p class="info" id="serial"><%= pog.serial %></p>
+
       </div>
       <!--Displays the tags of the current pog-->
       <div class="infobox">
         <p class="infoheader">Tags</p>
+
         <p class="info" id="tags"><%= pog.tags %></p>
       </div>
 
@@ -67,6 +70,7 @@
   <script>
     //Creating a variable called pog and setting it to the stringified pog.name
     var pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
+
     var pogImage = document.getElementById("Pogs");
 
     //A function that changes the pog image based on the currently selected pog
