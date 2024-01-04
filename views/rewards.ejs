@@ -30,9 +30,9 @@
     <table id="table">
         <thead id="tableHead">
             <!--Table heads that can sort by clicking them-->
-            <th onclick='sortTable(0)' id="item"><a>Item</a></th>
+            <th onclick='sortTableAlphabetically(0)' id="item"><a>Item</a></th>
             <th onclick='sortTableNumerically(1)' id="cost"><a>Cost</a></th>
-            <th onclick='sortTable(2)' id="type"><a>Type</a></th>
+            <th onclick='sortTableAlphabetically(2)' id="type"><a>Type</a></th>
             <th></th>
 
         </thead>
@@ -89,7 +89,7 @@
         }
     }
 
-    function sortTable(columnIndex) {
+    function sortTableAlphabetically(columnIndex) {
         toggleSortOrder()
         const tableBody = document.getElementById('table-body');
         const rowsArray = Array.from(tableBody.rows);
@@ -108,46 +108,28 @@
 
         rowsArray.forEach(row => tableBody.appendChild(row));
     };
-    
+
 
     //Sorts the table numerically by the Cost column
     function sortTableNumerically(columnIndex) {
         toggleSortOrder()
-    const tableBody = document.getElementById('table-body');
-    const rowsArray = Array.from(tableBody.rows);
+        const tableBody = document.getElementById('table-body');
+        const rowsArray = Array.from(tableBody.rows);
 
-    rowsArray.sort((a, b) => {
-        const cellA = parseFloat(a.cells[columnIndex].textContent);
-        const cellB = parseFloat(b.cells[columnIndex].textContent);
+        rowsArray.sort((a, b) => {
+            const cellA = parseFloat(a.cells[columnIndex].textContent);
+            const cellB = parseFloat(b.cells[columnIndex].textContent);
 
-        if (currentSortOrder === 'asc') {
-            return cellA - cellB;
-        } else {
-            return cellB - cellA;
-        }
-    });
+            if (currentSortOrder === 'asc') {
+                return cellA - cellB;
+            } else {
+                return cellB - cellA;
+            }
+        });
 
-    rowsArray.forEach(row => tableBody.appendChild(row));
-}
-
-    //Sorts the table alphabetically by the type column
-    function sortByType() {
-        toggleSortOrder();
-
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const comparison = a.type.localeCompare(b.type);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        } else {
-            data.sort((a, b) => {
-                const comparison = a.type.localeCompare(b.type);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            });
-            updateTable(data);
-        }
+        rowsArray.forEach(row => tableBody.appendChild(row));
     }
+
 
     function resetOrder() {
         filteredData = [];
@@ -156,27 +138,35 @@
 
     //The fuction used for the types drop down
     function filterTags() {
-        const selectedTagElement = document.getElementById('rTagFilter'); 
+        // Get the selected tag from the dropdown
+        var selectedTag = document.getElementById('rTagFilter').value;
 
-        if (!selectedTagElement) {
-            console.error("Element with ID 'rTagFilter' not found.");
-            return;
-        }
+        // Get all table rows
+        var rows = document.getElementById('table').getElementsByTagName('tr');
 
-        const selectedTag = selectedTagElement.value;
+        // Loop through each row
+        for (var i = 1; i < rows.length; i++) {
+            // If the selected tag is 'All Tags', show all rows
+            if (selectedTag === '') {
+                rows[i].style.display = '';
+            } else {
+                // Get the tag for this row
+                var rowTag = rows[i].getElementsByTagName('td')[2].innerText;
 
-        if (selectedTag === '') {
-            resetFilterAndSort();
-        } else {
-            filteredData = data.filter((item) => item.type === selectedTag);
-            updateTable(filteredData);
+                // If the selected tag matches the row's tag, show the row
+                if (rowTag === selectedTag) {
+                    rows[i].style.display = '';
+                } else {
+                    // Otherwise, hide the row
+                    rows[i].style.display = 'none';
+                }
+            }
         }
     }
-
-    function resetFilterAndSort() {
-        filteredData = []; // Reset the filtered data
-        updateTable(data); // Update the table with the original data
-    }
+    // function resetFilterAndSort() {
+    //     filteredData = []; // Reset the filtered data
+    //     updateTable(data); // Update the table with the original data
+    // }
 
     // Adds an Item to the table
     function addItem() {
