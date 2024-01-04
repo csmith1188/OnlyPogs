@@ -156,7 +156,7 @@
 
     //The fuction used for the types drop down
     function filterTags() {
-        const selectedTagElement = document.getElementById('rTagFilter');
+        const selectedTagElement = document.getElementById('rTagFilter'); 
 
         if (!selectedTagElement) {
             console.error("Element with ID 'rTagFilter' not found.");
@@ -180,37 +180,43 @@
 
     // Adds an Item to the table
     function addItem() {
-
+        // form element
         var br = document.createElement("br");
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "addItem");
 
+        // item input element
         var item = document.createElement("input");
         item.setAttribute("type", "text");
         item.setAttribute("name", "item");
         item.setAttribute("placeholder", "item");
 
+        // cost input element
         var cost = document.createElement("input");
         cost.setAttribute("type", "text");
         cost.setAttribute("name", "cost");
         cost.setAttribute("placeholder", "cost");
 
+        // type input element
         var type = document.createElement("input");
         type.setAttribute("type", "text");
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
 
+        // userPerm input element
         var userPermInput = document.createElement("input");
         userPermInput.setAttribute("type", "hidden");
         userPermInput.setAttribute("name", "userPerm");
         userPermInput.setAttribute("value", userPerm);
         form.appendChild(userPermInput);
 
+        // submit input element
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
+        // appending input elements to form
         form.appendChild(item);
         form.appendChild(br.cloneNode());
 
@@ -220,6 +226,8 @@
         form.appendChild(type);
         form.appendChild(br.cloneNode());
         form.appendChild(s);
+
+        // appending form to body
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
@@ -229,24 +237,24 @@
 
         console.log(`Button Uid: ${buttonUid}`)
 
-        //form element
+        // form element
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "editItem");
 
-        //uid input element
+        // uid input element
         var uid = document.createElement("input");
         uid.setAttribute("type", "hidden")
         uid.setAttribute("name", "uid")
         uid.setAttribute("value", buttonUid)
 
-        //item input element
+        // item input element
         var item = document.createElement("input");
         item.setAttribute("type", "text");
         item.setAttribute("name", "item");
         item.setAttribute("placeholder", "item");
 
-        //cost input element
+        // cost input element
         var cost = document.createElement("input");
         cost.setAttribute("type", "text");
         cost.setAttribute("name", "cost");
@@ -258,109 +266,117 @@
         userPermInput.setAttribute("value", userPerm);
         form.appendChild(userPermInput);
 
-        //type input element
+        // type input element
         var type = document.createElement("input");
         type.setAttribute("type", "text");
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
 
 
-        //submit input element
+        // submit input element
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
-        //appending input elements to form
+        // appending input elements to form
         form.appendChild(uid);
         form.appendChild(item);
         form.appendChild(cost);
         form.appendChild(type);
         form.appendChild(s);
 
+        // appending form to body
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
-    //Deletes an Item from the table
+    // Deletes an Item from the table
     function deleteItem(buttonUid) {
 
         console.log(buttonUid)
 
+        // form element
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "deleteItem");
 
+        // uid input element
         var uid = document.createElement("input");
         uid.setAttribute("type", "hidden")
         uid.setAttribute("name", "uid")
         uid.setAttribute("placeholder", "uid")
         uid.setAttribute("value", buttonUid);
 
+        // userPerm input element
         var userPermInput = document.createElement("input");
         userPermInput.setAttribute("type", "hidden");
         userPermInput.setAttribute("name", "userPerm");
         userPermInput.setAttribute("value", userPerm);
         form.appendChild(userPermInput);
 
+        // submit input element
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
+        // appending input elements to form
         form.appendChild(uid);
         form.appendChild(s);
         form.submit()
+
+        // appending form to body
         document.getElementsByTagName("body")[0].appendChild(form)
     }
 
-    // //Updates the table after sorting
-    // function updateTable(updateData, buttonUid) {
-    //     const tableBody = document.getElementById('table-body');
-    //     const tableHead = document.getElementById('tableHead');
-    //     tableBody.innerHTML = '';
-    //     updateData.forEach((row) => {
+    //Updates the table after sorting
+    function updateTable(updateData, buttonUid) {
+        const tableBody = document.getElementById('table-body');
+        const tableHead = document.getElementById('tableHead');
+        tableBody.innerHTML = '';
+        updateData.forEach((row) => {
 
-    //         const aCost = document.createElement('a')
-    //         const aType = document.createElement('a')
-    //         const ebText = document.createElement('a')
-    //         const dbText = document.createElement('a')
+            const aCost = document.createElement('a')
+            const aType = document.createElement('a')
+            const ebText = document.createElement('a')
+            const dbText = document.createElement('a')
 
-    //         aCost.textContent = row.cost
-    //         aType.textContent = row.type
-    //         ebText.textContent = 'Edit'
-    //         dbText.textContent = 'Delete'
+            aCost.textContent = row.cost
+            aType.textContent = row.type
+            ebText.textContent = 'Edit'
+            dbText.textContent = 'Delete'
 
-    //         const eButton = document.createElement('button')
-    //         const dButton = document.createElement('button')
+            const eButton = document.createElement('button')
+            const dButton = document.createElement('button')
 
-    //         eButton.onclick = editItem
-    //         dButton.onclick = deleteItem
-    //         eButton.appendChild(ebText)
-    //         dButton.appendChild(dbText)
+            eButton.onclick = editItem
+            dButton.onclick = deleteItem
+            eButton.appendChild(ebText)
+            dButton.appendChild(dbText)
 
-    //         const tr = document.createElement('tr');
-    //         const tdItem = document.createElement('a');
-    //         const tdCost = document.createElement('td');
-    //         const tdType = document.createElement('td');
-    //         const tdButtons = document.createElement('td')
+            const tr = document.createElement('tr');
+            const tdItem = document.createElement('a');
+            const tdCost = document.createElement('td');
+            const tdType = document.createElement('td');
+            const tdButtons = document.createElement('td')
 
-    //         tdCost.appendChild(aCost)
-    //         tdType.appendChild(aType)
-    //         tdButtons.appendChild(eButton)
-    //         tdButtons.append(dButton)
+            tdCost.appendChild(aCost)
+            tdType.appendChild(aType)
+            tdButtons.appendChild(eButton)
+            tdButtons.append(dButton)
 
-    //         tdItem.href = row.url;
-    //         tdItem.textContent = row.item;
-    //         tdItem.innerHTML = row.item;
+            tdItem.href = row.url;
+            tdItem.textContent = row.item;
+            tdItem.innerHTML = row.item;
 
-    //         eButton.setAttribute('data-eButton', buttonUid)
-    //         dButton.setAttribute('data-dButton', buttonUid)
+            eButton.setAttribute('data-eButton', buttonUid)
+            dButton.setAttribute('data-dButton', buttonUid)
 
-    //         tr.appendChild(tdItem);
-    //         tr.appendChild(tdCost);
-    //         tr.appendChild(tdType);
-    //         tr.appendChild(tdButtons)
-    //         tableBody.appendChild(tr);
-    //     });
-    // }
+            tr.appendChild(tdItem);
+            tr.appendChild(tdCost);
+            tr.appendChild(tdType);
+            tr.appendChild(tdButtons)
+            tableBody.appendChild(tr);
+        });
+    }
 
 </script>
 
