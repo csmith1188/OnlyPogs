@@ -67,7 +67,7 @@
     // console.log(uid)
     var filteredData = [];
 
-    if (userPerm != 5) {
+    if (userPerm < 3) {
         document.getElementById("add").style.display = "none"
         for (let i = 0; i < data.length; i++) {
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
