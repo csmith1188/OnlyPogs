@@ -23,7 +23,7 @@ const PORT = 6969
 const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 //OnlyPogs url
-const THIS_URL = 'http://172.16.3.140:6969/login'
+const THIS_URL = 'http://172.16.3.102:6969/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
@@ -202,6 +202,7 @@ app.get('/rDetails', (req, res) => {
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
+  const userPerm = req.session.token.permissions;
   // Use Promises for better error handling and parallel execution
   Promise.all([
     new Promise((resolve, reject) => {
@@ -238,7 +239,7 @@ app.get('/pog', function (req, res) {
 
     .then(([pogData, colorData,]) => {
       // Both queries have completed successfully
-      res.render('pog', { pog: pogData, color: colorData });
+      res.render('pog', { pog: pogData, color: colorData, userPerm: userPerm });
       console.log(colorData)
       console.log(pogData);
     })

@@ -5,12 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>OnlyPogs: <%= pog.name %></title>
+  <title>OnlyPogs: <%=pog.name%>
+  </title>
 </head>
 
 <body>
   <h1>
-    <%= pog.name %>
+    <%=pog.name%>
   </h1>
 
   <div class="center">
@@ -18,8 +19,8 @@
     <button id="cancelButton" onclick="cancel(event)" style="display: none;">Cancel</button>
     <!--Created the image of the pog on the pog page-->
     <a id="img">
-    <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"
-    onerror="handleUnknown()" onclick="removeImage(event)">
+      <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"
+        onerror="handleUnknown()" onclick="removeImage(event)">
     </a>
 
 
@@ -29,9 +30,11 @@
       <div class="infobox">
         <p class="infoheader"><label>Colors</label></p>
         <select id="Pogs" onchange="pogChange()" class="info">
-          <%for (let Colors=0; Colors < pog.colors.length; Colors++) { %>
-          <option value="<%= Colors %>"><%= pog.colors[Colors] %></option>
-          <%} %>
+          <%for (let Colors=0; Colors < pog.colors.length; Colors++) {%>
+            <option value="<%= Colors %>">
+              <%=pog.colors[Colors] %>
+            </option>
+            <%}%>
         </select>
 
         <input type="text" id="selectedColor" style="display: none;" class='info'></input>
@@ -41,17 +44,23 @@
       <!--Displays the amount produce of the current pog-->
       <div class="infobox">
         <p class="infoheader">Amount Produced </p>
-        <p class="info" id="amount"><%= pog.amount %></p>
+        <p class="info" id="amount">
+          <%= pog.amount %>
+        </p>
       </div>
       <!--Displays the serial number of the current pog-->
       <div class="infobox">
         <p class="infoheader">Serial Number </p>
-        <p class="info" id="serial"><%= pog.serial %></p>
+        <p class="info" id="serial">
+          <%= pog.serial %>
+        </p>
       </div>
       <!--Displays the tags of the current pog-->
       <div class="infobox">
         <p class="infoheader">Tags</p>
-        <p class="info" id="tags"><%= pog.tags %></p>
+        <p class="info" id="tags">
+          <%= pog.tags %>
+        </p>
       </div>
 
       <!--Displays the Rarity of the current pog-->
@@ -62,12 +71,17 @@
       <!--Displays the lore of the current pog-->
       <div class="infobox">
         <p class='infoheader'>Pog Lore</p>
-        <p class='info' id="lore"><%= pog.lore %></p>
+        <p class='info' id="lore">
+          <%= pog.lore %>
+        </p>
       </div>
     </div>
   </div>
 
   <script>
+    var userPerm = <%-userPerm%>;
+    console.log(userPerm)
+
     //Creating a variable called pog and setting it to the stringified pog.name
     pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
@@ -91,7 +105,7 @@
     }
 
     var pogData = <%-JSON.stringify(pog)%>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
-
+    
     // total pog amount
     var totalPog = 1856.5
 
@@ -125,83 +139,83 @@
       document.getElementById("Pogs").options[selectedIndex].text = selectedColor;
     };
 
- let pogImageValue = 0;
-pogPNG.onclick = function() {
-  window.location.href = "/"
-}
-function edit() {
-
-  editMode = true;
-
-  const infoElements = document.getElementsByClassName("info");
-
-  for (let i = 0; i < infoElements.length; i++) {
-    const element = infoElements[i];
-    if (element.id === "serial" || element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
-      element.setAttribute("contentEditable", "false");
-    } else {
-      originalData[element.id] = element.textContent;
-      element.textContent = originalData[element.id];
-      element.setAttribute("contentEditable", "true");
-    }
-  }
-
-  const dropdownMenu = document.getElementById("Pogs");
-  originalDropdownHTML = dropdownMenu.innerHTML;
-
-  // Set selectedColor box value to the text of the first option
-  const selectedColorElement = document.getElementById("Pogs");
-  const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
-  document.getElementById("selectedColor").value = selectedColor;
-
-  document.getElementById("selectedColor").style.display = "block";
-
-  const pogpng = document.getElementById("pogPNG");
-  pogpng.onclick = function() {
-    if (editMode) {
-      // Replace the image with the FillerPog
-      pogpng.src = "/pogs/FillerPog.png";
-    } else {
-      // Call pogChange function to handle image change
-      pogChange();
+    let pogImageValue = 0;
+    pogPNG.onclick = function () {
       window.location.href = "/"
     }
-  };
+    function edit() {
 
-  document.getElementById("selectedColor").addEventListener("blur", blurListener);
+      editMode = true;
 
-  document.getElementById("cancelButton").style.display = "inline";
-  document.getElementById("editButton").innerHTML = "Save";
-  document.getElementById("editButton").onclick = save;
-}
+      const infoElements = document.getElementsByClassName("info");
 
-// Function to handle changing the pog image based on the selected pog and color
-function pogChange() {
-  const pogImageValue = pogImage.value;
+      for (let i = 0; i < infoElements.length; i++) {
+        const element = infoElements[i];
+        if (element.id === "serial" || element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
+          element.setAttribute("contentEditable", "false");
+        } else {
+          originalData[element.id] = element.textContent;
+          element.textContent = originalData[element.id];
+          element.setAttribute("contentEditable", "true");
+        }
+      }
 
-  document.getElementById('error').innerText = "";
+      const dropdownMenu = document.getElementById("Pogs");
+      originalDropdownHTML = dropdownMenu.innerHTML;
 
-  if (pogImageValue == 0) {
-    pogpng.src = `/pogs/${pog}.png`;
-  } else {
-    pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
-    pogpng.setAttribute(
-      'onerror',
-      `this.src = '/pogs/${pog}.png'; handleUnknown(); this.onerror = ' ';`
-    );
-  }
+      // Set selectedColor box value to the text of the first option
+      const selectedColorElement = document.getElementById("Pogs");
+      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+      document.getElementById("selectedColor").value = selectedColor;
 
-  const selectedColorElement = document.getElementById("Pogs");
-  const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+      document.getElementById("selectedColor").style.display = "block";
 
-  if (selectedColor === "FillerPog") {
-    pogpng.src = "/pogs/FillerPog.png";
-  }
+      const pogpng = document.getElementById("pogPNG");
+      pogpng.onclick = function () {
+        if (editMode) {
+          // Replace the image with the FillerPog
+          pogpng.src = "/pogs/FillerPog.png";
+        } else {
+          // Call pogChange function to handle image change
+          pogChange();
+          window.location.href = "/"
+        }
+      };
 
-  document.getElementById("selectedColor").value = selectedColor;
+      document.getElementById("selectedColor").addEventListener("blur", blurListener);
 
-  pogpng.onclick = removeImage;
-}
+      document.getElementById("cancelButton").style.display = "inline";
+      document.getElementById("editButton").innerHTML = "Save";
+      document.getElementById("editButton").onclick = save;
+    }
+
+    // Function to handle changing the pog image based on the selected pog and color
+    function pogChange() {
+      const pogImageValue = pogImage.value;
+
+      document.getElementById('error').innerText = "";
+
+      if (pogImageValue == 0) {
+        pogpng.src = `/pogs/${pog}.png`;
+      } else {
+        pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
+        pogpng.setAttribute(
+          'onerror',
+          `this.src = '/pogs/${pog}.png'; handleUnknown(); this.onerror = ' ';`
+        );
+      }
+
+      const selectedColorElement = document.getElementById("Pogs");
+      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+
+      if (selectedColor === "FillerPog") {
+        pogpng.src = "/pogs/FillerPog.png";
+      }
+
+      document.getElementById("selectedColor").value = selectedColor;
+
+      pogpng.onclick = removeImage;
+    }
 
     // Cancels the event's default behavior and performs various actions to reset the state of the page.
     // 
@@ -243,32 +257,61 @@ function pogChange() {
 
 
     function save() {
-      console.log("U saved lel")
-      // var infoElements = document.getElementsByClassName("info");
-      // var newData = {};
-      // for (var i = 0; i < infoElements.length; i++) {
-      //   newData[infoElements[i].id] = infoElements[i].textContent;
-      // }
-      // fetch('/save', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(newData),
-      //   })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     console.log('Success:', data);
-      //     document.getElementById("cancelButton").style.display = "none";
-      //   })
-      //   .catch((error) => {
-      //     console.error('Error:', error);
-      //   });
-      // for (var i = 0; i < infoElements.length; i++) {
-      //   infoElements[i].setAttribute("contenteditable", "false");
-      // }
-      // document.getElementById("editButton").innerHTML = "Edit";
-      // document.getElementById("editButton").onclick = Edit;
+      // Get the values of amount, tags, and lore from the input fields
+      const amountData = document.getElementById('amount').textContent.trim();
+      const tagsData = document.getElementById('tags').textContent.trim();
+      const loreData = document.getElementById('lore').textContent.trim();
+      var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
+        return option.text;
+      });
+      // Check if any of the values are missing
+      let missingData = '';
+
+      if (!amountData) missingData += 'Amount, ';
+      if (!tagsData) missingData += 'Tags, ';
+      if (!loreData) missingData += 'Lore, ';
+      if (colorData.some(color => color === '')) missingData += 'Colors, ';
+
+      if (missingData) {
+        alert('Missing data: ' + missingData.slice(0, -2));
+        return;
+      }
+
+      // Check if the tags value is valid
+      const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
+      if (!validTags.includes(tagsData)) {
+        alert('Invalid tag');
+        return;
+      }
+      // Data to be saved
+      const data = {
+        uid: pogData.uid,
+        amount: amountData,
+        tags: tagsData,
+        lore: loreData,
+        colors: colorData,
+      };
+      console.log('About to send fetch request'); // This log should show up in the browser console when the save button is pressed
+      fetch('/savePog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          color: colorValue,
+          amount: amountValue,
+          tags: tagsValue,
+          lore: loreValue,
+          uid: uidValue,
+        }),
+      })
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     }
   </script>
 </body>
