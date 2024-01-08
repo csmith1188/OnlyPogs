@@ -11,21 +11,22 @@
 
 <body>
     <!--A div containing the buttons and any other forms that do various things-->
-    <div id="rTagDropDown">
+    <div id="tagDropDown">
         <!--Filters the types using a drop down-->
         <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
             <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
-                <% for (let i=0; i < uniqueTags.length; i++) { %>
-                    <option value="<%= uniqueTags[i] %>">
-                        <%= uniqueTags[i] %>
-                    </option>
-                    <% } %>
-        </select>
-        <button><a href="/acc">Account</a></button>
-        <button><a href="/">Pogs</a></button>
-        <button><a href="/rDetails">Reward Details</a></button>
-        <button onclick='addItem()' id="add"><a>Add Row</a></button>
+            <% for (let i=0; i < uniqueTags.length; i++) { %>
+                <option value="<%= uniqueTags[i] %>">
+                    <%= uniqueTags[i] %>
+                </option>
+                <% } %>
+            </select>
+            <button><a href="/acc">Account</a></button>
+            <button><a href="/">Pogs</a></button>
+            <button><a href="/rDetails">Reward Details</a></button>
+            <button onclick='addItem()' id="add"><a>Add Row</a></button>
+            Pog Rewards
     </div> <br>
     <table id="table">
         <thead id="tableHead">
@@ -67,7 +68,7 @@
     // console.log(uid)
     var filteredData = [];
 
-    if (userPerm < 3) {
+    if (userPerm > 3) {
         document.getElementById("add").style.display = "none"
         for (let i = 0; i < data.length; i++) {
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
