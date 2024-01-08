@@ -48,16 +48,7 @@ option:nth-child(odd){
 }
 button{
   background-color: #3B443C;
-}
-#tagDropDown {
-  text-align: center;
-  width: auto;
-  height: auto;
-  font-size: 50px;
-  background-color: #242525;
-  font-family: 'Courier New', monospace;
-  font-style: italic;
-  color: #ffffff;
+
 }
 /*pog.ejs*/
 p{
