@@ -137,6 +137,10 @@ app.post('/addItem', (req, res) => {
   const cost = req.body.cost
   const type = req.body.type
   const checkPerms = req.body.userPerm
+  console.log(`Uid: ${uid}`)
+  console.log(item)
+  console.log(cost)
+  console.log(type)
   if (checkPerms == req.session.token.permissions) {
     db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
       if (err) {
@@ -176,6 +180,7 @@ app.post('/editItem', (req, res) => {
     // res.send("Insufficient Permissions")
   }
 })
+
 
 app.post('/deleteItem', (req, res) => {
   const uid = req.body.uid
