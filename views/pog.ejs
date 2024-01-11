@@ -78,11 +78,17 @@
     </div>
   </div>
 
-  <script>
-    var userPerm = <%-userPerm%>;
-    console.log(userPerm)
 
-    //Creating a variable called pog and setting it to the stringified pog.name
+  <script>
+
+    var userPerm = <%-userPerm%>;
+    // var userPerm = 3;
+
+    if (userPerm < 3) {
+      document.getElementById("editButton").style.display = "none";
+      document.getElementById("cancelButton").style.display = "none";
+    }
+
     pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
     var editMode = false
@@ -105,7 +111,7 @@
     }
 
     var pogData = <%-JSON.stringify(pog)%>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
-    
+
     // total pog amount
     var totalPog = 1856.5
 
@@ -143,176 +149,178 @@
     pogPNG.onclick = function () {
       window.location.href = "/"
     }
+    
     function edit() {
+      if (userPerm > 2) {
+        editMode = true;
 
-      editMode = true;
+        const infoElements = document.getElementsByClassName("info");
 
-      const infoElements = document.getElementsByClassName("info");
-
-      for (let i = 0; i < infoElements.length; i++) {
-        const element = infoElements[i];
-        if (element.id === "serial" || element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
-          element.setAttribute("contentEditable", "false");
-        } else {
-          originalData[element.id] = element.textContent;
-          element.textContent = originalData[element.id];
-          element.setAttribute("contentEditable", "true");
+        for (let i = 0; i < infoElements.length; i++) {
+          const element = infoElements[i];
+          if (element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
+            element.setAttribute("contentEditable", "false");
+          } else {
+            originalData[element.id] = element.textContent;
+            element.textContent = originalData[element.id];
+            element.setAttribute("contentEditable", "true");
+          }
         }
+
+        const dropdownMenu = document.getElementById("Pogs");
+        originalDropdownHTML = dropdownMenu.innerHTML;
+
+        // Set selectedColor box value to the text of the first option
+        const selectedColorElement = document.getElementById("Pogs");
+        const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+        document.getElementById("selectedColor").value = selectedColor;
+
+        document.getElementById("selectedColor").style.display = "block";
+
+        const pogpng = document.getElementById("pogPNG");
+        pogpng.onclick = function () {
+          if (editMode) {
+            // Replace the image with the FillerPog
+            pogpng.src = "/pogs/FillerPog.png";
+          } else {
+            // Call pogChange function to handle image change
+            pogChange();
+            window.location.href = "/"
+          }
+        };
+
+        document.getElementById("selectedColor").addEventListener("blur", blurListener);
+        document.getElementById("cancelButton").style.display = "inline";
+        document.getElementById("editButton").innerHTML = "Save";
+        document.getElementById("editButton").onclick = save;
       }
-
-      const dropdownMenu = document.getElementById("Pogs");
-      originalDropdownHTML = dropdownMenu.innerHTML;
-
-      // Set selectedColor box value to the text of the first option
-      const selectedColorElement = document.getElementById("Pogs");
-      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
-      document.getElementById("selectedColor").value = selectedColor;
-
-      document.getElementById("selectedColor").style.display = "block";
-
-      const pogpng = document.getElementById("pogPNG");
-      pogpng.onclick = function () {
-        if (editMode) {
-          // Replace the image with the FillerPog
-          pogpng.src = "/pogs/FillerPog.png";
-        } else {
-          // Call pogChange function to handle image change
-          pogChange();
-          window.location.href = "/"
-        }
-      };
-
-      document.getElementById("selectedColor").addEventListener("blur", blurListener);
-
-      document.getElementById("cancelButton").style.display = "inline";
-      document.getElementById("editButton").innerHTML = "Save";
-      document.getElementById("editButton").onclick = save;
     }
 
     // Function to handle changing the pog image based on the selected pog and color
     function pogChange() {
-      const pogImageValue = pogImage.value;
+      if (userPerm > 2) {
+        const pogImageValue = pogImage.value;
 
-      document.getElementById('error').innerText = "";
+        document.getElementById('error').innerText = "";
 
-      if (pogImageValue == 0) {
-        pogpng.src = `/pogs/${pog}.png`;
-      } else {
-        pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
-        pogpng.setAttribute(
-          'onerror',
-          `this.src = '/pogs/${pog}.png'; handleUnknown(); this.onerror = ' ';`
-        );
+        if (pogImageValue == 0) {
+          pogpng.src = `/pogs/${pog}.png`;
+        } else {
+          pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
+          pogpng.setAttribute(
+            'onerror',
+            `this.src = '/pogs/${pog}.png'; handleUnknown(); this.onerror = ' ';`
+          );
+        }
+
+        const selectedColorElement = document.getElementById("Pogs");
+        const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+
+        if (selectedColor === "FillerPog") {
+          pogpng.src = "/pogs/FillerPog.png";
+        }
+
+        document.getElementById("selectedColor").value = selectedColor;
+
+        pogpng.onclick = removeImage;
       }
-
-      const selectedColorElement = document.getElementById("Pogs");
-      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
-
-      if (selectedColor === "FillerPog") {
-        pogpng.src = "/pogs/FillerPog.png";
-      }
-
-      document.getElementById("selectedColor").value = selectedColor;
-
-      pogpng.onclick = removeImage;
     }
 
-    // Cancels the event's default behavior and performs various actions to reset the state of the page.
-    // 
-    // Parameters:
-    // - event: The event object that triggered the function.
-    // 
-    // Returns: None
     function cancel(event) {
-      editMode = false
-      event.preventDefault();
+      if (userPerm > 2) {
+        editMode = false
+        event.preventDefault();
 
-      const infoElements = document.getElementsByClassName("info");
-      for (let i = 0; i < infoElements.length; i++) {
-        const element = infoElements[i];
-        element.textContent = originalData[element.id] || element.textContent;
-        element.setAttribute("contentEditable", "false");
+        const infoElements = document.getElementsByClassName("info");
+        for (let i = 0; i < infoElements.length; i++) {
+          const element = infoElements[i];
+          element.textContent = originalData[element.id] || element.textContent;
+          element.setAttribute("contentEditable", "false");
+        }
+
+        const selectedColor = document.getElementById("selectedColor");
+        selectedColor.removeEventListener("blur", blurListener);
+        selectedColor.style.display = "none";
+
+        const dropdownMenu = document.getElementById("Pogs");
+        dropdownMenu.innerHTML = originalDropdownHTML;
+
+        pogpng.src = originalImageSource || pogpng.src;
+
+        document.getElementById("cancelButton").style.display = "none";
+        const editButton = document.getElementById("editButton");
+        editButton.innerHTML = "Edit";
+        editButton.onclick = edit;
       }
 
-      const selectedColor = document.getElementById("selectedColor");
-      selectedColor.removeEventListener("blur", blurListener);
-      selectedColor.style.display = "none";
-
-      const dropdownMenu = document.getElementById("Pogs");
-      dropdownMenu.innerHTML = originalDropdownHTML;
-
-      pogpng.src = originalImageSource || pogpng.src;
-
-      document.getElementById("cancelButton").style.display = "none";
-      const editButton = document.getElementById("editButton");
-      editButton.innerHTML = "Edit";
-      editButton.onclick = edit;
-    }
-
-    for (const key in pog) {
-      if (Object.hasOwnProperty.call(pog, key)) {
-        const element = pog[key];
+      for (const key in pog) {
+        if (Object.hasOwnProperty.call(pog, key)) {
+          const element = pog[key];
+        }
       }
     }
-
 
     function save() {
-      // Get the values of amount, tags, and lore from the input fields
-      const amountData = document.getElementById('amount').textContent.trim();
-      const tagsData = document.getElementById('tags').textContent.trim();
-      const loreData = document.getElementById('lore').textContent.trim();
-      var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
-        return option.text;
-      });
-      // Check if any of the values are missing
-      let missingData = '';
-
-      if (!amountData) missingData += 'Amount, ';
-      if (!tagsData) missingData += 'Tags, ';
-      if (!loreData) missingData += 'Lore, ';
-      if (colorData.some(color => color === '')) missingData += 'Colors, ';
-
-      if (missingData) {
-        alert('Missing data: ' + missingData.slice(0, -2));
-        return;
-      }
-
-      // Check if the tags value is valid
-      const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
-      if (!validTags.includes(tagsData)) {
-        alert('Invalid tag');
-        return;
-      }
-      // Data to be saved
-      const data = {
-        uid: pogData.uid,
-        amount: amountData,
-        tags: tagsData,
-        lore: loreData,
-        colors: colorData,
-      };
-      console.log('About to send fetch request'); // This log should show up in the browser console when the save button is pressed
-      fetch('/savePog', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          color: colorValue,
-          amount: amountValue,
-          tags: tagsValue,
-          lore: loreValue,
-          uid: uidValue,
-        }),
-      })
-        .then(response => response.json()) // Parse the JSON response
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
+      if (userPerm > 2) {
+        // Get the values of amount, tags, and lore from the input fields
+        var amountData = document.getElementById('amount').textContent.trim();
+        var serialData = document.getElementById('serial').textContent.trim();
+        var tagsData = document.getElementById('tags').textContent.trim();
+        var loreData = document.getElementById('lore').textContent.trim();
+        var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
+          return option.text;
         });
-    }
+
+        // Check if any of the values are missing
+        let missingData = '';
+
+        if (!amountData) missingData += 'Amount, ';
+        if (!serialData) missingData += 'Serial Number, ';
+        if (!tagsData) missingData += 'Tags, ';
+        if (!loreData) missingData += 'Lore, ';
+        if (colorData.some(color => color === '')) missingData += 'Colors, ';
+
+        if (missingData) {
+          alert('Missing data: ' + missingData.slice(0, -2));
+          return;
+        }
+
+        // Check if the tags value is valid
+        const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
+        if (!validTags.includes(tagsData)) {
+          alert('Invalid tag');
+          return;
+        }
+        var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
+  return option.text;
+});
+
+colorData = `{"colors":${JSON.stringify(colorData)}}`; // use JSON.stringify to convert the array into a JSON string
+
+console.log(colorData);
+
+console.log('About to send fetch request');
+console.log(amountData, serialData, tagsData, loreData, colorData, pogData.uid);
+fetch('/savePog', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+            color: colorData,
+            amount: amountData,
+            serial: serialData,
+            tags: tagsData,
+            lore: loreData,
+            uid: pogData.uid
+          })
+        })
+          .then(response => response.json())
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    };
   </script>
 </body>
 
