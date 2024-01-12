@@ -159,7 +159,7 @@
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
         updateData.forEach((row) => {
-            
+
             const aSerial = document.createElement('a')
             const aAmount = document.createElement('a')
             const aTags = document.createElement('a')
@@ -207,15 +207,17 @@
                     <% } %>
         </select> <br>
 
+    </div><br>
+    
         <div class="buttons">
-            <button class="button" id="accButton"><a href="/acc">Account</a></button>
+            <!-- <button class="button" id="accButton"><a href="/acc">Account</a></button> -->
             <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
         </div>
-    </div><br>
     <table id="table">
         <thead>
             <tr>
-                <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+
+                <!-- Each column header has its own onclick function that sorts the by the column  -->
                 <th id="name" onclick="sortByName()"><a>Name --</a></th>
                 <th id="serial" onclick="sortBySerial()"><a>Serial Number --</a></th>
                 <th id="amount" onclick="sortByAmount()"><a>Amount Produced --</a></th>
