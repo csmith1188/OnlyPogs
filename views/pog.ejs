@@ -80,9 +80,7 @@
 
 
   <script>
-
-    var userPerm = <%-userPerm%>;
-    // var userPerm = 3;
+    var userPerm = <% -userPerm %>;
 
     if (userPerm < 3) {
       document.getElementById("editButton").style.display = "none";
@@ -149,7 +147,7 @@
     pogPNG.onclick = function () {
       window.location.href = "/"
     }
-    
+
     function edit() {
       if (userPerm > 2) {
         editMode = true;
@@ -292,21 +290,21 @@
           return;
         }
         var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
-  return option.text;
-});
+          return option.text;
+        });
 
-colorData = `{"colors":${JSON.stringify(colorData)}}`; // use JSON.stringify to convert the array into a JSON string
+        colorData = `{"colors":${JSON.stringify(colorData)}}`; // use JSON.stringify to convert the array into a JSON string
 
-console.log(colorData);
+        console.log(colorData);
 
-console.log('About to send fetch request');
-console.log(amountData, serialData, tagsData, loreData, colorData, pogData.uid);
-fetch('/savePog', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
+        console.log('About to send fetch request');
+        console.log(amountData, serialData, tagsData, loreData, colorData, pogData.uid);
+        fetch('/savePog', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
             color: colorData,
             amount: amountData,
             serial: serialData,
