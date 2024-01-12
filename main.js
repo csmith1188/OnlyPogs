@@ -23,7 +23,11 @@ const PORT = 6969
 const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 //OnlyPogs url
-const THIS_URL = 'http://172.16.3.120:6969/login'
+
+const THIS_URL = 'http://172.16.3.102:6969/login'
+
+const THIS_URL = 'http://172.16.3.145:6969/login'
+
 
 const dbPath = path.join('./static', 'pog.db');
 
@@ -131,6 +135,7 @@ app.get('/rewards', (req, res) => {
     })
   })
 })
+app.use(bodyParser.json());
 
 app.post('/addItem', (req, res) => {
   const item = req.body.item
@@ -207,21 +212,25 @@ app.get('/rDetails', (req, res) => {
 app.get('/pog', function (req, res) {
   const pogName = req.query.name;
   const parentID = req.query.parentID;
+  const userPerm = req.session.token.permissions;
   // Use Promises for better error handling and parallel execution
   Promise.all([
     new Promise((resolve, reject) => {
       db.get('SELECT * FROM pogs WHERE name = ?', [pogName], (err, row) => {
-        if (err) {
-          console.error(err.message);
-          reject(err);
-          return;
-        }
         if (!row) {
           // Handle the case where no data was found for the given name
           res.status(404).send('Pog not found');
           return;
-        }
-        row.colors = JSON.parse(row.color).colors;
+         }
+         
+         let colors;
+         try {
+          colors = JSON.parse(row.color).colors;
+         } catch (error) {
+          console.error('Error parsing JSON:', error, row.color);
+         }
+         row.colors = colors;
+
         resolve(row);
       });
     }),
@@ -243,7 +252,7 @@ app.get('/pog', function (req, res) {
 
     .then(([pogData, colorData,]) => {
       // Both queries have completed successfully
-      res.render('pog', { pog: pogData, color: colorData });
+      res.render('pog', { pog: pogData, color: colorData, userPerm: userPerm });
       console.log(colorData)
       console.log(pogData);
     })
@@ -252,6 +261,37 @@ app.get('/pog', function (req, res) {
       res.status(500).send('An error occurred ' + err);
     })
 })
+
+app.post('/savePog', (req, res) => {
+  const color = req.body.color;
+  const amount = req.body.amount;
+  const serial = req.body.serial;
+  const tags = req.body.tags;
+  const lore = req.body.lore;
+  const uid = req.body.uid;
+  
+  // Log the received data
+  console.log('Received data:', {
+    color: color,
+    amount: amount,
+    serial: serial,
+    tags: tags,
+    lore: lore,
+    uid: uid
+  });
+
+  var sql = 'UPDATE pogs SET color = ?, amount = ?, serial = ?, tags = ?, lore = ? WHERE uid = ?';
+  db.run(sql, [color, amount, serial, tags, lore, uid], (err) => {
+    if (err) {
+      console.log('Database error:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.json({ message: 'Data saved successfully' });
+    }
+  });
+});
+
+
 
 //Closes the database connection
 process.on('SIGINT', () => {
