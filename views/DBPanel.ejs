@@ -1,0 +1,443 @@
+<!--
+  This file has 4 main purposes: Edit & Save changes the pog database, delete entries from the pog database, add new entries to the pog database. 
+  This file is meant for developers only, do not merge this into the main ever. 
+
+  This file works in conjunction with 'DBPanel.js', this file uses the data from DBPanel.js to create a readable table of all entries in the pogs table inside the pog.db.
+
+  There are 4 functions in this file:
+  - 'editRow' Allows the editing of a row.
+  - 'cancelEditing' Reloads the page and cancels editing.
+  - 'saveChanges' Saves changes to the database.
+  - 'confirmDelete' Deletes a row from the database.
+
+  To Do:
+  An add entry function should do these things:
+  - Allow you to fill in name, colors, lore, tags and image
+    - These are required and cannot be left blank
+  - Allow you to fill in serial and amount
+    - These, if left blank or at 0 change its value to 'N/A'
+  - After all data is gathered, a url and uid must be made for it. 
+    - url should be formatted as '/pog?name={$name}'
+    - uid should be be made from the highest current uid +1
+  Change add Entry to mimic a data entry with a 'Push' button
+
+  Change color so it is a table instead (hide JSON)
+-->
+<!DOCTYPE html>
+<html>
+<style>
+  .add-entry-button {
+    background: none;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer
+  }
+
+  .data-row {
+    background-color: #a4ea9c;
+
+  }
+
+  .data-row:nth-child(even) {
+    background-color: #add5a8;
+  }
+
+  input {
+    background-color: inherit;
+    font-size: 16px;
+  }
+
+  form {
+    justify-content: space-around;
+    display: flex;
+  }
+</style>
+
+<head>
+  <title>DBPanel</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+  <h1 style="display: flex; justify-content: space-between;">
+    Data from pogs.db
+    <button id="add-entry-button" class="add-entry-button" onclick="createTemporaryEntry()">Add Entry</button>
+  </h1>
+  <!-- Add an image input -->
+
+  <div id="add-entry-container" style="display: none;">
+    <table>
+      <td><input type="text" id="new-color" placeholder="Color"></td>
+      <td><input type="text" id="new-tags" placeholder="Tags"></td>
+      <td><input type="text" id="new-lore" placeholder="Lore"></td>
+      <td><input type="text" id="new-name" placeholder="Name"></td>
+      <td><input type="text" id="new-serial" placeholder="Serial"></td>
+      <td><input type="text" id="new-amount" placeholder="Amount"></td>
+      <tr>
+        <td><label for="new-image">Image:</label></td>
+        <td><input type="file" id="new-image" accept="image/*"></td>
+      </tr>
+      <td>
+        <button id="add-new-entry-button" class="add-new-entry-button" onclick="submitForm()">Add</button>
+        <button id="cancel-entry-button" class="cancel-entry-button" onclick="cancelNewEntry()">Cancel</button>
+      </td>
+    </table>
+  </div>
+
+  <div id="data-container">
+    <table>
+      <thead>
+        <tr>
+          <!-- Labels for each column that is visible -->
+          <th>Name</th>
+          <th>Color</th>
+          <th>Serial</th>
+          <th>Amount</th>
+          <th>Lore</th>
+          <th>Tags</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- The create the cells for every entry in the database -->
+        <% data.forEach((row, index) => { %>
+        <tr class="data-row" data-uid="<%= row.uid %>">
+          <td data-field="name"><%= row.name %></td>
+          <td data-field="color"><%= row.color %></td>
+          <td data-field="serial"><%= row.serial %></td>
+          <td data-field="amount"><%= row.amount %></td>
+          <td data-field="lore"><%= row.lore %></td>
+          <td data-field="tags"><%= row.tags %></td>
+          <td>
+            <!-- The buttons generated for every entry, half are not visible at all times -->
+            <button id="edit-<%= row.uid %>" class="edit-button" onclick="editRow('<%= row.uid %>')">Edit</button>
+            <button id="delete-<%= row.uid %>" class="delete-button"
+              onclick="confirmDelete('<%= row.uid %>')">Delete</button>
+            <button id="save-<%= row.uid %>" class="save-button" style="display: none">Save</button>
+            <button id="cancel-<%= row.uid %>" class="cancel-button" style="display: none">Cancel</button>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    var newEntry = {
+      uid: null,
+      name: null,
+      color: null,
+      serial: null,
+      amount: null,
+      lore: null,
+      tags: null,
+    };
+    var numberOfTemEntries = 0
+
+    // Function to submit the form
+    function createTemporaryEntry() {
+      // Create a new form
+      var form = document.createElement('form');
+      form.className = "data-row"
+      // Create input fields for the form
+      var inputFields = [{
+          id: 'new-name',
+          name: 'name',
+          type: 'text',
+          value: ''
+        },
+        {
+          id: 'new-color',
+          name: 'color',
+          type: 'text',
+          value: ''
+        },
+        {
+          id: 'new-serial',
+          name: 'serial',
+          type: 'text',
+          value: ''
+        },
+        {
+          id: 'new-amount',
+          name: 'amount',
+          type: 'text',
+          value: ''
+        },
+        {
+          id: 'new-lore',
+          name: 'lore',
+          type: 'text',
+          value: ''
+        },
+        {
+          id: 'new-tags',
+          name: 'tags',
+          type: 'text',
+          value: ''
+        },
+      ];
+
+      inputFields.forEach(function (field) {
+        var input = document.createElement('input');
+        input.placeholder = field.name;
+        input.className = field.id
+        input.name = field.name;
+        input.type = field.type;
+        input.value = field.value;
+        input.required = true
+        form.appendChild(input);
+      });
+
+      // Create a submit button for the form
+      var buttons = document.createElement("div")
+      buttons.className = "buttons"
+      var submitButton = document.createElement('button');
+      submitButton.textContent = 'Submit';
+      submitButton.id = numberOfTemEntries
+      numberOfTemEntries++
+      submitButton.onclick = function (event) {
+        event.preventDefault();
+        submitForm(event.target.id);
+      };
+      buttons.appendChild(submitButton);
+
+      // Create a delete button for the form
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        deleteTemporaryEntry(event);
+      });
+      buttons.appendChild(deleteButton);
+      form.appendChild(buttons)
+
+      // Add the form to the body of the document below the "Data from pogs.db" text
+      var dataFromPogsDbText = document.querySelector('h1');
+      dataFromPogsDbText.insertAdjacentElement('afterend', form);
+    }
+
+
+    // Function to delete a temporary entry
+    function deleteTemporaryEntry(event) {
+      // Find the parent form of the delete button
+      var form = event.target.parentNode.parentNode;
+
+      // Remove the form from the document
+      form.parentNode.removeChild(form);
+    }
+
+    function submitForm(id) {
+
+      // Send a POST request to the '/add-entry' endpoint with the form data
+      fetch('/get-highest-uid')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Failed to fetch highest UID: ${response.status} - ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const highestUID = data.highestUID;
+          const newUID = highestUID + 1;
+          var newEntry = {
+            uid: newUID, // Set the new UID
+            name: document.getElementsByClassName('new-name')[id].value,
+            color: document.getElementsByClassName('new-color')[id].value,
+            serial: document.getElementsByClassName('new-serial')[id].value,
+            amount: document.getElementsByClassName('new-amount')[id].value,
+            lore: document.getElementsByClassName('new-lore')[id].value,
+            tags: document.getElementsByClassName('new-tags')[id].value
+          };
+
+          // Check for required fields and validate input
+          if (!newEntry.name || !newEntry.color || !newEntry.lore || !newEntry.tags) {
+            alert('Error: Required fields are missing. Entry not added.');
+            return;
+          }
+
+          // Set serial and amount to 'N/A' if not provided
+          if (!newEntry.serial) {
+            newEntry.serial = 'N/A';
+          }
+
+          if (!newEntry.amount || newEntry.amount === '0') {
+            newEntry.amount = 'N/A';
+          }
+
+          // Generate URL based on the name
+          newEntry.url = `/pog?name=${encodeURIComponent(newEntry.name)}`;
+
+          fetch('/add-entry', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newEntry),
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`Failed to add the entry: ${response.status} - ${response.statusText}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              alert('New entry saved successfully.');
+              location.reload(); // Reload the page
+            })
+            .catch(error => {
+              console.error('Error adding the entry:', error);
+              alert('Error adding the entry. Please try again.');
+            });
+        })
+    }
+
+    /**
+      Function to edit a row.
+      @param {string} uid - The unique identifier of the row to edit.
+    */
+    function editRow(uid) {
+      /*
+        When clicked, ask if you are sure you want to edit this entry. If confirmed,
+        make the content of cells with the same uid as the button editable.
+        Swap button visibility to Save and Cancel.
+        Handle saving changes when the Save button is clicked and canceling when Cancel is clicked.
+      */
+      // Get the row and its cells
+      var row = document.querySelector(`.data-row[data-uid="${uid}"]`);
+      var cells = row.querySelectorAll('td');
+
+      // Confirm if the user wants to edit
+      var confirmation = confirm('Are you sure you want to edit this entry?');
+
+      if (confirmation) {
+        // Enable content editing for the cells, excluding the UID cell
+        cells.forEach((cell) => {
+          if (cell.getAttribute('data-field') !== 'uid') {
+            cell.contentEditable = true;
+          }
+        });
+
+        // Get the Save and Cancel buttons
+        var saveButton = document.getElementById(`save-${uid}`);
+        var cancelButton = document.getElementById(`cancel-${uid}`);
+        var editButton = document.querySelector(`.data-row[data-uid="${uid}"] button.edit-button`);
+        var deleteButton = document.querySelector(`.data-row[data-uid="${uid}"] button.delete-button`);
+
+        // Swap Edit and Delete buttons with Save and Cancel buttons
+        editButton.style.display = 'none';
+        deleteButton.style.display = 'none';
+        saveButton.style.display = 'block';
+        cancelButton.style.display = 'block';
+
+        saveButton.innerText = 'Save';
+        saveButton.onclick = () => saveChanges(uid, cells);
+        cancelButton.innerText = 'Cancel';
+        cancelButton.onclick = () => cancelEditing(uid, cells);
+      }
+    }
+
+    /**
+      Function to cancel editing a row.
+      @param {string} uid - The unique identifier of the row to cancel editing.
+    */
+    function cancelEditing(uid) {
+      /*
+        When clicked, ask if you want to undo the changes made. If confirmed,
+        reload the page to cancel the editing process.
+      */
+      var confirmation = confirm('Are you sure you want to cancel these changes?');
+
+      if (confirmation) {
+        location.reload();
+      };
+    }
+
+    /**
+      Function to save changes for a row.
+      @param {string} uid - The unique identifier of the row to save changes.
+      @param {HTMLTableCellElement[]} cells - An array of table cells to save changes from.
+     */
+    function saveChanges(uid, cells) {
+      /*
+      When clicked, ask if you are sure you want to save the changes in this row. If the user clicks ok, 
+      disable content editing for the specified cells that belong to the same row as the button.
+      Swap button visibility from Save and Cancel back to Edit and Delete.
+      Grab the updated data from editable cells and save it to the database with a POST request.
+      Log whether the data was saved successfully or encountered an error.
+      */
+
+      var confirmation = confirm('Are you sure you want to save these changes?');
+
+      if (confirmation) {
+
+        // Disable content editing for the cells
+        cells.forEach((cell) => {
+          cell.contentEditable = false;
+        });
+
+        // Get the Save and Cancel buttons
+        var saveButton = document.querySelector(`#save-${uid}`);
+        var cancelButton = document.querySelector(`#cancel-${uid}`);
+
+        // Revert buttons to initial state
+        saveButton.innerText = 'Edit';
+        saveButton.onclick = () => editRow(uid);
+        cancelButton.innerText = 'Delete';
+        cancelButton.onclick = () => confirmDelete(uid);
+
+        // Collect updated data from editable cells (excluding UID)
+        var updatedData = {};
+        cells.forEach((cell) => {
+          var field = cell.getAttribute('data-field');
+          updatedData[field] = cell.innerText;
+        });
+
+        // Send a POST request to update the data
+        fetch(`/edit/${uid}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+          })
+          .then(response => {
+            if (response.ok) {
+              // Data saved successfully
+              console.log('Data saved successfully');
+            } else {
+              // Error handling if the save request fails
+              console.error('Error saving the data:', response.statusText);
+            }
+          });
+      }
+    };
+
+    /**
+      Function to confirm if the user wants to delete a row.
+      @param {string} uid - The unique identifier of the row to delete.
+    */
+    function confirmDelete(uid) {
+      /*
+        When clicked, ask if you are sure you want to delete this entry. If confirmed,
+        delete the row from the database and reload the page to reflect the changes.
+      */
+      var confirmation = confirm('Are you sure you want to delete this entry?');
+
+      if (confirmation) {
+        // Send a POST request to delete the row
+        fetch(`/delete/${uid}`, {
+          method: 'POST',
+        })
+        //The set timeout prevents the page reloading before the delete can be preformed
+        setTimeout(() => {
+          location.reload();
+        }, 16);
+      };
+    }
+  </script>
+
+</body>
+
+</html>

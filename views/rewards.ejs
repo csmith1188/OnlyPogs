@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rewards</title>
+</head>
+
+<body>
+    <!--A div containing the buttons and any other forms that do various things-->
+    <div id="rTagDropDown">
+        <!--Filters the types using a drop down-->
+        <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
+            <option value="">All Tags</option>
+            <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
+                <% for (let i=0; i < uniqueTags.length; i++) { %>
+                    <option value="<%= uniqueTags[i] %>">
+                        <%= uniqueTags[i] %>
+                    </option>
+                    <% } %>
+        </select>
+        <button><a href="/acc">Account</a></button>
+        <button><a href="/">Pogs</a></button>
+        <button><a href="/rDetails">Reward Details</a></button>
+        <button onclick='addItem()' id="add"><a>Add Row</a></button>
+    </div> <br>
+    <table id="table">
+        <thead id="tableHead">
+            <!--Table heads that can sort by clicking them-->
+            <th onclick='sortByItem()' id="item"><a>Item</a></th>
+            <th onclick='sortByCost()' id="cost"><a>Cost</a></th>
+            <th onclick='sortByType()' id="type"><a>Type</a></th>
+            <th></th>
+
+        </thead>
+        <tbody id="table-body">
+            <% for(let i=0; i < rows.length; i++) { %>
+                <tr id="<%- rows[i].uid %>">
+                    <!--The item column has links set up for when formbar implementation is fully complete-->
+                    <!--The idea is to use the links to allow students to buy rewards-->
+                    <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
+                    <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
+                    <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
+                    <td id="buttons"><button id="edit" onclick="editItem()"><a>Edit</a></button><button id="delete"><a>Delete</a></button></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+</body>
+<script>
+
+    const appendItem = ''
+
+   
+
+
+    var data = <%- JSON.stringify(rows) %>;
+
+    // console.log(uid)
+    var filteredData = [];
+
+    /*if (userPerm != 5){
+        document.getElementById("addButton").style.display = "none"
+        for (let i = 0; i < data.length; i++){
+            document.getElementsByClassName("deleteButton")[i].style.display = "none"
+            document.getElementsByClassName("editButton")[i].style.display = "none"
+            // document.getElementById("table").style.emptyCells = "show";
+        }
+    }*/
+
+    var currentSortOrder = 'asc'
+
+    //Used to toggle the sort order by changing it from alphabetically ascending to decending
+    function toggleSortOrder() {
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc'
+        } else {
+            currentSortOrder = 'asc'
+        }
+    }
+
+    //Sorts the table alphabetically by the item column
+    function sortByItem() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.item.localeCompare(b.item);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        } else {
+            data.sort((a, b) => {
+                const comparison = a.item.localeCompare(b.item);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    //Sorts the table numerically by the Cost column
+    function sortByCost() {
+        toggleSortOrder()
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const costA = String(a.cost);
+                const costB = String(b.cost);
+                const comparison = costA.localeCompare(costB)
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(filteredData)
+        } else {
+            data.sort((a, b) => {
+                const costA = String(a.cost);
+                const costB = String(b.cost);
+                const comparison = costA.localeCompare(costB)
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        }
+    }
+
+    //Sorts the table alphabetically by the type column
+    function sortByType() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.type.localeCompare(b.type);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            })
+            updateTable(data)
+        } else {
+            data.sort((a, b) => {
+                const comparison = a.type.localeCompare(b.type);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    function resetOrder() {
+        filteredData = [];
+        updateTable(data);
+    }
+
+    //The fuction used for the types drop down
+    function filterTags() {
+        const selectedTagElement = document.getElementById('rTagFilter');
+
+        if (!selectedTagElement) {
+            console.error("Element with ID 'rTagFilter' not found.");
+            return;
+        }
+
+        const selectedTag = selectedTagElement.value;
+
+        if (selectedTag === '') {
+            resetFilterAndSort();
+        } else {
+            filteredData = data.filter((item) => item.type === selectedTag);
+            updateTable(filteredData);
+        }
+    }
+
+    function resetFilterAndSort() {
+        filteredData = []; // Reset the filtered data
+        updateTable(data); // Update the table with the original data
+    }
+
+
+
+    function addItem() {
+        var br = document.createElement("br");
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "addItem");
+
+        var item = document.createElement("input");
+        item.setAttribute("type", "text");
+        item.setAttribute("name", "item");
+        item.setAttribute("placeholder", "item");
+
+        var cost = document.createElement("input");
+        cost.setAttribute("type", "text");
+        cost.setAttribute("name", "cost");
+        cost.setAttribute("placeholder", "cost");
+
+        var type = document.createElement("input");
+        type.setAttribute("type", "text");
+        type.setAttribute("name", "type");
+        type.setAttribute("placeholder", "type");
+
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+
+        form.appendChild(item);
+        form.appendChild(br.cloneNode());
+
+        form.appendChild(cost);
+        form.appendChild(br.cloneNode());
+
+        form.appendChild(type);
+        form.appendChild(br.cloneNode());
+        form.appendChild(s);
+        document.getElementsByTagName("body")[0].appendChild(form);
+    }
+
+
+
+    function editItem() {
+        for (let i = 0; i < data.length; i++) {
+
+            const rowId = document.getElementById('table-body').children[i].id;
+            const itemId = document.getElementsByName("item")[i].id;
+
+            console.log(`Item Name: ${itemId}`)
+            console.log(`Tr Id: ${rowId}`)
+            console.log(`Data Uid: ${data[i].uid}`)
+
+            //checking to see if id matches
+            if (data[i].uid == rowId) {
+                console.log("Match Found")
+
+                //form elememnt
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "editItem");
+
+                //uid input element
+                var uid = document.createElement("input");
+                uid.setAttribute("type", "text")
+                uid.setAttribute("name", "uid")
+                uid.setAttribute("placeholder", "uid")
+
+                //item input element
+                var item = document.createElement("input");
+                item.setAttribute("type", "text");
+                item.setAttribute("name", "item");
+                item.setAttribute("placeholder", "item");
+
+                //cost input element
+                var cost = document.createElement("input");
+                cost.setAttribute("type", "text");
+                cost.setAttribute("name", "cost");
+                cost.setAttribute("placeholder", "cost");
+
+                //type input element
+                var type = document.createElement("input");
+                type.setAttribute("type", "text");
+                type.setAttribute("name", "type");
+                type.setAttribute("placeholder", "type");
+
+
+                //submit input element
+                var s = document.createElement("input");
+                s.setAttribute("type", "submit");
+                s.setAttribute("value", "Submit");
+
+                //appending input elements to form
+                form.appendChild(uid);
+                form.appendChild(item);
+                form.appendChild(cost);
+                form.appendChild(type);
+                form.appendChild(s);
+
+                document.getElementsByTagName("body")[0].appendChild(form);
+                // Break out of the loop after the first match
+                break;
+            }
+        }
+    }
+
+    function deleteItem() {
+        for (let i = 0; i < data.length; i++) {
+
+            var deleteButton = document.getElementById("deleteButton")
+            console.log(deleteButton)
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "deleteItem");
+
+            var uid = document.createElement("input");
+            uid.setAttribute("type", "text")
+            uid.setAttribute("name", "uid")
+            uid.setAttribute("placeholder", "uid")
+
+            var s = document.createElement("input");
+            s.setAttribute("type", "submit");
+            s.setAttribute("value", "Submit");
+            form.appendChild(uid);
+            form.appendChild(s);
+            form.submit()
+            document.getElementsByTagName("body")[0].appendChild(form)
+            break;
+        }
+
+    }
+
+    //Updates the table after sorting
+    function updateTable(updateData) {
+        const tableBody = document.getElementById('table-body');
+        const tableHead = document.getElementById('tableHead');
+        tableBody.innerHTML = '';
+        updateData.forEach((row) => {
+
+            const aCost = document.createElement('a')
+            const aType = document.createElement('a')
+            const ebText = document.createElement('a')
+            const dbText = document.createElement('a')
+            
+            aCost.textContent = row.cost
+            aType.textContent = row.type
+            ebText.textContent = 'Edit'
+            dbText.textContent = 'Delete'
+            
+            const eButton = document.createElement('button')
+            const dButton = document.createElement('button')
+            
+            eButton.onclick = editItem
+            //dButton.onclick = deleteItem
+            eButton.appendChild(ebText)
+            dButton.appendChild(dbText)
+
+            const tr = document.createElement('tr');
+            const tdItem = document.createElement('a');
+            const tdCost = document.createElement('td');
+            const tdType = document.createElement('td');
+            const tdButtons = document.createElement('td')
+
+            tdCost.appendChild(aCost)
+            tdType.appendChild(aType)
+            tdButtons.appendChild(eButton)
+            tdButtons.append(dButton)
+
+            tdItem.href = row.url;
+            tdItem.textContent = row.item;
+            tdItem.innerHTML = row.item;
+
+            for (let i = 0; i > data.length; i++){
+                eButton.setAttribute('id', 'data[i].uid')
+            }
+            
+
+            tr.appendChild(tdItem);
+            tr.appendChild(tdCost);
+            tr.appendChild(tdType);
+            tr.appendChild(tdButtons)
+            tableBody.appendChild(tr);
+        });
+    }
+
+</script>
+</html>

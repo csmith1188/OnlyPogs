@@ -6,203 +6,243 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>OnlyPogs</title>
 </head>
-<body>
 
-    <!-- each header have it own onclick function with the argruement to each collum to sort to  -->
-    <table id="table"><tr><th onclick="reOrder('name')" id="name">Name --</th><th onclick="reOrder('Serial')" id="serial">Serial Number --</th><th onclick="reOrder('Amount')" id="amount">Amount Produced --</th></tr>
-</table>
+<script>
+
+    // Takes the rows passed from main.js and stringify's and sets it to a variable
+    var data = <%- JSON.stringify(rows) %>;
+
+    var filteredData = []
+
+    // Define a variable to store the current sort order
+    var currentSortOrder = 'asc';
+
+    /**
+     * A function that changes the sort order
+    */
+    function toggleSortOrder() {
+        // Check if the current sort order is 'asc' and reset it if necessary
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc';
+        } else {
+            currentSortOrder = 'asc';
+        }
+
+    }
+
+    /**
+     * A function that sorts the table by name
+    */
+    function sortByName() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.name.localeCompare(b.name);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.name.localeCompare(b.name);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+    /**
+     * A function that sorts the table by serial number
+    */
+    function sortBySerial() {
+        toggleSortOrder();
+
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const comparison = a.serial.localeCompare(b.serial);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.serial.localeCompare(b.serial);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+    /**
+     * A function that sorts the table by amount
+    */
+    function sortByAmount() {
+        toggleSortOrder();
+        if (filteredData.length > 0) {
+            filteredData.sort((a, b) => {
+                const amountA = String(a.amount); // Convert to string for string-based comparison
+                const amountB = String(b.amount);
+                const comparison = amountA.localeCompare(amountB);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const amountA = String(a.amount);
+                const amountB = String(b.amount);
+                const comparison = amountA.localeCompare(amountB);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    /**
+     * A function that sorts the  table by tags
+    */
+    function sortByTags() {
+        toggleSortOrder();
+        if (filteredData.length > 0) {
+            // If there's filtered data, don't sort the original data
+            filteredData.sort((a, b) => {
+                const comparison = a.tags.localeCompare(b.tags);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(filteredData);
+        } else {
+            // If no filter is applied, sort the original data
+            data.sort((a, b) => {
+                const comparison = a.tags.localeCompare(b.tags);
+                return currentSortOrder === 'asc' ? comparison : -comparison;
+            });
+            updateTable(data);
+        }
+    }
+
+    /** 
+     * A function that resets the filteredData array
+    */
+    function resetFilterAndSort() {
+        filteredData = []; // Reset the filtered data
+        updateTable(data); // Update the table with the original data
+    }
+
+    /** 
+     * A function that filters the tags  
+    */
+    function filterTags() {
+        const selectedTagElement = document.getElementById('tagFilter');
+        const selectedTag = selectedTagElement.value;
+
+        if (!selectedTagElement) {
+            console.error("Element with ID 'tagFilter' not found.");
+            return;
+        }
+
+        if (selectedTag === '') {
+            resetFilterAndSort();
+        } else {
+            filteredData = data.filter((item) => item.tags === selectedTag);
+            updateTable(filteredData);
+        }
+    }
+
+
+    /**
+     * This function updates the table based on the updated table data
+     * Creates constants and sets them equal to the corresponding html element
+    */
+    function updateTable(updateData) {
+        const tableBody = document.getElementById('table-body');
+        const tableHead = document.getElementById('tableHead');
+        tableBody.innerHTML = '';
+        updateData.forEach((row) => {
+            
+            const aSerial = document.createElement('a')
+            const aAmount = document.createElement('a')
+            const aTags = document.createElement('a')
+            
+            aSerial.textContent = row.serial
+            aAmount.textContent = row.amount
+            aTags.textContent = row.tags
+
+            const tr = document.createElement('tr');
+            const tdName = document.createElement('a');
+            const tdSerial = document.createElement('td');
+            const tdAmount = document.createElement('td');
+            const tdTags = document.createElement('td');
+            
+            tdSerial.appendChild(aSerial)
+            tdAmount.appendChild(aAmount)
+            tdTags.appendChild(aTags)
+
+            tdName.href = row.url; // Set the href attribute to the URL
+
+            tdName.textContent = row.name;
+            tdName.innerHTML = row.name;
+
+            tr.appendChild(tdName);
+            tr.appendChild(tdSerial);
+            tr.appendChild(tdAmount);
+            tr.appendChild(tdTags);
+
+
+            tableBody.appendChild(tr);
+        });
+    }
+</script>
+
+<body>
+    <!-- This is a dropdown that will sort the table with only the selected tag-->
+    <div id="tagDropDown">
+        <select name="tagFilter" id="tagFilter" onchange="filterTags()">
+            <option value="">All Tags</option>
+            <% const uniqueTags=Array.from(new Set(rows.map(row=> row.tags))); %>
+                <% for (let i=0; i < uniqueTags.length; i++) { %>
+                    <option value="<%= uniqueTags[i] %>">
+                        <%= uniqueTags[i] %>
+                    </option>
+                    <% } %>
+        </select> <br>
+
+        <div class="buttons">
+            <button class="button" id="accButton"><a href="/acc">Account</a></button>
+            <button class="button" id="rewardButton"><a href="/rewards">Rewards</a></button>
+        </div>
+    </div><br>
+    <table id="table">
+        <thead>
+            <tr>
+                <!-- each header has it's own onclick function with the arguement to each collumn to sort to  -->
+                <th id="name" onclick="sortByName()"><a>Name --</a></th>
+                <th id="serial" onclick="sortBySerial()"><a>Serial Number --</a></th>
+                <th id="amount" onclick="sortByAmount()"><a>Amount Produced --</a></th>
+                <th id="tags" onclick="sortByTags()"><a>Tags --</a></th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- A for loop that loops through the length of the row and displays it as a table -->
+            <% for(let i=0; i < rows.length; i++) {%>
+                <tr>
+                    <td>
+                        <a href="<%- rows[i].url %>"><%- rows[i].name %></a>
+                    </td>
+                    <td>
+                        <a><%- rows[i].serial %></a>
+                    </td>
+                    <td>
+                        <a><%- rows[i].amount %></a>
+                    </td>
+                    <td>
+                        <a><%- rows[i].tags %></a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
 
 </body>
-<script>
-// grabing the headers by their Id 
-var Hname = document.getElementById('name');
-var Hserial = document.getElementById('serial');
-var Hamount = document.getElementById('amount');
-console.log(Hname.innerHTML);
-    // have the pog grab the data from the json file.
-var pog = <%- JSON.stringify(pog.pogs) %>
-// these booleans check the array if it already sorted.
-var namesorted = false
-var amountsorted = false
-var Numbersorted = false
-
- // first create the table using the pog data.
-for (const index in pog) {
-    // create rows for the table to append with the imported data.
-    let row = document.createElement("tr")
-    row.setAttribute("id",`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a> </th>  <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
-    document.getElementById('table').appendChild(row)
-}
-
-// when the header of the table is click except color header. it will sort the whole table.
-function reOrder(label){
-    // this check which header is click and which part of the array should be sorted.
-    switch (label) {
-        case "name":
-        sorted('name');
-        pog.sort(sortName);
-            break;
-        
-        case "Amount":
-            sorted('Amount Produced')
-            pog.sort(sortamount)
-            break;
-        case "Serial":
-            sorted('Serial Number')
-            pog.sort(sortnumber)
-    }
-    // recreate the whole  table using the new sorted array.
-    for (const index in pog) {
-    let row = document.getElementById(`${index}`)
-    row.innerHTML = `<th> <a href='${pog[index].url}' style="cursor: url('pogs/cursor${pog[index].name}.png') 10 10, pointer;"> ${pog[index].name} </a></th> <th class="number"> ${pog[index]['Serial Number']}</th>  <th class="amount"> ${pog[index]['Amount Produced']}</th>`
-    document.getElementById('table').appendChild(row)
-}
-}
-// this function is going to check the whole array if it already sorted, if it is, than it is true.
-function sorted(label){
-    namesorted = true
-    amountsorted = true
-    Numbersorted = true
-    // only happen when we sorting by Serial Number and Amount Produced.
-    if (label == 'Amount Produced') {
-        for (let i = 0; i < pog.length; i++) {
-            if (pog[i+1]){
-                // it need to be change from string to number to compare.
-                if (Number(pog[i]['Amount Produced']) > Number(pog[i+1]['Amount Produced'])) {
-            amountsorted = false
-            break;
-            }
-            }
- 
-        }
-        //only if we are sorting the array by name
-    } else if(label == 'name') {
-        for (let i = 0; i < pog.length; i++) {
-            if (pog[i+1]){
-                if (pog[i].name.toLowerCase() > pog[i+1].name.toLowerCase()) {
-            namesorted = false
-            break;
-            }
-            }
- 
-        }
-        //only sorting the table with serial number
-    } else if(label == 'Serial Number') {
-        for (let i = 0; i < pog.length; i++) {
-            if (pog[i+1]){
-                //it remove any character in the string than turn them to number to compare.
-                let firstSerial = pog[i]['Serial Number'].replace(/[a-zA-Z]/g,"")
-                let secondSerial = pog[i+1]['Serial Number'].replace(/[a-zA-Z]/g,"")
-                if (Number(firstSerial) > Number(secondSerial)) {
-            Numbersorted = false
-            break;
-            }
-            }
- 
-        }
-    }
-    
-}
-// this will sort the whole array by using it name and compare to other name in the array.
-function sortName(a,b){
-    let fa = a.name.toLowerCase()
-    let fb = b.name.toLowerCase()
-    //it change the whole string to lowercase for more a accurate comparision. 
-    if (namesorted == false) {
-        Hname.innerHTML = 'Name ⬇'
-        Hserial.innerHTML = 'Serial Number --'
-        Hamount.innerHTML = 'Amount Produced --'
-        if (fa < fb){
-        return -1
-    } else if (fa > fb){
-        return 1;
-    } else {
-        return 0;
-    }
-    } else {
-        Hname.innerHTML = 'Name ⬆'
-        Hserial.innerHTML = 'Serial Number --'
-        Hamount.innerHTML = 'Amount Produced --'
-        if (fa < fb){
-        return 1
-    } else if (fa > fb){
-        return -1;
-    } else {
-        return 0;
-    } 
-    }
-}
-function sortamount(a,b) {
-    //first check the string to see if it is a number, then change the number to string for comparison
-    if (amountsorted == false) {
-    Hserial.innerHTML = 'Serial Number --'
-    Hname.innerHTML = 'Name --'
-    Hamount.innerHTML = 'Amount Produced ⬆'
-        if(isNaN(a['Amount Produced'])){
-        return -1
-    } else {
-        if (isNaN(b['Amount Produced'])) {
-            return 1
-        } else {
-            return Number(a['Amount Produced']) - Number(b['Amount Produced'])
-        }
-    }
-    } else {
-    Hserial.innerHTML = 'Serial Number --'
-    Hname.innerHTML = 'Name --'
-    Hamount.innerHTML = 'Amount Produced ⬇'
-        if(isNaN(a['Amount Produced'])){
-        return 1
-    } else {
-        if (isNaN(b['Amount Produced'])) {
-            return -1
-        } else {
-            return Number(b['Amount Produced']) - Number(a['Amount Produced'])
-            }
-        }   
-    }
-}
-
-function sortnumber(a,b) {
-    //first remove any character in the string, then check if the string is a number then turn the string to number for comparison.
-    let na = a['Serial Number'].replace(/[a-zA-Z, ]/g,"")
-    let nb = b['Serial Number'].replace(/[a-zA-Z, ]/g,"")
-
-    if (Numbersorted == false) {
-    Hserial.innerHTML = 'Serial Number ⬆'
-    Hname.innerHTML = 'Name --'
-    Hamount.innerHTML = 'Amount Produced --'
-
-        if(isNaN(na)){
-        return -1
-    } else {
-        if (isNaN(nb)) {
-            return 1
-        } else {
-            return Number(na) - Number(nb)
-        }
-    }
-    } else {
-    Hserial.innerHTML = 'Serial Number ⬇'
-    Hname.innerHTML = 'Name --'
-    Hamount.innerHTML = 'Amount Produced --'
-        if(isNaN(na)){
-        return 1
-    } else {
-        if (isNaN(nb)) {
-            return -1
-        } else {
-            return Number(nb) - Number(na)
-            }
-        }   
-    }
-}
-
-
-
-</script>
 
 </html>
