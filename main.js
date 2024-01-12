@@ -115,7 +115,6 @@ app.get('/acc', (req, res) => {
 app.get('/rewards', (req, res) => {
   const userPerm = req.session.token.permissions
   console.log(userPerm)
-  // console.log(userPerm)
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {

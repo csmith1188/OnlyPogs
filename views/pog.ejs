@@ -18,9 +18,8 @@
     <button id="editButton" onclick="edit()">Edit </button>
     <button id="cancelButton" onclick="cancel(event)" style="display: none;">Cancel</button>
     <!--Created the image of the pog on the pog page-->
-    <a id="img">
-      <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"
-        onerror="handleUnknown()" onclick="removeImage(event)">
+    <a id="img" href="/">
+      <img src="/pogs/<%=pog.name%>.JPG" alt="/pogs/<%=pog.name%>.JPG" width="200px" height="auto" id="pogPNG" onerror="this.src ='/pogs/<%=pog.name%>.JPG';unknown(); this.onerror = ' ' ">
     </a>
 
 
@@ -89,9 +88,24 @@
 
     pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
+
+    //A function that changes the pog image based on the currently selected pog
+    function pogChange() {
+      console.log(pogImage.value);
+      if (pogImage.value == 0) {
+        document.getElementById('error').innerText = ""
+        let pogpng = document.getElementById("pogPNG")
+        pogpng.src = `/pogs/${pog}.JPG`
+      } else {
+        let pogpng = document.getElementById("pogPNG")
+        document.getElementById('error').innerText = ""
+        pogpng.src = `/pogs/${pog}${pogImage.value}.JPG`
+        pogpng.setAttribute('onerror', `this.src ='/pogs/${pog}.JPG'; unknown() ; this.onerror = ' '  `)
+
     var editMode = false
     var pogpng = document.getElementById("pogPNG");
     var originalImageSource = pogpng.src;
+
 
     function removeImage(event) {
       if (editMode) {

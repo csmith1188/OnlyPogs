@@ -63,10 +63,12 @@
 
     // Beautifying adds spaces between the percent and dash and will cause errors, if you do beautify just remember to remove the spaces
     var userPerm = <%- userPerm %>;
+
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
+
 
     if (userPerm < 3) {
         document.getElementById("add").style.display = "none"
