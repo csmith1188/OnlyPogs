@@ -11,40 +11,46 @@
 
 <body>
     <!--A div containing the buttons and any other forms that do various things-->
-    <div id="rTagDropDown">
+    <div id="tagDropDown">
         <!--Filters the types using a drop down-->
         <select name="rTagFilter" id="rTagFilter" onchange="filterTags()">
             <option value="">All Tags</option>
             <% const uniqueTags=Array.from(new Set(rows.map(row=> row.type))); %>
-                <% for (let i=0; i < uniqueTags.length; i++) { %>
-                    <option value="<%= uniqueTags[i] %>">
-                        <%= uniqueTags[i] %>
-                    </option>
-                    <% } %>
-        </select>
-        <button><a href="/acc">Account</a></button>
-        <button><a href="/">Pogs</a></button>
-        <button><a href="/rDetails">Reward Details</a></button>
-        <button onclick='addItem()' id="add"><a>Add Row</a></button>
+            <% for (let i=0; i < uniqueTags.length; i++) { %>
+                <option value="<%= uniqueTags[i] %>">
+                    <%= uniqueTags[i] %>
+                </option>
+                <% } %>
+            </select>
+            <!-- <button><a href="/acc">Account</a></button> -->
+            <button><a href="/">Pogs</a></button>
+            <button><a href="/rDetails">Reward Details</a></button>
+            <button onclick='addItem()' id="add"><a>Add Row</a></button>
+            Pog Rewards
     </div> <br>
     <table id="table">
         <thead id="tableHead">
             <!--Table heads that can sort by clicking them-->
-            <th onclick='sortByItem()' id="item"><a>Item</a></th>
-            <th onclick='sortByCost()' id="cost"><a>Cost</a></th>
-            <th onclick='sortByType()' id="type"><a>Type</a></th>
+            <th onclick='sortTableAlphabetically(0)' id="item"><a>Item</a></th>
+            <th onclick='sortTableNumerically(1)' id="cost"><a>Cost</a></th>
+            <th onclick='sortTableAlphabetically(2)' id="type"><a>Type</a></th>
             <th></th>
 
         </thead>
         <tbody id="table-body">
             <% for(let i=0; i < rows.length; i++) { %>
-                <tr id="<%- rows[i].uid %>">
+                <tr id="<%- rows[i].uid %>" class="table-rows">
                     <!--The item column has links set up for when formbar implementation is fully complete-->
                     <!--The idea is to use the links to allow students to buy rewards-->
                     <td name="item" id="<%- rows[i].item %>"><a href="<%- rows[i].url %>"><%- rows[i].item %></a></td>
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
-                    <td id="buttons"><button id="edit" onclick="editItem()"><a>Edit</a></button><button id="delete"><a>Delete</a></button></td>
+                    <td id="buttons">
+                        <button data-eButton="<%- rows[i].uid %>" class="editButton"
+                            onclick="editItem(this.getAttribute('data-eButton'))"><a>Edit</a></button>
+                        <button data-dButton="<%- rows[i].uid %>" class="deleteButton"
+                            onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button>
+                    </td>
                 </tr>
                 <% } %>
         </tbody>
@@ -55,22 +61,25 @@
 
     const appendItem = ''
 
-   
-
+    // Beautifying adds spaces between the percent and dash and will cause errors, if you do beautify just remember to remove the spaces
+    var userPerm = <%- userPerm %>;
 
     var data = <%- JSON.stringify(rows) %>;
 
     // console.log(uid)
     var filteredData = [];
 
-    /*if (userPerm != 5){
-        document.getElementById("addButton").style.display = "none"
-        for (let i = 0; i < data.length; i++){
+
+    if (userPerm < 3) {
+        document.getElementById("add").style.display = "none"
+        for (let i = 0; i < data.length; i++) {
             document.getElementsByClassName("deleteButton")[i].style.display = "none"
             document.getElementsByClassName("editButton")[i].style.display = "none"
             // document.getElementById("table").style.emptyCells = "show";
         }
-    }*/
+    }
+
+
 
     var currentSortOrder = 'asc'
 
@@ -83,66 +92,47 @@
         }
     }
 
-    //Sorts the table alphabetically by the item column
-    function sortByItem() {
-        toggleSortOrder();
+    function sortTableAlphabetically(columnIndex) {
+        toggleSortOrder()
+        const tableBody = document.getElementById('table-body');
+        const rowsArray = Array.from(tableBody.rows);
 
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const comparison = a.item.localeCompare(b.item);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        } else {
-            data.sort((a, b) => {
-                const comparison = a.item.localeCompare(b.item);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            });
-            updateTable(data);
-        }
-    }
+        rowsArray.sort((a, b) => {
+            const cellA = a.cells[columnIndex].textContent;
+            const cellB = b.cells[columnIndex].textContent;
+
+            // Adjust this comparison for your specific data
+            if (currentSortOrder === 'asc') {
+                return cellA.localeCompare(cellB);
+            } else if (currentSortOrder === 'desc') {
+                return cellB.localeCompare(cellA);
+            }
+        });
+
+        rowsArray.forEach(row => tableBody.appendChild(row));
+    };
+
 
     //Sorts the table numerically by the Cost column
-    function sortByCost() {
+    function sortTableNumerically(columnIndex) {
         toggleSortOrder()
+        const tableBody = document.getElementById('table-body');
+        const rowsArray = Array.from(tableBody.rows);
 
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const costA = String(a.cost);
-                const costB = String(b.cost);
-                const comparison = costA.localeCompare(costB)
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(filteredData)
-        } else {
-            data.sort((a, b) => {
-                const costA = String(a.cost);
-                const costB = String(b.cost);
-                const comparison = costA.localeCompare(costB)
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        }
+        rowsArray.sort((a, b) => {
+            const cellA = parseFloat(a.cells[columnIndex].textContent);
+            const cellB = parseFloat(b.cells[columnIndex].textContent);
+
+            if (currentSortOrder === 'asc') {
+                return cellA - cellB;
+            } else {
+                return cellB - cellA;
+            }
+        });
+
+        rowsArray.forEach(row => tableBody.appendChild(row));
     }
 
-    //Sorts the table alphabetically by the type column
-    function sortByType() {
-        toggleSortOrder();
-
-        if (filteredData.length > 0) {
-            filteredData.sort((a, b) => {
-                const comparison = a.type.localeCompare(b.type);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            })
-            updateTable(data)
-        } else {
-            data.sort((a, b) => {
-                const comparison = a.type.localeCompare(b.type);
-                return currentSortOrder === 'asc' ? comparison : -comparison;
-            });
-            updateTable(data);
-        }
-    }
 
     function resetOrder() {
         filteredData = [];
@@ -151,55 +141,75 @@
 
     //The fuction used for the types drop down
     function filterTags() {
-        const selectedTagElement = document.getElementById('rTagFilter');
+        // Get the selected tag from the dropdown
+        var selectedTag = document.getElementById('rTagFilter').value;
 
-        if (!selectedTagElement) {
-            console.error("Element with ID 'rTagFilter' not found.");
-            return;
-        }
+        // Get all table rows
+        var rows = document.getElementById('table').getElementsByTagName('tr');
 
-        const selectedTag = selectedTagElement.value;
+        // Loop through each row
+        for (var i = 1; i < rows.length; i++) {
+            // If the selected tag is 'All Tags', show all rows
+            if (selectedTag === '') {
+                rows[i].style.display = '';
+            } else {
+                // Get the tag for this row
+                var rowTag = rows[i].getElementsByTagName('td')[2].innerText;
 
-        if (selectedTag === '') {
-            resetFilterAndSort();
-        } else {
-            filteredData = data.filter((item) => item.type === selectedTag);
-            updateTable(filteredData);
+                // If the selected tag matches the row's tag, show the row
+                if (rowTag === selectedTag) {
+                    rows[i].style.display = '';
+                } else {
+                    // Otherwise, hide the row
+                    rows[i].style.display = 'none';
+                }
+            }
         }
     }
+    // function resetFilterAndSort() {
+    //     filteredData = []; // Reset the filtered data
+    //     updateTable(data); // Update the table with the original data
+    // }
 
-    function resetFilterAndSort() {
-        filteredData = []; // Reset the filtered data
-        updateTable(data); // Update the table with the original data
-    }
-
-
-
+    // Adds an Item to the table
     function addItem() {
+        // form element
         var br = document.createElement("br");
         var form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "addItem");
 
+        // item input element
         var item = document.createElement("input");
         item.setAttribute("type", "text");
         item.setAttribute("name", "item");
         item.setAttribute("placeholder", "item");
 
+        // cost input element
         var cost = document.createElement("input");
         cost.setAttribute("type", "text");
         cost.setAttribute("name", "cost");
         cost.setAttribute("placeholder", "cost");
 
+        // type input element
         var type = document.createElement("input");
         type.setAttribute("type", "text");
         type.setAttribute("name", "type");
         type.setAttribute("placeholder", "type");
 
+        // userPerm input element
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
+
+        // submit input element
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Submit");
 
+        // appending input elements to form
         form.appendChild(item);
         form.appendChild(br.cloneNode());
 
@@ -209,103 +219,109 @@
         form.appendChild(type);
         form.appendChild(br.cloneNode());
         form.appendChild(s);
+
+        // appending form to body
         document.getElementsByTagName("body")[0].appendChild(form);
     }
 
 
+    // Edits an item from the table
+    function editItem(buttonUid) {
 
-    function editItem() {
-        for (let i = 0; i < data.length; i++) {
+        console.log(`Button Uid: ${buttonUid}`)
 
-            const rowId = document.getElementById('table-body').children[i].id;
-            const itemId = document.getElementsByName("item")[i].id;
+        // form element
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "editItem");
 
-            console.log(`Item Name: ${itemId}`)
-            console.log(`Tr Id: ${rowId}`)
-            console.log(`Data Uid: ${data[i].uid}`)
+        // uid input element
+        var uid = document.createElement("input");
+        uid.setAttribute("type", "hidden")
+        uid.setAttribute("name", "uid")
+        uid.setAttribute("value", buttonUid)
 
-            //checking to see if id matches
-            if (data[i].uid == rowId) {
-                console.log("Match Found")
+        // item input element
+        var item = document.createElement("input");
+        item.setAttribute("type", "text");
+        item.setAttribute("name", "item");
+        item.setAttribute("placeholder", "item");
 
-                //form elememnt
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "editItem");
+        // cost input element
+        var cost = document.createElement("input");
+        cost.setAttribute("type", "text");
+        cost.setAttribute("name", "cost");
+        cost.setAttribute("placeholder", "cost");
 
-                //uid input element
-                var uid = document.createElement("input");
-                uid.setAttribute("type", "text")
-                uid.setAttribute("name", "uid")
-                uid.setAttribute("placeholder", "uid")
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
 
-                //item input element
-                var item = document.createElement("input");
-                item.setAttribute("type", "text");
-                item.setAttribute("name", "item");
-                item.setAttribute("placeholder", "item");
-
-                //cost input element
-                var cost = document.createElement("input");
-                cost.setAttribute("type", "text");
-                cost.setAttribute("name", "cost");
-                cost.setAttribute("placeholder", "cost");
-
-                //type input element
-                var type = document.createElement("input");
-                type.setAttribute("type", "text");
-                type.setAttribute("name", "type");
-                type.setAttribute("placeholder", "type");
+        // type input element
+        var type = document.createElement("input");
+        type.setAttribute("type", "text");
+        type.setAttribute("name", "type");
+        type.setAttribute("placeholder", "type");
 
 
-                //submit input element
-                var s = document.createElement("input");
-                s.setAttribute("type", "submit");
-                s.setAttribute("value", "Submit");
+        // submit input element
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
 
-                //appending input elements to form
-                form.appendChild(uid);
-                form.appendChild(item);
-                form.appendChild(cost);
-                form.appendChild(type);
-                form.appendChild(s);
+        // appending input elements to form
+        form.appendChild(uid);
+        form.appendChild(item);
+        form.appendChild(cost);
+        form.appendChild(type);
+        form.appendChild(s);
 
-                document.getElementsByTagName("body")[0].appendChild(form);
-                // Break out of the loop after the first match
-                break;
-            }
-        }
+        // appending form to body
+        document.getElementsByTagName("body")[0].appendChild(form);
     }
 
-    function deleteItem() {
-        for (let i = 0; i < data.length; i++) {
+    // Deletes an Item from the table
+    function deleteItem(buttonUid) {
 
-            var deleteButton = document.getElementById("deleteButton")
-            console.log(deleteButton)
+        console.log(buttonUid)
 
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "deleteItem");
+        // form element
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "deleteItem");
 
-            var uid = document.createElement("input");
-            uid.setAttribute("type", "text")
-            uid.setAttribute("name", "uid")
-            uid.setAttribute("placeholder", "uid")
+        // uid input element
+        var uid = document.createElement("input");
+        uid.setAttribute("type", "hidden")
+        uid.setAttribute("name", "uid")
+        uid.setAttribute("placeholder", "uid")
+        uid.setAttribute("value", buttonUid);
 
-            var s = document.createElement("input");
-            s.setAttribute("type", "submit");
-            s.setAttribute("value", "Submit");
-            form.appendChild(uid);
-            form.appendChild(s);
-            form.submit()
-            document.getElementsByTagName("body")[0].appendChild(form)
-            break;
-        }
+        // userPerm input element
+        var userPermInput = document.createElement("input");
+        userPermInput.setAttribute("type", "hidden");
+        userPermInput.setAttribute("name", "userPerm");
+        userPermInput.setAttribute("value", userPerm);
+        form.appendChild(userPermInput);
 
+        // submit input element
+        var s = document.createElement("input");
+        s.setAttribute("type", "submit");
+        s.setAttribute("value", "Submit");
+
+        // appending input elements to form
+        form.appendChild(uid);
+        form.appendChild(s);
+        form.submit()
+
+        // appending form to body
+        document.getElementsByTagName("body")[0].appendChild(form)
     }
 
     //Updates the table after sorting
-    function updateTable(updateData) {
+    function updateTable(updateData, buttonUid) {
         const tableBody = document.getElementById('table-body');
         const tableHead = document.getElementById('tableHead');
         tableBody.innerHTML = '';
@@ -315,17 +331,17 @@
             const aType = document.createElement('a')
             const ebText = document.createElement('a')
             const dbText = document.createElement('a')
-            
+
             aCost.textContent = row.cost
             aType.textContent = row.type
             ebText.textContent = 'Edit'
             dbText.textContent = 'Delete'
-            
+
             const eButton = document.createElement('button')
             const dButton = document.createElement('button')
-            
+
             eButton.onclick = editItem
-            //dButton.onclick = deleteItem
+            dButton.onclick = deleteItem
             eButton.appendChild(ebText)
             dButton.appendChild(dbText)
 
@@ -344,10 +360,8 @@
             tdItem.textContent = row.item;
             tdItem.innerHTML = row.item;
 
-            for (let i = 0; i > data.length; i++){
-                eButton.setAttribute('id', 'data[i].uid')
-            }
-            
+            eButton.setAttribute('data-eButton', buttonUid)
+            dButton.setAttribute('data-dButton', buttonUid)
 
             tr.appendChild(tdItem);
             tr.appendChild(tdCost);
@@ -358,4 +372,5 @@
     }
 
 </script>
+
 </html>
