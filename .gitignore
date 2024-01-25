@@ -2,3 +2,5 @@
 package.json
 package-lock.json
 /static/pog.db
+static/pog_template.db
+static/pog.db
