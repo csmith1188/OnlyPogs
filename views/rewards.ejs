@@ -23,9 +23,9 @@
                 <% } %>
             </select>
             <!-- <button><a href="/acc">Account</a></button> -->
-            <button><a href="/">Pogs</a></button>
+            <button><a href="/pogtable">Pogs</a></button>
             <button><a href="/rDetails">Reward Details</a></button>
-            <button onclick='addItem()' id="add"><a>Add Row</a></button>
+            <!-- <button onclick='addItem()' id="add"><a>Add Row</a></button> -->
             Pog Rewards
     </div> <br>
     <table id="table">
@@ -46,10 +46,10 @@
                     <td name="cost" id="<%- rows[i].cost %>"><a><%- rows[i].cost %></a></td>
                     <td name="type" id="<%- rows[i].type %>"><a><%- rows[i].type %></a></td>
                     <td id="buttons">
-                        <button data-eButton="<%- rows[i].uid %>" class="editButton"
+                        <!-- <button data-eButton="<%- rows[i].uid %>" class="editButton"
                             onclick="editItem(this.getAttribute('data-eButton'))"><a>Edit</a></button>
                         <button data-dButton="<%- rows[i].uid %>" class="deleteButton"
-                            onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button>
+                            onclick="deleteItem(this.getAttribute('data-dButton'))"><a>Delete</a></button> -->
                     </td>
                 </tr>
                 <% } %>
@@ -62,7 +62,7 @@
     const appendItem = ''
 
     // Beautifying adds spaces between the percent and dash and will cause errors, if you do beautify just remember to remove the spaces
-    var userPerm = <%- userPerm %>;
+    // var userPerm = 3;
 
     var data = <%- JSON.stringify(rows) %>;
 
@@ -70,14 +70,14 @@
     var filteredData = [];
 
 
-    if (userPerm < 3) {
-        document.getElementById("add").style.display = "none"
-        for (let i = 0; i < data.length; i++) {
-            document.getElementsByClassName("deleteButton")[i].style.display = "none"
-            document.getElementsByClassName("editButton")[i].style.display = "none"
-            // document.getElementById("table").style.emptyCells = "show";
-        }
-    }
+    // if (userPerm < 3) {
+    //     document.getElementById("add").style.display = "none"
+    //     for (let i = 0; i < data.length; i++) {
+    //         document.getElementsByClassName("deleteButton")[i].style.display = "none"
+    //         document.getElementsByClassName("editButton")[i].style.display = "none"
+    //         // document.getElementById("table").style.emptyCells = "show";
+    //     }
+    // }
 
 
 
@@ -172,153 +172,153 @@
     // }
 
     // Adds an Item to the table
-    function addItem() {
-        // form element
-        var br = document.createElement("br");
-        var form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "addItem");
+    // function addItem() {
+    //     // form element
+    //     var br = document.createElement("br");
+    //     var form = document.createElement("form");
+    //     form.setAttribute("method", "post");
+    //     form.setAttribute("action", "addItem");
 
-        // item input element
-        var item = document.createElement("input");
-        item.setAttribute("type", "text");
-        item.setAttribute("name", "item");
-        item.setAttribute("placeholder", "item");
+    //     // item input element
+    //     var item = document.createElement("input");
+    //     item.setAttribute("type", "text");
+    //     item.setAttribute("name", "item");
+    //     item.setAttribute("placeholder", "item");
 
-        // cost input element
-        var cost = document.createElement("input");
-        cost.setAttribute("type", "text");
-        cost.setAttribute("name", "cost");
-        cost.setAttribute("placeholder", "cost");
+    //     // cost input element
+    //     var cost = document.createElement("input");
+    //     cost.setAttribute("type", "text");
+    //     cost.setAttribute("name", "cost");
+    //     cost.setAttribute("placeholder", "cost");
 
-        // type input element
-        var type = document.createElement("input");
-        type.setAttribute("type", "text");
-        type.setAttribute("name", "type");
-        type.setAttribute("placeholder", "type");
+    //     // type input element
+    //     var type = document.createElement("input");
+    //     type.setAttribute("type", "text");
+    //     type.setAttribute("name", "type");
+    //     type.setAttribute("placeholder", "type");
 
-        // userPerm input element
-        var userPermInput = document.createElement("input");
-        userPermInput.setAttribute("type", "hidden");
-        userPermInput.setAttribute("name", "userPerm");
-        userPermInput.setAttribute("value", userPerm);
-        form.appendChild(userPermInput);
+    //     // userPerm input element
+    //     var userPermInput = document.createElement("input");
+    //     userPermInput.setAttribute("type", "hidden");
+    //     userPermInput.setAttribute("name", "userPerm");
+    //     userPermInput.setAttribute("value", userPerm);
+    //     form.appendChild(userPermInput);
 
-        // submit input element
-        var s = document.createElement("input");
-        s.setAttribute("type", "submit");
-        s.setAttribute("value", "Submit");
+    //     // submit input element
+    //     var s = document.createElement("input");
+    //     s.setAttribute("type", "submit");
+    //     s.setAttribute("value", "Submit");
 
-        // appending input elements to form
-        form.appendChild(item);
-        form.appendChild(br.cloneNode());
+    //     // appending input elements to form
+    //     form.appendChild(item);
+    //     form.appendChild(br.cloneNode());
 
-        form.appendChild(cost);
-        form.appendChild(br.cloneNode());
+    //     form.appendChild(cost);
+    //     form.appendChild(br.cloneNode());
 
-        form.appendChild(type);
-        form.appendChild(br.cloneNode());
-        form.appendChild(s);
+    //     form.appendChild(type);
+    //     form.appendChild(br.cloneNode());
+    //     form.appendChild(s);
 
-        // appending form to body
-        document.getElementsByTagName("body")[0].appendChild(form);
-    }
-
-
-    // Edits an item from the table
-    function editItem(buttonUid) {
-
-        console.log(`Button Uid: ${buttonUid}`)
-
-        // form element
-        var form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "editItem");
-
-        // uid input element
-        var uid = document.createElement("input");
-        uid.setAttribute("type", "hidden")
-        uid.setAttribute("name", "uid")
-        uid.setAttribute("value", buttonUid)
-
-        // item input element
-        var item = document.createElement("input");
-        item.setAttribute("type", "text");
-        item.setAttribute("name", "item");
-        item.setAttribute("placeholder", "item");
-
-        // cost input element
-        var cost = document.createElement("input");
-        cost.setAttribute("type", "text");
-        cost.setAttribute("name", "cost");
-        cost.setAttribute("placeholder", "cost");
-
-        var userPermInput = document.createElement("input");
-        userPermInput.setAttribute("type", "hidden");
-        userPermInput.setAttribute("name", "userPerm");
-        userPermInput.setAttribute("value", userPerm);
-        form.appendChild(userPermInput);
-
-        // type input element
-        var type = document.createElement("input");
-        type.setAttribute("type", "text");
-        type.setAttribute("name", "type");
-        type.setAttribute("placeholder", "type");
+    //     // appending form to body
+    //     document.getElementsByTagName("body")[0].appendChild(form);
+    // }
 
 
-        // submit input element
-        var s = document.createElement("input");
-        s.setAttribute("type", "submit");
-        s.setAttribute("value", "Submit");
+    // // Edits an item from the table
+    // function editItem(buttonUid) {
 
-        // appending input elements to form
-        form.appendChild(uid);
-        form.appendChild(item);
-        form.appendChild(cost);
-        form.appendChild(type);
-        form.appendChild(s);
+    //     console.log(`Button Uid: ${buttonUid}`)
 
-        // appending form to body
-        document.getElementsByTagName("body")[0].appendChild(form);
-    }
+    //     // form element
+    //     var form = document.createElement("form");
+    //     form.setAttribute("method", "post");
+    //     form.setAttribute("action", "editItem");
 
-    // Deletes an Item from the table
-    function deleteItem(buttonUid) {
+    //     // uid input element
+    //     var uid = document.createElement("input");
+    //     uid.setAttribute("type", "hidden")
+    //     uid.setAttribute("name", "uid")
+    //     uid.setAttribute("value", buttonUid)
 
-        console.log(buttonUid)
+    //     // item input element
+    //     var item = document.createElement("input");
+    //     item.setAttribute("type", "text");
+    //     item.setAttribute("name", "item");
+    //     item.setAttribute("placeholder", "item");
 
-        // form element
-        var form = document.createElement("form");
-        form.setAttribute("method", "post");
-        form.setAttribute("action", "deleteItem");
+    //     // cost input element
+    //     var cost = document.createElement("input");
+    //     cost.setAttribute("type", "text");
+    //     cost.setAttribute("name", "cost");
+    //     cost.setAttribute("placeholder", "cost");
 
-        // uid input element
-        var uid = document.createElement("input");
-        uid.setAttribute("type", "hidden")
-        uid.setAttribute("name", "uid")
-        uid.setAttribute("placeholder", "uid")
-        uid.setAttribute("value", buttonUid);
+    //     var userPermInput = document.createElement("input");
+    //     userPermInput.setAttribute("type", "hidden");
+    //     userPermInput.setAttribute("name", "userPerm");
+    //     userPermInput.setAttribute("value", userPerm);
+    //     form.appendChild(userPermInput);
 
-        // userPerm input element
-        var userPermInput = document.createElement("input");
-        userPermInput.setAttribute("type", "hidden");
-        userPermInput.setAttribute("name", "userPerm");
-        userPermInput.setAttribute("value", userPerm);
-        form.appendChild(userPermInput);
+    //     // type input element
+    //     var type = document.createElement("input");
+    //     type.setAttribute("type", "text");
+    //     type.setAttribute("name", "type");
+    //     type.setAttribute("placeholder", "type");
 
-        // submit input element
-        var s = document.createElement("input");
-        s.setAttribute("type", "submit");
-        s.setAttribute("value", "Submit");
 
-        // appending input elements to form
-        form.appendChild(uid);
-        form.appendChild(s);
-        form.submit()
+    //     // submit input element
+    //     var s = document.createElement("input");
+    //     s.setAttribute("type", "submit");
+    //     s.setAttribute("value", "Submit");
 
-        // appending form to body
-        document.getElementsByTagName("body")[0].appendChild(form)
-    }
+    //     // appending input elements to form
+    //     form.appendChild(uid);
+    //     form.appendChild(item);
+    //     form.appendChild(cost);
+    //     form.appendChild(type);
+    //     form.appendChild(s);
+
+    //     // appending form to body
+    //     document.getElementsByTagName("body")[0].appendChild(form);
+    // }
+
+    // // Deletes an Item from the table
+    // function deleteItem(buttonUid) {
+
+    //     console.log(buttonUid)
+
+    //     // form element
+    //     var form = document.createElement("form");
+    //     form.setAttribute("method", "post");
+    //     form.setAttribute("action", "deleteItem");
+
+    //     // uid input element
+    //     var uid = document.createElement("input");
+    //     uid.setAttribute("type", "hidden")
+    //     uid.setAttribute("name", "uid")
+    //     uid.setAttribute("placeholder", "uid")
+    //     uid.setAttribute("value", buttonUid);
+
+    //     // userPerm input element
+    //     var userPermInput = document.createElement("input");
+    //     userPermInput.setAttribute("type", "hidden");
+    //     userPermInput.setAttribute("name", "userPerm");
+    //     userPermInput.setAttribute("value", userPerm);
+    //     form.appendChild(userPermInput);
+
+    //     // submit input element
+    //     var s = document.createElement("input");
+    //     s.setAttribute("type", "submit");
+    //     s.setAttribute("value", "Submit");
+
+    //     // appending input elements to form
+    //     form.appendChild(uid);
+    //     form.appendChild(s);
+    //     form.submit()
+
+    //     // appending form to body
+    //     document.getElementsByTagName("body")[0].appendChild(form)
+    // }
 
     //Updates the table after sorting
     function updateTable(updateData, buttonUid) {
