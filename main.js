@@ -2,7 +2,7 @@
 
 //requiring indepencies
 const express = require('express')
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-//app.use(cookieParser());
+app.use(cookieParser());
 
 //OnlyPogs Port
 const PORT = 6969
