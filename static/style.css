@@ -50,7 +50,7 @@ button{
   background-color: #3B443C;
 
 }
-/*pog.ejs*/
+
 p{
   background-color: #242525 ;
   width: auto;
@@ -72,7 +72,7 @@ img{
   float: right;
   background-color: #242525;
   width: 300px;
-  height: 295px;
+  height: 250px;
   padding: 5px;
 }
 .center {
@@ -89,7 +89,7 @@ img{
   font-size: 25px;
 }
 .info{
-  width: auto;
+  width: 250px;
   background-color: #242525;
   margin-top: 0px;
 }

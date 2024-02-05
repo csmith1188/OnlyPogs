@@ -18,10 +18,12 @@
     <!-- <button id="editButton" onclick="edit()">Edit </button>
     <button id="cancelButton" onclick="cancel(event)" style="display: none;">Cancel</button> -->
     <!--Created the image of the pog on the pog page-->
+
     <a id="img">
       <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"
         draggable="false" onerror="unknown()">
       <input type="file" id="upload" name="upload" accept=".png" style="display: none;">
+
     </a>
 
     <div id="infoBoxes">
@@ -82,7 +84,6 @@
 
 
   <script>
-    // v a r userPerm = < % -userPerm %>;
 
     // if (userPerm < 3) {
     //   document.getElementById("editButton").style.display = "none";
@@ -91,6 +92,7 @@
 
     pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
+
     var editMode = false
     var pogpng = document.getElementById("pogPNG");
     var originalImageSource = pogpng.src;
@@ -99,13 +101,36 @@
     var pogCopy = JSON.parse(JSON.stringify(pog));
     var uploadedImages = {};
 
+    //A function that changes the pog image based on the currently selected pog
+    function pogChange() {
+      console.log(pogImage.value);
+      if (pogImage.value == 0) {
+        document.getElementById('error').innerText = ""
+        let pogpng = document.getElementById("pogPNG")
+        pogpng.src = `/pogs/${pog}.png`
+      } else {
+        let pogpng = document.getElementById("pogPNG")
+        document.getElementById('error').innerText = ""
+        pogpng.src = `/pogs/${pog}${pogImage.value}.png`
+        pogpng.setAttribute('onerror', `this.src ='/pogs/${pog}.png'; unknown() ; this.onerror = ' '  `)
+      }
+    }
+
+      var editMode = false
+      var pogpng = document.getElementById("pogPNG");
+      var originalImageSource = pogpng.src;
+    
+
+
     function unknown() {
       const errorMessage = "Sorry, this pog/color does not exist.";
       document.getElementById('error').innerText = errorMessage;
       console.error(`Error: ${errorMessage}`);
     }
 
+
     var pogData = <%-JSON.stringify(pog) %>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
+
 
     // total pog amount
     var totalPog = 1856.5
@@ -411,6 +436,7 @@ function cancel(event) {
     });
 };
 
+=======
   </script>
 </body>
 
