@@ -17,13 +17,13 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 //OnlyPogs Port
-const PORT = 3000
+const PORT = 6969
 
 //formbar.js url
-// const AUTH_URL = 'http://172.16.3.106:420/oauth'
+// const AUTH_URL = 'http://172.16.3.145:1128/oauth'
 
 // //OnlyPogs url
-// const THIS_URL = 'http://172.16.3.107:1024/login'
+// const THIS_URL = 'http://172.16.3.145:6969/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
