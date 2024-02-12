@@ -17,13 +17,17 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 
 //OnlyPogs Port
-const PORT = 3000
+const PORT = 6969
 
 //formbar.js url
-// const AUTH_URL = 'http://172.16.3.106:420/oauth'
+// const AUTH_URL = 'http://172.16.3.145:1128/oauth'
+
+//OnlyPogs url
+// const THIS_URL = 'http://172.16.3.145:6969/login'
+
 
 // //OnlyPogs url
-// const THIS_URL = 'http://172.16.3.107:1024/login'
+// const THIS_URL = 'http://172.16.3.145:6969/login'
 
 const dbPath = path.join('./static', 'pog.db');
 
@@ -43,11 +47,11 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
 //   else res.redirect('/login')
 // };
 
-app.use(express.urlencoded({
-  extended: true
-}));
+// app.use(express.urlencoded({
+//   extended: true
+// }));
 
-app.use(express.static('./static'));
+// app.use(express.static('./static'));
 
 // app.use(session({
 //   secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
@@ -58,6 +62,50 @@ app.use(express.static('./static'));
 
 //Setting the view engine to look for ejs
 app.set('view engine', 'ejs');
+
+
+app.get('/', (req, res) => {
+  res.render('home')
+});
+
+/**
+ * This is an get endpoing that calls the isAuthenticated function when it runs
+*/
+// isAuthenticated, 
+app.get('/pogTable', (req, res) => {
+  // const userPerm = req.session.token.permissions
+  // const userName = req.session.token.username
+  try {
+    db.all('SELECT * FROM pogs', [], (err, rows,) => {
+      //error handling
+      if (err) {
+        console.error(err);
+      } else {
+        res.render('index', { rows: rows })
+        // , userPerm: userPerm, userName: userName
+      }
+    });
+  }
+  catch (error) {
+    res.send(error.message);
+  }
+});
+/**
+Sends you to the /login endpoint
+Sets tokenData to the sessions token data
+Then redirects you do the root endpoint.
+*/
+// app.get('/login', (req, res) => {
+//   console.log(req.query)
+//   if (req.query.token) {
+//     var tokenData = jwt.decode(req.query.token);
+//     req.session.token = tokenData;
+//     res.redirect('/');
+//   } else {
+//     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
+//   };
+// })
+
 
 /**get endpoint that takes you to the account.ejs page */
 app.get('/acc', (req, res) => {
@@ -79,7 +127,8 @@ app.get('/acc', (req, res) => {
  * Then it renders the rewards page with the rows from the rewards table and the perms from the Digipogs table
  */
 app.get('/rewards', (req, res) => {
-  const digiPerm = req.query.permissions
+  // const userPerm = req.session.token.permissions
+  // console.log(userPerm)
   db.all('Select * FROM rewards', [], (err, rows) => {
     //error validation
     if (err) {
@@ -92,20 +141,44 @@ app.get('/rewards', (req, res) => {
       if (err) {
         console.log(err)
       } else {
-        res.render('rewards', {
-          rows: rows
-        })
+
+        res.render('rewards', { rows: rows})
+        // , userPerm: userPerm 
       }
     })
   })
 })
 
 
+app.post('/addItem', (req, res) => {
+  const item = req.body.item
+  const cost = req.body.cost
+  const type = req.body.type
+  // const checkPerms = req.body.userPerm
+  console.log(`Uid: ${uid}`)
+  console.log(item)
+  console.log(cost)
+  console.log(type)
+  // if (checkPerms == req.session.token.permissions) {
+  //   db.run('INSERT INTO rewards (item, cost, type) VALUES (?, ?, ?)', [item, cost, type], (err) => {
+  //     if (err) {
+  //       console.log(err);
+  //       //TODO: send error template here
+  //     } else {
+  //       res.redirect('/rewards')
+  //     }
+  //   });
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
+}
+
 app.post('/rewards', (req, res) => {
   const uid = req.body.uid
   const item = req.body.item
   const cost = req.body.cost
   const type = req.body.type
+
   db.run('INSERT INTO rewards (uid, item, cost, type) VALUES (?, ?, ?, ?)', [uid, item, cost, type], (err) => {
     if (err) {
       console.log(err);
@@ -116,31 +189,26 @@ app.post('/rewards', (req, res) => {
   });
 })
 
+
 app.get('/rDetails', (req, res) => {
   res.render('rewardsDetails.ejs')
 })
 
-/**
- * This is an get endpoing that calls the isAuthenticated function when it runs
- */
-// isAuthenticated
-app.get('/', (req, res) => {
-  // const userPerm = req.session.token.permissions
-  // const userName = req.session.token.username
-  try {
-    db.all('SELECT * FROM pogs', [], (err, rows,) => {
-      //error handling
-      if (err) {
-        console.error(err);
-      }
-      res.render('index', {
-        rows: rows
-      })
-    });
-  } catch (error) {
-    res.send(error.message);
-  }
-});
+
+  // if (checkPerms == req.session.token.permissions) {
+  //   db.run('UPDATE rewards SET item = ?, cost = ?, type = ? WHERE uid = ?', [item, cost, type, uid], (err) => {
+  //     if (err) {
+  //       console.log(err);
+  //       // TODO: send error template here
+  //     } else {
+  //       res.redirect('/rewards');
+  //     }
+  //   });
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
+})
+
 
 /**
 Sends you to the /login endpoint
@@ -157,6 +225,25 @@ Then redirects you do the root endpoint.
 //     res.redirect(AUTH_URL + `?redirectURL=${THIS_URL}`);
 //   };
 // });
+
+app.post('/deleteItem', (req, res) => {
+  const uid = req.body.uid
+  // const checkPerms = req.body.userPerm
+  console.log(uid)
+  // if (checkPerms == req.session.token.permissions) {
+  //   db.run('DELETE FROM rewards WHERE uid = ?', [uid], (err) => {
+  //     if (err) {
+  //       console.log(err);
+  //       // TODO: send error template here
+  //     } else {
+  //       res.redirect('/rewards');
+  //     }
+  //   });
+  // } else {
+  //   // res.send("Insufficient Permissions")
+  // }
+})
+
 
 
 app.get('/pog', function (req, res) {
@@ -202,8 +289,8 @@ app.get('/pog', function (req, res) {
 
     .then(([pogData, colorData,]) => {
       // Both queries have completed successfully
-      // res.render('pog', { pog: pogData, color: colorData, userPerm: userPerm });
-      res.render('pog', { pog: pogData, color: colorData });
+      res.render('pog', { pog: pogData, color: colorData});
+      // , userPerm: userPerm 
       console.log(colorData)
       console.log(pogData);
     })
@@ -300,5 +387,5 @@ process.on('SIGINT', () => {
 
 //Listens for connections on the specified port
 app.listen(PORT, () => {
-  console.log(`You're running on port ${PORT}.`)
-})
+ console.log(`You're running on port ${PORT}.`);
+
