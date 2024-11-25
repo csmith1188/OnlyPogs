@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>OnlyPogs: <%=pog.name%>
-  </title>
+  <title>OnlyPogs: <%=pog.name%></title>
 </head>
 
 <body>
+
   <h1>
     <%=pog.name%>
   </h1>
@@ -36,13 +36,13 @@
       <div class="infobox">
         <p class="infoheader"><label>Colors</label></p>
         <select id="Pogs" onchange="pogChange()" class="info">
-          <%for (let Colors=0; Colors < pog.colors.length; Colors++) {%>
-            <option value="<%= Colors %>">
-              <%=pog.colors[Colors] %>
-            </option>
-            <%}%>
+          <%let colors=pog.colors || []; %>
+          <% for (let color=0; color < colors.length; color++) { %>
+              <option value="<%= color %>">
+                <%= colors[color] %>
+              </option>
+              <% } %>
         </select>
-
         <input type="text" id="selectedColor" style="display: none;" class='info'></input>
         <p id="error"></p>
       </div>
@@ -68,7 +68,7 @@
           <%= pog.tags %>
         </p>
       </div>
-
+      
       <!--Displays the Rarity of the current pog-->
       <div class="infobox">
         <p class="infoheader">Pog Rarity</p>
@@ -84,21 +84,18 @@
     </div>
   </div>
 
-
-
-
   <script>
-
+    // v a r userPerm = < % -userPerm %>;
     // if (userPerm < 3) {
     //   document.getElementById("editButton").style.display = "none";
     //   document.getElementById("cancelButton").style.display = "none";
     // }
-
-    pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
+    var pogName = "<%=pog.name%>";
+    var pog = JSON.parse(JSON.stringify(<%-JSON.stringify(pog)%>)); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
-
     var editMode = false
     var pogpng = document.getElementById("pogPNG");
+    var editMode = false
     var originalImageSource = pogpng.src;
     var uploadButton = document.getElementById('upload');
     var imageMap = new Map();
@@ -123,8 +120,6 @@
       var editMode = false
       var pogpng = document.getElementById("pogPNG");
       var originalImageSource = pogpng.src;
-    
-
 
     function unknown() {
       const errorMessage = "Sorry, this pog/color does not exist.";
@@ -134,7 +129,6 @@
 
 
     var pogData = <%-JSON.stringify(pog) %>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
-
 
     // total pog amount
     var totalPog = 1856.5
@@ -172,13 +166,31 @@
     pogPNG.onclick = function () {
       window.location.href = "/"
     }
-
+    
     function edit() {
       // if (userPerm > 2) {
       editMode = true;
-      pogCopy = JSON.parse(JSON.stringify(pog));
-      const infoElements = document.getElementsByClassName("info");
+      
+      // Get the select element
+      var selectElement = document.getElementById("Pogs");
 
+  // Calculate the new value for the extra option
+  var optionValues = Array.from(selectElement.options).map(option => parseInt(option.value));
+  var maxValue = Math.max(...optionValues);
+  newExtraValue = maxValue +  1;
+  // Check if the extra option already exists
+  var extraOptionExists = Array.from(selectElement.options).some(option => option.value === newExtraValue);
+  if (!extraOptionExists) {
+    var extraOption = document.createElement("option");
+    extraOption.text = "Choose an extra color...";
+    extraOption.value = newExtraValue;
+    selectElement.appendChild(extraOption);
+  }
+  
+
+      // if (userPerm > 2) {
+        pogCopy = JSON.parse(JSON.stringify(pog));
+        const infoElements = document.getElementsByClassName("info");
       for (let i = 0; i < infoElements.length; i++) {
         const element = infoElements[i];
         if (element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
@@ -196,9 +208,9 @@
       const selectedColorElement = document.getElementById("Pogs");
       const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
       document.getElementById("selectedColor").value = selectedColor;
-
+      
       document.getElementById("selectedColor").style.display = "block";
-
+      
       const pogpng = document.getElementById("pogPNG");
       pogpng.onclick = function (event) {
         if (editMode) {
@@ -215,19 +227,19 @@
       document.getElementById("editButton").innerHTML = "Save";
       document.getElementById("editButton").onclick = save;
       // }
-    } unknown
-
+    }
+    
     // Function to handle changing the pog image based on the selected pog and color
     function pogChange() {
       // if (userPerm > 2) {
       const pogImageValue = pogImage.value;
-
+      
       document.getElementById('error').innerText = "";
 
       if (pogImageValue == 0) {
-        pogpng.src = `/pogs/${pog}.png`;
+        pogpng.src = `/pogs/${pogName}.png`;
       } else {
-        pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
+        pogpng.src = `/pogs/${pogName}${pogImageValue}.png`;
       }
 
       // Add onerror event to handle missing image
@@ -249,7 +261,6 @@
       document.getElementById("selectedColor").value = selectedColor;
       // -----------------------------
       // Get the selected color
-      // If an image has been uploaded for the selected color, set the pog image source to the uploaded image source
       if (uploadedImages[selectedColor]) {
         pogpng.src = uploadedImages[selectedColor];
         console.log(uploadedImages[selectedColor]);
@@ -257,172 +268,147 @@
       // }
     }
 
-    uploadButton.addEventListener('change', function () {
- // Get the selected file
- var file = uploadButton.files[0];
 
- // Check if a file was selected and if it's a PNG
- if (file && file.type === 'image/png') {
-    // Create a new FileReader
-    var reader = new FileReader();
+   uploadButton.addEventListener('change', function () {
+        // Get the selected file
+        var file = uploadButton.files[0];
+        
+        // Check if a file was selected and if it's a PNG
+        if (file && file.type === 'image/png') {
+          // Create a new FileReader
+          var reader = new FileReader();
 
-    // Set the onload function of the FileReader
-    reader.onload = function (e) {
-      // Set the src of the image to the data URL of the file
-      pogpng.src = e.target.result;
+          // Set the onload function of the FileReader
+          reader.onload = function (e) {
+            // Set the src of the image to the data URL of the file
+            pogpng.src = e.target.result;
+            
+            let dropdown = document.getElementById('Pogs');
+            let selectedValue = dropdown.value;
+            let selectedText = dropdown.options[dropdown.selectedIndex].text;
+            
+            // Get the pogName
 
-      let dropdown = document.getElementById('Pogs');
-      let selectedValue = dropdown.value;
-      let selectedText = dropdown.options[dropdown.selectedIndex].text;
+            var pogNumber = document.getElementById('Pogs').value;
+            console.log(pogNumber);
 
-      // Get the pogName
-      let pogName = "<%=pog.name%>";
+            // Create a new property name by concatenating pogName and pogNumber (if it's not 0)
+            let newPropertyName = parseInt(pogNumber) !== 0 ? pogName + pogNumber : pogName;
 
-      var pogNumber = document.getElementById('Pogs').value;
-      console.log(pogNumber);
+            // Save the uploaded image source under the new property name
+            uploadedImages[newPropertyName] = pogpng.src;
 
-      // Create a new property name by concatenating pogName and pogNumber (if it's not 0)
-      let newPropertyName = parseInt(pogNumber) !== 0 ? pogName + pogNumber : pogName;
+            // If the property already exists in the map, delete the older one
+            if (imageMap.has(newPropertyName)) {
+              imageMap.delete(newPropertyName);
+            }
 
-      // Save the uploaded image source under the new property name
-      uploadedImages[newPropertyName] = pogpng.src;
+            // Add the new object to the map
+            imageMap.set(newPropertyName, uploadedImages);
 
-      // If the property already exists in the map, delete the older one
-      if (imageMap.has(newPropertyName)) {
-        imageMap.delete(newPropertyName);
-      }
+            console.log(Array.from(imageMap.values()));
 
-      // Add the new object to the map
-      imageMap.set(newPropertyName, uploadedImages);
+            // Hide the upload button
+            uploadButton.style.display = 'none';
+          };
 
-      console.log(Array.from(imageMap.values()));
-
-      // Hide the upload button
-      uploadButton.style.display = 'none';
-    };
-
-    // Read the file as a data URL
-    reader.readAsDataURL(file);
- }
-});
-
-
-
-
-function cancel(event) {
- // if (userPerm > 2) {
- editMode = false
- event.preventDefault();
-
- const infoElements = document.getElementsByClassName("info");
- for (let i = 0; i < infoElements.length; i++) {
-    const element = infoElements[i];
-    element.textContent = originalData[element.id] || element.textContent;
-    element.setAttribute("contentEditable", "false");
- }
-
- const selectedColor = document.getElementById("selectedColor");
- selectedColor.removeEventListener("blur", blurListener);
- selectedColor.style.display = "none";
-
- const dropdownMenu = document.getElementById("Pogs");
- dropdownMenu.innerHTML = originalDropdownHTML;
-
- pogpng.src = originalImageSource || pogpng.src;
-
- document.getElementById("cancelButton").style.display = "none";
- const editButton = document.getElementById("editButton");
- editButton.innerHTML = "Edit";
- editButton.onclick = edit;
-
- if (uploadButton.style.display === 'block') {
-    uploadButton.style.display = 'none';
- }
-
- // Reset the pog object to its original state
- pog = JSON.parse(JSON.stringify(pogCopy));
-
- for (const key in pog) {
-    if (Object.hasOwnProperty.call(pog, key)) {
-      const element = pog[key];
-    }
- }
-
- // Clear the uploadedImages array
- uploadedImages = {};
- // }
-}
-
-    function save() {
-      console.log("Save attempt made");
-      // Get the values of amount, tags, and lore from the input fields
-      var amountData = document.getElementById('amount').textContent.trim();
-      var serialData = document.getElementById('serial').textContent.trim();
-      var tagsData = document.getElementById('tags').textContent.trim();
-      var loreData = document.getElementById('lore').textContent.trim();
-      var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
-        return option.text;
+          // Read the file as a data URL
+          reader.readAsDataURL(file);
+        }
       });
 
-      // Check if any of the values are missing
-      let missingData = '';
+    function cancel(event) {
+      // if (userPerm > 2) {
+      editMode = false
+      event.preventDefault();
 
-      if (!amountData) missingData += 'Amount, ';
-      if (!serialData) missingData += 'Serial Number, ';
-      if (!tagsData) missingData += 'Tags, ';
-      if (!loreData) missingData += 'Lore, ';
-      if (colorData.some(color => color === '')) missingData += 'Colors, ';
-
-      if (missingData) {
-        alert('Missing data: ' + missingData.slice(0, -2));
-        return;
+      const infoElements = document.getElementsByClassName("info");
+      for (let i = 0; i < infoElements.length; i++) {
+        const element = infoElements[i];
+        element.textContent = originalData[element.id] || element.textContent;
+        element.setAttribute("contentEditable", "false");
       }
 
-      // Check if the tags value is valid
-      const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
-      if (!validTags.includes(tagsData)) {
-        alert('Invalid tag');
-        return;
+      const selectedColor = document.getElementById("selectedColor");
+      selectedColor.removeEventListener("blur", blurListener);
+      selectedColor.style.display = "none";
+
+      const dropdownMenu = document.getElementById("Pogs");
+      dropdownMenu.innerHTML = originalDropdownHTML;
+
+      pogpng.src = originalImageSource || pogpng.src;
+
+      document.getElementById("cancelButton").style.display = "none";
+      const editButton = document.getElementById("editButton");
+      editButton.innerHTML = "Edit";
+      editButton.onclick = edit;
+
+      if (uploadButton.style.display === 'block') {
+        uploadButton.style.display = 'none';
       }
 
-      colorData = `{"colors":${JSON.stringify(colorData)}}`;
+      // Reset the pog object to its original state
+      pog = JSON.parse(JSON.stringify(pogCopy));
 
-      // bytes check (if above 20 mb stop action)
-      var data = {
-        amount: amountData,
-        serial: serialData,
-        tags: tagsData,
-        lore: loreData,
-        colors: colorData,
-        images: uploadedImages
-      };
-
-      
-  // bytes check (if above 20 mb stop action)
-  var data = {
-    amount: amountData,
-    serial: serialData,
-    tags: tagsData,
-    lore: loreData,
-    colors: colorData,
-    images: Array.from(imageMap.values())
-  };
-
-  // Convert the data to a string and calculate the size in bytes
-  var dataSize = new Blob([JSON.stringify(data)]).size;
-  console.log(dataSize + " bytes");
-  // Check if the data size is over 20MB
-  if (dataSize > 20 * 1024 * 1024) {
-    alert('The data is too large to send. Please reduce the size of the data sent, or perform save operations in smaller chunks.');
-    return;
+      for (const key in pog) {
+        if (Object.hasOwnProperty.call(pog, key)) {
+          const element = pog[key];
+        }
+      }
+        // Remove the extra color option if it exists
+  var selectElement = document.getElementById("Pogs");
+  var options = selectElement.options;
+  for (var i =  0; i < options.length; i++) {
+    if (options[i].value === newExtraValue) {
+      selectElement.remove(i);
+      break;
+    }
   }
 
-  fetch('/savePog', {
- method: 'POST',
- headers: {
-    'Content-Type': 'application/json'
- },
- body: JSON.stringify({
+      var selectElement = document.getElementById("Pogs");
+      var optionsLength = selectElement.options.length;
+      if (optionsLength > pog.colors.length) {
+        selectElement.removeChild(selectElement.options[optionsLength - 1]);
+      }
+
+      // Clear the uploadedImages array
+      uploadedImages = {};
+      // }
+    }
+
+ function save() {
+  // Retrieve the selected color and check if it's the default text
+  var selectedColorElement = document.getElementById("Pogs");
+  var selectedColor = selectedColorElement.options[selectedColorElement.options.length -1].text;
+  var defaultExtraColorText = "Choose an extra color...";
+  var extraColorChanged = selectedColor != defaultExtraColorText;
+
+  // Check if an image has been uploaded
+  var imageUploaded = Object.keys(uploadedImages).length >  0;
+
+  // Prepare the colorData array, adding the selected color if it has changed
+  var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
+    return option.text;
+  });
+  if (!extraColorChanged) {
+    colorData.pop();
+  }
+
+  // Format the uploaded image properly
+  if (imageUploaded) {
+    // Use the selected color as the property name that corresponds to the color
+    var newImageKey = selectedColor;
+    uploadedImages[newImageKey] = pogpng.src; // The image data
+  }
+
+  // Gather the rest of the data from the input fields
+  var amountData = document.getElementById('amount').textContent.trim();
+  var serialData = document.getElementById('serial').textContent.trim();
+  var tagsData = document.getElementById('tags').textContent.trim();
+  var loreData = document.getElementById('lore').textContent.trim();
+
+  // Construct the data object to send to the server
+   var data = {
     color: colorData,
     amount: amountData,
     serial: serialData,
@@ -430,17 +416,31 @@ function cancel(event) {
     lore: loreData,
     uid: pogData.uid,
     uploadedImages: uploadedImages
- })
-})
+  };
+console.log(data);
+  // Convert the data to a string and calculate the size in bytes
+  var dataString = JSON.stringify(data);
+  var dataSize = new Blob([dataString]).size;
 
-    .then(response => response.json())
-    .then(data => console.log(`Server responded with: ${JSON.stringify(data)}`))
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-};
-
-=======
+  // Check if the data size is over  20MB
+  if (dataSize >  20 *  1024 *  1024) {
+    alert('The data is too large to send. Please reduce the size of the data sent, or save in smaller chunks.');
+    return;
+  }
+  // Send the data to the server using the Fetch API
+  fetch('/savePog', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => console.log(`Server responded with: ${JSON.stringify(data)}`))
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
   </script>
 </body>
 

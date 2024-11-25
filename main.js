@@ -312,52 +312,60 @@ app.post('/savePog', function (req, res) {
  
   // Iterate over the uploadedImages object
   for (const imageName in uploadedImages) {
-     if (uploadedImages.hasOwnProperty(imageName)) {
-       let imageData = uploadedImages[imageName];
- 
-       // Remove the data URL prefix
-       imageData = imageData.toString().replace(/^data:image\/[^;]+;base64,/, "");
- 
-       // Convert the base64 string back to binary data
-       const buffer = Buffer.from(imageData, 'base64');
- 
-       // Define the path where the image will be saved
-       const filePath = path.join(__dirname, 'static', 'pogs', `${imageName}.png`);
- 
-       // Write the binary data to a file
-       fs.writeFile(filePath, buffer, err => {
-         if (err) {
-           console.error(`Error writing file for image ${imageName}:`, err);
-         } else {
-           console.log(`Image saved for image ${imageName} at ${filePath}`);
-         }
-       });
-     }
+    if (uploadedImages.hasOwnProperty(imageName)) {
+      let imageData = uploadedImages[imageName];
+
+      // Remove the data URL prefix
+      imageData = imageData.toString().replace(/^data:image\/[^;]+;base64,/, "");
+
+      // Convert the base64 string back to binary data
+      const buffer = Buffer.from(imageData, 'base64');
+
+      // Define the path where the image will be saved
+      const filePath = path.join(__dirname, 'static', 'pogs', `${imageName}.png`);
+
+      // Write the binary data to a file
+      fs.writeFile(filePath, buffer, err => {
+        if (err) {
+          console.error(`Error writing file for image ${imageName}:`, err);
+        } else {
+          console.log(`Image saved for image ${imageName} at ${filePath}`);
+        }
+      });
+    }
   }
+  db.get('SELECT * FROM pogs WHERE uid = ?', [uid], (err, row) => {
+    if (err) {
+      console.error('Database error:', err);
+      res.status(500).json({ error: 'Database error' });
+      return;
+    }
 
-  if (req.files) {
-    const file = req.files.upload;
-    const filePath = path.join(__dirname, 'static', 'pogs', `${file.name}`);
-
-    file.mv(filePath, err => {
+    if (!row) {
+      console.error(`No pog found with UID ${uid}`);
+      res.status(404).json({ error: 'Pog not found' });
+      return;
+    }
+    row.color = JSON.parse(row.color).colors
+    if (JSON.stringify(row.color) == JSON.stringify(color) &&
+      row.amount == amount &&
+      row.serial == serial &&
+      row.tags == tags &&
+      row.lore == lore) {
+      res.json({ message: 'U failed' });
+      return
+    }
+    console.log(color, row.color);
+    var sql = 'UPDATE pogs SET color = ?, amount = ?, serial = ?, tags = ?, lore = ? WHERE uid = ?';
+    db.run(sql, [JSON.stringify({colors:color}), amount, serial, tags, lore, uid], (err) => {
       if (err) {
-        console.error('Error moving file:', err);
-        return res.status(500).send(err);
+        console.log('Database error:', err);
+        res.status(500).json({ error: 'Database error' });
       } else {
-        console.log(`File moved to ${filePath}`);
+        console.log(`Data and file saved successfully for pog with UID ${uid}`);
+        res.json({ message: 'Data and file saved successfully' });
       }
     });
-  }
-
-  var sql = 'UPDATE pogs SET color = ?, amount = ?, serial = ?, tags = ?, lore = ? WHERE uid = ?';
-  db.run(sql, [color, amount, serial, tags, lore, uid], (err) => {
-    if (err) {
-      console.log('Database error:', err);
-      res.status(500).json({ error: 'Database error' });
-    } else {
-      console.log(`Data and file saved successfully for pog with UID ${uid}`);
-      res.json({ message: 'Data and file saved successfully' });
-    }
   });
 });
 
