@@ -171,7 +171,7 @@ app.post('/addItem', (req, res) => {
   // } else {
   //   // res.send("Insufficient Permissions")
   // }
-}
+});
 
 app.post('/rewards', (req, res) => {
   const uid = req.body.uid
@@ -207,7 +207,7 @@ app.get('/rDetails', (req, res) => {
   // } else {
   //   // res.send("Insufficient Permissions")
   // }
-})
+// })
 
 
 /**
@@ -388,4 +388,4 @@ process.on('SIGINT', () => {
 //Listens for connections on the specified port
 app.listen(PORT, () => {
  console.log(`You're running on port ${PORT}.`);
-
+});
