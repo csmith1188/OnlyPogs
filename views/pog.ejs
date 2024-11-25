@@ -23,6 +23,12 @@
         onerror="this.src ='/pogs/<%=pog.name%>.png';unknown(); this.onerror = ' ' ">
     </a>
 
+    <a id="img">
+      <img src="/pogs/<%=pog.name%>.png" alt="/pogs/<%=pog.name%>.png" width="200px" height="auto" id="pogPNG"
+        draggable="false" onerror="unknown()">
+      <input type="file" id="upload" name="upload" accept=".png" style="display: none;">
+
+    </a>
 
     <div id="infoBoxes">
 
@@ -79,8 +85,9 @@
   </div>
 
 
+
+
   <script>
-    // var userPerm = 3;
 
     // if (userPerm < 3) {
     //   document.getElementById("editButton").style.display = "none";
@@ -89,6 +96,14 @@
 
     pog = JSON.parse(JSON.stringify("<%=pog.name%>")); // DO NOT TOUCH, WILL BREAK
     var pogImage = document.getElementById("Pogs");
+
+    var editMode = false
+    var pogpng = document.getElementById("pogPNG");
+    var originalImageSource = pogpng.src;
+    var uploadButton = document.getElementById('upload');
+    var imageMap = new Map();
+    var pogCopy = JSON.parse(JSON.stringify(pog));
+    var uploadedImages = {};
 
     //A function that changes the pog image based on the currently selected pog
     function pogChange() {
@@ -111,22 +126,15 @@
     
 
 
-    function removeImage(event) {
-      if (editMode) {
-        event.preventDefault();
-        const imageElement = document.getElementById("pogPNG");
-        const originalImageSource = imageElement.src;
-        imageElement.src = "/pogs/FillerPog.png";
-      }
-    }
-
-    function handleUnknown() {
+    function unknown() {
       const errorMessage = "Sorry, this pog/color does not exist.";
       document.getElementById('error').innerText = errorMessage;
       console.error(`Error: ${errorMessage}`);
     }
 
-    var pogData = <%- JSON.stringify(pog) %>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
+
+    var pogData = <%-JSON.stringify(pog) %>; // Do not beautify; remove spaces, if they appear on this line, will cause errors
+
 
     // total pog amount
     var totalPog = 1856.5
@@ -134,7 +142,6 @@
     //getting the pog percentage out of the total amount of pogs
     var pogPercent = pogData.amount / totalPog * 100
     pogPercent = pogPercent.toFixed(2)
-
 
     //setting rarities
     if (pogPercent >= 10) {
@@ -162,181 +169,278 @@
     };
 
     let pogImageValue = 0;
-    // pogPNG.onclick = function () {
-    //   window.location.href = "pogTable"
-    // }
+    pogPNG.onclick = function () {
+      window.location.href = "/"
+    }
 
-    // function edit() {
-    //   if (userPerm > 2) {
-    //     editMode = true;
+    function edit() {
+      // if (userPerm > 2) {
+      editMode = true;
+      pogCopy = JSON.parse(JSON.stringify(pog));
+      const infoElements = document.getElementsByClassName("info");
 
-    //     const infoElements = document.getElementsByClassName("info");
+      for (let i = 0; i < infoElements.length; i++) {
+        const element = infoElements[i];
+        if (element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
+          element.setAttribute("contentEditable", "false");
+        } else {
+          originalData[element.id] = element.textContent;
+          element.textContent = originalData[element.id];
+          element.setAttribute("contentEditable", "true");
+        }
+      }
+      const dropdownMenu = document.getElementById("Pogs");
+      originalDropdownHTML = dropdownMenu.innerHTML;
 
-    //     for (let i = 0; i < infoElements.length; i++) {
-    //       const element = infoElements[i];
-    //       if (element.id === "rarityBox" || element.id === "selectedColor" || element.id === "Pogs") {
-    //         element.setAttribute("contentEditable", "false");
-    //       } else {
-    //         originalData[element.id] = element.textContent;
-    //         element.textContent = originalData[element.id];
-    //         element.setAttribute("contentEditable", "true");
-    //       }
-    //     }
+      // Set selectedColor box value to the text of the first option
+      const selectedColorElement = document.getElementById("Pogs");
+      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+      document.getElementById("selectedColor").value = selectedColor;
 
-    //     const dropdownMenu = document.getElementById("Pogs");
-    //     originalDropdownHTML = dropdownMenu.innerHTML;
+      document.getElementById("selectedColor").style.display = "block";
 
-    //     // Set selectedColor box value to the text of the first option
-    //     const selectedColorElement = document.getElementById("Pogs");
-    //     const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
-    //     document.getElementById("selectedColor").value = selectedColor;
+      const pogpng = document.getElementById("pogPNG");
+      pogpng.onclick = function (event) {
+        if (editMode) {
+          // Replace the image with the FillerPog
+          pogpng.src = "/pogs/FillerPog.png";
+          uploadButton.style.display = 'block';
+        } else {
+          pogPNG.onclick = window.location.href = "/"
+        };
+      };
 
-    //     document.getElementById("selectedColor").style.display = "block";
-
-    //     const pogpng = document.getElementById("pogPNG");
-    //     pogpng.onclick = function () {
-    //       if (editMode) {
-    //         // Replace the image with the FillerPog
-    //         pogpng.src = "/pogs/FillerPog.png";
-    //       } else {
-    //         // Call pogChange function to handle image change
-    //         pogChange();
-    //         window.location.href = "/"
-    //       }
-    //     };
-
-    //     document.getElementById("selectedColor").addEventListener("blur", blurListener);
-    //     document.getElementById("cancelButton").style.display = "inline";
-    //     document.getElementById("editButton").innerHTML = "Save";
-    //     document.getElementById("editButton").onclick = save;
-    //   }
-    // }
+      document.getElementById("selectedColor").addEventListener("blur", blurListener);
+      document.getElementById("cancelButton").style.display = "inline";
+      document.getElementById("editButton").innerHTML = "Save";
+      document.getElementById("editButton").onclick = save;
+      // }
+    } unknown
 
     // Function to handle changing the pog image based on the selected pog and color
-    // function pogChange() {
-    //   if (userPerm > 2) {
-    //     const pogImageValue = pogImage.value;
+    function pogChange() {
+      // if (userPerm > 2) {
+      const pogImageValue = pogImage.value;
 
-    //     document.getElementById('error').innerText = "";
+      document.getElementById('error').innerText = "";
 
-    //     if (pogImageValue == 0) {
-    //       pogpng.src = `/pogs/${pog}.png`;
-    //     } else {
-    //       pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
-    //       pogpng.setAttribute(
-    //         'onerror',
-    //         `this.src = '/pogs/${pog}.png'; handleUnknown(); this.onerror = ' ';`
-    //       );
-    //     }
+      if (pogImageValue == 0) {
+        pogpng.src = `/pogs/${pog}.png`;
+      } else {
+        pogpng.src = `/pogs/${pog}${pogImageValue}.png`;
+      }
 
-    //     const selectedColorElement = document.getElementById("Pogs");
-    //     const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
+      // Add onerror event to handle missing image
+      pogpng.onerror = function () {
+        // Call unknown function
+        unknown();
+        // Replace the image with the FillerPog
+        pogpng.src = "/pogs/FillerPog.png";
+        // }
+      }
 
-    //     if (selectedColor === "FillerPog") {
-    //       pogpng.src = "/pogs/FillerPog.png";
-    //     }
+      const selectedColorElement = document.getElementById("Pogs");
+      const selectedColor = selectedColorElement.options[selectedColorElement.selectedIndex].text;
 
-    //     document.getElementById("selectedColor").value = selectedColor;
+      if (selectedColor === "FillerPog") {
+        pogpng.src = "/pogs/FillerPog.png";
+      }
 
-    //     pogpng.onclick = removeImage;
-    //   }
-    // }
+      document.getElementById("selectedColor").value = selectedColor;
+      // -----------------------------
+      // Get the selected color
+      // If an image has been uploaded for the selected color, set the pog image source to the uploaded image source
+      if (uploadedImages[selectedColor]) {
+        pogpng.src = uploadedImages[selectedColor];
+        console.log(uploadedImages[selectedColor]);
+      }
+      // }
+    }
 
-    // function cancel(event) {
-    //   if (userPerm > 2) {
-    //     editMode = false
-    //     event.preventDefault();
+    uploadButton.addEventListener('change', function () {
+ // Get the selected file
+ var file = uploadButton.files[0];
 
-    //     const infoElements = document.getElementsByClassName("info");
-    //     for (let i = 0; i < infoElements.length; i++) {
-    //       const element = infoElements[i];
-    //       element.textContent = originalData[element.id] || element.textContent;
-    //       element.setAttribute("contentEditable", "false");
-    //     }
+ // Check if a file was selected and if it's a PNG
+ if (file && file.type === 'image/png') {
+    // Create a new FileReader
+    var reader = new FileReader();
 
-    //     const selectedColor = document.getElementById("selectedColor");
-    //     selectedColor.removeEventListener("blur", blurListener);
-    //     selectedColor.style.display = "none";
+    // Set the onload function of the FileReader
+    reader.onload = function (e) {
+      // Set the src of the image to the data URL of the file
+      pogpng.src = e.target.result;
 
-    //     const dropdownMenu = document.getElementById("Pogs");
-    //     dropdownMenu.innerHTML = originalDropdownHTML;
+      let dropdown = document.getElementById('Pogs');
+      let selectedValue = dropdown.value;
+      let selectedText = dropdown.options[dropdown.selectedIndex].text;
 
-    //     pogpng.src = originalImageSource || pogpng.src;
+      // Get the pogName
+      let pogName = "<%=pog.name%>";
 
-    //     document.getElementById("cancelButton").style.display = "none";
-    //     const editButton = document.getElementById("editButton");
-    //     editButton.innerHTML = "Edit";
-    //     editButton.onclick = edit;
-    //   }
+      var pogNumber = document.getElementById('Pogs').value;
+      console.log(pogNumber);
 
-    //   for (const key in pog) {
-    //     if (Object.hasOwnProperty.call(pog, key)) {
-    //       const element = pog[key];
-    //     }
-    //   }
-    // }
+      // Create a new property name by concatenating pogName and pogNumber (if it's not 0)
+      let newPropertyName = parseInt(pogNumber) !== 0 ? pogName + pogNumber : pogName;
 
-    // function save() {
-    //   if (userPerm > 2) {
-    //     // Get the values of amount, tags, and lore from the input fields
-    //     var amountData = document.getElementById('amount').textContent.trim();
-    //     var serialData = document.getElementById('serial').textContent.trim();
-    //     var tagsData = document.getElementById('tags').textContent.trim();
-    //     var loreData = document.getElementById('lore').textContent.trim();
-    //     var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
-    //       return option.text;
-    //     });
+      // Save the uploaded image source under the new property name
+      uploadedImages[newPropertyName] = pogpng.src;
 
-    //     // Check if any of the values are missing
-    //     let missingData = '';
+      // If the property already exists in the map, delete the older one
+      if (imageMap.has(newPropertyName)) {
+        imageMap.delete(newPropertyName);
+      }
 
-    //     if (!amountData) missingData += 'Amount, ';
-    //     if (!serialData) missingData += 'Serial Number, ';
-    //     if (!tagsData) missingData += 'Tags, ';
-    //     if (!loreData) missingData += 'Lore, ';
-    //     if (colorData.some(color => color === '')) missingData += 'Colors, ';
+      // Add the new object to the map
+      imageMap.set(newPropertyName, uploadedImages);
 
-    //     if (missingData) {
-    //       alert('Missing data: ' + missingData.slice(0, -2));
-    //       return;
-    //     }
+      console.log(Array.from(imageMap.values()));
 
-    //     // Check if the tags value is valid
-    //     const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
-    //     if (!validTags.includes(tagsData)) {
-    //       alert('Invalid tag');
-    //       return;
-    //     }
-    //     var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
-    //       return option.text;
-    //     });
+      // Hide the upload button
+      uploadButton.style.display = 'none';
+    };
 
-    //     colorData = `{"colors":${JSON.stringify(colorData)}}`; // use JSON.stringify to convert the array into a JSON string
+    // Read the file as a data URL
+    reader.readAsDataURL(file);
+ }
+});
 
-    //     console.log(colorData);
 
-    //     console.log('About to send fetch request');
-    //     console.log(amountData, serialData, tagsData, loreData, colorData, pogData.uid);
-    //     fetch('/savePog', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify({
-    //         color: colorData,
-    //         amount: amountData,
-    //         serial: serialData,
-    //         tags: tagsData,
-    //         lore: loreData,
-    //         uid: pogData.uid
-    //       })
-    //     })
-    //       .then(response => response.json())
-    //       .catch((error) => {
-    //         console.error('Error:', error);
-    //       });
-    //   }
-    // };
+
+
+function cancel(event) {
+ // if (userPerm > 2) {
+ editMode = false
+ event.preventDefault();
+
+ const infoElements = document.getElementsByClassName("info");
+ for (let i = 0; i < infoElements.length; i++) {
+    const element = infoElements[i];
+    element.textContent = originalData[element.id] || element.textContent;
+    element.setAttribute("contentEditable", "false");
+ }
+
+ const selectedColor = document.getElementById("selectedColor");
+ selectedColor.removeEventListener("blur", blurListener);
+ selectedColor.style.display = "none";
+
+ const dropdownMenu = document.getElementById("Pogs");
+ dropdownMenu.innerHTML = originalDropdownHTML;
+
+ pogpng.src = originalImageSource || pogpng.src;
+
+ document.getElementById("cancelButton").style.display = "none";
+ const editButton = document.getElementById("editButton");
+ editButton.innerHTML = "Edit";
+ editButton.onclick = edit;
+
+ if (uploadButton.style.display === 'block') {
+    uploadButton.style.display = 'none';
+ }
+
+ // Reset the pog object to its original state
+ pog = JSON.parse(JSON.stringify(pogCopy));
+
+ for (const key in pog) {
+    if (Object.hasOwnProperty.call(pog, key)) {
+      const element = pog[key];
+    }
+ }
+
+ // Clear the uploadedImages array
+ uploadedImages = {};
+ // }
+}
+
+    function save() {
+      console.log("Save attempt made");
+      // Get the values of amount, tags, and lore from the input fields
+      var amountData = document.getElementById('amount').textContent.trim();
+      var serialData = document.getElementById('serial').textContent.trim();
+      var tagsData = document.getElementById('tags').textContent.trim();
+      var loreData = document.getElementById('lore').textContent.trim();
+      var colorData = Array.from(document.getElementById('Pogs').options).map(function (option) {
+        return option.text;
+      });
+
+      // Check if any of the values are missing
+      let missingData = '';
+
+      if (!amountData) missingData += 'Amount, ';
+      if (!serialData) missingData += 'Serial Number, ';
+      if (!tagsData) missingData += 'Tags, ';
+      if (!loreData) missingData += 'Lore, ';
+      if (colorData.some(color => color === '')) missingData += 'Colors, ';
+
+      if (missingData) {
+        alert('Missing data: ' + missingData.slice(0, -2));
+        return;
+      }
+
+      // Check if the tags value is valid
+      const validTags = ['Class Pog', 'Student Created', 'Teacher Created', 'PokePogs'];
+      if (!validTags.includes(tagsData)) {
+        alert('Invalid tag');
+        return;
+      }
+
+      colorData = `{"colors":${JSON.stringify(colorData)}}`;
+
+      // bytes check (if above 20 mb stop action)
+      var data = {
+        amount: amountData,
+        serial: serialData,
+        tags: tagsData,
+        lore: loreData,
+        colors: colorData,
+        images: uploadedImages
+      };
+
+      
+  // bytes check (if above 20 mb stop action)
+  var data = {
+    amount: amountData,
+    serial: serialData,
+    tags: tagsData,
+    lore: loreData,
+    colors: colorData,
+    images: Array.from(imageMap.values())
+  };
+
+  // Convert the data to a string and calculate the size in bytes
+  var dataSize = new Blob([JSON.stringify(data)]).size;
+  console.log(dataSize + " bytes");
+  // Check if the data size is over 20MB
+  if (dataSize > 20 * 1024 * 1024) {
+    alert('The data is too large to send. Please reduce the size of the data sent, or perform save operations in smaller chunks.');
+    return;
+  }
+
+  fetch('/savePog', {
+ method: 'POST',
+ headers: {
+    'Content-Type': 'application/json'
+ },
+ body: JSON.stringify({
+    color: colorData,
+    amount: amountData,
+    serial: serialData,
+    tags: tagsData,
+    lore: loreData,
+    uid: pogData.uid,
+    uploadedImages: uploadedImages
+ })
+})
+
+    .then(response => response.json())
+    .then(data => console.log(`Server responded with: ${JSON.stringify(data)}`))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+
+=======
   </script>
 </body>
 
