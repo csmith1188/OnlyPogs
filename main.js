@@ -51,7 +51,7 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
 //   extended: true
 // }));
 
-// app.use(express.static('./static'));
+app.use(express.static('./static'));
 
 // app.use(session({
 //   secret: 'D$jtDD_}g#T+vg^%}qpi~+2BCs=R!`}O',
